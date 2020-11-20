@@ -2,25 +2,25 @@ package cn.edu.henu.dao.impl;
 
 import java.util.List;
 
+import cn.edu.henu.bean.Consumer;
 import org.springframework.stereotype.Repository;
 
-import cn.edu.henu.bean.Customer;
-import cn.edu.henu.dao.ICustomerDao;
+import cn.edu.henu.dao.IConsumerDao;
 
 /**
  * @author Qing_Y
  */
 @Repository("customerDao")
-public class CustomerDaoImpl implements ICustomerDao {
+public class ConsumerDaoImpl implements IConsumerDao {
 
     @Override
-    public List<Customer> getAllCustomer() {
+    public List<Consumer> getAllCustomer() {
 
         return null;
     }
 
     @Override
-    public Customer getOneById(Integer id) {
+    public Consumer getOneById(Integer id) {
 
         return null;
     }
@@ -31,12 +31,12 @@ public class CustomerDaoImpl implements ICustomerDao {
     }
 
     @Override
-    public void update(Customer customer) {
+    public void update(Consumer consumer) {
 
     }
 
     @Override
-    public void add(Customer customer) {
+    public void add(Consumer consumer) {
 
     }
 

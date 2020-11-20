@@ -2,24 +2,24 @@ package cn.edu.henu.service.impl;
 
 import java.util.List;
 
-import cn.edu.henu.bean.Customer;
-import cn.edu.henu.service.ICustomerService;
+import cn.edu.henu.bean.Consumer;
+import cn.edu.henu.service.IConsumerService;
 import org.springframework.stereotype.Service;
 
 /**
  * @author Qing_Y
  */
 @Service("customerSer")
-public class CustomerServiceImpl implements ICustomerService {
+public class ConsumerServiceImpl implements IConsumerService {
 
     @Override
-    public List<Customer> getAllCustomer() {
+    public List<Consumer> getAllCustomer() {
 
         return null;
     }
 
     @Override
-    public Customer getOneById(Integer id) {
+    public Consumer getOneById(Integer id) {
 
         return null;
     }
@@ -30,12 +30,12 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     @Override
-    public void update(Customer customer) {
+    public void update(Consumer consumer) {
 
     }
 
     @Override
-    public void add(Customer customer) {
+    public void add(Consumer consumer) {
 
     }
 

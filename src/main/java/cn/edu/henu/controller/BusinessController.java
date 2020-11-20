@@ -17,18 +17,33 @@ public class BusinessController {
     @Autowired
     private IBusinessService businessSer;
 
+    /**
+     * 登录校验
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     @RequestMapping("/login")
-    public String toLoginPage() {
-        System.out.println("跳转到登录页面...");
-        return "login&register/BuLogin";
-    }
+    public String businessLogin(String username, String password) {
 
-    @RequestMapping("/logincheck")
-    public String businessLogin(Business business) {
-
-        Boolean login = businessSer.login(business);
+        System.out.println(username + "--->" + password);
+        Boolean login = businessSer.login(username, password);
         System.out.println("登录校验完成..." + login);
 
+        return "redirect:/business/home";
+    }
+
+    @RequestMapping("/register")
+    public String businessRegister(Business business) {
+        businessSer.save(business);
+        System.out.println("注册完成...");
+        return "redirect:/login/business";
+    }
+
+    @RequestMapping("/home")
+    public String toBusinessHome() {
+        System.out.println("跳转到商家主页...");
         return "success";
     }
 

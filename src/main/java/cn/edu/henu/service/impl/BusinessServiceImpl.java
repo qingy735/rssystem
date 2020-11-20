@@ -20,18 +20,9 @@ public class BusinessServiceImpl implements IBusinessService {
     private IBusinessDao businessDao;
 
     @Override
-    public List<Business> getAllBusiness() {
-        return businessDao.getAllBusiness();
-    }
-
-    @Override
-    public Boolean login(Business business) {
-        Integer id = business.getId();
+    public Boolean login(String username, String password) {
         System.out.println("业务层登录校验...");
-        if (businessDao.getOneById(id) != null) {
-            return true;
-        }
-        return false;
+        return businessDao.getOneByLoginInfo(username, password) != null;
     }
 
     @Override
@@ -45,8 +36,8 @@ public class BusinessServiceImpl implements IBusinessService {
     }
 
     @Override
-    public void add(Business business) {
-        // TODO Auto-generated method stub
-
+    public void save(Business business) {
+        System.out.println("业务层保存商家信息...");
+        businessDao.add(business);
     }
 }

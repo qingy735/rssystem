@@ -2,19 +2,19 @@ package cn.edu.henu.dao;
 
 import java.util.List;
 
-import cn.edu.henu.bean.Customer;
+import cn.edu.henu.bean.Consumer;
 
 /**
  * @author Qing_Y
  */
-public interface ICustomerDao {
+public interface IConsumerDao {
 
     /**
      * 获取所有消费者信息
      *
      * @return
      */
-    List<Customer> getAllCustomer();
+    List<Consumer> getAllCustomer();
 
     /**
      * 根据消费者id查询消费者信息
@@ -22,7 +22,7 @@ public interface ICustomerDao {
      * @param id
      * @return
      */
-    Customer getOneById(Integer id);
+    Consumer getOneById(Integer id);
 
     /**
      * 根据消费者id删除消费者
@@ -34,14 +34,14 @@ public interface ICustomerDao {
     /**
      * 修改消费者信息
      *
-     * @param customer
+     * @param consumer
      */
-    void update(Customer customer);
+    void update(Consumer consumer);
 
     /**
      * 添加消费者
      *
-     * @param customer
+     * @param consumer
      */
-    void add(Customer customer);
+    void add(Consumer consumer);
 }

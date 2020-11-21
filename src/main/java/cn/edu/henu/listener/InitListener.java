@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebListener;
 public class InitListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        // 放入项目路径
         ServletContext servletContext = sce.getServletContext();
         servletContext.setAttribute("ctp", servletContext.getContextPath());
     }

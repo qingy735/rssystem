@@ -1,5 +1,6 @@
 package cn.edu.henu.intercept;
 
+import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Consumer;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,10 +31,10 @@ public class LoginIntercept implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        Consumer consumer = (Consumer) request.getSession().getAttribute("cusLoginInfo");
+        Business business = (Business) request.getSession().getAttribute("busLoginInfo");
 
         // 存在登录信息就放行
-        if (consumer != null) {
+        if (business != null) {
             return true;
         }
         // 没有登陆信息

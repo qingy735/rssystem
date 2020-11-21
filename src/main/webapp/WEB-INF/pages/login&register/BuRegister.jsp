@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,15 +34,14 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="${ctp}/business/register" method="post">
                     <div class="form-group">
                         <label for="reName" class="col-sm-2 control-label">餐厅名</label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="reName">
-                                <option>东苑餐厅</option>
-                                <option>南苑餐厅</option>
-                                <option>北苑餐厅</option>
-                                <option>教院餐厅</option>
+                            <select class="form-control" id="reName" name="rid">
+                                <c:forEach items="${requestScope.restaurants}" var="restaurant">
+                                    <option value="${restaurant.id}">${restaurant.name}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>

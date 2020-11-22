@@ -1,6 +1,7 @@
 package cn.edu.henu.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -26,7 +27,6 @@ public class BusinessDaoImpl implements IBusinessDao {
     @Override
     public Business getOneByUsername(String username) {
         String sql = "select * from businessinfo where username = ?";
-        System.out.println("持久层开始查询...");
         try {
             return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Business.class), username);
         } catch (Exception e) {
@@ -37,7 +37,6 @@ public class BusinessDaoImpl implements IBusinessDao {
     @Override
     public Business getOneByLoginInfo(String username, String password) {
         Business business = getOneByUsername(username);
-        System.out.println(business);
         if (business != null && business.getPassword().equals(password)) {
             return business;
         }
@@ -66,18 +65,22 @@ public class BusinessDaoImpl implements IBusinessDao {
         }
         final String sql = "insert into businessinfo(password,name,rid,wid,wname,tel,grade) values(?,?,?,?,?,?,'-1')";
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            int i = 0;
-            ps.setString(++i, business.getPassword());
-            ps.setString(++i, business.getName());
-            ps.setString(++i, business.getRid());
-            ps.setInt(++i, business.getWid());
-            ps.setString(++i, business.getWname());
-            ps.setString(++i, business.getTel());
-            return ps;
-        }, keyHolder);
-        return Objects.requireNonNull(keyHolder.getKey()).intValue();
+        try {
+            jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                int i = 0;
+                ps.setString(++i, business.getPassword());
+                ps.setString(++i, business.getName());
+                ps.setString(++i, business.getRid());
+                ps.setInt(++i, business.getWid());
+                ps.setString(++i, business.getWname());
+                ps.setString(++i, business.getTel());
+                return ps;
+            }, keyHolder);
+            return Objects.requireNonNull(keyHolder.getKey()).intValue();
+        } catch (DataAccessException e) {
+            return -1;
+        }
     }
 
 }

@@ -9,6 +9,14 @@
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function refreshCode() {
+            var verifyCodeImg = document.getElementById("verifyCodeImg");
+            verifyCodeImg.src = "${ctp}/login/checkCode?time=" + new Date().getTime();
+        }
+    </script>
+
 </head>
 <body>
 <header class="container" id="firstTitleArea">
@@ -35,6 +43,14 @@
                 <input type="password" class="form-control" id="InputStPwd" name="password" placeholder="请输入密码">
                 <span class="help-block"></span>
             </div>
+            <div class="form-inline">
+                <label for="verifyCode">验证码：</label>
+                <input type="text" name="verifyCode" class="form-control" id="verifyCode" placeholder="请输入验证码"
+                       style="width: 120px;"/>
+                <a href="javascript:refreshCode()">
+                    <img src="${ctp}/login/checkCode" id="verifyCodeImg" alt="点击刷新"/>
+                </a>
+            </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox"> 记住密码
@@ -44,7 +60,16 @@
                 <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/customer" role="button">注册</a>
                 <input class="btn btn-success col-md-4 pull-right" type="submit" value="登录">
             </div>
+            <br>
+            <br>
         </form>
+
+        <!-- 出错显示的信息框 -->
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span></button>
+            <strong>${con_login_msg}</strong>
+        </div>
     </div>
 </div>
 </body>

@@ -1,6 +1,5 @@
 package cn.edu.henu.controller;
 
-import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Consumer;
 import cn.edu.henu.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,36 +23,38 @@ public class ConsumerController {
 
     @RequestMapping("/login")
     public String businessLogin(String username, String password, String verifyCode, HttpSession session, Model model) {
-        /*if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
-            model.addAttribute("login_msg", "验证码错误");
-            return "login&register/BuLogin";
+        if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
+            model.addAttribute("con_login_msg", "验证码错误");
+            return "login&register/StLogin";
         } else {
             String checkCode = (String) session.getAttribute("checkCode");
             if (verifyCode.equalsIgnoreCase(checkCode)) {
-                Business loginBus = consumerSer.login(username, password);
-                System.out.println("登录校验完成..." + loginBus);
-                if (loginBus != null) {
-                    session.setAttribute("busLoginInfo", loginBus);
+                System.out.println(username + "---" + password);
+                Consumer loginCon = consumerSer.login(username, password);
+                System.out.println("登录校验完成..." + loginCon);
+                if (loginCon != null) {
+                    session.setAttribute("conLoginInfo", loginCon);
                     System.out.println("查询成功...");
-                    return "redirect:/business/home";
+                    return "redirect:/consumer/home";
                 }
-                model.addAttribute("login_msg", "账号或密码错误");
-                return "login&register/BuLogin";
+                model.addAttribute("con_login_msg", "账号或密码错误");
+                return "login&register/StLogin";
             } else {
-                model.addAttribute("login_msg", "验证码错误");
-                return "login&register/BuLogin";
+                model.addAttribute("con_login_msg", "验证码错误");
+                return "login&register/StLogin";
             }
-        }*/
-        System.out.println("username-->" + username + "\npassword--->" + password);
-        return "login&register/StLogin";
+        }
     }
 
     @RequestMapping("/register")
-    public String businessRegister(Consumer consumer, HttpSession session) {
+    public String businessRegister(Consumer consumer) {
         System.out.println(consumer);
-        /*Integer id = consumerSer.save(business);
-        System.out.println("注册完成...");
-        session.setAttribute("tempId", id);*/
+        boolean flag = consumerSer.save(consumer);
+        if (flag) {
+            System.out.println("注册完成...");
+        } else {
+            System.out.println("注册失败...");
+        }
         return "redirect:/login/consumer";
     }
 

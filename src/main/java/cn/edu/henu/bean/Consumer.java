@@ -18,12 +18,14 @@ public class Consumer {
     private String name;
     /**
      * 昵称
+     * 默认：用户名/账号
      */
     private String nickname;
     /**
      * 性别：
      * 0：女
      * 1：男
+     * 默认：1
      */
     private Integer sex;
     /**

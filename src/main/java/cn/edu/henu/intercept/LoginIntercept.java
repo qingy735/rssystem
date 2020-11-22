@@ -47,14 +47,28 @@ public class LoginIntercept implements HandlerInterceptor {
             return true;
         }
 
-        Business business = (Business) request.getSession().getAttribute("busLoginInfo");
-
-        // 存在登录信息就放行
-        if (business != null) {
-            return true;
+        if (uri.contains("/business")) {
+            Business business = (Business) request.getSession().getAttribute("busLoginInfo");
+            // 存在登录信息就放行
+            if (business != null) {
+                return true;
+            }
+            // 没有登陆信息
+            request.setAttribute("bus_login_msg", "请先登录");
+            request.getRequestDispatcher("/WEB-INF/pages/login&register/BuLogin.jsp").forward(request, response);
         }
-        // 没有登陆信息
-        response.sendRedirect(request.getContextPath() + "/login/business");
+
+        if (uri.contains("/consumer")) {
+            Consumer consumer = (Consumer) request.getSession().getAttribute("conLoginInfo");
+            // 存在登录信息就放行
+            if (consumer != null) {
+                return true;
+            }
+            // 没有登陆信息
+            request.setAttribute("con_login_msg", "请先登录");
+            request.getRequestDispatcher("/WEB-INF/pages/login&register/StLogin.jsp").forward(request, response);
+        }
+
         return false;
     }
 

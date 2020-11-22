@@ -14,5 +14,6 @@
     成功了...
 </h1>
 ${sessionScope.busLoginInfo}
+${sessionScope.conLoginInfo}
 </body>
 </html>

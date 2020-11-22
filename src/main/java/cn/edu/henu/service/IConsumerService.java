@@ -41,6 +41,16 @@ public interface IConsumerService {
      * 添加消费者
      *
      * @param consumer
+     * @return
      */
-    void add(Consumer consumer);
+    boolean save(Consumer consumer);
+
+    /**
+     * 登录验证
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    Consumer login(String username, String password);
 }

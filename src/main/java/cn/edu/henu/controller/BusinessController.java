@@ -31,7 +31,7 @@ public class BusinessController {
     @RequestMapping("/login")
     public String businessLogin(String username, String password, String verifyCode, HttpSession session, Model model) {
         if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
-            model.addAttribute("login_msg", "验证码错误");
+            model.addAttribute("bus_login_msg", "验证码错误");
             return "login&register/BuLogin";
         } else {
             String checkCode = (String) session.getAttribute("checkCode");
@@ -43,10 +43,10 @@ public class BusinessController {
                     System.out.println("查询成功...");
                     return "redirect:/business/home";
                 }
-                model.addAttribute("login_msg", "账号或密码错误");
+                model.addAttribute("bus_login_msg", "账号或密码错误");
                 return "login&register/BuLogin";
             } else {
-                model.addAttribute("login_msg", "验证码错误");
+                model.addAttribute("bus_login_msg", "验证码错误");
                 return "login&register/BuLogin";
             }
         }
@@ -56,8 +56,12 @@ public class BusinessController {
     public String businessRegister(Business business, HttpSession session) {
         System.out.println(business);
         Integer id = businessSer.save(business);
-        System.out.println("注册完成...");
-        session.setAttribute("tempId", id);
+        if (id != -1) {
+            System.out.println("注册完成...");
+            session.setAttribute("tempId", id);
+        } else {
+            System.out.println("注册失败...");
+        }
         return "redirect:/login/business";
     }
 

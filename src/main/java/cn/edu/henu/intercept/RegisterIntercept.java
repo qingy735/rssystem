@@ -21,9 +21,12 @@ public class RegisterIntercept implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("正在查询餐厅名称...");
-        List<Restaurant> restaurants = restaurantSer.getAllRestaurant();
-        request.setAttribute("restaurants", restaurants);
+        String uri = request.getRequestURI();
+        if (uri.contains("business")) {
+            System.out.println("正在查询餐厅名称...");
+            List<Restaurant> restaurants = restaurantSer.getAllRestaurant();
+            request.setAttribute("restaurants", restaurants);
+        }
         return true;
     }
 }

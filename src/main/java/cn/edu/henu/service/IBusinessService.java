@@ -1,9 +1,6 @@
 package cn.edu.henu.service;
 
-import java.util.List;
-
 import cn.edu.henu.bean.Business;
-import org.springframework.stereotype.Service;
 
 /**
  * @author Qing_Y

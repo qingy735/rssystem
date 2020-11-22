@@ -17,12 +17,12 @@ public interface IConsumerDao {
     List<Consumer> getAllCustomer();
 
     /**
-     * 根据消费者id查询消费者信息
+     * 根据消费者username查询消费者信息
      *
-     * @param id
+     * @param username
      * @return
      */
-    Consumer getOneById(Integer id);
+    Consumer getOneByUsername(String username);
 
     /**
      * 根据消费者id删除消费者
@@ -42,6 +42,16 @@ public interface IConsumerDao {
      * 添加消费者
      *
      * @param consumer
+     * @return
      */
-    void add(Consumer consumer);
+    boolean add(Consumer consumer);
+
+    /**
+     * 根据账号密码获取商家对象
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    Consumer getOneByLoginInfo(String username, String password);
 }

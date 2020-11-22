@@ -33,41 +33,44 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="${ctp}/consumer/register" method="post">
                     <div class="form-group">
                         <label for="StName" class="col-sm-2 control-label">姓名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="StName" placeholder="请输入你的真实姓名">
+                            <input type="text" class="form-control" name="name" id="StName" placeholder="请输入你的真实姓名">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="stNum" class="col-sm-2 control-label">账号</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="stNum" placeholder="请输入你的学号/教职工号">
+                            <input type="text" class="form-control" id="stNum" name="username"
+                                   placeholder="请输入你的学号/教职工号">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nickname" class="col-sm-2 control-label">昵称</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nickname" placeholder="给自己取个昵称吧">
+                            <input type="text" class="form-control" id="nickname" name="nickname"
+                                   placeholder="给自己取个昵称吧">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="StTel" class="col-sm-2 control-label">电话</label>
                         <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="StTel" placeholder="电话号码">
+                            <input type="tel" class="form-control" id="StTel" name="tel" placeholder="电话号码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="Stpwd1" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="Stpwd1" placeholder="请输入密码">
+                            <input type="password" class="form-control" name="password" id="Stpwd1" placeholder="请输入密码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="Stpwd2" class="col-sm-2 control-label">确认密码</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="Stpwd2" placeholder="请再次确认密码">
+                            <input type="password" class="form-control" value="password2" id="Stpwd2"
+                                   placeholder="请再次确认密码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -75,13 +78,13 @@
                         <div class="col-sm-4">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="optionsRadios"
-                                           id="optionsRadios1" value="option1" checked>
+                                    <input type="radio" name="sex"
+                                           id="optionsRadios1" value="1" checked>
                                     男
                                 </label>
                                 <label>
-                                    <input type="radio" name="optionsRadios"
-                                           id="optionsRadios2" value="option2">
+                                    <input type="radio" name="sex"
+                                           id="optionsRadios2" value="0">
                                     女
                                 </label>
                             </div>
@@ -89,7 +92,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-10 col-md-offset-2">
-                            <a class="btn btn-primary" href="#" role="button" style="width:90%">注册</a>
+                            <input type="submit" class="btn btn-primary" role="button" style="width:90%" value="注册"/>
                         </div>
                     </div>
                 </form>

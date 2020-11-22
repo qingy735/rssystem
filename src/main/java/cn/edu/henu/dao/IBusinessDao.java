@@ -44,5 +44,5 @@ public interface IBusinessDao {
      * @param business
      * @return
      */
-    boolean add(Business business);
+    Integer add(Business business);
 }

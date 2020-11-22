@@ -20,6 +20,9 @@
         }
 
         $(function () {
+            if (${requestScope.tempId}) {
+                alert("你的账号是：" + ${requestScope.tempId})
+            }
             $("#registerBtn").click(function () {
                 location.href = "${ctp}/register/business";
             })

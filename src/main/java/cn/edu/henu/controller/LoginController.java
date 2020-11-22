@@ -1,11 +1,13 @@
 package cn.edu.henu.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -24,8 +26,12 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/business")
-    public String toBusinessLoginPage() {
+    public String toBusinessLoginPage(Model model, HttpSession session) {
         System.out.println("跳转到商家登录页面...");
+        if (session.getAttribute("tempId") != null) {
+            model.addAttribute("tempId", session.getAttribute("tempId"));
+            session.removeAttribute("tempId");
+        }
         return "login&register/BuLogin";
     }
 

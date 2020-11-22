@@ -3,10 +3,16 @@ package cn.edu.henu.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import cn.edu.henu.bean.Business;
 import cn.edu.henu.dao.IBusinessDao;
+
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.util.Objects;
 
 /**
  * @author Qing_Y
@@ -54,19 +60,24 @@ public class BusinessDaoImpl implements IBusinessDao {
      * @return
      */
     @Override
-    public boolean add(Business business) {
+    public Integer add(Business business) {
         if (business == null) {
-            return false;
+            return -1;
         }
-        String sql = "insert into businessinfo(username,password,name,rid,wid,tel,grade) values(?,?,?,?,?,?,'-1')";
-        jdbcTemplate.update(sql,
-                business.getUsername(),
-                business.getPassword(),
-                business.getName(),
-                business.getRid(),
-                business.getWid(),
-                business.getTel());
-        return true;
+        final String sql = "insert into businessinfo(password,name,rid,wid,wname,tel,grade) values(?,?,?,?,?,?,'-1')";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            int i = 0;
+            ps.setString(++i, business.getPassword());
+            ps.setString(++i, business.getName());
+            ps.setString(++i, business.getRid());
+            ps.setInt(++i, business.getWid());
+            ps.setString(++i, business.getWname());
+            ps.setString(++i, business.getTel());
+            return ps;
+        }, keyHolder);
+        return Objects.requireNonNull(keyHolder.getKey()).intValue();
     }
 
 }

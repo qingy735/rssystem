@@ -7,14 +7,14 @@ import java.io.Serializable;
  */
 public class Restaurant implements Serializable {
 
-    private Integer id;
+    private String id;
     private String name;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

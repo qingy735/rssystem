@@ -10,6 +10,9 @@
     <title>Success</title>
 </head>
 <body>
-成功了...
+<h1>
+    成功了...
+</h1>
+${sessionScope.busLoginInfo}
 </body>
 </html>

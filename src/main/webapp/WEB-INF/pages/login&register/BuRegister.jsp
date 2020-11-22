@@ -48,48 +48,47 @@
                     <div class="form-group">
                         <label for="wdName" class="col-sm-2 control-label">窗口名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="wdName"
+                            <input type="text" class="form-control" id="wdName" name="wname"
                                    placeholder="请输入店铺的窗口名称">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="WdNum" class="col-sm-2 control-label">窗口号</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" id="WdNum">
+                            <input type="number" class="form-control" id="WdNum" name="wid">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="BuName" class="col-sm-2 control-label">负责人姓名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="BuName"
+                            <input type="text" class="form-control" id="BuName" name="name"
                                    placeholder="请输入你的真实姓名">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="BuTel" class="col-sm-2 control-label">负责人电话号码</label>
                         <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="BuTel"
+                            <input type="tel" class="form-control" id="BuTel" name="tel"
                                    placeholder="电话号码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="BuPwd1" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="BuPwd1"
+                            <input type="password" class="form-control" id="BuPwd1" name="password"
                                    placeholder="请输入密码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="BuPwd2" class="col-sm-2 control-label">确认密码</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="BuPwd2"
+                            <input type="password" class="form-control" id="BuPwd2" name="password2"
                                    placeholder="请再次确认密码">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-10 col-md-offset-2">
-                            <a class="btn btn-primary" href="${ctp}/business/register" role="button"
-                               style="width: 90%">注册</a>
+                            <input type="submit" value="注册">
                         </div>
                     </div>
                 </form>

@@ -9,7 +9,7 @@ public class Business {
     /**
      * 店铺id
      */
-    private String username;
+    private Integer username;
     /**
      * 店铺账号密码
      */
@@ -21,11 +21,15 @@ public class Business {
     /**
      * 餐厅id
      */
-    private Integer rid;
+    private String rid;
     /**
-     * 窗口id
+     * 窗口号
      */
     private Integer wid;
+    /**
+     * 窗口名
+     */
+    private String wname;
     /**
      * 负责人电话
      */
@@ -35,11 +39,11 @@ public class Business {
      */
     private Float grade;
 
-    public String getUsername() {
+    public Integer getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Integer username) {
         this.username = username;
     }
 
@@ -59,11 +63,11 @@ public class Business {
         this.name = name;
     }
 
-    public Integer getRid() {
+    public String getRid() {
         return rid;
     }
 
-    public void setRid(Integer rid) {
+    public void setRid(String rid) {
         this.rid = rid;
     }
 
@@ -73,6 +77,14 @@ public class Business {
 
     public void setWid(Integer wid) {
         this.wid = wid;
+    }
+
+    public String getWname() {
+        return wname;
+    }
+
+    public void setWname(String wname) {
+        this.wname = wname;
     }
 
     public String getTel() {
@@ -99,6 +111,7 @@ public class Business {
                 ", name='" + name + '\'' +
                 ", rid=" + rid +
                 ", wid=" + wid +
+                ", wname='" + wname + '\'' +
                 ", tel='" + tel + '\'' +
                 ", grade=" + grade +
                 '}';

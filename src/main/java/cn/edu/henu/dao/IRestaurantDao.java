@@ -17,5 +17,4 @@ public interface IRestaurantDao {
      */
     @Select("select * from restaurantinfo")
     List<Restaurant> selectAll();
-
 }

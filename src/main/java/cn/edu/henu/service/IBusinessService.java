@@ -16,7 +16,7 @@ public interface IBusinessService {
      * @param password
      * @return
      */
-    Boolean login(String username, String password);
+    Business login(String username, String password);
 
     /**
      * 根据商家id删除商家
@@ -36,6 +36,7 @@ public interface IBusinessService {
      * 添加商家
      *
      * @param business
+     * @return
      */
-    void save(Business business);
+    Integer save(Business business);
 }

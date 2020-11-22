@@ -1,13 +1,10 @@
 package cn.edu.henu.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.edu.henu.bean.Business;
 import cn.edu.henu.dao.IBusinessDao;
 import cn.edu.henu.service.IBusinessService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,9 +17,9 @@ public class BusinessServiceImpl implements IBusinessService {
     private IBusinessDao businessDao;
 
     @Override
-    public Boolean login(String username, String password) {
+    public Business login(String username, String password) {
         System.out.println("业务层登录校验...");
-        return businessDao.getOneByLoginInfo(username, password) != null;
+        return businessDao.getOneByLoginInfo(username, password);
     }
 
     @Override
@@ -36,8 +33,8 @@ public class BusinessServiceImpl implements IBusinessService {
     }
 
     @Override
-    public void save(Business business) {
+    public Integer save(Business business) {
         System.out.println("业务层保存商家信息...");
-        businessDao.add(business);
+        return businessDao.add(business);
     }
 }

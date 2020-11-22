@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Qing_Y
  */
 public class LoginIntercept implements HandlerInterceptor {
+
+    private final String LOGIN_MSG = "login";
+    private final String REGISTER_MSG = "register";
+
     /**
      * 预处理方法，controller方法执行之前
      * return true：放行
@@ -30,6 +34,18 @@ public class LoginIntercept implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("登录拦截器进入...");
+        String uri = request.getRequestURI();
+        System.out.println(uri);
+
+        if (uri.contains("/first")) {
+            return true;
+        }
+
+        // 过滤登录和注册相关请求
+        if (uri.contains(LOGIN_MSG) || uri.contains(REGISTER_MSG)) {
+            return true;
+        }
 
         Business business = (Business) request.getSession().getAttribute("busLoginInfo");
 
@@ -38,7 +54,7 @@ public class LoginIntercept implements HandlerInterceptor {
             return true;
         }
         // 没有登陆信息
-        request.getRequestDispatcher("/WEB-INF/pages/login&register/BuLogin.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/login/business");
         return false;
     }
 

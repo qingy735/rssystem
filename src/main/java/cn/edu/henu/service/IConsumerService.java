@@ -43,7 +43,7 @@ public interface IConsumerService {
      * @param consumer
      * @return
      */
-    boolean save(Consumer consumer);
+    Integer save(Consumer consumer);
 
     /**
      * 登录验证

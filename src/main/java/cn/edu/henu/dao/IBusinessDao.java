@@ -25,6 +25,15 @@ public interface IBusinessDao {
     Business getOneByLoginInfo(String username, String password);
 
     /**
+     * 根据餐厅id和窗口id查询
+     *
+     * @param rid
+     * @param wid
+     * @return
+     */
+    Business getOneByRW(String rid, Integer wid);
+
+    /**
      * 根据商家id删除商家
      *
      * @param id

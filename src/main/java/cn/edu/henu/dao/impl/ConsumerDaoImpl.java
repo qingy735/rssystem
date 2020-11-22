@@ -53,18 +53,24 @@ public class ConsumerDaoImpl implements IConsumerDao {
      * @return
      */
     @Override
-    public boolean add(Consumer consumer) {
+    public Integer add(Consumer consumer) {
         if (consumer == null) {
-            return false;
+            return -2;
         }
-        final String sql = "insert into consumerinfo(username,password,name,nickname,sex,tel) values(?,?,?,?,?,?)";
-        String nickname = consumer.getNickname() == null ? consumer.getUsername() : consumer.getNickname();
-        try {
-            jdbcTemplate.update(sql, consumer.getUsername(), consumer.getPassword(), consumer.getName(), nickname, consumer.getSex(), consumer.getTel());
-            return true;
-        } catch (DataAccessException e) {
-            return false;
+
+        Consumer oneByUsername = getOneByUsername(consumer.getUsername());
+        // 数据库中不存在这个用户id即username
+        if (oneByUsername == null) {
+            final String sql = "insert into consumerinfo(username,password,name,nickname,sex,tel) values(?,?,?,?,?,?)";
+            String nickname = consumer.getNickname() == null ? consumer.getUsername() : consumer.getNickname();
+            try {
+                jdbcTemplate.update(sql, consumer.getUsername(), consumer.getPassword(), consumer.getName(), nickname, consumer.getSex(), consumer.getTel());
+                return 1;
+            } catch (DataAccessException e) {
+                return -1;
+            }
         }
+        return 0;
     }
 
     /**

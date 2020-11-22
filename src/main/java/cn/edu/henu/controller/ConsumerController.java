@@ -46,16 +46,29 @@ public class ConsumerController {
         }
     }
 
+    /**
+     * 注册校验码：
+     * 1：成功
+     * 0：username重复
+     * -1：插入数据失败
+     * -2：消费者信息转存丢失变为null
+     *
+     * @param consumer
+     * @return
+     */
     @RequestMapping("/register")
-    public String businessRegister(Consumer consumer) {
+    public String businessRegister(Consumer consumer, HttpSession session) {
         System.out.println(consumer);
-        boolean flag = consumerSer.save(consumer);
-        if (flag) {
+        Integer registerCode = consumerSer.save(consumer);
+        if (registerCode == 1) {
             System.out.println("注册完成...");
+            return "redirect:/login/consumer";
         } else {
             System.out.println("注册失败...");
+            session.setAttribute("conRegisterCode", registerCode);
+            session.setAttribute("errorRegisterInfoOfConsumer", consumer);
+            return "redirect:/register/consumer";
         }
-        return "redirect:/login/consumer";
     }
 
     @RequestMapping("/home")

@@ -40,7 +40,12 @@
                         <div class="col-sm-10">
                             <select class="form-control" id="reName" name="rid">
                                 <c:forEach items="${requestScope.restaurants}" var="restaurant">
-                                    <option value="${restaurant.id}">${restaurant.name}</option>
+                                    <c:if test="${errBusiness.rid.equals(restaurant.id)}">
+                                        <option value="${restaurant.id}" selected>${restaurant.name}</option>
+                                    </c:if>
+                                    <c:if test="${!errBusiness.rid.equals(restaurant.id)}">
+                                        <option value="${restaurant.id}">${restaurant.name}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>
@@ -49,6 +54,7 @@
                         <label for="wdName" class="col-sm-2 control-label">窗口名</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="wdName" name="wname"
+                                   value="${errBusiness.wname}"
                                    placeholder="请输入店铺的窗口名称">
                         </div>
                     </div>
@@ -62,6 +68,7 @@
                         <label for="BuName" class="col-sm-2 control-label">负责人姓名</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="BuName" name="name"
+                                   value="${errBusiness.name}"
                                    placeholder="请输入你的真实姓名">
                         </div>
                     </div>
@@ -69,14 +76,14 @@
                         <label for="BuTel" class="col-sm-2 control-label">负责人电话号码</label>
                         <div class="col-sm-10">
                             <input type="tel" class="form-control" id="BuTel" name="tel"
+                                   value="${errBusiness.tel}"
                                    placeholder="电话号码">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="BuPwd1" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="BuPwd1" name="password"
-                                   placeholder="请输入密码">
+                            <input type="password" class="form-control" id="BuPwd1" name="password" placeholder="请输入密码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -92,6 +99,13 @@
                         </div>
                     </div>
                 </form>
+
+                <!-- 出错显示的信息框 -->
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span></button>
+                    <strong>${bus_register_msg}</strong>
+                </div>
             </div>
         </div>
     </div>

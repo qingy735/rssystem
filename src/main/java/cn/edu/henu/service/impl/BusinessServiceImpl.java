@@ -34,7 +34,6 @@ public class BusinessServiceImpl implements IBusinessService {
 
     @Override
     public Integer save(Business business) {
-        System.out.println("业务层保存商家信息...");
         return businessDao.add(business);
     }
 }

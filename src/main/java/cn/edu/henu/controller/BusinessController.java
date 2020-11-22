@@ -52,17 +52,31 @@ public class BusinessController {
         }
     }
 
+    /**
+     * 用于商家注册校验
+     * 校验码：
+     * >0：成功
+     * 0：数据库中已经存在这个餐厅下的该窗口号
+     * -1：插入数据失败
+     * -2：传入数据为null
+     *
+     * @param business
+     * @param session
+     * @return
+     */
     @RequestMapping("/register")
     public String businessRegister(Business business, HttpSession session) {
-        System.out.println(business);
         Integer id = businessSer.save(business);
-        if (id != -1) {
+        session.setAttribute("tempId", id);
+        // 注册成功 跳转到登陆界面
+        if (id > 0) {
             System.out.println("注册完成...");
-            session.setAttribute("tempId", id);
-        } else {
+            return "redirect:/login/business";
+        } else { // 注册失败    跳转到注册界面
+            session.setAttribute("errorRegisterInfoOfBusiness", business);
             System.out.println("注册失败...");
+            return "redirect:/register/business";
         }
-        return "redirect:/login/business";
     }
 
     @RequestMapping("/home")

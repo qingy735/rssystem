@@ -27,8 +27,9 @@ public class LoginController {
      */
     @RequestMapping("/business")
     public String toBusinessLoginPage(Model model, HttpSession session) {
-        System.out.println("跳转到商家登录页面...");
-        if (session.getAttribute("tempId") != null) {
+        Integer registerCode = (Integer) session.getAttribute("tempId");
+        // 若不为空肯定是大于0的
+        if (registerCode != null) {
             model.addAttribute("tempId", session.getAttribute("tempId"));
             session.removeAttribute("tempId");
         }
@@ -42,7 +43,6 @@ public class LoginController {
      */
     @RequestMapping("/consumer")
     public String toConsumerLoginPage() {
-        System.out.println("跳转到顾客登录页面...");
         return "login&register/StLogin";
     }
 
@@ -53,7 +53,6 @@ public class LoginController {
      */
     @RequestMapping("/admin")
     public String toAdminLoginPage() {
-        System.out.println("跳转到管理员登录页面...");
         return "login&register/AcLogin";
     }
 

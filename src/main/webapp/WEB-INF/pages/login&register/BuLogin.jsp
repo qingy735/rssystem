@@ -20,8 +20,9 @@
         }
 
         $(function () {
-            if (${requestScope.tempId}) {
-                alert("你的账号是：" + ${requestScope.tempId})
+            var registerCode = "<%=request.getAttribute("tempId")%>"
+            if (registerCode > 0) {
+                alert("你的账号是：" + registerCode)
             }
             $("#registerBtn").click(function () {
                 location.href = "${ctp}/register/business";
@@ -49,13 +50,11 @@
         <form action="${ctp}/business/login" method="post">
             <div class="form-group">
                 <label for="username">用户名：</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名"
-                       value="10001"/>
+                <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名"/>
             </div>
             <div class="form-group">
                 <label for="password">密码：</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码"
-                       value="12345"/>
+                <input type="password" name="password" class="form-control" id="password" placeholder="请输入密码"/>
             </div>
             <div class="form-inline">
                 <label for="verifyCode">验证码：</label>

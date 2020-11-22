@@ -44,7 +44,7 @@ public interface IConsumerDao {
      * @param consumer
      * @return
      */
-    boolean add(Consumer consumer);
+    Integer add(Consumer consumer);
 
     /**
      * 根据账号密码获取商家对象

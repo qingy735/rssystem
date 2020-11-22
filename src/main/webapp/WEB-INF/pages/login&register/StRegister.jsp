@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +39,8 @@
                     <div class="form-group">
                         <label for="StName" class="col-sm-2 control-label">姓名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" id="StName" placeholder="请输入你的真实姓名">
+                            <input type="text" class="form-control" name="name" id="StName" value="${errConsumer.name}"
+                                   placeholder="请输入你的真实姓名">
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,13 +54,15 @@
                         <label for="nickname" class="col-sm-2 control-label">昵称</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="nickname" name="nickname"
+                                   value="${errConsumer.nickname}"
                                    placeholder="给自己取个昵称吧">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="StTel" class="col-sm-2 control-label">电话</label>
                         <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="StTel" name="tel" placeholder="电话号码">
+                            <input type="tel" class="form-control" id="StTel" name="tel" value="${errConsumer.tel}"
+                                   placeholder="电话号码">
                         </div>
                     </div>
                     <div class="form-group">
@@ -78,13 +83,11 @@
                         <div class="col-sm-4">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="sex"
-                                           id="optionsRadios1" value="1" checked>
+                                    <input type="radio" name="sex" value="1">
                                     男
                                 </label>
                                 <label>
-                                    <input type="radio" name="sex"
-                                           id="optionsRadios2" value="0">
+                                    <input type="radio" name="sex" value="0" checked>
                                     女
                                 </label>
                             </div>
@@ -96,6 +99,12 @@
                         </div>
                     </div>
                 </form>
+                <!-- 出错显示的信息框 -->
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span></button>
+                    <strong>${con_register_msg}</strong>
+                </div>
             </div>
         </div>
     </div>

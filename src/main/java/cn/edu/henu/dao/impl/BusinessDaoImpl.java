@@ -43,6 +43,23 @@ public class BusinessDaoImpl implements IBusinessDao {
         return null;
     }
 
+    /**
+     * 根据餐厅id和窗口id查询唯一商家
+     *
+     * @param rid
+     * @param wid
+     * @return
+     */
+    @Override
+    public Business getOneByRW(String rid, Integer wid) {
+        final String sql = "select * from businessinfo where rid = ? and wid  = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Business.class), rid, wid);
+        } catch (DataAccessException e) {
+            return null;
+        }
+    }
+
     @Override
     public void deleteById(Integer id) {
     }
@@ -61,25 +78,34 @@ public class BusinessDaoImpl implements IBusinessDao {
     @Override
     public Integer add(Business business) {
         if (business == null) {
-            return -1;
+            return -2;
         }
-        final String sql = "insert into businessinfo(password,name,rid,wid,wname,tel,grade) values(?,?,?,?,?,?,'-1')";
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        try {
-            jdbcTemplate.update(connection -> {
-                PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                int i = 0;
-                ps.setString(++i, business.getPassword());
-                ps.setString(++i, business.getName());
-                ps.setString(++i, business.getRid());
-                ps.setInt(++i, business.getWid());
-                ps.setString(++i, business.getWname());
-                ps.setString(++i, business.getTel());
-                return ps;
-            }, keyHolder);
-            return Objects.requireNonNull(keyHolder.getKey()).intValue();
-        } catch (DataAccessException e) {
-            return -1;
+
+        String rid = business.getRid();
+        Integer wid = business.getWid();
+        Business oneByRW = getOneByRW(rid, wid);
+        // 如果数据库中不存在这个餐厅下的这个窗口id
+        if (oneByRW == null) {
+            final String sql = "insert into businessinfo(password,name,rid,wid,wname,tel,grade) values(?,?,?,?,?,?,'-1')";
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            try {
+                jdbcTemplate.update(connection -> {
+                    PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    int i = 0;
+                    ps.setString(++i, business.getPassword());
+                    ps.setString(++i, business.getName());
+                    ps.setString(++i, business.getRid());
+                    ps.setInt(++i, business.getWid());
+                    ps.setString(++i, business.getWname());
+                    ps.setString(++i, business.getTel());
+                    return ps;
+                }, keyHolder);
+                return Objects.requireNonNull(keyHolder.getKey()).intValue();
+            } catch (DataAccessException e) {
+                return -1;
+            }
+        } else {
+            return 0;
         }
     }
 

@@ -46,7 +46,7 @@ public class ConsumerServiceImpl implements IConsumerService {
      * @return
      */
     @Override
-    public boolean save(Consumer consumer) {
+    public Integer save(Consumer consumer) {
         return consumerDao.add(consumer);
     }
 

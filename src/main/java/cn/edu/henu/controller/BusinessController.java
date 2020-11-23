@@ -1,6 +1,5 @@
 package cn.edu.henu.controller;
 
-import cn.edu.henu.bean.Restaurant;
 import cn.edu.henu.service.IRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import cn.edu.henu.bean.Business;
 import cn.edu.henu.service.IBusinessService;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * @author Qing_Y

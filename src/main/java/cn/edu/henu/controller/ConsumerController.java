@@ -5,9 +5,15 @@ import cn.edu.henu.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Qing_Y
@@ -59,12 +65,27 @@ public class ConsumerController {
      * -2：消费者信息转存丢失变为null
      *
      * @param consumer
+     * @param bindingResult
      * @param session
      * @return
      */
     @RequestMapping("/register")
-    public String businessRegister(Consumer consumer, HttpSession session) {
-        System.out.println(consumer);
+    public String businessRegister(@Validated Consumer consumer, BindingResult bindingResult, HttpSession session) {
+        // 表单校验
+        Map<String, Object> errorsMap = new HashMap<String, Object>();
+        boolean hasErrors = bindingResult.hasErrors();
+        if (hasErrors) {
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            for (FieldError error : fieldErrors) {
+                errorsMap.put(error.getField(), error.getDefaultMessage());
+            }
+            session.setAttribute("errorInfo", errorsMap);
+            System.out.println("有检验错误...");
+            // 存放注册错误对象
+            session.setAttribute("errConsumer", consumer);
+            return "redirect:/register/consumer";
+        }
+
         Integer registerCode = consumerSer.save(consumer);
         if (REGISTER_SUCCESS.equals(registerCode)) {
             System.out.println("注册完成...");

@@ -1,5 +1,8 @@
 package cn.edu.henu.bean;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * @author Qing_Y
  */
@@ -7,19 +10,23 @@ public class Consumer {
     /**
      * 账号
      */
+    @Length(min = 10, max = 10, message = "学号不符合规范")
     private String username;
     /**
      * 密码
      */
+    @NotEmpty(message = "密码不能为空")
     private String password;
     /**
      * 姓名
      */
+    @NotEmpty(message = "姓名不能为空")
     private String name;
     /**
      * 昵称
      * 默认：用户名/账号
      */
+    @Length(min = 2, max = 6)
     private String nickname;
     /**
      * 性别：
@@ -31,6 +38,8 @@ public class Consumer {
     /**
      * 手机号
      */
+    @NotEmpty(message = "手机号不能为空")
+    @Length(min = 11, max = 11, message = "手机号必须为11位")
     private String tel;
 
     public String getUsername() {

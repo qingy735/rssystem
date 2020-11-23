@@ -1,15 +1,20 @@
 package cn.edu.henu.controller;
 
-import cn.edu.henu.service.IRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.edu.henu.bean.Business;
 import cn.edu.henu.service.IBusinessService;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Qing_Y
@@ -20,8 +25,6 @@ public class BusinessController {
 
     @Autowired
     private IBusinessService businessSer;
-    @Autowired
-    private IRestaurantService restaurantSer;
     final Integer CHECK_CODE_LEN = 4;
 
     /**
@@ -29,6 +32,9 @@ public class BusinessController {
      *
      * @param username
      * @param password
+     * @param verifyCode
+     * @param session
+     * @param model
      * @return
      */
     @RequestMapping("/login")
@@ -68,7 +74,22 @@ public class BusinessController {
      * @return
      */
     @RequestMapping("/register")
-    public String businessRegister(Business business, HttpSession session) {
+    public String businessRegister(@Validated Business business, BindingResult bindingResult, HttpSession session) {
+        // 表单校验
+        Map<String, Object> errorsMap = new HashMap<String, Object>();
+        boolean hasErrors = bindingResult.hasErrors();
+        if (hasErrors) {
+            List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+            for (FieldError error : fieldErrors) {
+                errorsMap.put(error.getField(), error.getDefaultMessage());
+            }
+            session.setAttribute("errorInfo", errorsMap);
+            System.out.println("有检验错误...");
+            // 存放注册错误对象
+            session.setAttribute("errBusiness", business);
+            return "redirect:/register/business";
+        }
+
         Integer id = businessSer.save(business);
         // 注册成功 跳转到登陆界面
         if (id > 0) {

@@ -42,6 +42,7 @@
                         <div class="col-sm-10">
                             <form:input type="text" path="name" id="StName" cssClass="form-control"
                                         placeholder="请输入你的姓名"/>
+                                ${errorInfo.name}
                         </div>
                     </div>
                     <div class="form-group">
@@ -49,6 +50,7 @@
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="stNum" name="username"
                                    placeholder="请输入你的学号/教职工号"/>
+                                ${errorInfo.username}
                         </div>
                     </div>
                     <div class="form-group">
@@ -56,18 +58,21 @@
                         <div class="col-sm-10">
                             <form:input type="text" class="form-control" id="nickname" path="nickname"
                                         placeholder="给自己取个昵称吧"/>
+                                ${errorInfo.nickname}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="StTel" class="col-sm-2 control-label">电话</label>
                         <div class="col-sm-10">
                             <form:input type="text" class="form-control" id="StTel" path="tel" placeholder="电话号码"/>
+                                ${errorInfo.tel}
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="Stpwd1" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" name="password" id="Stpwd1" placeholder="请输入密码">
+                                ${errorInfo.password}
                         </div>
                     </div>
                     <div class="form-group">

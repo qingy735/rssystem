@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * @author Qing_Y
@@ -28,6 +29,16 @@ public class RegisterController {
      */
     @RequestMapping("/business")
     public String businessRegister(Model model, HttpSession session) {
+        Map<String, Object> errorInfo = (Map<String, Object>) session.getAttribute("errorInfo");
+        session.removeAttribute("errorInfo");
+        if (errorInfo != null && !errorInfo.isEmpty()) {
+            model.addAttribute("errorInfo", errorInfo);
+            Business errBusiness = (Business) session.getAttribute("errBusiness");
+            model.addAttribute("errBusiness", errBusiness);
+            session.removeAttribute("errBusiness");
+            return "login&register/BuRegister";
+        }
+
         Integer busRegisterCode = (Integer) session.getAttribute("busRegisterCode");
         // 清除商家注册校验码，防止刷新后进入方法放入一个为null的Business对象
         session.removeAttribute("busRegisterCode");
@@ -56,6 +67,16 @@ public class RegisterController {
      */
     @RequestMapping("/consumer")
     public String customerRegister(Model model, HttpSession session) {
+        Map<String, Object> errorInfo = (Map<String, Object>) session.getAttribute("errorInfo");
+        session.removeAttribute("errorInfo");
+        if (errorInfo != null && !errorInfo.isEmpty()) {
+            model.addAttribute("errorInfo", errorInfo);
+            Consumer errConsumer = (Consumer) session.getAttribute("errConsumer");
+            model.addAttribute("errConsumer", errConsumer);
+            session.removeAttribute("errConsumer");
+            return "login&register/StRegister";
+        }
+
         Integer conRegisterCode = (Integer) session.getAttribute("conRegisterCode");
         session.removeAttribute("conRegisterCode");
         if (conRegisterCode != null && conRegisterCode <= 0) {

@@ -20,9 +20,9 @@
         }
 
         $(function () {
-            var registerCode = "<%=request.getAttribute("tempId")%>"
-            if (registerCode > 0) {
-                alert("你的账号是：" + registerCode)
+            var busId = "<%=request.getAttribute("busId")%>"
+            if (busId > 0) {
+                alert("你的账号是：" + busId)
             }
             $("#registerBtn").click(function () {
                 location.href = "${ctp}/register/business";

@@ -57,7 +57,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/customer" role="button">注册</a>
+                <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/consumer" role="button">注册</a>
                 <input class="btn btn-success col-md-4 pull-right" type="submit" value="登录">
             </div>
             <br>

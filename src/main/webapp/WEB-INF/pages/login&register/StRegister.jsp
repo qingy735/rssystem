@@ -35,34 +35,33 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" action="${ctp}/consumer/register" method="post">
+                <form:form cssClass="form-horizontal" action="${ctp}/consumer/register" method="post"
+                           modelAttribute="errConsumer">
                     <div class="form-group">
                         <label for="StName" class="col-sm-2 control-label">姓名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="name" id="StName" value="${errConsumer.name}"
-                                   placeholder="请输入你的真实姓名">
+                            <form:input type="text" path="name" id="StName" cssClass="form-control"
+                                        placeholder="请输入你的姓名"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="stNum" class="col-sm-2 control-label">账号</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="stNum" name="username"
-                                   placeholder="请输入你的学号/教职工号">
+                                   placeholder="请输入你的学号/教职工号"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nickname" class="col-sm-2 control-label">昵称</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="nickname" name="nickname"
-                                   value="${errConsumer.nickname}"
-                                   placeholder="给自己取个昵称吧">
+                            <form:input type="text" class="form-control" id="nickname" path="nickname"
+                                        placeholder="给自己取个昵称吧"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="StTel" class="col-sm-2 control-label">电话</label>
                         <div class="col-sm-10">
-                            <input type="tel" class="form-control" id="StTel" name="tel" value="${errConsumer.tel}"
-                                   placeholder="电话号码">
+                            <form:input type="text" class="form-control" id="StTel" path="tel" placeholder="电话号码"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -74,7 +73,7 @@
                     <div class="form-group">
                         <label for="Stpwd2" class="col-sm-2 control-label">确认密码</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" value="password2" id="Stpwd2"
+                            <input type="password" class="form-control" name="password2" id="Stpwd2"
                                    placeholder="请再次确认密码">
                         </div>
                     </div>
@@ -83,12 +82,10 @@
                         <div class="col-sm-4">
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="sex" value="1">
-                                    男
+                                    <form:radiobutton path="sex" value="1" checked="true"/>男
                                 </label>
                                 <label>
-                                    <input type="radio" name="sex" value="0" checked>
-                                    女
+                                    <form:radiobutton path="sex" value="0"/>女
                                 </label>
                             </div>
                         </div>
@@ -98,7 +95,7 @@
                             <input type="submit" class="btn btn-primary" role="button" style="width:90%" value="注册"/>
                         </div>
                     </div>
-                </form>
+                </form:form>
                 <!-- 出错显示的信息框 -->
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert">

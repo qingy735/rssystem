@@ -1,5 +1,7 @@
 package cn.edu.henu.controller;
 
+import cn.edu.henu.bean.Restaurant;
+import cn.edu.henu.service.IRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import cn.edu.henu.bean.Business;
 import cn.edu.henu.service.IBusinessService;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author Qing_Y
@@ -19,6 +22,8 @@ public class BusinessController {
 
     @Autowired
     private IBusinessService businessSer;
+    @Autowired
+    private IRestaurantService restaurantSer;
     final Integer CHECK_CODE_LEN = 4;
 
     /**
@@ -67,17 +72,22 @@ public class BusinessController {
     @RequestMapping("/register")
     public String businessRegister(Business business, HttpSession session) {
         Integer id = businessSer.save(business);
-        session.setAttribute("tempId", id);
         // 注册成功 跳转到登陆界面
         if (id > 0) {
             System.out.println("注册完成...");
+            // 存放商家注册成功后生成的id
+            session.setAttribute("busId", id);
             return "redirect:/login/business";
         } else { // 注册失败    跳转到注册界面
-            session.setAttribute("errorRegisterInfoOfBusiness", business);
             System.out.println("注册失败...");
+            // 存放注册校验码
+            session.setAttribute("busRegisterCode", id);
+            // 存放注册错误对象
+            session.setAttribute("errBusiness", business);
             return "redirect:/register/business";
         }
     }
+
 
     @RequestMapping("/home")
     public String toBusinessHome() {

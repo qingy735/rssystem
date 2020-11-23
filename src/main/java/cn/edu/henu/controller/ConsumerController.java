@@ -17,6 +17,11 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/consumer")
 public class ConsumerController {
 
+    /**
+     * 注册成功
+     */
+    final Integer REGISTER_SUCCESS = 1;
+
     @Autowired
     private IConsumerService consumerSer;
     final Integer CHECK_CODE_LEN = 4;
@@ -54,19 +59,23 @@ public class ConsumerController {
      * -2：消费者信息转存丢失变为null
      *
      * @param consumer
+     * @param session
      * @return
      */
     @RequestMapping("/register")
     public String businessRegister(Consumer consumer, HttpSession session) {
         System.out.println(consumer);
         Integer registerCode = consumerSer.save(consumer);
-        if (registerCode == 1) {
+        if (REGISTER_SUCCESS.equals(registerCode)) {
             System.out.println("注册完成...");
+            // 跳转到消费者登陆界面
             return "redirect:/login/consumer";
         } else {
             System.out.println("注册失败...");
+            // 存入注册失败校验码
             session.setAttribute("conRegisterCode", registerCode);
-            session.setAttribute("errorRegisterInfoOfConsumer", consumer);
+            // 存入注册错误的消费者对象
+            session.setAttribute("errConsumer", consumer);
             return "redirect:/register/consumer";
         }
     }

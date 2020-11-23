@@ -1,5 +1,6 @@
 package cn.edu.henu.intercept;
 
+import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Restaurant;
 import cn.edu.henu.service.IRestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;

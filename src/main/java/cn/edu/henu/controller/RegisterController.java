@@ -12,29 +12,39 @@ import javax.servlet.http.HttpSession;
  * @author Qing_Y
  */
 @Controller
-@RequestMapping("register")
+@RequestMapping("/register")
 public class RegisterController {
 
     /**
      * 跳转到商家注册页面
+     * 用于商家注册校验
+     * 校验码：
+     * >0：成功
+     * 0：数据库中已经存在这个餐厅下的该窗口号
+     * -1：插入数据失败
+     * -2：传入数据为null
      *
      * @return
      */
     @RequestMapping("/business")
     public String businessRegister(Model model, HttpSession session) {
-        Integer registerCode = (Integer) session.getAttribute("tempId");
-        // 不为空肯定小于0
-        if (registerCode != null) {
-            Business errBusiness = (Business) session.getAttribute("errorRegisterInfoOfBusiness");
-            session.removeAttribute("errorRegisterInfoOfBusiness");
-            model.addAttribute("errBusiness", errBusiness);
-            if (registerCode == -1) {
+        Integer busRegisterCode = (Integer) session.getAttribute("busRegisterCode");
+        // 清除商家注册校验码，防止刷新后进入方法放入一个为null的Business对象
+        session.removeAttribute("busRegisterCode");
+        if (busRegisterCode != null && busRegisterCode <= 0) {
+            session.removeAttribute("buRegisterCode");
+            if (busRegisterCode == -1) {
                 model.addAttribute("bus_register_msg", "插入数据失败");
-            } else if (registerCode == -2) {
+            } else if (busRegisterCode == -2) {
                 model.addAttribute("bus_register_msg", "数据传递时丢失");
-            } else if (registerCode == 0) {
+            } else if (busRegisterCode == 0) {
                 model.addAttribute("bus_register_msg", "该餐厅中的已经存在该窗口id");
             }
+            Business errBusiness = (Business) session.getAttribute("errBusiness");
+            model.addAttribute("errBusiness", errBusiness);
+            session.removeAttribute("errBusiness");
+        } else {
+            model.addAttribute("errBusiness", new Business());
         }
         return "login&register/BuRegister";
     }
@@ -46,18 +56,21 @@ public class RegisterController {
      */
     @RequestMapping("/consumer")
     public String customerRegister(Model model, HttpSession session) {
-        Integer registerCode = (Integer) session.getAttribute("conRegisterCode");
-        if (registerCode != null) {
-            Consumer consumer = (Consumer) session.getAttribute("errorRegisterInfoOfConsumer");
-            model.addAttribute("errConsumer", consumer);
-            session.removeAttribute("errorRegisterInfoOfConsumer");
-            if (registerCode == 0) {
+        Integer conRegisterCode = (Integer) session.getAttribute("conRegisterCode");
+        session.removeAttribute("conRegisterCode");
+        if (conRegisterCode != null && conRegisterCode <= 0) {
+            if (conRegisterCode == 0) {
                 model.addAttribute("con_register_msg", "该用户名已经存在");
-            } else if (registerCode == -1) {
+            } else if (conRegisterCode == -1) {
                 model.addAttribute("con_register_msg", "插入数据失败");
-            } else if (registerCode == -2) {
+            } else if (conRegisterCode == -2) {
                 model.addAttribute("con_register_msg", "数据传递时丢失");
             }
+            Consumer errConsumer = (Consumer) session.getAttribute("errConsumer");
+            model.addAttribute("errConsumer", errConsumer);
+            session.removeAttribute("errConsumer");
+        } else {
+            model.addAttribute("errConsumer", new Consumer());
         }
         return "login&register/StRegister";
     }

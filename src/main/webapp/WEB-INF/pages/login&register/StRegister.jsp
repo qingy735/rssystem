@@ -64,7 +64,8 @@
                     <div class="form-group">
                         <label for="StTel" class="col-sm-2 control-label">电话</label>
                         <div class="col-sm-10">
-                            <form:input type="text" class="form-control" id="StTel" path="tel" placeholder="电话号码"/>
+                            <form:input type="tel" class="form-control" id="StTel" path="tel" placeholder="电话号码"
+                                        pattern="\d{11}"/>
                                 ${errorInfo.tel}
                         </div>
                     </div>

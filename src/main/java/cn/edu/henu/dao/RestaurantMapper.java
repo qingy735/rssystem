@@ -1,20 +1,18 @@
 package cn.edu.henu.dao;
 
 import cn.edu.henu.bean.Restaurant;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 /**
  * @author Qing_Y
+ * @date 2020-11-24 21:14
  */
-public interface IRestaurantDao {
-
+public interface RestaurantMapper extends CrudDao<Restaurant> {
     /**
-     * 查询所有餐厅信息方法
+     * 查询所有数据
      *
      * @return
      */
-    @Select("select * from restaurantinfo")
     List<Restaurant> selectAll();
 }

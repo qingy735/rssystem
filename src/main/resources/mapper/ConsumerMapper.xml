@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.henu.dao.ConsumerMapper">
+
+    <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Consumer">
+        <id property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="tel" column="tel"/>
+    </resultMap>
+
+    <!--根据username查询Consumer对象-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer">
+        select * from consumerinfo where username = #{username}
+    </select>
+
+    <insert id="insert" parameterType="cn.edu.henu.bean.Consumer">
+        insert into consumerinfo(username,password,name,nickname,sex,tel)
+        values(#{username},#{password},#{name},#{nickname},#{sex},#{tel})
+    </insert>
+
+</mapper>

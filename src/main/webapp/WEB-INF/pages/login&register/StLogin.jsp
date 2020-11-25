@@ -15,6 +15,35 @@
             var verifyCodeImg = document.getElementById("verifyCodeImg");
             verifyCodeImg.src = "${ctp}/login/checkCode?time=" + new Date().getTime();
         }
+
+        $(function () {
+            $("#loginForm").submit(function () {
+                var nextUrl = $("#loginForm").attr("action")
+                var data = JSON.stringify($(this).serialize())
+                $.ajax({
+                    url: "${ctp}/consumer/login",
+                    contentType: "application/json;charset=utf-8",
+                    data: data,
+                    type: "post",
+                    dataType: "json",
+                    success:
+                        function (data) {
+                            if (data.flag == 1) {
+                                location.href = nextUrl
+                            } else if (data.flag == -1) {
+                                // 刷新验证码
+                                refreshCode();
+                                $("#conLoginInfo").html(data.con_login_msg);
+                            }
+                        },
+                    error: function () {
+                        alert("出错了...")
+                    }
+                })
+                return false;
+            })
+        })
+
     </script>
 
 </head>
@@ -28,11 +57,11 @@
 </header>
 <div class="row">
     <div class="col-md-8 " style="margin-top: 60px">
-        <img border="0" width="800" height="435" src="${ctp}/images/henu.jpg"/>
+        <img border="0" width="100%" height="100%" src="${ctp}/images/henu.jpg"/>
     </div>
     <div class="col-md-4 " class="logindiv" style="margin-top: 60px">
         <h2 class="text-center">欢迎师生登录</h2>
-        <form action="${ctp}/consumer/login" method="post">
+        <form id="loginForm" action="${ctp}/consumer/home" method="post">
             <div class="form-group">
                 <label for="InputStNum">账号</label>
                 <input type="text" class="form-control" id="InputStNum" name="username" placeholder="请输入学号/教职工号">
@@ -68,7 +97,7 @@
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
                 <span>&times;</span></button>
-            <strong>${con_login_msg}</strong>
+            <strong id="conLoginInfo"></strong>
         </div>
     </div>
 </div>

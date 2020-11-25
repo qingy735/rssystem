@@ -1,5 +1,6 @@
 package cn.edu.henu.controller;
 
+import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Consumer;
 import cn.edu.henu.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -32,7 +35,55 @@ public class ConsumerController {
     private IConsumerService consumerSer;
     final Integer CHECK_CODE_LEN = 4;
 
+    /**
+     * 异步登录校验
+     * Map集合    存放的登录验证和登录提示
+     * flag：-1失败   1：成功
+     * bus_login_msg:显示错误登录信息
+     *
+     * @param body    存放请求体信息：username、password、verifyCode
+     * @param session 用来获取验证码
+     * @return map集合
+     */
+    @ResponseBody
     @RequestMapping("/login")
+    public Map<String, Object> businessLoginAjax(@RequestBody String body, HttpSession session) {
+        Map<String, Object> info = new HashMap<>();
+        body = body.replace("\"", "");
+        String[] params = body.split("&");
+        String username = params[0].split("=")[1];
+        String password = params[1].split("=")[1];
+        String verifyCode = params[2].split("=")[1];
+
+        if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
+            info.put("con_login_msg", "验证码错误");
+            info.put("flag", -1);
+        } else {
+            String checkCode = (String) session.getAttribute("checkCode");
+            if (verifyCode.equalsIgnoreCase(checkCode)) {
+                // 销毁验证码防止重复提交请求
+                session.removeAttribute("checkCode");
+                Consumer loginCon = consumerSer.login(username, password);
+                System.out.println("登录校验完成..." + loginCon);
+                if (loginCon != null) {
+                    session.setAttribute("conLoginInfo", loginCon);
+                    System.out.println("查询成功...");
+                    info.put("con_login_msg", "成功");
+                    info.put("flag", 1);
+                    return info;
+                }
+                info.put("con_login_msg", "账号或密码错误");
+                info.put("flag", -1);
+            } else {
+                info.put("con_login_msg", "验证码错误");
+                System.out.println("验证码错误");
+                info.put("flag", -1);
+            }
+        }
+        return info;
+    }
+
+    // @RequestMapping("/login")
     public String businessLogin(String username, String password, String verifyCode, HttpSession session, Model model) {
         if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
             model.addAttribute("con_login_msg", "验证码错误");

@@ -38,8 +38,6 @@ public class Consumer {
     /**
      * 手机号
      */
-    @NotEmpty(message = "手机号不能为空")
-    @Length(min = 11, max = 11, message = "手机号必须为11位")
     private String tel;
 
     public String getUsername() {
@@ -66,7 +64,15 @@ public class Consumer {
         this.name = name;
     }
 
+    /**
+     * 默认为username
+     *
+     * @return
+     */
     public String getNickname() {
+        if (this.nickname == null || this.nickname.length() <= 0) {
+            return username;
+        }
         return nickname;
     }
 

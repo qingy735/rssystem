@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * 商家/店铺 实体类
@@ -11,11 +12,12 @@ import javax.validation.constraints.NotNull;
  * @author Qing_Y
  */
 public class Business {
+
     /**
      * 店铺id
      * 数据库中为int类型
      */
-    private String username;
+    private Integer username;
     /**
      * 店铺账号密码
      */
@@ -52,11 +54,11 @@ public class Business {
      */
     private Float grade;
 
-    public String getUsername() {
+    public Integer getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Integer username) {
         this.username = username;
     }
 

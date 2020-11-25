@@ -20,12 +20,43 @@
         }
 
         $(function () {
+            // 每次进入先刷新验证码
+            refreshCode()
+
+            // 显示注册后的商家账号
             var busId = "<%=request.getAttribute("busId")%>"
             if (busId > 0) {
                 alert("你的账号是：" + busId)
             }
+            // 注册按钮事件
             $("#registerBtn").click(function () {
                 location.href = "${ctp}/register/business";
+            })
+
+            $("#loginForm").submit(function () {
+                var nextUrl = $("#loginForm").attr("action")
+                var data = JSON.stringify($(this).serialize())
+                $.ajax({
+                    url: "${ctp}/business/login",
+                    contentType: "application/json;charset=utf-8",
+                    data: data,
+                    type: "post",
+                    dataType: "json",
+                    success:
+                        function (data) {
+                            if (data.flag == 1) {
+                                location.href = nextUrl
+                            } else if (data.flag == -1) {
+                                // 刷新验证码
+                                refreshCode();
+                                $("#busLoginInfo").html(data.bus_login_msg);
+                            }
+                        },
+                    error: function () {
+                        alert("出错了...")
+                    }
+                })
+                return false;
             })
         })
     </script>
@@ -42,12 +73,12 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-6" style="margin-top: 60px">
-        <img border="1" width="800" height="435"
+        <img border="1" width="100%" height="100%"
              src="${ctp}/images/henu.jpg"/>
     </div>
     <div class="col-md-4 logindiv" style="margin-top: 60px">
         <h2 class="text-center">欢迎商家登录</h2>
-        <form action="${ctp}/business/login" method="post">
+        <form action="${ctp}/business/home" method="post" id="loginForm">
             <div class="form-group">
                 <label for="username">用户名：</label>
                 <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名"/>
@@ -79,7 +110,7 @@
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
                 <span>&times;</span></button>
-            <strong>${bus_login_msg}</strong>
+            <strong id="busLoginInfo"></strong>
         </div>
     </div>
 </div>

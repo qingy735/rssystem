@@ -1,0 +1,35 @@
+@charset "UTF-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	width: 100%;height: 100%;
+}
+ul li{ list-style: none; }
+.middle{
+	width: 100%;
+	margin-top: 10px;
+}
+.product{
+	border: 1px solid #f4f4f4;
+}
+.product:hover{
+	background-color:#FFFFF0 ;
+}
+.quick_link{
+	background-color:#F9F5F6;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.bottomdiv{
+	background-color: black;
+	height: 10%;
+	width: 100%;
+}
+.btmp {
+	color: white;
+	align-content: center;
+	text-align: center;
+}

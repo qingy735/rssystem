@@ -23,7 +23,7 @@
 </header>
 <div class="row">
     <div class="col-md-6" style="margin-top: 60px">
-        <img border="0" width="500" height="335" src="${ctp}/images/henu.jpg" alt="图片无法显示"/>
+        <img border="0" width="100%" height="100%" src="${ctp}/images/henu.jpg" alt="图片无法显示"/>
     </div>
     <div class="col-md-6">
         <h2 class="text-center">欢迎商家注册</h2>

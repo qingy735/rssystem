@@ -73,7 +73,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-6" style="margin-top: 60px">
-        <img border="1" width="800" height="435"
+        <img border="1" width="100%" height="100%"
              src="${ctp}/images/henu.jpg"/>
     </div>
     <div class="col-md-4 logindiv" style="margin-top: 60px">

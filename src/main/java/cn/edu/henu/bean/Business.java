@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * 商家/店铺 实体类
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
  * @author Qing_Y
  */
 public class Business {
+
     /**
      * 店铺id
      * 数据库中为int类型

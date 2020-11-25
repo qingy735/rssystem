@@ -35,8 +35,8 @@ public class BusinessServiceImpl implements IBusinessService {
     @Override
     public boolean deleteById(Integer id) {
         try {
-            businessMapper.deleteByPrimaryKey(id);
-            return true;
+            int i = businessMapper.deleteByPrimaryKey(id);
+            return i >= 1;
         } catch (Exception e) {
             return false;
         }
@@ -45,8 +45,8 @@ public class BusinessServiceImpl implements IBusinessService {
     @Override
     public boolean update(Business business) {
         try {
-            businessMapper.updateByPrimaryKey(business);
-            return true;
+            int i = businessMapper.updateByPrimaryKey(business);
+            return i >= 1;
         } catch (Exception e) {
             return false;
         }

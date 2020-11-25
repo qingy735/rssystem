@@ -16,7 +16,7 @@ public interface CrudDao<T> {
      * @param id
      * @return
      */
-    void deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id);
 
     /**
      * 插入数据

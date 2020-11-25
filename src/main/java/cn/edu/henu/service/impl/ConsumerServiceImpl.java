@@ -3,7 +3,7 @@ package cn.edu.henu.service.impl;
 import java.util.List;
 
 import cn.edu.henu.bean.Consumer;
-import cn.edu.henu.dao.IConsumerDao;
+import cn.edu.henu.dao.ConsumerMapper;
 import cn.edu.henu.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class ConsumerServiceImpl implements IConsumerService {
 
     @Autowired
-    private IConsumerDao consumerDao;
+    private ConsumerMapper consumerMapper;
 
     @Override
     public List<Consumer> getAllCustomer() {
@@ -47,7 +47,19 @@ public class ConsumerServiceImpl implements IConsumerService {
      */
     @Override
     public Integer save(Consumer consumer) {
-        return consumerDao.add(consumer);
+        if (consumer == null) {
+            return -2;
+        }
+        try {
+            Consumer tempConsumer = consumerMapper.selectByPrimaryKey(Integer.parseInt(consumer.getUsername()));
+            if (tempConsumer == null) {
+                return consumerMapper.insert(consumer);
+            } else {
+                return 0;
+            }
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     /**
@@ -60,7 +72,16 @@ public class ConsumerServiceImpl implements IConsumerService {
      */
     @Override
     public Consumer login(String username, String password) {
-        return consumerDao.getOneByLoginInfo(username, password);
+        try {
+            Consumer consumer = consumerMapper.selectByPrimaryKey(Integer.parseInt(username));
+            if (consumer != null && password.equals(consumer.getPassword())) {
+                return consumer;
+            } else {
+                return null;
+            }
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
 }

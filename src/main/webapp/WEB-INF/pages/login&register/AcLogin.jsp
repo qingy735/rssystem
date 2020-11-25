@@ -21,7 +21,7 @@
 </header>
 <div class="row">
     <div class="col-md-8 " style="margin-top: 60px">
-        <img border="0" width="100% height="50%"
+        <img border="0" width="100% height="100%"
              src="${ctp}/images/henu.jpg"/>
     </div>
     <div class="col-md-4 " class="logindiv"

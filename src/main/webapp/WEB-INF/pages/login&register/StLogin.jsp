@@ -28,7 +28,7 @@
 </header>
 <div class="row">
     <div class="col-md-8 " style="margin-top: 60px">
-        <img border="0" width="800" height="435" src="${ctp}/images/henu.jpg"/>
+        <img border="0" width="100%" height="100%" src="${ctp}/images/henu.jpg"/>
     </div>
     <div class="col-md-4 " class="logindiv" style="margin-top: 60px">
         <h2 class="text-center">欢迎师生登录</h2>

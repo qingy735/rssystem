@@ -53,6 +53,16 @@ public class BusinessServiceImpl implements IBusinessService {
     }
 
     @Override
+    public Business getOneByKey(Integer username) {
+        try {
+            return businessMapper.selectByPrimaryKey(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Integer save(Business business) {
         if (business == null) {
             return -2;

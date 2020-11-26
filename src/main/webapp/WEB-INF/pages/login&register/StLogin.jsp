@@ -17,6 +17,10 @@
         }
 
         $(function () {
+
+            $("#conLoginInfo").html("")
+            refreshCode()
+
             $("#loginForm").submit(function () {
                 var nextUrl = $("#loginForm").attr("action")
                 var data = JSON.stringify($(this).serialize())
@@ -61,7 +65,7 @@
     </div>
     <div class="col-md-4 " class="logindiv" style="margin-top: 60px">
         <h2 class="text-center">欢迎师生登录</h2>
-        <form id="loginForm" action="${ctp}/consumer/home" method="post">
+        <form id="loginForm" action="${ctp}/home" method="post">
             <div class="form-group">
                 <label for="InputStNum">账号</label>
                 <input type="text" class="form-control" id="InputStNum" name="username" placeholder="请输入学号/教职工号">
@@ -97,7 +101,7 @@
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
                 <span>&times;</span></button>
-            <strong id="conLoginInfo"></strong>
+            <strong id="conLoginInfo">${bus_login_msg}</strong>
         </div>
     </div>
 </div>

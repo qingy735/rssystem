@@ -38,17 +38,20 @@ public class LoginIntercept implements HandlerInterceptor {
         String uri = request.getRequestURI();
         System.out.println(uri);
 
-        if (uri.contains("/first")) {
-            return true;
-        }
+        Business business = (Business) request.getSession().getAttribute("busLoginInfo");
+        Consumer consumer = (Consumer) request.getSession().getAttribute("conLoginInfo");
 
         // 过滤登录和注册相关请求
         if (uri.contains(LOGIN_MSG) || uri.contains(REGISTER_MSG)) {
             return true;
         }
 
+        // 又登录信息或者访问首页就放行
+        if (uri.contains("/first")) {
+            return true;
+        }
+
         if (uri.contains("/business")) {
-            Business business = (Business) request.getSession().getAttribute("busLoginInfo");
             // 存在登录信息就放行
             if (business != null) {
                 return true;
@@ -59,7 +62,6 @@ public class LoginIntercept implements HandlerInterceptor {
         }
 
         if (uri.contains("/consumer")) {
-            Consumer consumer = (Consumer) request.getSession().getAttribute("conLoginInfo");
             // 存在登录信息就放行
             if (consumer != null) {
                 return true;

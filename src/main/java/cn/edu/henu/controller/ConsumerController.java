@@ -83,31 +83,6 @@ public class ConsumerController {
         return info;
     }
 
-    // @RequestMapping("/login")
-    public String businessLogin(String username, String password, String verifyCode, HttpSession session, Model model) {
-        if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
-            model.addAttribute("con_login_msg", "验证码错误");
-            return "login&register/StLogin";
-        } else {
-            String checkCode = (String) session.getAttribute("checkCode");
-            if (verifyCode.equalsIgnoreCase(checkCode)) {
-                System.out.println(username + "---" + password);
-                Consumer loginCon = consumerSer.login(username, password);
-                System.out.println("登录校验完成..." + loginCon);
-                if (loginCon != null) {
-                    session.setAttribute("conLoginInfo", loginCon);
-                    System.out.println("查询成功...");
-                    return "redirect:/consumer/home";
-                }
-                model.addAttribute("con_login_msg", "账号或密码错误");
-                return "login&register/StLogin";
-            } else {
-                model.addAttribute("con_login_msg", "验证码错误");
-                return "login&register/StLogin";
-            }
-        }
-    }
-
     /**
      * 注册校验码：
      * 1：成功
@@ -150,11 +125,5 @@ public class ConsumerController {
             session.setAttribute("errConsumer", consumer);
             return "redirect:/register/consumer";
         }
-    }
-
-    @RequestMapping("/home")
-    public String toBusinessHome() {
-        System.out.println("跳转到商家主页...");
-        return "success";
     }
 }

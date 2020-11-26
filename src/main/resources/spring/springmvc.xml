@@ -19,15 +19,15 @@
     </bean>
 
     <mvc:interceptors>
-        <mvc:interceptor>
+        <!--<mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <!--直接过滤静态资源-->
+            &lt;!&ndash;直接过滤静态资源&ndash;&gt;
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/js/**"/>
             <mvc:exclude-mapping path="/fonts/**"/>
             <mvc:exclude-mapping path="/images/**"/>
             <bean class="cn.edu.henu.intercept.LoginIntercept"/>
-        </mvc:interceptor>
+        </mvc:interceptor>-->
         <mvc:interceptor>
             <mvc:mapping path="/register/*"/>
             <bean class="cn.edu.henu.intercept.RegisterIntercept"/>

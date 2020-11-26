@@ -20,6 +20,7 @@
         }
 
         $(function () {
+            $("#busLoginInfo").html("")
             // 每次进入先刷新验证码
             refreshCode()
 
@@ -110,7 +111,7 @@
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
                 <span>&times;</span></button>
-            <strong id="busLoginInfo"></strong>
+            <strong id="busLoginInfo">${bus_login_msg}</strong>
         </div>
     </div>
 </div>

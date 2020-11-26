@@ -1,16 +1,15 @@
 package cn.edu.henu.controller;
 
-import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Consumer;
 import cn.edu.henu.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -47,7 +46,7 @@ public class ConsumerController {
      */
     @ResponseBody
     @RequestMapping("/login")
-    public Map<String, Object> businessLoginAjax(@RequestBody String body, HttpSession session) {
+    public Map<String, Object> consumerLoginAjax(@RequestBody String body, HttpSession session) {
         Map<String, Object> info = new HashMap<>();
         body = body.replace("\"", "");
         String[] params = body.split("&");
@@ -73,7 +72,6 @@ public class ConsumerController {
                     return info;
                 }
                 info.put("con_login_msg", "账号或密码错误");
-                info.put("flag", -1);
             } else {
                 info.put("con_login_msg", "验证码错误");
                 System.out.println("验证码错误");
@@ -90,15 +88,15 @@ public class ConsumerController {
      * -1：插入数据失败
      * -2：消费者信息转存丢失变为null
      *
-     * @param consumer
-     * @param bindingResult
-     * @param session
-     * @return
+     * @param consumer      注册对象
+     * @param bindingResult 错误信息返回
+     * @param session       session
+     * @return 跳转
      */
     @RequestMapping("/register")
-    public String businessRegister(@Validated Consumer consumer, BindingResult bindingResult, HttpSession session) {
+    public String consumerRegister(@Validated Consumer consumer, BindingResult bindingResult, HttpSession session) {
         // 表单校验
-        Map<String, Object> errorsMap = new HashMap<String, Object>();
+        Map<String, Object> errorsMap = new HashMap<>();
         boolean hasErrors = bindingResult.hasErrors();
         if (hasErrors) {
             List<FieldError> fieldErrors = bindingResult.getFieldErrors();
@@ -126,4 +124,53 @@ public class ConsumerController {
             return "redirect:/register/consumer";
         }
     }
+
+    @RequestMapping("/updatenick")
+    public String updateNickname(String nickname, HttpSession session) {
+        Consumer loginInfo = (Consumer) session.getAttribute("conLoginInfo");
+        // 存在用户登录信息
+        if (loginInfo != null) {
+            loginInfo.setNickname(nickname);
+            int i = consumerSer.update(loginInfo);
+
+            if (i < 1) {
+                session.setAttribute("updateInfo", "修改失败");
+                return "redirect:/alterInfo/alterNickname";
+            }
+
+            // 每次更新完后更新session中的consumer对象
+            session.setAttribute("conLoginInfo", loginInfo);
+            // 返回用户中心
+            return "redirect:/PCenter";
+        }
+        return "redirect:/login/consumer";
+    }
+
+    @RequestMapping("/updatepass")
+    public String updateNickname(@RequestParam("password") String password, @RequestParam(value = "newPassword") String newPass, HttpSession session) {
+        Consumer loginInfo = (Consumer) session.getAttribute("conLoginInfo");
+        // 存在用户登录信息
+        if (loginInfo != null) {
+            // 密码匹配就更改位新密码
+            if (loginInfo.getPassword().equals(password)) {
+                loginInfo.setPassword(newPass);
+            } else {
+                session.setAttribute("updateInfo", "初始密码错误");
+                return "redirect:/alterInfo/alterPassword";
+            }
+            // 更新
+            int i = consumerSer.update(loginInfo);
+            if (i < 1) {
+                session.setAttribute("updateInfo", "修改失败");
+                return "redirect:/alterInfo/alterPassword";
+            }
+            // 每次更新完后更新session中的consumer对象
+            session.setAttribute("conLoginInfo", loginInfo);
+            // 返回用户中心
+            return "redirect:/PCenter";
+
+        }
+        return "redirect:/login/consumer";
+    }
+
 }

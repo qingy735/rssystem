@@ -34,8 +34,9 @@ public interface IConsumerService {
      * 修改消费者信息
      *
      * @param consumer
+     * @return
      */
-    void update(Consumer consumer);
+    int update(Consumer consumer);
 
     /**
      * 添加消费者

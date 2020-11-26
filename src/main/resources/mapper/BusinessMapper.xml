@@ -70,26 +70,26 @@
     <!--根据主键动态更新-->
     <update id="updateByPrimaryKey" parameterType="cn.edu.henu.bean.Business">
         update businessinfo
-        <set>
+        <trim prefix="set" suffixOverrides=",">
             <if test="password != null">
-                password = #{password}
+                password = #{password},
             </if>
             <if test="rid != null">
-                rid = #{rid}
+                rid = #{rid},
             </if>
             <if test="wid != null">
-                wid = #{wid}
+                wid = #{wid},
             </if>
             <if test="wname != null">
-                wname = #{wname}
+                wname = #{wname},
             </if>
             <if test="tel != null">
-                tel = #{tel}
+                tel = #{tel},
             </if>
             <if test="grade != null">
-                grade = #{grade}
+                grade = #{grade},
             </if>
-        </set>
+        </trim>
         where username = #{username}
     </update>
 

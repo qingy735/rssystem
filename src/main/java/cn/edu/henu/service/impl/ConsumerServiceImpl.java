@@ -25,8 +25,12 @@ public class ConsumerServiceImpl implements IConsumerService {
 
     @Override
     public Consumer getOneById(Integer id) {
-
-        return null;
+        try {
+            return consumerMapper.selectByPrimaryKey(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -35,8 +39,14 @@ public class ConsumerServiceImpl implements IConsumerService {
     }
 
     @Override
-    public void update(Consumer consumer) {
-
+    public int update(Consumer consumer) {
+        try {
+            System.out.println(consumer);
+            return consumerMapper.updateByPrimaryKey(consumer);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
     /**

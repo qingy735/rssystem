@@ -47,7 +47,7 @@ public class LoginIntercept implements HandlerInterceptor {
         }
 
         // 又登录信息或者访问首页就放行
-        if (uri.contains("/first")) {
+        if (uri.contains("/first") || business != null || consumer != null) {
             return true;
         }
 
@@ -59,6 +59,7 @@ public class LoginIntercept implements HandlerInterceptor {
             // 没有登陆信息
             request.setAttribute("bus_login_msg", "请先登录");
             request.getRequestDispatcher("/WEB-INF/pages/login&register/BuLogin.jsp").forward(request, response);
+            return false;
         }
 
         if (uri.contains("/consumer")) {
@@ -69,8 +70,10 @@ public class LoginIntercept implements HandlerInterceptor {
             // 没有登陆信息
             request.setAttribute("con_login_msg", "请先登录");
             request.getRequestDispatcher("/WEB-INF/pages/login&register/StLogin.jsp").forward(request, response);
+            return false;
         }
 
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
         return false;
     }
 

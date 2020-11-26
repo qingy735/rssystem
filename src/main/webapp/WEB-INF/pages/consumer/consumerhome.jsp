@@ -1,9 +1,6 @@
-<%@page import="java.sql.DriverManager" %>
-<%@page import="java.sql.PreparedStatement" %>
-<%@page import="java.sql.ResultSet" %>
-<%@page import="java.sql.Connection" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,80 +90,22 @@
 <!-- 中部的餐品显示 -->
 <div class="middle container">
     <ul>
-        <%!
-            Connection conn = null;
-            String username = "javaweb";
-            String password = "12345";
-            String sqlSelect = "";
-            ResultSet resultSet = null;
-            PreparedStatement psQuery = null;
-//Product product  = null;
-        %>
-        <%
-
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                String url = "jdbc:mysql://heia.icu:3306/javaweb?useSSL=false&serverTimezone=UTC";
-                conn = DriverManager.getConnection(url, username, password);
-                //if(conn!=null){
-                //out.print("数据库连接成功"+"<br>");
-                //}else{
-                //out.print("数据库连接"+"<br>");
-                //}
-                sqlSelect = "Select * from productinfo ";//where BsID=?
-                psQuery = conn.prepareStatement(sqlSelect);
-                //psQuery.setString(1, "DY00000001");
-
-                resultSet = psQuery.executeQuery();
-                while (resultSet.next()) {
-        %>
-        <!-- <div class="col-md-10" style="border-bottom: 1px solid "> -->
-        <li id="proinfo" class="col-md-offset-1 col-md-10 product">
-            <a href="${ctp}/details">
-                <%
-                    //product = new Product(resultSet.getString(2),resultSet.getString(4),"",resultSet.getDouble(5),"",1,"");
-                    //session.setAttribute("product", product);
-                %>
-                <div class="col-md-4">
-                    <img alt="" src="${ctp}/<%=resultSet.getString(6)%>" class="col-md-3 img-rounded img-responsive">
-                </div>
-                <div class="col-md-6">
-                    <h5>店铺号：<%= resultSet.getString("BsID")%>
-                    </h5>
-
-                    <p style="color: red">评分：<%= resultSet.getFloat(7) %>
-                    </p>
-                    <p><%= resultSet.getString(2)%>
-                    </p>
-                    <p>商品ID:<%= resultSet.getString(3)%>
-                    </p>
-                    <p style="color: red">¥：<%=resultSet.getFloat(5) %>
-                    </p>
-
-                </div>
-            </a>
-        </li>
-        <!-- </div> -->
-
-        <%
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if (psQuery != null) {
-                    psQuery.close();
-                }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (conn != null) {
-
-                    conn.close();
-                }
-
-            }
-        %>
+        <c:forEach items="${products}" var="product">
+            <li id="proinfo" class="col-md-offset-1 col-md-10 product">
+                <a href="${ctp}/details?id=${product.bsId}&name=${product.productName}">
+                    <div class="col-md-4">
+                        <img alt="无法显示" src="${ctp}/${product.photosrc}"
+                             class="col-md-3 img-rounded img-responsive">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>店铺号：${product.bsId}</h5>
+                        <p style="color: red">评分：${product.productGrade}</p>
+                        <p>商品名字:${product.productName}</p>
+                        <p style="color: red">¥：${product.productPrice}</p>
+                    </div>
+                </a>
+            </li>
+        </c:forEach>
     </ul>
 </div>
 <!-- 友情链接 -->

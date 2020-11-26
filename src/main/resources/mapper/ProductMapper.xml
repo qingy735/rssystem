@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.henu.dao.ProductMapper">
+
+    <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Product">
+        <id property="bsId" column="BsID"/>
+        <id property="productName" column="productName"/>
+        <result property="productIntr" column="productIntr"/>
+        <result property="productPrice" column="productPrice"/>
+        <result property="photosrc" column="photosrc"/>
+        <result property="productGrade" column="productGrade"/>
+    </resultMap>
+
+    <!--查询所有商品信息-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from productinfo
+    </select>
+
+</mapper>

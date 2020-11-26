@@ -33,6 +33,14 @@ public interface IBusinessService {
     boolean update(Business business);
 
     /**
+     * 根据店铺username查询
+     *
+     * @param username 用户名
+     * @return Business对象
+     */
+    Business getOneByKey(Integer username);
+
+    /**
      * 添加商家
      *
      * @param business

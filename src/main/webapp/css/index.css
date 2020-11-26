@@ -42,14 +42,6 @@
     border-top: 1px solid #FFFFFF;
     width: 100%;
 }
-
-/*web background*/
-  .container {
- display: table;
- height: 100%;
- background-color: rgba(0, 0, 0, 0);
-  }
-
 .row {
     margin:100px;
     /*display: table-cell;*/

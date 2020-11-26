@@ -12,7 +12,7 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div class="newcontainer">
     <form class="row row-centered">
         <div class="well col-md-6 col-centered">
             <ul id="myTab" class="nav nav-tabs">

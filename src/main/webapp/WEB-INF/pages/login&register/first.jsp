@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="newcontainer">
-    <form class="row row-centered">
+    <form class="row row1 row-centered">
         <div class="well col-md-6 col-centered">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active"><a href="#StLogin" data-toggle="tab">

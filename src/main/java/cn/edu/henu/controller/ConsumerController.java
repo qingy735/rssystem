@@ -55,8 +55,7 @@ public class ConsumerController {
         String verifyCode = params[2].split("=")[1];
 
         if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
-            info.put("con_login_msg", "验证码错误");
-            info.put("flag", -1);
+            info.put("login_msg", "验证码错误");
         } else {
             String checkCode = (String) session.getAttribute("checkCode");
             if (verifyCode.equalsIgnoreCase(checkCode)) {
@@ -67,17 +66,17 @@ public class ConsumerController {
                 if (loginCon != null) {
                     session.setAttribute("conLoginInfo", loginCon);
                     System.out.println("查询成功...");
-                    info.put("con_login_msg", "成功");
+                    info.put("login_msg", "成功");
                     info.put("flag", 1);
                     return info;
                 }
-                info.put("con_login_msg", "账号或密码错误");
+                info.put("login_msg", "账号或密码错误");
             } else {
-                info.put("con_login_msg", "验证码错误");
+                info.put("login_msg", "验证码错误");
                 System.out.println("验证码错误");
-                info.put("flag", -1);
             }
         }
+        info.put("flag", -1);
         return info;
     }
 
@@ -114,7 +113,7 @@ public class ConsumerController {
         if (REGISTER_SUCCESS.equals(registerCode)) {
             System.out.println("注册完成...");
             // 跳转到消费者登陆界面
-            return "redirect:/login/consumer";
+            return "redirect:/first";
         } else {
             System.out.println("注册失败...");
             // 存入注册失败校验码

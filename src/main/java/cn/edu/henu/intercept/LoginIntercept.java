@@ -35,6 +35,7 @@ public class LoginIntercept implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
+        System.out.println(uri);
 
         Business business = (Business) request.getSession().getAttribute("busLoginInfo");
         Consumer consumer = (Consumer) request.getSession().getAttribute("conLoginInfo");
@@ -44,8 +45,8 @@ public class LoginIntercept implements HandlerInterceptor {
             return true;
         }
 
-        // 又登录信息或者访问首页就放行
-        if (uri.contains("/first") || business != null || consumer != null) {
+        // 访问首页就放行
+        if (uri.contains("/first")) {
             return true;
         }
 
@@ -56,7 +57,7 @@ public class LoginIntercept implements HandlerInterceptor {
             }
             // 没有登陆信息
             request.setAttribute("bus_login_msg", "请先登录");
-            request.getRequestDispatcher("/WEB-INF/pages/login&register/BuLogin.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/login&register/first.jsp").forward(request, response);
             return false;
         }
 
@@ -67,8 +68,12 @@ public class LoginIntercept implements HandlerInterceptor {
             }
             // 没有登陆信息
             request.setAttribute("con_login_msg", "请先登录");
-            request.getRequestDispatcher("/WEB-INF/pages/login&register/StLogin.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/login&register/first.jsp").forward(request, response);
             return false;
+        }
+
+        if (consumer != null || business != null) {
+            return true;
         }
 
         request.getRequestDispatcher("/index.jsp").forward(request, response);

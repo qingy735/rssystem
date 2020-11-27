@@ -10,125 +10,71 @@
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function refreshCode() {
+            var verifyCodeImg = document.getElementsByClassName("verifyCodeImg");
+            $.each(verifyCodeImg, function (index, item) {
+                item.src = "${ctp}/login/checkCode?time=" + new Date().getTime();
+            })
+        }
+
+        // 异步登录方法
+        function loginAjax(url, data, nextUrl) {
+            $.ajax({
+                url: url,
+                contentType: "application/json;charset=utf-8",
+                data: data,
+                type: "post",
+                dataType: "json",
+                success:
+                    function (data) {
+                        if (data.flag == 1) {
+                            location.href = nextUrl
+                        } else if (data.flag == -1) {
+                            // 刷新验证码
+                            refreshCode();
+                            $("#LoginInfo").html(data.login_msg);
+                        }
+                    },
+                error:
+                    function () {
+                        alert("出错了...")
+                    }
+            })
+        }
+
+        // 消费者登录异步方法
+        function stLoginAjax() {
+            $("#stLoginForm").submit(function () {
+                var url = "${ctp}/consumer/login"
+                var data = JSON.stringify($(this).serialize())
+                var nextUrl = $("#stLoginForm").attr("action")
+                loginAjax(url, data, nextUrl)
+                return false;
+            })
+        }
+
+        // 商家异步登录方法
+        function buLoginAjax() {
+            $("#bsLoginForm").submit(function () {
+                var url = "${ctp}/business/login"
+                var data = JSON.stringify($(this).serialize())
+                var nextUrl = $("#bsLoginForm").attr("action")
+                loginAjax(url, data, nextUrl)
+                return false;
+            })
+        }
+
+        $(function () {
+            stLoginAjax()
+            buLoginAjax()
+        })
+
+    </script>
+
 </head>
 <body>
-<div class="newcontainer">
-    <form class="row row1 row-centered">
-        <div class="well col-md-6 col-centered">
-            <ul id="myTab" class="nav nav-tabs">
-                <li class="active"><a href="#StLogin" data-toggle="tab">
-                    师生登录</a></li>
-                <li><a href="#BuLogin" data-toggle="tab">商家登录</a></li>
-                <li><a href="#AcLogin" data-toggle="tab">管理员登录</a></li>
-            </ul>
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade in active" id="StLogin">
-                    <form id="loginForm" action="${ctp}/home" method="post">
-                        <div class="form-group">
-                            <label for="InputStNum">账号</label>
-                            <input type="text" class="form-control" id="InputStNum" name="username"
-                                   placeholder="请输入学号/教职工号">
-                            <span class="help-block"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="InputStPwd">密码</label>
-                            <input type="password" class="form-control" id="InputStPwd" name="password"
-                                   placeholder="请输入密码">
-                            <span class="help-block"></span>
-                        </div>
-                        <div class="form-inline">
-                            <label for="verifyCode">验证码：</label>
-                            <input type="text" name="verifyCode" class="form-control" id="verifyCode"
-                                   placeholder="请输入验证码"
-                                   style="width: 120px;"/>
-                            <a href="javascript:refreshCode()">
-                                <img src="${ctp}/login/checkCode" id="verifyCodeImg" alt="点击刷新"/>
-                            </a>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> 记住密码
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/consumer" role="button">注册</a>
-                            <input class="btn btn-success col-md-4 pull-right" type="submit" value="登录">
-                        </div>
-                        <br>
-                        <br>
-                    </form>
-                    <!-- 出错显示的信息框 -->
-                    <div class="alert alert-warning alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span>&times;</span></button>
-                        <strong id="conLoginInfo">${bus_login_msg}</strong>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="BuLogin">
-                    <form action="${ctp}/business/home" method="post" id="loginForm">
-                        <div class="form-group">
-                            <label for="username">用户名：</label>
-                            <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">密码：</label>
-                            <input type="password" name="password" class="form-control" id="password"
-                                   placeholder="请输入密码"/>
-                        </div>
-                        <div class="form-inline">
-                            <label for="verifyCode">验证码：</label>
-                            <input type="text" name="verifyCode" class="form-control" id="verifyCode"
-                                   placeholder="请输入验证码"
-                                   style="width: 120px;"/>
-                            <a href="javascript:refreshCode()">
-                                <img src="${ctp}/login/checkCode" id="verifyCodeImg" alt="点击刷新"/>
-                            </a>
-                        </div>
-                        <div class="checkbox">
-                            <label> <input type="checkbox"> 记住密码
-                            </label>
-                        </div>
-                        <div class="form-group" style="text-align: center;">
-                            <input class="btn btn btn-success col-md-4 pull-left" type="button" id="registerBtn"
-                                   value="注册">
-                            <input class="btn btn btn-success col-md-4 pull-right" type="submit" value="登录">
-                        </div>
-                        <br>
-                        <br>
-                    </form>
-                    <!-- 出错显示的信息框 -->
-                    <div class="alert alert-warning alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert">
-                            <span>&times;</span></button>
-                        <strong id="busLoginInfo">${bus_login_msg}</strong>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="AcLogin">
-                    <form>
-                        <div class="form-group">
-                            <label for="InputAcNum">账号</label>
-                            <input type="text" class="form-control" id="InputAcNum" placeholder="请输入管理员账号">
-                            <span class="help-block"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="InputAcPwd">密码</label>
-                            <input type="password" class="form-control" id="InputAcPwd" placeholder="请输入密码">
-                            <span class="help-block"></span>
-                        </div>
-                        <div class="checkbox">
-                            <label> <input type="checkbox"> 记住密码
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <input class="btn btn btn-success col-md-10 col-md-offset-1" type="submit" value="登录">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-<hr>
 <header class="container" id="firstTitleArea">
     <div class="row">
         <div class="col-md-10">
@@ -136,15 +82,114 @@
         </div>
     </div>
 </header>
-<div class="row">
-    <div class="col-md-8 col-md-offset-3" style="margin-top: 70px">
-        <a class="btn btn-primary mybtn" href="${ctp}/login/consumer" role="button">学生入口</a>
-    </div>
-    <div class="col-md-8 col-md-offset-3">
-        <a class="btn btn-success mybtn" href="${ctp}/login/business" role="button">商家入口</a>
-    </div>
-    <div class="col-md-8 col-md-offset-3">
-        <a class="btn btn-info mybtn" href="${ctp}/login/admin" role="button">管理员入口</a>
+<div class="newContainer">
+    <div class="well col-md-6 col-centered">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#StLogin" class="changeTab" data-toggle="tab">
+                师生登录</a></li>
+            <li><a href="#BuLogin" class="changeTab" data-toggle="tab">商家登录</a></li>
+            <li><a href="#AcLogin" class="changeTab" data-toggle="tab">管理员登录</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="StLogin">
+                <br>
+                <form id="stLoginForm" action="${ctp}/home" method="post">
+                    <div class="form-group">
+                        <label for="InputStNum">账号</label>
+                        <input type="text" class="form-control" id="InputStNum" name="username"
+                               placeholder="请输入学号/教职工号">
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputStPwd">密码</label>
+                        <input type="password" class="form-control" id="InputStPwd" name="password"
+                               placeholder="请输入密码">
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-inline">
+                        <label for="verifyCode1">验证码：</label>
+                        <input type="text" name="verifyCode" class="form-control" id="verifyCode1"
+                               placeholder="请输入验证码"
+                               style="width: 120px;"/>
+                        <a href="javascript:refreshCode()">
+                            <img src="${ctp}/login/checkCode" class="verifyCodeImg" alt="点击刷新"/>
+                        </a>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> 记住密码
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/consumer"
+                           role="button">注册</a>
+                        <input class="btn btn-success col-md-4 pull-right" type="submit" value="登录">
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="BuLogin">
+                <br>
+                <form id="bsLoginForm" action="${ctp}/business/home" method="post">
+                    <div class="form-group">
+                        <label for="username">用户名：</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码：</label>
+                        <input type="password" name="password" class="form-control" id="password"
+                               placeholder="请输入密码"/>
+                    </div>
+                    <div class="form-inline">
+                        <label for="verifyCode2">验证码：</label>
+                        <input type="text" name="verifyCode" class="form-control" id="verifyCode2"
+                               placeholder="请输入验证码"
+                               style="width: 120px;"/>
+                        <a href="javascript:refreshCode()">
+                            <img src="${ctp}/login/checkCode" class="verifyCodeImg" alt="点击刷新"/>
+                        </a>
+                    </div>
+                    <div class="checkbox">
+                        <label> <input type="checkbox"> 记住密码
+                        </label>
+                    </div>
+                    <div class="form-group" style="text-align: center;">
+                        <input class="btn btn btn-success col-md-4 pull-left" type="button" id="registerBtn"
+                               value="注册">
+                        <input class="btn btn btn-success col-md-4 pull-right" type="submit" value="登录">
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="AcLogin">
+                <br>
+                <form>
+                    <div class="form-group">
+                        <label for="InputAcNum">账号</label>
+                        <input type="text" class="form-control" id="InputAcNum" placeholder="请输入管理员账号">
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputAcPwd">密码</label>
+                        <input type="password" class="form-control" id="InputAcPwd" placeholder="请输入密码">
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="checkbox">
+                        <label> <input type="checkbox"> 记住密码
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn btn-success col-md-10 col-md-offset-1" type="submit" value="登录">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- 出错显示的信息框 -->
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span></button>
+            <strong id="LoginInfo"></strong>
+        </div>
     </div>
 </div>
 </body>

@@ -43,13 +43,14 @@ public class BusinessController {
     public Map<String, Object> businessLoginAjax(@RequestBody String body, HttpSession session) {
         Map<String, Object> info = new HashMap<>();
         body = body.replace("\"", "");
+        System.out.println(body);
         String[] params = body.split("&");
         String username = params[0].split("=")[1];
         String password = params[1].split("=")[1];
         String verifyCode = params[2].split("=")[1];
 
         if (verifyCode == null || verifyCode.length() < CHECK_CODE_LEN) {
-            info.put("bus_login_msg", "验证码错误");
+            info.put("login_msg", "验证码错误");
             info.put("flag", -1);
         } else {
             String checkCode = (String) session.getAttribute("checkCode");
@@ -60,15 +61,16 @@ public class BusinessController {
                 System.out.println("登录校验完成..." + loginBus);
                 if (loginBus != null) {
                     session.setAttribute("busLoginInfo", loginBus);
-                    System.out.println("查询成功...");
-                    info.put("bus_login_msg", "成功");
+                    System.out.println(loginBus);
+                    System.out.println("查询成功..." + loginBus);
+                    info.put("login_msg", "成功");
                     info.put("flag", 1);
                     return info;
                 }
-                info.put("bus_login_msg", "账号或密码错误");
+                info.put("login_msg", "账号或密码错误");
                 info.put("flag", -1);
             } else {
-                info.put("bus_login_msg", "验证码错误");
+                info.put("login_msg", "验证码错误");
                 System.out.println("验证码错误");
                 info.put("flag", -1);
             }

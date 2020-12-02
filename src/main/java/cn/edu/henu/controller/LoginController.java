@@ -34,7 +34,7 @@ public class LoginController {
             // session移除busId
             session.removeAttribute("busId");
         }
-        return "login&register/BuLogin";
+        return "login&register/first";
     }
 
     /**
@@ -44,7 +44,7 @@ public class LoginController {
      */
     @RequestMapping("/consumer")
     public String toConsumerLoginPage() {
-        return "login&register/StLogin";
+        return "login&register/first";
     }
 
     /**
@@ -54,7 +54,7 @@ public class LoginController {
      */
     @RequestMapping("/admin")
     public String toAdminLoginPage() {
-        return "login&register/AcLogin";
+        return "login&register/first";
     }
 
     @RequestMapping("/checkCode")

@@ -153,8 +153,8 @@
                         </label>
                     </div>
                     <div class="form-group" style="text-align: center;">
-                        <input class="btn btn btn-success col-md-4 pull-left" type="button" id="registerBtn"
-                               value="注册">
+                        <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/business"
+                           role="button">注册</a>
                         <input class="btn btn btn-success col-md-4 pull-right" type="submit" value="登录">
                     </div>
                 </form>

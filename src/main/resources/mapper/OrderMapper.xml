@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.henu.dao.OrderMapper">
+
+    <resultMap id="ConsumerOrderMap" type="cn.edu.henu.bean.Order">
+        <id column="orderId" property="orderId"/>
+        <result column="note" property="note"/>
+        <result column="code" property="code"/>
+        <result column="orderTime" property="orderTime"/>
+        <result column="status" property="status"/>
+        <result column="num" property="num"/>
+        <result column="discountUse" property="discountUse"/>
+        <result column="cid" property="cid"/>
+        <result column="bid" property="bid"/>
+        <result column="pName" property="pName"/>
+        <association property="consumer" javaType="cn.edu.henu.bean.Consumer">
+            <id property="username" column="username"/>
+            <result property="nickname" column="nickname"/>
+            <result property="tel" column="tel"/>
+        </association>
+        <association property="product" javaType="cn.edu.henu.bean.Product">
+            <result property="bsId" column="bsId"/>
+            <result property="productName" column="productName"/>
+            <result property="productPrice" column="productPrice"/>
+        </association>
+    </resultMap>
+
+    <!--查询指定cid的用户的所有订单
+        传递的id等于order表中的cid
+        order表的cid等于consumer表的username
+        查询到的商家id和产品名称联合查询product表
+    -->
+    <select id="selectByCid" resultMap="ConsumerOrderMap">
+        select o.orderid,o.code,o.cid,c.name,c.tel,o.bid,o.pname,p.productprice
+        from orderinfo o
+        left join consumerinfo c on o.cid = c.username
+        left join productinfo p on o.bid = p.bsid and o.pname = p.productname
+        where o.cid = #{id}
+    </select>
+
+</mapper>

@@ -53,11 +53,7 @@
     </select>
 
     <!--添加商家 返回主键-->
-    <insert id="insert" parameterType="cn.edu.henu.bean.Business">
-        <!--配置插入操作后，获取插入数据的id-->
-        <selectKey keyProperty="username" keyColumn="username" resultType="Integer" order="AFTER">
-            select last_insert_id()
-        </selectKey>
+    <insert id="insert" parameterType="cn.edu.henu.bean.Business" useGeneratedKeys="true" keyProperty="username">
         insert into businessinfo(password,name,rid,wid,wname,tel,grade)
         values(#{password},#{name},#{rid},#{wid},#{wname},#{tel},'-1')
     </insert>

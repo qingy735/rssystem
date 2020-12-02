@@ -92,13 +92,13 @@
     <ul>
         <c:forEach items="${products}" var="product">
             <li id="proinfo" class="col-md-offset-1 col-md-10 product">
-                <a href="${ctp}/details?id=${product.bsId}&name=${product.productName}">
+                <a href="${ctp}/details?id=${product.business.username}&name=${product.productName}">
                     <div class="col-md-4">
                         <img alt="无法显示" src="${ctp}/${product.photosrc}"
                              class="col-md-3 img-rounded img-responsive">
                     </div>
                     <div class="col-md-6">
-                        <h5>店铺号：${product.bsId}</h5>
+                        <h5>店铺号：${product.business.username}</h5>
                         <p style="color: red">评分：${product.productGrade}</p>
                         <p>商品名字:${product.productName}</p>
                         <p style="color: red">¥：${product.productPrice}</p>

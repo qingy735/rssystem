@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class ActionController {
         List<Product> products = (List<Product>) session.getAttribute("products");
         System.out.println(products);
         for (Product product : products) {
-            if (product.getBsId().equals(username) && product.getProductName().equals(name)) {
+            if (product.getBusiness().getUsername().equals(username) && product.getProductName().equals(name)) {
                 model.addAttribute("product", product);
                 break;
             }

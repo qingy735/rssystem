@@ -34,6 +34,10 @@ public class Business {
     @NotEmpty(message = "餐厅名不能为空")
     private String rid;
     /**
+     * 餐厅名字（为了省事直接写在这）
+     */
+    private String rname;
+    /**
      * 窗口号
      */
     @NotNull(message = "窗口号不能为空")

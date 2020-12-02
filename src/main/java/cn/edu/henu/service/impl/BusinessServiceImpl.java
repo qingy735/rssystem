@@ -74,7 +74,8 @@ public class BusinessServiceImpl implements IBusinessService {
 
         if (businesses == null || businesses.size() <= 0) {
             try {
-                return businessMapper.insert(business);
+                businessMapper.insert(business);
+                return business.getUsername();
             } catch (Exception e) {
                 return -1;
             }

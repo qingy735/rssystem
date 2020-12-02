@@ -8,9 +8,9 @@ import java.io.Serializable;
  */
 public class Product implements Serializable {
     /**
-     * 店铺id
+     * 商品id
      */
-    private Integer bsId;
+    private Integer id;
     /**
      * 商品名称
      */
@@ -31,13 +31,25 @@ public class Product implements Serializable {
      * 商品评分
      */
     private Float productGrade;
+    /**
+     * 店铺信息
+     */
+    private Business business;
 
-    public Integer getBsId() {
-        return bsId;
+    public Business getBusiness() {
+        return business;
     }
 
-    public void setBsId(Integer bsId) {
-        this.bsId = bsId;
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -83,12 +95,13 @@ public class Product implements Serializable {
     @Override
     public String toString() {
         return "Product{" +
-                "bsId=" + bsId +
+                "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", productIntr='" + productIntr + '\'' +
                 ", productPrice=" + productPrice +
                 ", photosrc='" + photosrc + '\'' +
                 ", productGrade=" + productGrade +
+                ", business=" + business +
                 '}';
     }
 }

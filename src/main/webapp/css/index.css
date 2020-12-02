@@ -7,6 +7,11 @@ body{
     width: 100%;
     margin: 0px;
 }
+.container{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+}
 .mybtn {
     margin: 10px;
     width: 80%;
@@ -24,16 +29,21 @@ body{
 
 #firstTitleArea {
     background: #91C0E3;
-    height: 100px;
+    height: 15%;
     width: 100%;
-    padding-top: 11px;
-    margin: 0;
-    float: left;
+    line-height: 15%;
+    margin: 0%;
     font-family: 宋体;
-    font-size: 14px;
+    font-size: 10px;
     font-weight: bold;
 }
-
+#mainArea{
+    background: snow;
+    height: 80%;
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 20%;
+}
 #TitleArea {
     background: #91C0E3;
     height: 30px;

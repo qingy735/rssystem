@@ -74,13 +74,13 @@
 
 </head>
 <body>
+<header class="container" id="firstTitleArea" >
+    <div class="row">
+        <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
+        <div class="col-md-2"><a href=""><h4>退出登录</h4></a></div>
+    </div>
+</header>
 <div class="container">
-    <header class="container" id="firstTitleArea">
-        <div class="row">
-            <div class="col-md-8 col-sm-offset-1"><h2>河南大学餐厅服务系统</h2></div>
-            <div class="col-md-2"><a href=""><h2>退出登录</h2></a></div>
-        </div>
-    </header>
     <div class="container col-md-6" id="mainArea">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active"><a href="#StLogin" class="changeTab" data-toggle="tab" onclick="refreshCode()">

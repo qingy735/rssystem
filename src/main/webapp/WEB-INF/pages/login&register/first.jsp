@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
-
     <script type="text/javascript">
         function refreshCode() {
             var verifyCodeImg = document.getElementsByClassName("verifyCodeImg");
@@ -85,9 +84,9 @@
 <div class="newContainer">
     <div class="well col-md-6 col-centered">
         <ul id="myTab" class="nav nav-tabs">
-            <li class="active"><a href="#StLogin" class="changeTab" data-toggle="tab">
+            <li class="active"><a href="#StLogin" class="changeTab" data-toggle="tab" onclick="refreshCode()">
                 师生登录</a></li>
-            <li><a href="#BuLogin" class="changeTab" data-toggle="tab">商家登录</a></li>
+            <li><a href="#BuLogin" class="changeTab" data-toggle="tab" onclick="refreshCode()">商家登录</a></li>
             <li><a href="#AcLogin" class="changeTab" data-toggle="tab">管理员登录</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">

@@ -77,8 +77,8 @@
 <div class="container">
     <header class="container" id="firstTitleArea">
         <div class="row">
-            <div class="col-md-10"><h1>河南大学餐厅服务系统</h1></div>
-            <div class="col-md-2"><a href=""><h1>退出登录</h1></a></div>
+            <div class="col-md-8 col-sm-offset-1"><h2>河南大学餐厅服务系统</h2></div>
+            <div class="col-md-2"><a href=""><h2>退出登录</h2></a></div>
         </div>
     </header>
     <div class="container col-md-6" id="mainArea">

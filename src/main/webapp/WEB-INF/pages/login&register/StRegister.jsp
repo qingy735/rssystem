@@ -14,23 +14,22 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <header class="container" id="firstTitleArea">
-        <div class="row">
-            <div class="col-md-8 col-sm-offset-1"><h2>河南大学餐厅服务系统</h2></div>
-            <div class="col-md-2"><a href=""><h2>退出登录</h2></a></div>
-        </div>
-    </header>
+<header class="container" id="firstTitleArea" >
     <div class="row">
-        <div class="col-md-8" style="margin-top: 2%">
+        <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
+        <div class="col-md-2"><a href=""><h4>退出登录</h4></a></div>
+    </div>
+</header>
+<div class="container">
+    <div class="row" style="margin-top: 2%">
+        <div class="col-md-8" >
             <img border="0" width="100%" height="100%" src="${ctp}/images/henu.jpg"/>
         </div>
         <div class="col-md-4">
-            <h2 class="text-center">欢迎师生注册</h2>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        师生个人信息
+                        欢迎师生注册
                         <span class="glyphicon glyphicon-pushpin pull-right" aria-hidden="true"></span>
                     </h3>
                 </div>

@@ -75,13 +75,12 @@
 </head>
 <body>
 <div class="container">
-    <div class="container" id="firstTitleArea">
+    <header class="container" id="firstTitleArea">
         <div class="row">
-            <div class="col-md-4">
-                <h1>河南大学餐厅服务系统</h1>
-            </div>
+            <div class="col-md-10"><h1>河南大学餐厅服务系统</h1></div>
+            <div class="col-md-2"><a href=""><h1>退出登录</h1></a></div>
         </div>
-    </div>
+    </header>
     <div class="container col-md-6" id="mainArea">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active"><a href="#StLogin" class="changeTab" data-toggle="tab" onclick="refreshCode()">

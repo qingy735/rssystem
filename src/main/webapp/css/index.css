@@ -31,7 +31,7 @@ frame{
     width: 50%;
     margin-top: 2%;
     margin-left: 24%;
-    border: solid;
+    border: 0;
 }
 #mainFrame{
     border: solid;

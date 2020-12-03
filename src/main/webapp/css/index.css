@@ -31,7 +31,7 @@ frame{
     width: 50%;
     margin-top: 2%;
     margin-left: 24%;
-    border: solid;
+    border: 0;
 }
 #mainFrame{
     border: solid;
@@ -84,23 +84,4 @@ frame{
     height: auto;
     word-wrap: break-word;
     word-break: break-all;
-}
-.Dtabel{
-    background: snow;
-    width: 80%;
-    margin-top: 2%;
-    margin-left: 10%;
-    position: relative;
-    display: block;
-}
-.Dthead{
-    float: left;
-}
-.Dtbody,.Dtr{
-    display: inline-block;
-}
-.Dtd{
-    height: 40px;
-    width: 300px;
-    display: block;
 }

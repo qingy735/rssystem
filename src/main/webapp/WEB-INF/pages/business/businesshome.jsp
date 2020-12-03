@@ -16,7 +16,7 @@
 		<frame src="${ctp}/business/left" name="leftFrame" id="leftFrame"/>
 		<frameset rows="15%,85%" frameborder="no" >
 			<frame src="${ctp}/business/top" name="topFrame" id="topFrame"/>
-			<frame src="${ctp}/orderDetail" name="mainFrame" id="mainFrame"
+			<frame src="${ctp}/Buinfo" name="mainFrame" id="mainFrame"
 				   scrolling="yes" />
 		</frameset>
 	</frameset>

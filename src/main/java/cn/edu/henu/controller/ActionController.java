@@ -1,13 +1,18 @@
 package cn.edu.henu.controller;
 
 import cn.edu.henu.bean.Business;
+import cn.edu.henu.bean.Order;
 import cn.edu.henu.bean.Product;
 import cn.edu.henu.service.IBusinessService;
+import cn.edu.henu.service.IOrderService;
 import cn.edu.henu.service.IProductService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -22,6 +27,8 @@ public class ActionController {
     private IProductService productSer;
     @Autowired
     private IBusinessService businessSer;
+    @Autowired
+    private IOrderService orderSer;
 
     @RequestMapping("/first")
     public String toFirstPage() {
@@ -29,7 +36,9 @@ public class ActionController {
     }
 
     @RequestMapping("/home")
-    public String toConsumerHome(HttpSession session) {
+    public String toConsumerHome(@RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
+        // 分页   一页五个
+        PageHelper.startPage(p, 5);
         List<Product> products = productSer.getAllProduct();
         if (products != null) {
             session.setAttribute("products", products);
@@ -73,7 +82,12 @@ public class ActionController {
     }
 
     @RequestMapping("/PCenter")
-    public String toPCenter() {
+    public String toPCenter(@RequestParam(value = "p", defaultValue = "1") Integer p, String username, Model model) {
+        // 展示订单
+        PageHelper.startPage(p, 5);
+        System.out.println(username);
+        List<Order> orders = orderSer.selectByCid(username);
+        model.addAttribute("orders", orders);
         return "consumer/PCenter";
     }
 

@@ -35,7 +35,6 @@ public class LoginIntercept implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
-        System.out.println(uri);
 
         Business business = (Business) request.getSession().getAttribute("busLoginInfo");
         Consumer consumer = (Consumer) request.getSession().getAttribute("conLoginInfo");

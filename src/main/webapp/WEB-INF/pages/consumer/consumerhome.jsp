@@ -34,7 +34,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="${ctp}/home">选择餐品</a></li>
                 <li><a href="${ctp}/shopCart">购物车</a></li>
-                <li><a href="${ctp}/PCenter">个人中心</a></li>
+                <li><a href="${ctp}/PCenter?username=${sessionScope.conLoginInfo.username}">个人中心</a></li>
             </ul>
         </div>
     </div>

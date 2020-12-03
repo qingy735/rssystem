@@ -2,6 +2,7 @@ package cn.edu.henu.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Qing_Y
@@ -29,25 +30,9 @@ public class Order implements Serializable {
      */
     private Integer status;
     /**
-     * 数量
-     */
-    private Integer num;
-    /**
      * 优惠券使用
      */
     private Integer discountUse;
-    /**
-     * 消费者id
-     */
-    private String cid;
-    /**
-     * 商家id
-     */
-    private Integer bid;
-    /**
-     * 商品名称
-     */
-    private String pName;
     /**
      * 消费者信息
      */
@@ -56,6 +41,26 @@ public class Order implements Serializable {
      * 商品信息
      */
     private Product product;
+    /**
+     * 商家信息
+     */
+    private Business business;
+    /**
+     * 数量
+     */
+    private Integer num;
+    /**
+     * 总价
+     */
+    private Float totalPrice;
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -97,14 +102,6 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
     public Integer getDiscountUse() {
         return discountUse;
     }
@@ -129,28 +126,20 @@ public class Order implements Serializable {
         this.product = product;
     }
 
-    public String getCid() {
-        return cid;
+    public Business getBusiness() {
+        return business;
     }
 
-    public void setCid(String cid) {
-        this.cid = cid;
+    public void setBusiness(Business business) {
+        this.business = business;
     }
 
-    public Integer getBid() {
-        return bid;
+    public Float getTotalPrice() {
+        return num * product.getProductPrice();
     }
 
-    public void setBid(Integer bid) {
-        this.bid = bid;
-    }
-
-    public String getpName() {
-        return pName;
-    }
-
-    public void setpName(String pName) {
-        this.pName = pName;
+    public void setTotalPrice(Float totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     @Override
@@ -161,10 +150,12 @@ public class Order implements Serializable {
                 ", code='" + code + '\'' +
                 ", orderTime=" + orderTime +
                 ", status=" + status +
-                ", num=" + num +
                 ", discountUse=" + discountUse +
                 ", consumer=" + consumer +
                 ", product=" + product +
+                ", business=" + business +
+                ", num=" + num +
+                ", totalPrice=" + totalPrice +
                 '}';
     }
 }

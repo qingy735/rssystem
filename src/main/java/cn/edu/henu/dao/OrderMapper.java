@@ -1,6 +1,7 @@
 package cn.edu.henu.dao;
 
 import cn.edu.henu.bean.Order;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,14 @@ public interface OrderMapper extends CrudDao<Order> {
      * @return
      */
     List<Order> selectByCid(String cid);
+
+    /**
+     * 更改订单状态
+     *
+     * @param orderId
+     * @param state
+     * @return
+     */
+    int updateStatus(@Param("id") Integer orderId, @Param("status") Integer state);
+
 }

@@ -9,20 +9,23 @@
         <result column="code" property="code"/>
         <result column="orderTime" property="orderTime"/>
         <result column="status" property="status"/>
-        <result column="num" property="num"/>
+        <result column="pnum" property="num"/>
         <result column="discountUse" property="discountUse"/>
-        <result column="cid" property="cid"/>
-        <result column="bid" property="bid"/>
-        <result column="pName" property="pName"/>
         <association property="consumer" javaType="cn.edu.henu.bean.Consumer">
             <id property="username" column="username"/>
             <result property="nickname" column="nickname"/>
             <result property="tel" column="tel"/>
         </association>
         <association property="product" javaType="cn.edu.henu.bean.Product">
-            <result property="bsId" column="bsId"/>
-            <result property="productName" column="productName"/>
-            <result property="productPrice" column="productPrice"/>
+            <id property="id" column="id"/>
+            <result property="productName" column="name"/>
+            <result property="productPrice" column="price"/>
+        </association>
+        <association property="business" javaType="cn.edu.henu.bean.Business">
+            <id property="username" column="username"/>
+            <result property="wid" column="wid"/>
+            <result property="wname" column="wname"/>
+            <result property="rid" column="rid"/>
         </association>
     </resultMap>
 
@@ -32,11 +35,23 @@
         查询到的商家id和产品名称联合查询product表
     -->
     <select id="selectByCid" resultMap="ConsumerOrderMap">
-        select o.orderid,o.code,o.cid,c.name,c.tel,o.bid,o.pname,p.productprice
+        select o.orderid,o.code,o.ordertime,o.note,o.pnum,o.status,o.discountuse,o.cid,
+        c.nickname,c.tel,b.username,b.wid,b.wname,b.rid,p.id,p.name,p.price
         from orderinfo o
         left join consumerinfo c on o.cid = c.username
-        left join productinfo p on o.bid = p.bsid and o.pname = p.productname
+        left join productinfo p on o.pid = p.id left join businessinfo b on o.bid = b.username
         where o.cid = #{id}
     </select>
+
+    <!--
+        updateStatus
+        修改订单状态
+    -->
+    <update id="updateStatus">
+        update orderinfo set status = #{status} where orderid = #{id}
+        <selectKey order="AFTER" keyProperty="status" keyColumn="status" resultType="Integer">
+            select status from orderinfo where orderid = #{id}
+        </selectKey>
+    </update>
 
 </mapper>

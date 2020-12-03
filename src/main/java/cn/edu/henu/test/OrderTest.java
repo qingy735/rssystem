@@ -1,6 +1,7 @@
 package cn.edu.henu.test;
 
 import cn.edu.henu.bean.Order;
+import cn.edu.henu.bean.Product;
 import cn.edu.henu.dao.OrderMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -45,14 +46,24 @@ public class OrderTest {
     }
 
     /**
-     * 测试查询所有
+     * 测试查询用户所有
      */
     @Test
     public void testFindAll() {
         // 执行查询所有方法
-        List<Order> orders = orderMapper.selectByCid("1812030001");
+        List<Order> orders = orderMapper.selectByCid("1812030002");
         for (Order order : orders) {
-            System.out.println(order);
+            System.out.println("订单号：" + order.getOrderId());
+            System.out.println("取餐码：" + order.getCode());
+            System.out.println("商家名：" + order.getBusiness().getWname());
+            System.out.println("商品名：" + order.getProduct().getProductName());
+            System.out.println("单价：" + order.getProduct().getProductPrice());
+            System.out.println("数量：" + order.getNum());
+            System.out.println("总价：" + order.getTotalPrice());
+            System.out.println("状态：" + order.getStatus());
+            System.out.println("=========================");
+            orderMapper.updateStatus(Integer.parseInt(order.getOrderId()), 1);
+            System.out.println("状态：" + order.getStatus());
         }
     }
 }

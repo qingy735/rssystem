@@ -97,4 +97,34 @@ public class ActionController {
         return "consumer/PInfo";
     }
 
+    @RequestMapping("/business/top")
+    public String toTop() {
+        return "/business/top";
+    }
+
+    @RequestMapping("/business/left")
+    public String toLeft() {
+        return "/business/left";
+    }
+
+    @RequestMapping("/Buinfo")
+    public String toBuinfo() {
+        return "/business/Buinfo";
+    }
+
+    @RequestMapping("/orderList")
+    public String toorderList() {
+        return "/business/orderList";
+    }
+
+    @RequestMapping("/orderDetail")
+    public String toorderDetail() {
+        return "/business/orderDetail";
+    }
+
+    @RequestMapping("/updateProducts")
+    public String toupdateProducts() {
+        return "/business/updateProducts";
+    }
+
 }

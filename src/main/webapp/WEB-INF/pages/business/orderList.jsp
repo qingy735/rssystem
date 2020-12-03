@@ -12,20 +12,6 @@
 	<script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<div class="masthead">
-			<h3 class="text-muted">河南大学餐厅服务系统</h3>
-			<nav>
-				<ul class="nav nav-justified">
-					<li class="active"><a href="Buinfo.jsp">个人中心</a></li>
-					<li><a href="orderList.jsp">订单列表</a></li>
-					<li><a href="ProductsList.jsp">餐品列表</a></li>
-					<li><a href="updateProducts.jsp">上传餐品</a></li>
-					<li><a href="#">消息列表</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
 	<div id="TitleArea">店铺订单列表</div>
 	<!-- 主内容区域（数据列表或表单显示） -->
 	<div id="MainArea">
@@ -51,7 +37,7 @@
 					<td>2014-12-08 23:29:18.0</td>
 					<td>204.0</td>
 					<td>未结账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-					<td><a href="orderDetail.jsp">详细</a> <a
+					<td><a href="${ctp}/orderDetail">详细</a> <a
 						href="#">结账</a></td>
 				</tr>
 				<%

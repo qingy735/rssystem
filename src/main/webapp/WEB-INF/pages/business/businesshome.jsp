@@ -11,20 +11,18 @@
 	<script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
-<body>
-	<div class="container">
-		<div class="masthead">
-			<h3 class="text-muted">河南大学餐厅服务系统</h3>
-			<nav>
-				<ul class="nav nav-justified">
-					<li class="active"><a href="Buinfo.jsp">个人中心</a></li>
-					<li><a href="orderList.jsp">订单列表</a></li>
-					<li><a href="ProductsList.jsp">餐品列表</a></li>
-					<li><a href="updateProducts.jsp">上传餐品</a></li>
-					<li><a href="#">消息列表</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
-</body>
+<frameset rows="100%">
+	<frameset rows="15%,85%" frameborder="no" >
+		<frame src="${ctp}/business/top" name="topFrame" id="topFrame"/>
+		<frameset cols="15%,85%" frameborder="no" >
+			<frame src="${ctp}/business/left" name="leftFrame" id="leftFrame"/>
+			<frame src="${ctp}/Buinfo" name="mainFrame" id="mainFrame"
+				   scrolling="yes" />
+		</frameset>
+	</frameset>
+	<noframes>
+		<body>您的浏览器无法处理此框架
+		</body>
+	</noframes>
+</frameset>
 </html>

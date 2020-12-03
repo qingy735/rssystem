@@ -12,20 +12,6 @@
 	<script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<div class="masthead">
-			<h3 class="text-muted">河南大学餐厅服务系统</h3>
-			<nav>
-				<ul class="nav nav-justified">
-					<li class="active"><a href="Buinfo.jsp">个人中心</a></li>
-					<li><a href="orderList.jsp">订单列表</a></li>
-					<li><a href="ProductsList.jsp">餐品列表</a></li>
-					<li><a href="updateProducts.jsp">上传餐品</a></li>
-					<li><a href="#">消息列表</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
 	<!-- 页面标题 -->
 	<div id="TitleArea">更新新餐品</div>
 		<div id="TitleArea_End"></div>

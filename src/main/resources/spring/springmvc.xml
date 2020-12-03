@@ -17,11 +17,13 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
+<!--
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            -->
             <!--直接过滤静态资源-->
+    <!--
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/js/**"/>
             <mvc:exclude-mapping path="/fonts/**"/>
@@ -33,7 +35,7 @@
             <bean class="cn.edu.henu.intercept.RegisterIntercept"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
+        -->
     <!--静态资源可加载-->
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/css/**" location="/css/"/>

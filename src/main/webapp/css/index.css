@@ -2,9 +2,13 @@
     margin: 0;
     padding: 0;
 }
-html,body{
+html,body,header{
     height: 100%;
     width: 100%;
+}
+frame{
+    padding: 0;
+    margin: 0;
 }
 .mybtn {
     margin: 10px;
@@ -29,22 +33,23 @@ html,body{
     margin-left: 24%;
     border: 0;
 }
-#TitleArea {
+#TopArea {
     background: #91C0E3;
-    height: 30px;
+    height: 100%;
     width: 100%;
-    padding-top: 11px;
-    margin: 0;
-    float: left;
-    font-family: 宋体;
-    font-size: 14px;
-    font-weight: bold;
 }
-
+#TitleArea{
+    background: #91C0E3;
+    height: 5%;
+    width: 100%;
+}
 #MainArea {
     background: url(/images/img/inputPageHeadBg.gif) repeat-x scroll 0 0 transparent;
     border-top: 1px solid #FFFFFF;
     width: 100%;
 }
 
-
+#mainFrame{
+    border: solid;
+    border-color: #1b6d85;
+}

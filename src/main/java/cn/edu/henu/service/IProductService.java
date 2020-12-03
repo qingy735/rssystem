@@ -28,11 +28,28 @@ public interface IProductService {
     PageBean<Product> getAllByCondition(Condition condition);
 
     /**
+     * 根据商家id查询商品
+     *
+     * @param bid
+     * @return
+     */
+    List<Product> getAllByBid(Integer bid);
+
+    /**
      * 查询一共多少条数据
      *
      * @param condition
      * @return
      */
     int getTotal(Condition condition);
+
+    /**
+     * 给id为某值的商家添加商品
+     *
+     * @param product
+     * @param bid
+     * @return
+     */
+    int add(Product product, Integer bid);
 
 }

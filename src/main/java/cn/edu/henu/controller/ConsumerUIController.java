@@ -1,29 +1,37 @@
 package cn.edu.henu.controller;
 
-import cn.edu.henu.bean.Condition;
-import cn.edu.henu.bean.PageBean;
-import cn.edu.henu.bean.Product;
+import cn.edu.henu.bean.*;
+import cn.edu.henu.service.IBusinessService;
+import cn.edu.henu.service.IOrderService;
+import cn.edu.henu.service.IProductService;
 import com.github.pagehelper.PageHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
- * 用于页面跳转的Controller
+ * 用于消费者页面跳转的Controller
  *
  * @author Qing_Y
+ * @date 2020-12-03 21:10
  */
 @Controller
-public class ActionController {
+@RequestMapping("")
+public class ConsumerUIController {
 
-    @RequestMapping("/first")
-    public String toFirstPage() {
-        return "login&register/first";
-    }
+    @Autowired
+    private IProductService productSer;
+    @Autowired
+    private IBusinessService businessSer;
+    @Autowired
+    private IOrderService orderSer;
 
     @RequestMapping("/home")
     public String toConsumerHome(Condition condition, @RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
@@ -61,7 +69,7 @@ public class ActionController {
         }
         pageBean.setCurrentPage(p);
         session.setAttribute("pb", pageBean);
-        return "consumer/consumerhome";
+        return "consumer/consumerHome";
     }
 
     @RequestMapping("/details")
@@ -127,46 +135,6 @@ public class ActionController {
     @RequestMapping("/PInfo")
     public String toPInfo() {
         return "consumer/PInfo";
-    }
-
-    @RequestMapping("/business/top")
-    public String toTop() {
-        return "/business/top";
-    }
-
-    @RequestMapping("/business/left")
-    public String toLeft() {
-        return "/business/left";
-    }
-
-    @RequestMapping("/Buinfo")
-    public String toBuinfo() {
-        return "/business/Buinfo";
-    }
-
-    @RequestMapping("/orderList")
-    public String toorderList() {
-        return "/business/orderList";
-    }
-
-    @RequestMapping("/orderDetail")
-    public String toorderDetail() {
-        return "/business/orderDetail";
-    }
-
-    @RequestMapping("/ProductsList")
-    public String toProductsList() {
-        return "/business/ProductsList";
-    }
-
-    @RequestMapping("/updateProducts")
-    public String toupdateProducts() {
-        return "/business/updateProducts";
-    }
-
-    @RequestMapping("/message")
-    public String tomessage() {
-        return "/business/message";
     }
 
 }

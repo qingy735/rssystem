@@ -60,9 +60,29 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public List<Product> getAllByBid(Integer bid) {
+        try {
+            return productMapper.getAllByBid(bid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public int getTotal(Condition condition) {
         try {
             return productMapper.selectTotal(condition);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    public int add(Product product, Integer bid) {
+        try {
+            return productMapper.insert(product, bid);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

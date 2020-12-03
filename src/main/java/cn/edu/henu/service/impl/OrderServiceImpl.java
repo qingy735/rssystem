@@ -27,4 +27,14 @@ public class OrderServiceImpl implements IOrderService {
             return null;
         }
     }
+
+    @Override
+    public List<Order> selectByBid(Integer bid) {
+        try {
+            return orderMapper.selectByBid(bid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

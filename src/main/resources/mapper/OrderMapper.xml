@@ -14,11 +14,12 @@
         <association property="consumer" javaType="cn.edu.henu.bean.Consumer">
             <id property="username" column="username"/>
             <result property="nickname" column="nickname"/>
+            <result property="name" column="cname"/>
             <result property="tel" column="tel"/>
         </association>
         <association property="product" javaType="cn.edu.henu.bean.Product">
             <id property="id" column="id"/>
-            <result property="productName" column="name"/>
+            <result property="productName" column="pname"/>
             <result property="productPrice" column="price"/>
         </association>
         <association property="business" javaType="cn.edu.henu.bean.Business">
@@ -35,12 +36,24 @@
         查询到的商家id和产品名称联合查询product表
     -->
     <select id="selectByCid" resultMap="ConsumerOrderMap">
-        select o.orderid,o.code,o.ordertime,o.note,o.pnum,o.status,o.discountuse,o.cid,
-        c.nickname,c.tel,b.username,b.wid,b.wname,b.rid,p.id,p.name,p.price
+        select o.orderid,o.code,o.ordertime,o.note,o.pnum,o.status,o.discountuse,
+        b.username,b.wid,b.wname,b.rid,
+        p.id,p.name,p.price
         from orderinfo o
-        left join consumerinfo c on o.cid = c.username
         left join productinfo p on o.pid = p.id left join businessinfo b on o.bid = b.username
         where o.cid = #{id}
+    </select>
+
+    <!--
+        根据商家id查询所有订单
+        selectByBid
+    -->
+    <select id="selectByBid" resultMap="ConsumerOrderMap">
+        select o.orderid,o.code,o.ordertime,o.note,o.pnum,o.status,o.discountuse,
+        c.name cname,c.username,c.tel,c.nickname,
+        p.price,p.name pname,p.id
+        from orderinfo o,businessinfo b,consumerinfo c,productinfo p
+        where o.bid = b.username and o.pid = p.id and o.cid = c.username and o.bid=#{bid}
     </select>
 
     <!--

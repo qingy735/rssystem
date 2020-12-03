@@ -58,6 +58,25 @@ public class ProductTest {
         }
     }
 
+    @Test
+    public void testGetAllByBid() {
+        List<Product> products = productMapper.getAllByBid(100001);
+        for (Product product : products) {
+            System.out.println(product);
+        }
+    }
+
+    @Test
+    public void testInsert() {
+        Product product = new Product();
+        product.setProductName("啊啊啊");
+        product.setProductPrice(3f);
+        product.setPhotosrc("images/aaa.jpg");
+        product.setProductIntr("啊啊啊");
+        productMapper.insert(product, 100001);
+        System.out.println(product);
+    }
+
     /**
      * 查询条目
      */

@@ -14,6 +14,9 @@
 <body>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">商家后台</a>
+        </div>
         <div>
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="${ctp}/Buinfo" target="mainFrame">个人中心</a></li>

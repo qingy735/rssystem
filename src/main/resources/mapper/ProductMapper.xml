@@ -33,4 +33,41 @@
         where p.id = bp.pid and bp.bid = b.username and b.rid = r.id
     </select>
 
+    <!--
+        条件查询
+            商品名字或者店铺名字
+        selectByCondition
+    -->
+    <select id="selectByCondition" resultMap="AssociationResultMap">
+        select p.*,b.username,b.wname,r.name
+        from productinfo p,bus_proinfo bp,businessinfo b,restaurantinfo r
+        where p.id = bp.pid and bp.bid = b.username and b.rid = r.id
+        <if test="name != null">
+            and p.name = #{name}
+        </if>
+        <if test="price != null">
+            and p.price >= #{price}
+        </if>
+        <if test="grade != null">
+            and p.grade >= #{grade}
+        </if>
+    </select>
+
+    <!--
+        查询数据总量
+        selectTotal
+    -->
+    <select id="selectTotal" resultType="Integer">
+        select count(id) from productinfo p where 1 =1
+        <if test="name != null">
+            and p.name = #{name}
+        </if>
+        <if test="price != null">
+            and p.price >= #{price}
+        </if>
+        <if test="grade != null">
+            and p.grade >= #{grade}
+        </if>
+    </select>
+
 </mapper>

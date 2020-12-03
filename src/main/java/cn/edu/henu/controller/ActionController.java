@@ -1,8 +1,6 @@
 package cn.edu.henu.controller;
 
-import cn.edu.henu.bean.Business;
-import cn.edu.henu.bean.Order;
-import cn.edu.henu.bean.Product;
+import cn.edu.henu.bean.*;
 import cn.edu.henu.service.IBusinessService;
 import cn.edu.henu.service.IOrderService;
 import cn.edu.henu.service.IProductService;
@@ -10,12 +8,14 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Qing_Y
@@ -36,19 +36,47 @@ public class ActionController {
     }
 
     @RequestMapping("/home")
-    public String toConsumerHome(@RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
-        // 分页   一页五个
-        PageHelper.startPage(p, 5);
-        List<Product> products = productSer.getAllProduct();
-        if (products != null) {
-            session.setAttribute("products", products);
+    public String toConsumerHome(Condition condition, @RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
+        session.removeAttribute("conds");
+        System.out.println(condition);
+        String name = condition.getName();
+        Float price = condition.getPrice();
+        Float grade = condition.getGrade();
+        boolean flag = false;
+
+        if (name != null && !"".equals(name)) {
+            flag = true;
         }
+        if (price != null && price != 0f) {
+            flag = true;
+        }
+        if (grade != null && grade != 0f) {
+            flag = true;
+        }
+
+        // 分页,一页五个
+        PageHelper.startPage(p, 5);
+        // 创建PageBean对象
+        PageBean<Product> pageBean;
+
+        if (!flag) {
+            pageBean = productSer.getAllProduct();
+        } else {
+            Map<String, Object> conds = new HashMap<>();
+            conds.put("name", name);
+            conds.put("price", price);
+            conds.put("grade", grade);
+            session.setAttribute("conds", conds);
+            pageBean = productSer.getAllByCondition(condition);
+        }
+        pageBean.setCurrentPage(p);
+        session.setAttribute("pb", pageBean);
         return "consumer/consumerhome";
     }
 
     @RequestMapping("/details")
     public String toDetails(String id, String name, HttpSession session, Model model) {
-        Integer username = null;
+        Integer username;
         try {
             name = new String(name.getBytes("iso-8859-1"), "utf-8");
             System.out.println(name);
@@ -65,7 +93,7 @@ public class ActionController {
             model.addAttribute("selectBusInfo", -1);
             return "consumer/details";
         }
-        List<Product> products = (List<Product>) session.getAttribute("products");
+        List<Product> products = ((PageBean<Product>) session.getAttribute("pb")).getList();
         System.out.println(products);
         for (Product product : products) {
             if (product.getBusiness().getUsername().equals(username) && product.getProductName().equals(name)) {

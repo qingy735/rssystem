@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${ctp}/css/myStyle1.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <header class="container">
@@ -81,16 +82,26 @@
 <br>
 <!-- 搜索 -->
 <div class="container">
-    <div class="input-group">
-        <input type="text" class="form-control input-lg"
-               placeholder="餐厅名/餐品关键字...">
-        <span class="input-group-addon btn btn-primary">搜索</span>
-    </div>
+    <form id="selectForm" class="form-inline" method="post" action="${ctp}/home">
+        <div class="form-group">
+            <label for="name">菜品名</label>
+            <input type="text" class="form-control" id="name" name="name" value="${sessionScope.conds.name}">
+        </div>
+        <div class="form-group">
+            <label for="price">最低价钱</label>
+            <input type="text" class="form-control" id="price" name="price" value="${sessionScope.conds.price}">
+        </div>
+        <div class="form-group">
+            <label for="grade">评分高于</label>
+            <input type="text" class="form-control" id="grade" name="grade" value="${sessionScope.conds.grade}">
+        </div>
+        <input type="submit" class="btn btn-default" value="搜索"/>
+    </form>
 </div>
 <!-- 中部的餐品显示 -->
 <div class="middle container">
     <ul>
-        <c:forEach items="${products}" var="product">
+        <c:forEach items="${pb.list}" var="product">
             <li id="proinfo" class="col-md-offset-1 col-md-10 product">
                 <a href="${ctp}/details?id=${product.business.username}&name=${product.productName}">
                     <div class="col-md-4">
@@ -108,6 +119,65 @@
         </c:forEach>
     </ul>
 </div>
+<!-- 分页条 -->
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <c:choose>
+            <c:when test="${sessionScope.pb.currentPage == 1}">
+                <li class="disabled">
+                    <a href="javascript:void(0)"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li>
+                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage - 1}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+
+        <c:forEach begin="1" end="${sessionScope.pb.totalPage}" var="i">
+            <c:if test="${sessionScope.pb.currentPage == i}">
+                <li class="active">
+                    <a href="${ctp}/home?p=${i}">${i}</a>
+                </li>
+            </c:if>
+            <c:if test="${sessionScope.pb.currentPage != i}">
+                <li>
+                    <a href="${ctp}/home?p=${i}">${i}</a>
+                </li>
+            </c:if>
+        </c:forEach>
+
+        <c:choose>
+            <c:when test="${sessionScope.pb.currentPage == sessionScope.pb.totalPage}">
+                <li class="disabled">
+                    <a href="javascript:void(0)"
+                       aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li>
+                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage + 1}"
+                       aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+
+        <span style="font-size: 25px;margin-left: 5px">
+            共${sessionScope.pb.totalCount}条记录，共${sessionScope.pb.totalPage}页
+        </span>
+    </ul>
+</nav>
 <!-- 友情链接 -->
 <div class="container quick_link">
     <div class="row col-md-offset-1 col-md-10">

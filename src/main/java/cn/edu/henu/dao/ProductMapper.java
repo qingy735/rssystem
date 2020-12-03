@@ -1,5 +1,6 @@
 package cn.edu.henu.dao;
 
+import cn.edu.henu.bean.Condition;
 import cn.edu.henu.bean.Product;
 
 import java.util.List;
@@ -15,4 +16,20 @@ public interface ProductMapper extends CrudDao<Product> {
      * @return
      */
     List<Product> selectAll();
+
+    /**
+     * 根据商品信息查询
+     *
+     * @param condition
+     * @return
+     */
+    List<Product> selectByCondition(Condition condition);
+
+    /**
+     * 查询条目
+     *
+     * @param condition
+     * @return
+     */
+    int selectTotal(Condition condition);
 }

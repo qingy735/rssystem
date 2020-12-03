@@ -1,5 +1,7 @@
 package cn.edu.henu.service;
 
+import cn.edu.henu.bean.Condition;
+import cn.edu.henu.bean.PageBean;
 import cn.edu.henu.bean.Product;
 
 import java.util.List;
@@ -15,6 +17,22 @@ public interface IProductService {
      *
      * @return
      */
-    List<Product> getAllProduct();
+    PageBean<Product> getAllProduct();
+
+    /**
+     * 根据条件查询
+     *
+     * @param condition
+     * @return
+     */
+    PageBean<Product> getAllByCondition(Condition condition);
+
+    /**
+     * 查询一共多少条数据
+     *
+     * @param condition
+     * @return
+     */
+    int getTotal(Condition condition);
 
 }

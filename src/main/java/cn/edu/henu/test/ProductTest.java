@@ -1,7 +1,8 @@
 package cn.edu.henu.test;
 
-import cn.edu.henu.bean.Business;
-import cn.edu.henu.dao.BusinessMapper;
+import cn.edu.henu.bean.Condition;
+import cn.edu.henu.bean.Product;
+import cn.edu.henu.dao.ProductMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,12 +17,12 @@ import java.util.List;
 
 /**
  * @author Qing_Y
- * @date 2020-12-02 23:40
+ * @date 2020-12-03 15:06
  */
-public class BusinessTest {
+public class ProductTest {
     private InputStream inputStream;
     private SqlSession sqlSession;
-    private BusinessMapper businessMapper;
+    private ProductMapper productMapper;
 
     @Before
     public void init() throws IOException {
@@ -32,7 +33,7 @@ public class BusinessTest {
         // 获取SqlSession对象
         sqlSession = factory.openSession();
         // 获取dao的代理对象
-        businessMapper = sqlSession.getMapper(BusinessMapper.class);
+        productMapper = sqlSession.getMapper(ProductMapper.class);
     }
 
     @After
@@ -45,32 +46,24 @@ public class BusinessTest {
     }
 
     /**
-     * 测试查询所有
+     * 测试条件查询
      */
     @Test
-    public void testFindAll() {
-        /**
-         * 添加商家 返回主键
-         *     <insert id="insert" parameterType="cn.edu.henu.bean.Business">
-         */
-        Business business = new Business();
-        business.setPassword("12345");
-        business.setName("abcd");
-        business.setRid("1");
-        business.setWid(7);
-        business.setWname("aaa");
-        business.setTel("12345678900");
-        int insert = businessMapper.insert(business);
-        System.out.println(insert);
-        System.out.println(business);
+    public void testFindSome() {
+        Condition condition = new Condition();
+        condition.setName("生菜");
+        List<Product> products = productMapper.selectByCondition(condition);
+        for (Product pro : products) {
+            System.out.println(pro);
+        }
     }
 
+    /**
+     * 查询条目
+     */
     @Test
-    public void testFindByGrade() {
-        List<Business> businesses = businessMapper.selectByGrade(0, 1);
-        for (Business business : businesses) {
-            System.out.println(business);
-        }
-
+    public void testFindTotal() {
+        int i = productMapper.selectTotal(new Condition());
+        System.out.println(i);
     }
 }

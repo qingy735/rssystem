@@ -13,8 +13,16 @@ public interface IOrderService {
     /**
      * 根据id查询所有订单
      *
-     * @param id
+     * @param cid
      * @return
      */
-    List<Order> selectByCid(String id);
+    List<Order> selectByCid(String cid);
+
+    /**
+     * 根据商家id查询所有订单
+     *
+     * @param bid
+     * @return
+     */
+    List<Order> selectByBid(Integer bid);
 }

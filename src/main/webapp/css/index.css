@@ -2,13 +2,51 @@
     margin: 0;
     padding: 0;
 }
-html,body,header{
+html,header,body{
     height: 100%;
     width: 100%;
 }
 frame{
     padding: 0;
     margin: 0;
+}
+#firstTitleArea {
+    background: #91C0E3;
+    height: 15%;
+    width: 100%;
+}
+#TopArea {
+    background: #FFFFFF;
+    height: 100%;
+    width: 100%;
+}
+#TitleArea{
+    background: #91C0E3;
+    height: 5%;
+    width: 100%;
+}
+#mainArea{
+    background: snow;
+    height: 85%;
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 24%;
+    border: 0;
+}
+#mainFrame{
+    border: solid;
+    border-color: #1b6d85;
+    padding: 0;
+}
+
+#TopMainArea{
+    background-color: #F2F2F2;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    border: solid;
+    border-color: #1b6d85;
+
 }
 .mybtn {
     margin: 10px;
@@ -20,36 +58,30 @@ frame{
 .logindiv {
     margin: 10px;
 }
-#firstTitleArea {
-    background: #91C0E3;
-    height: 15%;
-    width: 100%;
+.control-label{
+    font-size: medium;
 }
-#mainArea{
-    background: snow;
-    height: 90%;
-    width: 50%;
-    margin-top: 4%;
-    margin-left: 24%;
-    border: 0;
+.proForm{
+    padding: 2%;
 }
-#TopArea {
-    background: #91C0E3;
+#proImg{
+   width: 10%;
+    height: 10%;
+}
+.navbar-default{
+    background-color: #20222A;
     height: 100%;
-    width: 100%;
+    margin: 0;
 }
-#TitleArea{
-    background: #91C0E3;
-    height: 5%;
-    width: 100%;
-}
-#MainArea {
-    background: url(/images/img/inputPageHeadBg.gif) repeat-x scroll 0 0 transparent;
-    border-top: 1px solid #FFFFFF;
-    width: 100%;
+. nav-stacked{
+    background-color: #009688;
 }
 
-#mainFrame{
+.onepage{
+    background-color: #FFFFFF;
     border: solid;
-    border-color: #1b6d85;
+    margin-left: 4%;
+    height: auto;
+    word-wrap: break-word;
+    word-break: break-all;
 }

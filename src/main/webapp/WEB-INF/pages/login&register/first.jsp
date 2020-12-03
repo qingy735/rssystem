@@ -123,6 +123,7 @@
                                role="button">注册</a>
                             <input class="btn btn-success col-md-4 pull-right" type="submit" value="登录">
                         </div>
+                        <br>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="BuLogin">
@@ -159,7 +160,6 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="AcLogin">
-                    <br>
                     <form>
                         <div class="form-group">
                             <label for="InputAcNum">账号</label>
@@ -179,9 +179,9 @@
                             <input class="btn btn btn-success col-md-10 col-md-offset-1" type="submit" value="登录">
                         </div>
                     </form>
+                    <br>
                 </div>
             </div>
-            <br>
             <br>
             <!-- 出错显示的信息框 -->
             <div class="alert alert-warning alert-dismissible" role="alert">

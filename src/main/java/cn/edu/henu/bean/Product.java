@@ -34,7 +34,7 @@ public class Product implements Serializable {
     /**
      * 店铺信息
      */
-    private Business business;
+    private Business business = new Business();
 
     public Business getBusiness() {
         return business;

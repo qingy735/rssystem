@@ -19,6 +19,14 @@ public interface OrderMapper extends CrudDao<Order> {
     List<Order> selectByCid(String cid);
 
     /**
+     * 查询对应id商家的所有订单
+     *
+     * @param bid
+     * @return
+     */
+    List<Order> selectByBid(Integer bid);
+
+    /**
      * 更改订单状态
      *
      * @param orderId

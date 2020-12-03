@@ -12,7 +12,24 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
+<!-- 页面标题 -->
+<div id="TitleArea">订单详细说明</div>
+<!-- 主内容区域（数据列表或表单显示） -->
+<div id="TopMainArea">
+    <h4>订单ID：${order.orderId}</h4>
+    <h4>备注：${order.note}</h4>
+    <h4>取餐码：${order.code}</h4>
+    <h4>下单时间：${order.orderTime}</h4>
+    <h4>状态：${order.status}</h4>
+    <h4>是否使用折扣：${order.discountUse}</h4>
+    <h4>消费者学号：${order.consumer.username}</h4>
+    <h4>消费者姓名：${order.consumer.name}</h4>
+    <h4>消费者昵称：${order.consumer.nickname}</h4>
+    <h4>消费者电话：${order.consumer.tel}</h4>
+    <h4>商品id：${order.product.id}</h4>
+    <h4>商品名字：${order.product.productName}</h4>
+    <h4>商品单价：${order.product.productPrice}</h4>
+    <h4>商品数量：${order.num}</h4>
+</div>
 </body>
 </html>

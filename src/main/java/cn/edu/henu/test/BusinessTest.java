@@ -1,9 +1,7 @@
 package cn.edu.henu.test;
 
 import cn.edu.henu.bean.Business;
-import cn.edu.henu.bean.Order;
 import cn.edu.henu.dao.BusinessMapper;
-import cn.edu.henu.dao.OrderMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -65,5 +63,14 @@ public class BusinessTest {
         int insert = businessMapper.insert(business);
         System.out.println(insert);
         System.out.println(business);
+    }
+
+    @Test
+    public void testFindByGrade() {
+        List<Business> businesses = businessMapper.selectByGrade(0, 1);
+        for (Business business : businesses) {
+            System.out.println(business);
+        }
+
     }
 }

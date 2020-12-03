@@ -33,4 +33,60 @@
         where p.id = bp.pid and bp.bid = b.username and b.rid = r.id
     </select>
 
+    <!--
+        条件查询
+            商品名字或者店铺名字
+        selectByCondition
+    -->
+    <select id="selectByCondition" resultMap="AssociationResultMap">
+        select p.*,b.username,b.wname,r.name
+        from productinfo p,bus_proinfo bp,businessinfo b,restaurantinfo r
+        where p.id = bp.pid and bp.bid = b.username and b.rid = r.id
+        <if test="name != null">
+            and p.name = #{name}
+        </if>
+        <if test="price != null">
+            and p.price >= #{price}
+        </if>
+        <if test="grade != null">
+            and p.grade >= #{grade}
+        </if>
+    </select>
+
+    <!--
+        根据商家id获取商品信息
+        getAllByBid
+    -->
+    <select id="getAllByBid" resultMap="BaseResultMap">
+        select p.*
+        from productinfo p,bus_proinfo bp,businessinfo b
+        where b.username=#{bid} and b.username= bp.bid and bp.pid = p.id
+    </select>
+
+    <!--
+        查询数据总量
+        selectTotal
+    -->
+    <select id="selectTotal" resultType="Integer">
+        select count(id) from productinfo p where 1 =1
+        <if test="name != null">
+            and p.name = #{name}
+        </if>
+        <if test="price != null">
+            and p.price >= #{price}
+        </if>
+        <if test="grade != null">
+            and p.grade >= #{grade}
+        </if>
+    </select>
+
+    <!--
+        添加商品
+        insert
+    -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="product.id" parameterType="cn.edu.henu.bean.Product">
+        insert into productinfo(name,introduce,price,src,grade)
+        values(#{product.productName},#{product.productIntr},#{product.productPrice},#{product.photosrc},-1)
+    </insert>
+
 </mapper>

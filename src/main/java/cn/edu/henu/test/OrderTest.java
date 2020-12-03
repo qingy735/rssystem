@@ -49,7 +49,7 @@ public class OrderTest {
      * 测试查询用户所有
      */
     @Test
-    public void testFindAll() {
+    public void testFindAllByCid() {
         // 执行查询所有方法
         List<Order> orders = orderMapper.selectByCid("1812030002");
         for (Order order : orders) {
@@ -63,6 +63,22 @@ public class OrderTest {
             System.out.println("状态：" + order.getStatus());
             System.out.println("=========================");
             orderMapper.updateStatus(Integer.parseInt(order.getOrderId()), 1);
+            System.out.println("状态：" + order.getStatus());
+        }
+    }
+
+    /**
+     * 根据商家id查询
+     */
+    @Test
+    public void testFindAllByBid() {
+        // 执行查询所有方法
+        List<Order> orders = orderMapper.selectByBid(100001);
+        for (Order order : orders) {
+            System.out.println("订单号：" + order.getOrderId());
+            System.out.println("消费者：" + order.getConsumer().getName());
+            System.out.println("下单时间：" + order.getOrderTime());
+            System.out.println("总价：" + order.getTotalPrice());
             System.out.println("状态：" + order.getStatus());
         }
     }

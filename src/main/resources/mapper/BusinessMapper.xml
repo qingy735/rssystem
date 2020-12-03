@@ -41,13 +41,13 @@
     <!--根据p：搜索标准来对grade字段进行查询-->
     <select id="selectByGrade" resultMap="BaseResultMap">
         select * from businessinfo where 1 = 1
-        <if test="#{p} == -1">
+        <if test="standard == -1">
             and grade &lt; #{grade}
         </if>
-        <if test="#{p} == 0">
+        <if test="standard == 0">
             and grade = #{grade}
         </if>
-        <if test="#{p} == 1">
+        <if test="standard == 1">
             and grade &gt; #{grade}
         </if>
     </select>

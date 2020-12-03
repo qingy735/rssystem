@@ -51,20 +51,20 @@
     <!-- 轮播（Carousel）项目 -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="${ctp}/images/banner_1.jpg" alt="First slide">
+            <img src="${ctp}/images/food.jpg" alt="First slide">
             <div class="carousel-caption">北苑餐厅....</div>
         </div>
         <div class="item">
 
-            <img src="${ctp}/images/banner_2.jpg" alt="Second slide">
+            <img src="${ctp}/images/food2.jpg" alt="Second slide">
             <div class="carousel-caption">南苑餐厅...</div>
         </div>
         <div class="item">
-            <img src="${ctp}/images/banner_3.jpg" alt="Third slide">
+            <img src="${ctp}/images/hotpot1.jpg" alt="Third slide">
             <div class="carousel-caption">教苑餐厅...</div>
         </div>
         <div class="item">
-            <img src="${ctp}/images/banner_2.jpg" alt="Forth slide">
+            <img src="${ctp}/images/food3.jpg" alt="Forth slide">
             <div class="carousel-caption">东苑餐厅...</div>
         </div>
     </div>

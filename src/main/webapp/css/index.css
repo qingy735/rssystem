@@ -63,3 +63,8 @@ frame{
    width: 10%;
     height: 10%;
 }
+.navbar-default{
+    background-color: #91C0E3;
+    height: 100%;
+    margin: 0;
+}

@@ -12,11 +12,11 @@
 	<script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <frameset rows="100%">
-	<frameset rows="15%,85%" frameborder="no" >
+	<frameset rows="15%,85%" frameborder="no">
 		<frame src="${ctp}/business/top" name="topFrame" id="topFrame"/>
 		<frameset cols="15%,85%" frameborder="no" >
 			<frame src="${ctp}/business/left" name="leftFrame" id="leftFrame"/>
-			<frame src="${ctp}/updateProducts" name="mainFrame" id="mainFrame"
+			<frame src="${ctp}/Buinfo" name="mainFrame" id="mainFrame"
 				   scrolling="yes" />
 		</frameset>
 	</frameset>

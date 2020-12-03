@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
 }
-html,body,header{
+html,header,body{
     height: 100%;
     width: 100%;
 }
@@ -36,12 +36,17 @@ frame{
 #mainFrame{
     border: solid;
     border-color: #1b6d85;
+    padding: 0;
 }
 
 #TopMainArea{
     background-color: #F2F2F2;
     width: 100%;
-height: 100%;
+    height: auto;
+    min-height: 100%;
+    border: solid;
+    border-color: #1b6d85;
+
 }
 .mybtn {
     margin: 10px;
@@ -70,4 +75,13 @@ height: 100%;
 }
 . nav-stacked{
     background-color: #009688;
+}
+
+.onepage{
+    background-color: #FFFFFF;
+    border: solid;
+    margin-left: 4%;
+    height: auto;
+    word-wrap: break-word;
+    word-break: break-all;
 }

@@ -12,6 +12,7 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div id="TitleArea">商家个人信息</div>
 <div class="container" id="TopMainArea">
     <div class="row">

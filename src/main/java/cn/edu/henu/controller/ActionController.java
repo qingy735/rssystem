@@ -169,4 +169,9 @@ public class ActionController {
         return "/business/updateProducts";
     }
 
+    @RequestMapping("/message")
+    public String tomessage() {
+        return "/business/message";
+    }
+
 }

@@ -14,7 +14,7 @@
 <body>
 	<div id="TitleArea">店铺订单列表</div>
 	<!-- 主内容区域（数据列表或表单显示） -->
-	<div id="MainArea">
+	<div id="TopMainArea">
 		<table class="table table-hover" align="center">
 			<thead>
 				<tr align="center" valign="middle" id="TableTitle">
@@ -29,7 +29,7 @@
 			<!--显示数据列表 -->
 			<tbody id="orderListData">
 				<%
-					for (int i = 0; i <= 4; i++) {
+					for (int i = 0; i <= 12; i++) {
 				%>
 				<tr height="60" align="center">
 					<td>15375222</td>

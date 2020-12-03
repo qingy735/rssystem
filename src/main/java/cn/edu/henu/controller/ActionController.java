@@ -164,6 +164,11 @@ public class ActionController {
         return "/business/orderDetail";
     }
 
+    @RequestMapping("/ProductsList")
+    public String toProductsList() {
+        return "/business/ProductsList";
+    }
+
     @RequestMapping("/updateProducts")
     public String toupdateProducts() {
         return "/business/updateProducts";

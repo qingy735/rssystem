@@ -46,10 +46,9 @@
 					<td>7.0&nbsp;</td>
 					<td>菜&nbsp;</td>
 					<td><img border="0" width="20" height="20"
-						src="../oFile/images/baizhuoxia.jpg" />&nbsp;</td>
-					<td><a href="updateFood.html" class="FunctionButton">更新</a> <a
-						href="/wirelessplatform/food.html?method=delete&id=1"
-						onClick="return delConfirm();" class="FunctionButton">删除</a></td>
+						src="${ctp}/images/baizhuoxia.jpg" />&nbsp;</td>
+					<td><a href="${ctp}/updateProducts" class="FunctionButton">更新</a>
+						<a href="#" class="FunctionButton">删除</a></td>
 				</tr>
 				<%
 					}

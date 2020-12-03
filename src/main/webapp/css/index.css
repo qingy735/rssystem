@@ -31,17 +31,21 @@ frame{
     width: 50%;
     margin-top: 2%;
     margin-left: 24%;
-    border: 0;
+    border: solid;
 }
 #mainFrame{
     border: solid;
     border-color: #1b6d85;
+    padding: 0;
 }
 
 #TopMainArea{
     background-color: #F2F2F2;
     width: 100%;
-height: 100%;
+    height: 100%;
+    border: solid;
+    border-color: #1b6d85;
+
 }
 .mybtn {
     margin: 10px;
@@ -70,4 +74,13 @@ height: 100%;
 }
 . nav-stacked{
     background-color: #009688;
+}
+
+.onepage{
+    background-color: #FFFFFF;
+    border: solid;
+    margin-left: 4%;
+    height: auto;
+    word-wrap: break-word;
+    word-break: break-all;
 }

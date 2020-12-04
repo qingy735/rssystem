@@ -44,8 +44,8 @@
                     <img border="0" width="20" height="20" src="${ctp}/${product.photosrc}" alt="暂无图片"/>&nbsp;
                 </td>
                 <td>
-                    <a href="#" class="FunctionButton">更新</a>
-                    <a href="#" class="FunctionButton">删除</a></td>
+                    <a href="${ctp}/updateProducts" class="btn-sm">更新</a>
+                    <a href="#" class="btn-sm">删除</a></td>
             </tr>
         </c:forEach>
         </tbody>

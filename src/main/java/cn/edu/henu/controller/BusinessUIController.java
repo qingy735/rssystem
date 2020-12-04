@@ -47,6 +47,11 @@ public class BusinessUIController {
         return "/business/Buinfo";
     }
 
+    @RequestMapping("/updateProducts")
+    public String toUpdateProducts() {
+        return "/business/updateProducts";
+    }
+
     @RequestMapping("/orderList")
     public String toOrderList(HttpSession session) {
         Business business = (Business) session.getAttribute("busLoginInfo");

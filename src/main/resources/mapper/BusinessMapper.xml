@@ -8,6 +8,7 @@
         <result column="password" property="password"/>
         <result column="name" property="name"/>
         <result column="rid" property="rid"/>
+        <result column="rname" property="rname"/>
         <result column="wid" property="wid"/>
         <result column="wname" property="wname"/>
         <result column="tel" property="tel"/>
@@ -16,7 +17,9 @@
 
     <!--根据用户名查询-->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer">
-        select * from businessinfo where username = #{username}
+        select b.*,r.name from businessinfo b
+         left join restaurantinfo r on b.rid = r.id
+         where username = #{username}
     </select>
 
     <select id="selectByCondition" parameterType="cn.edu.henu.bean.Business" resultMap="BaseResultMap">

@@ -53,6 +53,9 @@ public class OrderTest {
         // 执行查询所有方法
         List<Order> orders = orderMapper.selectByCid("1812030002");
         for (Order order : orders) {
+            /*System.out.println(order.getCid());
+            System.out.println(order.getPid());
+            System.out.println(order.getBid());*/
             System.out.println("订单号：" + order.getOrderId());
             System.out.println("取餐码：" + order.getCode());
             System.out.println("商家名：" + order.getBusiness().getWname());

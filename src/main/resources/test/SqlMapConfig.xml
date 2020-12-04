@@ -2,8 +2,12 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
     <properties resource="jdbcConfig.properties"/>
+    <settings>
+        <!--开启mybatis支持延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
     <!--配置环境-->
     <environments default="mysql">
         <!--配置mysql的环境-->
@@ -25,6 +29,7 @@
         <mapper resource="mapper/OrderMapper.xml"/>
         <mapper resource="mapper/BusinessMapper.xml"/>
         <mapper resource="mapper/ProductMapper.xml"/>
+        <mapper resource="mapper/ConsumerMapper.xml"/>
     </mappers>
 
 </configuration>

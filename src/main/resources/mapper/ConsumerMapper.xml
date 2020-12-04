@@ -13,7 +13,7 @@
     </resultMap>
 
     <!--根据username查询Consumer对象-->
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
         select * from consumerinfo where username = #{username}
     </select>
 

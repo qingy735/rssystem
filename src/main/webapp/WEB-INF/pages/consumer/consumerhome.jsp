@@ -12,6 +12,12 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script>
+        function addCondition() {
+
+        }
+    </script>
+
 </head>
 <body>
 <header class="container">
@@ -133,7 +139,7 @@
             </c:when>
             <c:otherwise>
                 <li>
-                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage - 1}"
+                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage - 1}" onclick="addCondition();"
                        aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
@@ -144,12 +150,12 @@
         <c:forEach begin="1" end="${sessionScope.pb.totalPage}" var="i">
             <c:if test="${sessionScope.pb.currentPage == i}">
                 <li class="active">
-                    <a href="${ctp}/home?p=${i}">${i}</a>
+                    <a href="${ctp}/home?p=${i}" onclick="addCondition();">${i}</a>
                 </li>
             </c:if>
             <c:if test="${sessionScope.pb.currentPage != i}">
                 <li>
-                    <a href="${ctp}/home?p=${i}">${i}</a>
+                    <a href="${ctp}/home?p=${i}" onclick="addCondition();">${i}</a>
                 </li>
             </c:if>
         </c:forEach>
@@ -165,7 +171,7 @@
             </c:when>
             <c:otherwise>
                 <li>
-                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage + 1}"
+                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage + 1}" onclick="addCondition();"
                        aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>

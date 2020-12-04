@@ -8,6 +8,7 @@ import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -80,8 +81,10 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int add(Product product, Integer bid) {
         try {
+
             return productMapper.insert(product, bid);
         } catch (Exception e) {
             e.printStackTrace();

@@ -54,13 +54,30 @@ public class ProductTest {
         condition.setName("生菜");
         List<Product> products = productMapper.selectByCondition(condition);
         for (Product pro : products) {
-            System.out.println(pro);
+            System.out.println(pro.getBusiness().getUsername());
+        }
+    }
+
+    @Test
+    public void testGetAll() {
+        List<Product> products = productMapper.selectAll();
+        for (Product product : products) {
+            System.out.println(product.getBusiness().getUsername());
+            System.out.println("===================");
         }
     }
 
     @Test
     public void testGetAllByBid() {
         List<Product> products = productMapper.getAllByBid(100001);
+        for (Product product : products) {
+            System.out.println(product);
+        }
+    }
+
+    @Test
+    public void testSelectSimple() {
+        List<Product> products = productMapper.selectSimple();
         for (Product product : products) {
             System.out.println(product);
         }

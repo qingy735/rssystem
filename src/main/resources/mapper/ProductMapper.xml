@@ -19,37 +19,39 @@
         <result property="productPrice" column="price"/>
         <result property="photosrc" column="src"/>
         <result property="productGrade" column="grade"/>
-        <association property="business" javaType="cn.edu.henu.bean.Business">
-            <id property="username" column="username"/>
-            <result property="rname" column="rname"/>
-            <result property="wname" column="wname"/>
+        <result property="bid" column="bid"/>
+        <association property="business" column="bid"
+                     javaType="cn.edu.henu.bean.Business"
+                     select="cn.edu.henu.dao.BusinessMapper.selectByPrimaryKey">
         </association>
     </resultMap>
 
-    <!--查询所有商品信息 包含商家信息-->
+    <!--仅获取商品信息-->
+    <select id="selectSimpleById" resultMap="BaseResultMap">
+        select * from productinfo where id = #{id}
+    </select>
+
+    <!--查询所有商品信息 包含商家信息(懒加载)-->
     <select id="selectAll" resultMap="AssociationResultMap">
-        select p.*,b.username,b.wname,r.name
-        from productinfo p,bus_proinfo bp,businessinfo b,restaurantinfo r
-        where p.id = bp.pid and bp.bid = b.username and b.rid = r.id
+        select * from productinfo
     </select>
 
     <!--
-        条件查询
+        条件查询(懒加载)
             商品名字或者店铺名字
         selectByCondition
     -->
     <select id="selectByCondition" resultMap="AssociationResultMap">
-        select p.*,b.username,b.wname,r.name
-        from productinfo p,bus_proinfo bp,businessinfo b,restaurantinfo r
-        where p.id = bp.pid and bp.bid = b.username and b.rid = r.id
+        select * from productinfo
+        where 1 = 1
         <if test="name != null">
-            and p.name = #{name}
+            and name = #{name}
         </if>
         <if test="price != null">
-            and p.price >= #{price}
+            and price >= #{price}
         </if>
         <if test="grade != null">
-            and p.grade >= #{grade}
+            and grade >= #{grade}
         </if>
     </select>
 
@@ -59,8 +61,8 @@
     -->
     <select id="getAllByBid" resultMap="BaseResultMap">
         select p.*
-        from productinfo p,bus_proinfo bp,businessinfo b
-        where b.username=#{bid} and b.username= bp.bid and bp.pid = p.id
+        from productinfo p,businessinfo b
+        where b.username=#{bid} and b.username= p.bid
     </select>
 
     <!--

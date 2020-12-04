@@ -28,4 +28,5 @@ public interface BusinessMapper extends CrudDao<Business> {
      * @return 返回符合查询的Business集合
      */
     List<Business> selectByGrade(@Param("grade") Integer grade, @Param("standard") Integer p);
+
 }

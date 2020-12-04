@@ -32,9 +32,21 @@ public class Product implements Serializable {
      */
     private Float productGrade;
     /**
+     * 商家id
+     */
+    private Integer bid;
+    /**
      * 店铺信息
      */
-    private Business business = new Business();
+    private Business business;
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
 
     public Business getBusiness() {
         return business;
@@ -101,6 +113,7 @@ public class Product implements Serializable {
                 ", productPrice=" + productPrice +
                 ", photosrc='" + photosrc + '\'' +
                 ", productGrade=" + productGrade +
+                ", bid=" + bid +
                 ", business=" + business +
                 '}';
     }

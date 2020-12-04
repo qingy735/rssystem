@@ -34,13 +34,25 @@ public class Order implements Serializable {
      */
     private Integer discountUse;
     /**
+     * 消费者id
+     */
+    private String cid;
+    /**
      * 消费者信息
      */
     private Consumer consumer;
     /**
+     * 商品id
+     */
+    private Integer pid;
+    /**
      * 商品信息
      */
     private Product product;
+    /**
+     * 商家id
+     */
+    private Integer bid;
     /**
      * 商家信息
      */
@@ -53,6 +65,30 @@ public class Order implements Serializable {
      * 总价
      */
     private Float totalPrice;
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public Integer getPid() {
+        return pid;
+    }
+
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
+    }
 
     public Integer getNum() {
         return num;
@@ -135,7 +171,7 @@ public class Order implements Serializable {
     }
 
     public Float getTotalPrice() {
-        return num * product.getProductPrice();
+        return num * getProduct().getProductPrice();
     }
 
     public void setTotalPrice(Float totalPrice) {
@@ -151,8 +187,11 @@ public class Order implements Serializable {
                 ", orderTime=" + orderTime +
                 ", status=" + status +
                 ", discountUse=" + discountUse +
+                ", cid='" + cid + '\'' +
                 ", consumer=" + consumer +
+                ", pid=" + pid +
                 ", product=" + product +
+                ", bid=" + bid +
                 ", business=" + business +
                 ", num=" + num +
                 ", totalPrice=" + totalPrice +

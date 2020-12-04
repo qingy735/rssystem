@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctp}/css/myStyle1.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>购物车</title>
@@ -49,5 +50,32 @@
 <%
     }
 %>
+<div style="width: 100%;text-align: center;">
+<img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png" >
+<span>您还没有加购任何商品，快去选购吧~</span>
+</div>
+<br><br>
+<div class="row countPrice col-md-10 col-md-offset-1">
+    <div class="countPrice1 " style="float: left">
+        <input type="checkbox">&nbsp;全选&nbsp;
+    </div>
+    <div class="countPrice1" style="float: left">
+        <a >删除&nbsp;</a>
+    </div>
+    <div class="countPrice1 form-inline" style="float: left">
+                <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
+    </div>
+    <div style="float: right">
+        <button type="button" class="btn btn-warning" >结&nbsp;算</button>
+    </div>
+    <div class="countPrice1" style="float: right">
+        <span style="color: red"> &nbsp;10.00&nbsp;&nbsp;</span>
+    </div>
+    <div class="countPrice1" style="float: right">
+        <span>总金额：</span>
+    </div>
+
+
+</div>
 </body>
 </html>

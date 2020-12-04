@@ -33,24 +33,23 @@
 				</tr>
 				</thead>
 				<!--显示数据列表 -->
-				<tbody id="TableData">
-				<%
-					for (int i = 1; i <= 12; i++) {
-				%>
-				<tr height="60" align="center">
-					<td><%=i%>&nbsp;</td>
-					<td>土豆丝&nbsp;</td>
-					<td>7.0&nbsp;</td>
-					<td>菜&nbsp;</td>
-					<td><img border="0" width="20" height="20"
-							 src="${ctp}/images/baizhuoxia.jpg" />&nbsp;</td>
-					<td><a href="${ctp}/updateProducts" class="FunctionButton">更新</a>
-						<a href="#" class="FunctionButton">删除</a></td>
-				</tr>
-				<%
-					}
-				%>
-				</tbody>
+        <tbody id="TableData">
+        <c:forEach items="${sessionScope.products}" var="product" varStatus="u">
+            <tr height="60" align="center">
+                <td>${u.count}</td>
+                <td>${product.productName}</td>
+                <td>${product.productPrice}</td>
+                <td>菜&nbsp;</td>
+                <td>
+                    <img border="0" width="20" height="20" src="${ctp}/${product.photosrc}" alt="暂无图片"/>&nbsp;
+                </td>
+                <td>
+                    <a href="updateFood.html" class="FunctionButton">更新</a>
+                    <a href="/wirelessplatform/food.html?method=delete&id=1"
+                       onClick="return delConfirm();" class="FunctionButton">删除</a></td>
+            </tr>
+        </c:forEach>
+        </tbody>
 			</table>
 			<div id="TableTail" align="center">
 				<div class="btn">

@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -46,6 +45,11 @@ public class BusinessUIController {
     @RequestMapping("/Buinfo")
     public String toBuinfo() {
         return "/business/Buinfo";
+    }
+
+    @RequestMapping("/updateProducts")
+    public String toUpdateProducts() {
+        return "/business/updateProducts";
     }
 
     @RequestMapping("/orderList")
@@ -86,14 +90,14 @@ public class BusinessUIController {
         }
     }
 
-    @RequestMapping("/updateProducts")
+    @RequestMapping("/uploadProducts")
     public String toUpdateProducts(HttpSession session, Model model) {
         String pInfo = (String) session.getAttribute("addPInfo");
         if (pInfo != null) {
             session.removeAttribute("addPInfo");
             model.addAttribute("add_msg", pInfo);
         }
-        return "/business/updateProducts";
+        return "business/uploadProducts";
     }
 
     @RequestMapping("/message")

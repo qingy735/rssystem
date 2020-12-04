@@ -85,3 +85,22 @@ frame{
     word-wrap: break-word;
     word-break: break-all;
 }
+.Dtabel{
+    background: snow;
+    width: 80%;
+    margin-top: 2%;
+    margin-left: 10%;
+    position: relative;
+    display: block;
+}
+.Dthead{
+    float: left;
+}
+.Dtbody,.Dtr{
+    display: inline-block;
+}
+.Dtd{
+    height: 40px;
+    width: 300px;
+    display: block;
+}

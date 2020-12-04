@@ -21,8 +21,8 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="${ctp}/Buinfo" target="mainFrame">个人中心</a></li>
                 <li><a href="${ctp}/orderList" target="mainFrame">订单列表</a></li>
-                <li><a href="${ctp}/ProductsList" target="mainFrame">餐品列表</a></li>
-                <li><a href="${ctp}/updateProducts" target="mainFrame">上传餐品</a></li>
+                <li><a href="${ctp}/productList" target="mainFrame">餐品列表</a></li>
+                <li><a href="${ctp}/uploadProducts" target="mainFrame">上传餐品</a></li>
                 <li><a href="${ctp}/message" target="mainFrame">消息列表</a></li>
             </ul>
         </div>

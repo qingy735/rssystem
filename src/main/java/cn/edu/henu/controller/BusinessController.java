@@ -124,11 +124,10 @@ public class BusinessController {
         }
     }
 
-
     @RequestMapping("/home")
     public String toBusinessHome() {
         System.out.println("跳转到商家主页...");
-        return "business/businessHome";
+        return "business/businesshome";
     }
 
 }

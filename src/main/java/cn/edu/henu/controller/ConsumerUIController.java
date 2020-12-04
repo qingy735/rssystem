@@ -65,11 +65,14 @@ public class ConsumerUIController {
             conds.put("price", price);
             conds.put("grade", grade);
             session.setAttribute("conds", conds);
+            if ("".equals(name)) {
+                condition.setName(null);
+            }
             pageBean = productSer.getAllByCondition(condition);
         }
         pageBean.setCurrentPage(p);
         session.setAttribute("pb", pageBean);
-        return "consumer/consumerHome";
+        return "consumer/consumerhome";
     }
 
     @RequestMapping("/details")

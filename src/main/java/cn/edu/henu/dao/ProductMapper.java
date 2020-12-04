@@ -48,6 +48,4 @@ public interface ProductMapper extends CrudDao<Product> {
      * @return
      */
     List<Product> getAllByBid(Integer bid);
-
-    int insert(@Param("product") Product product, @Param("bid") Integer bid);
 }

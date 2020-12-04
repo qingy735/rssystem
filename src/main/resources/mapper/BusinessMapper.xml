@@ -17,7 +17,7 @@
 
     <!--根据用户名查询-->
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer">
-        select b.*,r.name from businessinfo b
+        select b.*,r.name rname from businessinfo b
          left join restaurantinfo r on b.rid = r.id
          where username = #{username}
     </select>

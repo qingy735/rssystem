@@ -16,9 +16,4 @@ public class ActionController {
         return "login&register/first";
     }
 
-    @RequestMapping("/message")
-    public String toMessage() {
-        return "/business/message";
-    }
-
 }

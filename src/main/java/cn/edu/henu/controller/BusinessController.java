@@ -125,9 +125,19 @@ public class BusinessController {
     }
 
     @RequestMapping("/home")
-    public String toBusinessHome() {
-        System.out.println("跳转到商家主页...");
+    public String toBusinessHome(HttpSession session) {
+        Business busLoginInfo = (Business) session.getAttribute("busLoginInfo");
+        if (busLoginInfo == null) {
+            return "redirect:/login/business";
+        }
         return "business/businesshome";
+    }
+
+    @RequestMapping("/logout")
+    public String businessLogout(HttpSession session) {
+        session.removeAttribute("busLoginInfo");
+        System.out.println("退出成功...");
+        return "redirect:/login/business";
     }
 
 }

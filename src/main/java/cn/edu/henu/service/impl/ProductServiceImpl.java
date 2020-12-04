@@ -81,11 +81,9 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int add(Product product, Integer bid) {
+    public int add(Product product) {
         try {
-
-            return productMapper.insert(product, bid);
+            return productMapper.insert(product);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

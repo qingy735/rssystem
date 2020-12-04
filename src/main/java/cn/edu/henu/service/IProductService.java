@@ -47,9 +47,8 @@ public interface IProductService {
      * 给id为某值的商家添加商品
      *
      * @param product
-     * @param bid
      * @return
      */
-    int add(Product product, Integer bid);
+    int add(Product product);
 
 }

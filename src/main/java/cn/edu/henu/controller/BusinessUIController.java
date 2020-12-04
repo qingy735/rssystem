@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2020-12-03 21:14
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("/business")
 public class BusinessUIController {
 
     @Autowired
@@ -33,12 +33,12 @@ public class BusinessUIController {
     @Autowired
     private IOrderService orderSer;
 
-    @RequestMapping("/business/top")
+    @RequestMapping("/top")
     public String toTop() {
         return "/business/top";
     }
 
-    @RequestMapping("/business/left")
+    @RequestMapping("/left")
     public String toLeft() {
         return "/business/left";
     }
@@ -94,6 +94,11 @@ public class BusinessUIController {
             model.addAttribute("add_msg", pInfo);
         }
         return "/business/updateProducts";
+    }
+
+    @RequestMapping("/message")
+    public String toMessage() {
+        return "/business/message";
     }
 
 }

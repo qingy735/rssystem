@@ -122,13 +122,22 @@ public class Business {
         this.grade = grade;
     }
 
+    public String getRname() {
+        return rname;
+    }
+
+    public void setRname(String rname) {
+        this.rname = rname;
+    }
+
     @Override
     public String toString() {
         return "Business{" +
-                "username='" + username + '\'' +
+                "username=" + username +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", rid=" + rid +
+                ", rid='" + rid + '\'' +
+                ", rname='" + rname + '\'' +
                 ", wid=" + wid +
                 ", wname='" + wname + '\'' +
                 ", tel='" + tel + '\'' +

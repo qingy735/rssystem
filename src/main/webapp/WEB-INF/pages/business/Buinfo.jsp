@@ -20,19 +20,20 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1" style="height: 80px">
                     <img src="${ctp}/images/baizhuoxia.jpg" class="img-circle" style="height: 70%">
-                    <label id="">商家姓名</label>
+                    <label id="">商家编号</label>
                 </div>
             </div>
             <div class="row">
-                    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                ${sessionScope.busLoginInfo.username}
             </div>
         </div>
         <div class="col-md-6 onepage">
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            ${sessionScope.busLoginInfo.name}<br>
+            ${sessionScope.busLoginInfo.rid}<br>
+            ${sessionScope.busLoginInfo.rname}<br>
+            ${sessionScope.busLoginInfo.wid}<br>
+            ${sessionScope.busLoginInfo.wname}<br>
+            ${sessionScope.busLoginInfo.tel}
         </div>
         <div class="col-md-2 onepage">
             xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

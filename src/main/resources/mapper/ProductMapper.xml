@@ -86,9 +86,9 @@
         添加商品
         insert
     -->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="product.id" parameterType="cn.edu.henu.bean.Product">
-        insert into productinfo(name,introduce,price,src,grade)
-        values(#{product.productName},#{product.productIntr},#{product.productPrice},#{product.photosrc},-1)
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.edu.henu.bean.Product">
+        insert into productinfo(bid,name,introduce,price,src,grade)
+        values(#{bid},#{productName},#{productIntr},#{productPrice},#{photosrc},-1)
     </insert>
 
 </mapper>

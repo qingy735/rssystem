@@ -86,11 +86,12 @@ public class ProductTest {
     @Test
     public void testInsert() {
         Product product = new Product();
+        product.setBid(100001);
         product.setProductName("啊啊啊");
         product.setProductPrice(3f);
         product.setPhotosrc("images/aaa.jpg");
         product.setProductIntr("啊啊啊");
-        productMapper.insert(product, 100001);
+        productMapper.insert(product);
         System.out.println(product);
     }
 

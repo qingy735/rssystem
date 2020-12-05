@@ -52,7 +52,7 @@
             </div>
             <div class="form-group col-md-6 col-md-offset-6">
                 <input type="submit" value="提交" class="btn btn-primary col-md-4 pull-left">
-                <a href="#" class="btn btn-primary col-md-4 pull-right" role="button">返回</a>
+                <a href="${ctp}/business/productList" class="btn btn-primary col-md-4 pull-right" role="button">返回</a>
             </div>
         </form>
     </div>

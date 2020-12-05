@@ -17,8 +17,9 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">商家后台</a>
+                    <a  class="navbar-brand" href="${ctp}/business/home">商家后台</a>
                 </div>
+                <br><br>
                 <div>
                     <ul class="nav nav-pills nav-stacked">
                         <li class="active"><a href="${ctp}/business/Buinfo" target="mainFrame">个人中心</a></li>
@@ -28,6 +29,7 @@
                         <li><a href="${ctp}/business/message" target="mainFrame">消息列表</a></li>
                     </ul>
                 </div>
+
             </div>
         </nav>
     </div>

@@ -12,8 +12,8 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div style="height: 100%;width: 100%;">
-    <div style="height: 100%;width: 15%;" class="pull-left" style="border: solid">
+<div class="page">
+    <div style="height: 100%;width: 15%;" class="pull-left">
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">

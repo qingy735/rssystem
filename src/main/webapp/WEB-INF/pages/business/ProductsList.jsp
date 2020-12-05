@@ -44,15 +44,16 @@
                     <img border="0" width="20" height="20" src="${ctp}/${product.photosrc}" alt="暂无图片"/>&nbsp;
                 </td>
                 <td>
-                    <a href="${ctp}/business/updateProducts" class="btn-sm">更新</a>
-                    <a href="#" class="btn-sm">删除</a></td>
+                    <a href="${ctp}/business/updateProducts">更新</a>
+                    <a href="${ctp}/business">删除</a>
+				</td>
             </tr>
         </c:forEach>
         </tbody>
 			</table>
 			<div id="TableTail" align="center">
 				<div class="btn">
-					<a href="${ctp}/uploadProducts">添加</a>
+					<a href="${ctp}/business/uploadProducts">添加</a>
 				</div>
 			</div>
 	</div>

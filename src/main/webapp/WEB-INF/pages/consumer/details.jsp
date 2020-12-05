@@ -17,7 +17,7 @@
     <h3>${product.productName}</h3>
     <p>店铺ID:${business.username}</p>
     <p>店铺负责人:${business.name}</p>
-    <p>店铺所在餐厅:${business.rid}</p>
+    <p>店铺所在餐厅:${business.rname}</p>
     <p>店铺名字:${business.wname}</p>
     <hr>
     <p>商品简介:${product.productIntr}</p>

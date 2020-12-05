@@ -15,7 +15,7 @@
 <header class="container" id="TopArea">
     <div class="row">
         <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
-        <div class="col-md-2"><a href="${ctp}/business/logout"><h4>退出登录</h4></a></div>
+        <div class="col-md-2"><a href="${ctp}/business/logout" target="fullFrame"><h4>退出登录</h4></a></div>
     </div>
 </header>
 </body>

@@ -28,8 +28,6 @@ public class BusinessUIController {
     @Autowired
     private IProductService productSer;
     @Autowired
-    private IBusinessService businessSer;
-    @Autowired
     private IOrderService orderSer;
 
     @RequestMapping("/top")

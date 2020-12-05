@@ -155,7 +155,6 @@
                             <input class="btn btn btn-success col-md-4 pull-left" type="button" id="registerBtn"
                                    value="注册">
                             <input class="btn btn btn-success col-md-4 pull-right" type="submit" value="登录">
-                            <a href="${ctp}/business/home">商家界面</a>
                         </div>
                     </form>
                 </div>

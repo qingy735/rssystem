@@ -6,9 +6,9 @@ html,header,body{
     height: 100%;
     width: 100%;
 }
-frame{
-    padding: 0;
-    margin: 0;
+iframe{
+    height: 100%;
+    width: 100%;
 }
 #firstTitleArea {
     background: #91C0E3;
@@ -71,7 +71,10 @@ frame{
 .navbar-default{
     background-color: #20222A;
     height: 100%;
-    margin: 0;
+}
+.navbar-header{
+    margin-right: -15px;
+    margin-left: -15px;
 }
 . nav-stacked{
     background-color: #009688;

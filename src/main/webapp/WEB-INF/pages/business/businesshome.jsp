@@ -11,18 +11,39 @@
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
-<frameset rows="100%">
-    <frameset cols="15%,85%" frameborder="no">
-        <frame src="${ctp}/business/left" name="leftFrame" id="leftFrame"/>
-        <frameset rows="15%,85%" frameborder="no">
-            <frame src="${ctp}/business/top" name="topFrame" id="topFrame"/>
-            <frame src="${ctp}/business/Buinfo" name="mainFrame" id="mainFrame"
-                   scrolling="yes"/>
-        </frameset>
-    </frameset>
-    <noframes>
-        <body>您的浏览器无法处理此框架
-        </body>
-    </noframes>
-</frameset>
+<body>
+<div style="height: 100%;width: 100%;">
+    <div style="height: 100%;width: 15%;" class="pull-left" style="border: solid">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">商家后台</a>
+                </div>
+                <div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="${ctp}/business/Buinfo" target="mainFrame">个人中心</a></li>
+                        <li><a href="${ctp}/business/orderList" target="mainFrame">订单列表</a></li>
+                        <li><a href="${ctp}/business/productList" target="mainFrame">餐品列表</a></li>
+                        <li><a href="${ctp}/business/uploadProducts" target="mainFrame">上传餐品</a></li>
+                        <li><a href="${ctp}/business/message" target="mainFrame">消息列表</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div style="height: 100%;width: 85%;" class="pull-left" >
+        <div  style="height: 15%;width: 100%" style="border: solid">
+            <header class="container" id="TopArea">
+                <div class="row">
+                    <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
+                    <div class="col-md-2"><a href="${ctp}/business/logout"><h4>退出登录</h4></a></div>
+                </div>
+            </header>
+        </div>
+        <div style="height: 85%;width: 100% ;border: solid" style="border: solid">
+         <iframe name="mainFrame" src="${ctp}/business/Buinfo" frameborder="no"></iframe>
+        </div>
+    </div>
+</div>
+</body>
 </html>

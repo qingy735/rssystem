@@ -37,7 +37,7 @@
                 <td>${order.totalPrice}</td>
                 <td>${order.status == 0 ? "未结账":"已结账"}</td>
                 <td>
-                    <a href="${ctp}/orderDetail?oid=${order.orderId}">详细</a>
+                    <a href="${ctp}/business/orderDetail?oid=${order.orderId}">详细</a>
                     <a href="#">结账</a>
                 </td>
             </tr>

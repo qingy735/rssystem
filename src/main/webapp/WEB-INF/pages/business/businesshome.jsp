@@ -34,7 +34,7 @@
         </nav>
     </div>
     <div style="height: 100%;width: 85%;" class="pull-left" >
-        <div  style="height: 15%;width: 100%" style="border: solid">
+        <div  style="height: 15%;width: 100%">
             <header class="container" id="TopArea">
                 <div class="row">
                     <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
@@ -42,10 +42,50 @@
                 </div>
             </header>
         </div>
-        <div style="height: 85%;width: 100% ;border: solid" style="border: solid">
+        <div style="height: 85%;width: 100% ;border: solid">
          <iframe name="mainFrame" src="${ctp}/business/Buinfo" frameborder="no"></iframe>
         </div>
     </div>
 </div>
+<!--jsp:include方法-->
+<!--
+<div class="page">
+    <div style="height: 100%;width: 15%;" class="pull-left">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a  class="navbar-brand" href="${ctp}/business/home">商家后台</a>
+                </div>
+                <br><br>
+                <div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="${ctp}/business/Buinfo" target="mainFrame">个人中心</a></li>
+                        <li><a href="${ctp}/business/orderList" target="mainFrame">订单列表</a></li>
+                        <li><a href="${ctp}/business/productList" target="mainFrame">餐品列表</a></li>
+                        <li><a href="${ctp}/business/uploadProducts" target="mainFrame">上传餐品</a></li>
+                        <li><a href="${ctp}/business/message" target="mainFrame">消息列表</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <div style="height: 100%;width: 85%;" class="pull-left" >
+        <div  style="height: 15%;width: 100%">
+            <header class="container" id="TopArea">
+                <div class="row">
+                    <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
+                    <div class="col-md-2"><a href="${ctp}/business/logout"><h4>退出登录</h4></a></div>
+                </div>
+            </header>
+        </div>
+        <div style="height: 85%;width: 100% ;border: solid">
+            <jsp:include page="/business/Buinfo" flush="true">
+                <jsp:param name="" value=""/>
+            </jsp:include>
+        </div>
+    </div>
+</div>
+-->
 </body>
 </html>

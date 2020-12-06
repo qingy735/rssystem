@@ -14,7 +14,7 @@
 <header class="container">
 <div class="row">
 <div class="col-md-10"><h1>河南大学餐厅服务系统</h1></div>
-<div class="col-md-2"><a href=""><h1>退出登录</h1></a></div>
+<div class="col-md-2"><a href="${ctp}/consumer/logout"><h1>退出登录</h1></a></div>
 </div>
 </header>
 <!-- 导航栏 -->

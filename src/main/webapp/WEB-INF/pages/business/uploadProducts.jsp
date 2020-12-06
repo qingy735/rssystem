@@ -31,31 +31,31 @@
     <div class="row" id="mainArea">
         <form action="${ctp}/product/add" id="addForm" enctype="multipart/form-data" method="post"
               target="fullFrame">
-            <input type="hidden" name="bid" value="${sessionScope.busLoginInfo.username}">
+            <input type="hidden" name="bid" value="${sessionScope.busLoginInfo.username} ">
             <div class="form-group">
                 <label for="proName" class="col-md-4 control-label">餐品名称:</label>
                 <div class="col-md-8 col-md-pull-2">
-                    <input type="text" class="form-control" id="proName" name="productName"><br>
+                    <input type="text" class="form-control" id="proName" name="productName" required><br>
                 </div>
             </div>
             <div class="form-group">
                 <label for="proInfo" class="col-md-4 control-label">餐品简介：</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <textarea cols="20" rows="5" class="form-control" id="proInfo" name="productIntr"></textarea>
+                    <textarea cols="20" rows="5" class="form-control" id="proInfo" name="productIntr" required></textarea>
                     <br>
                 </div>
             </div>
             <div class="form-group">
                 <label for="proPrice" class="col-md-4 control-label">餐品价格:</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <input type="text" class="form-control" id="proPrice" name="productPrice"><br>
+                    <input type="text" class="form-control" id="proPrice" name="productPrice" required><br>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="image" class="col-md-4 control-label">餐品图片:</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <input type="file" id="image" name="imgSrc"/>
+                    <input type="file" id="image" name="imgSrc" required/>
                     <%--                    <img id="imgShow" alt="无法显示"/>--%>
                 </div>
                 <br>

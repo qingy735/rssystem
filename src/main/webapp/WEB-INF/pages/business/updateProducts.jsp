@@ -18,7 +18,7 @@
 <!--这个页面的表单要获取前面一个页面的内容-->
 <div id="TopMainArea">
     <div class="row" id="mainArea">
-        <form action="#" class="proForm">
+        <form action="#{ctp}/business" class="proForm">
             <div class="form-group">
                 <label for="proName" class="col-md-4 control-label">餐品名称:</label>
                 <div class="col-md-8 col-md-pull-2">

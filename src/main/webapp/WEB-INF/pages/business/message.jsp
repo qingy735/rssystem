@@ -12,6 +12,10 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<!-- 页面标题 -->
+<div id="TitleArea">消息列表</div>
+<!-- 主内容区域（数据列表或表单显示） -->
+<div id="TopMainArea">
+</div>
 </body>
 </html>

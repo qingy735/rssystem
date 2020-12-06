@@ -24,7 +24,7 @@
 </head>
 <body>
 <!-- 页面标题 -->
-<h3 id="add_msg">${add_msg}</h3>
+<h3 id="add_msg" hidden>${add_msg}</h3>
 <div id="TitleArea">更新新餐品</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
@@ -62,7 +62,7 @@
             </div>
             <div class="form-group col-md-6 col-md-offset-6">
                 <input type="submit" value="提交" class="btn btn-primary col-md-4 pull-left">
-                <a href="#" class="btn btn-primary col-md-4 pull-right" role="button">返回</a>
+                <a href="${ctp}/business/productList" class="btn btn-primary col-md-4 pull-right" role="button">返回</a>
             </div>
         </form>
     </div>

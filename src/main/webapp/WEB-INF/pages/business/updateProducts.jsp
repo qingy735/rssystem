@@ -22,20 +22,20 @@
             <div class="form-group">
                 <label for="proName" class="col-md-4 control-label">餐品名称:</label>
                 <div class="col-md-8 col-md-pull-2">
-                    <input type="text" class="form-control" id="proName"><br>
+                    <input type="text" class="form-control" id="proName" required><br>
                 </div>
             </div>
             <div class="form-group">
                 <label for="proInfo" class="col-md-4 control-label">餐品简介：</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <textarea cols="20" rows="5" class="form-control" id="proInfo"></textarea>
+                    <textarea cols="20" rows="5" class="form-control" id="proInfo" required></textarea>
                     <br>
                 </div>
             </div>
             <div class="form-group">
                 <label for="proPrice" class="col-md-4 control-label">餐品价格:</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <input type="text" class="form-control" id="proPrice"><br>
+                    <input type="text" class="form-control" id="proPrice" required><br>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                     <img id="proImg" src="${ctp}/images/baizhuoxia.jpg">
                     <br>
                     <input type="hidden" name="image" value="baizhuoxia.jpg" id="proPhone">
-                    <input type="file" name="imageUrl" />
+                    <input type="file" name="imageUrl" required />
                     <br>
                 </div>
                 <br>

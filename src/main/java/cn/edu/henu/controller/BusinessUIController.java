@@ -3,10 +3,8 @@ package cn.edu.henu.controller;
 import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Order;
 import cn.edu.henu.bean.Product;
-import cn.edu.henu.service.IBusinessService;
 import cn.edu.henu.service.IOrderService;
 import cn.edu.henu.service.IProductService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +45,9 @@ public class BusinessUIController {
     }
 
     @RequestMapping("/updateProducts")
-    public String toUpdateProducts() {
+    public String toUpdateProducts(Integer id, Model model) {
+        Product product = productSer.selectSimpleById(id);
+        model.addAttribute("updateProduct", product);
         return "/business/updateProducts";
     }
 

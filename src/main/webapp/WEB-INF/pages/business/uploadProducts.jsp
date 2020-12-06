@@ -56,7 +56,7 @@
                 <label for="image" class="col-md-4 control-label">餐品图片:</label>
                 <div class="col-md-8  col-md-pull-2">
                     <input type="file" id="image" name="imgSrc" required/>
-                    <%--                    <img id="imgShow" alt="无法显示"/>--%>
+                    <%--<img id="imgShow" alt="无法显示"/>--%>
                 </div>
                 <br>
             </div>

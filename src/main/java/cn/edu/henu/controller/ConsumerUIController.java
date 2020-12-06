@@ -35,7 +35,6 @@ public class ConsumerUIController {
 
     @RequestMapping("/home")
     public String toConsumerHome(Condition condition, @RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
-        session.removeAttribute("conds");
         String name = condition.getName();
         Float price = condition.getPrice();
         Float grade = condition.getGrade();
@@ -57,10 +56,9 @@ public class ConsumerUIController {
         PageBean<Product> pageBean;
 
         if (!flag) {
+            session.removeAttribute("conds");
             pageBean = productSer.getAllProduct();
-            System.out.println("全部...");
         } else {
-            System.out.println("条件...");
             Map<String, Object> conds = new HashMap<>();
             conds.put("name", name);
             conds.put("price", price);

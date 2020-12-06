@@ -40,7 +40,7 @@
             </div>
 
             <div class="form-group">
-                <label for="proPhone" class="col-md-4 control-label">餐品图片:</label>
+                <label for="image" class="col-md-4 control-label">餐品图片:</label>
                 <div class="col-md-8  col-md-pull-2">
                     <input type="file" id="proPhone" name="imageUrl" required />
                 </div>

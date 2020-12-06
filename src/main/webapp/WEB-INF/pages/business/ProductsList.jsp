@@ -45,7 +45,7 @@
                     <img border="0" width="20" height="20" src="${ctp}/${product.photosrc}" alt="暂无图片"/>&nbsp;
                 </td>
                 <td>
-                    <a href="${ctp}/business/updateProducts">更新</a>
+                    <a href="${ctp}/business/updateProducts?id=${product.id}">更新</a>
                     <a href="${ctp}/product/delete?id=${product.id}" onclick="return confirm('确定要删除吗？')">删除</a>
                 </td>
             </tr>

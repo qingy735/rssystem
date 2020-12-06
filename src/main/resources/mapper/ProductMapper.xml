@@ -112,9 +112,6 @@
             <if test="productPrice != null">
                 price = #{productPrice},
             </if>
-            <if test="photosrc != null">
-                src = #{photosrc},
-            </if>
             <if test="productGrade != null">
                 grade = #{productGrade},
             </if>

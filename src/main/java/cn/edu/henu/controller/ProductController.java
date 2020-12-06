@@ -28,6 +28,7 @@ public class ProductController {
     private IProductService productSer;
 
     @RequestMapping("/add")
+    @Transactional(rollbackFor = Exception.class)
     public String add(Product product, @RequestParam("imgSrc") MultipartFile file, HttpSession session) {
         if (file.isEmpty()) {
             session.setAttribute("addPInfo", "插入失败");
@@ -46,7 +47,7 @@ public class ProductController {
             file.transferTo(target);
             product.setPhotosrc(path + "/" + realName);
             int i = productSer.add(product);
-            if (i <= 0) {
+            if (i < 1) {
                 session.setAttribute("addPInfo", "插入失败");
                 return "redirect:/business/uploadProducts";
             }
@@ -71,10 +72,48 @@ public class ProductController {
             File file = new File(realPath);
             boolean delete = file.delete();
             if (!delete) {
+                session.setAttribute("delInfo", "删除失败");
                 throw new Exception();
             }
         }
         return "redirect:/business/productList";
     }
 
+    @RequestMapping("/update")
+    @Transactional(rollbackFor = Exception.class)
+    public String update(Product product, @RequestParam("imgSrc") MultipartFile file, HttpSession session) {
+        if (!file.isEmpty()) {
+            // 获取当前图片地址
+            Integer id = product.getId();
+            String photosrc = productSer.selectSimpleById(id).getPhotosrc();
+            String realPath = session.getServletContext().getRealPath(photosrc);
+            File oldFile = new File(realPath);
+            boolean delete = oldFile.delete();
+            if (!delete) {
+                session.setAttribute("updateInfo", "更新失败");
+                return "redirect:/business/updateProducts";
+            }
+            File newFile = new File(realPath);
+            try {
+                file.transferTo(newFile);
+                int i = productSer.updateById(product);
+                if (i < 1) {
+                    session.setAttribute("updateInfo", "更新失败");
+                    return "redirect:/business/updateProducts";
+                }
+                return "redirect:/business/productList";
+            } catch (IOException e) {
+                e.printStackTrace();
+                session.setAttribute("updateInfo", "更新失败");
+                return "redirect:/business/updateProducts";
+            }
+        } else {
+            int i = productSer.updateById(product);
+            if (i < 1) {
+                session.setAttribute("updateInfo", "更新失败");
+                return "redirect:/business/updateProducts";
+            }
+            return "redirect:/business/productList";
+        }
+    }
 }

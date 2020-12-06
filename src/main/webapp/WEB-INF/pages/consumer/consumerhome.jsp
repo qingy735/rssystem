@@ -13,9 +13,15 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script>
-        function addCondition() {
-
-        }
+        $(function () {
+            $(".skipBtn").click(function () {
+                // 改变表单action指向
+                $("#selectForm").attr("action", this.href)
+                // 提交表单
+                $("#selectForm").submit();
+                return false;
+            })
+        })
     </script>
 
 </head>
@@ -139,8 +145,7 @@
             </c:when>
             <c:otherwise>
                 <li>
-                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage - 1}" onclick="addCondition();"
-                       aria-label="Previous">
+                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage - 1}" class="skipBtn" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -150,12 +155,12 @@
         <c:forEach begin="1" end="${sessionScope.pb.totalPage}" var="i">
             <c:if test="${sessionScope.pb.currentPage == i}">
                 <li class="active">
-                    <a href="${ctp}/home?p=${i}" onclick="addCondition();">${i}</a>
+                    <a href="${ctp}/home?p=${i}" class="skipBtn">${i}</a>
                 </li>
             </c:if>
             <c:if test="${sessionScope.pb.currentPage != i}">
                 <li>
-                    <a href="${ctp}/home?p=${i}" onclick="addCondition();">${i}</a>
+                    <a href="${ctp}/home?p=${i}" class="skipBtn">${i}</a>
                 </li>
             </c:if>
         </c:forEach>
@@ -171,7 +176,7 @@
             </c:when>
             <c:otherwise>
                 <li>
-                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage + 1}" onclick="addCondition();"
+                    <a href="${ctp}/home?p=${sessionScope.pb.currentPage + 1}" class="skipBtn"
                        aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>

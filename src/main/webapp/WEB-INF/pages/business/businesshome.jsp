@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-		 pageEncoding="utf-8" isELIgnored="false" %>
+         pageEncoding="utf-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>河南大学餐厅服务系统</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>河南大学餐厅服务系统</title>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
@@ -17,7 +17,7 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a  class="navbar-brand" href="${ctp}/business/home">商家后台</a>
+                    <a class="navbar-brand" href="${ctp}/business/home">商家后台</a>
                 </div>
                 <br><br>
                 <div>
@@ -32,8 +32,8 @@
             </div>
         </nav>
     </div>
-    <div style="height: 100%;width: 85%;" class="pull-left" >
-        <div  style="height: 15%;width: 100%">
+    <div style="height: 100%;width: 85%;" class="pull-left">
+        <div style="height: 15%;width: 100%">
             <header class="container" id="TopArea">
                 <div class="row">
                     <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
@@ -42,7 +42,7 @@
             </header>
         </div>
         <div style="height: 85%;width: 100% ;border: solid">
-         <iframe name="mainFrame" src="${ctp}/business/Buinfo" frameborder="no"></iframe>
+            <iframe name="mainFrame" src="${ctp}/business/Buinfo" frameborder="no"></iframe>
         </div>
     </div>
 </div>

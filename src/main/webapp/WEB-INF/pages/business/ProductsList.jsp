@@ -46,7 +46,7 @@
                 </td>
                 <td>
                     <a href="${ctp}/business/updateProducts">更新</a>
-                    <a href="${ctp}/business">删除</a>
+                    <a href="${ctp}/business" onclick="return confirm('确定要删除吗？')">删除</a>
 				</td>
             </tr>
         </c:forEach>

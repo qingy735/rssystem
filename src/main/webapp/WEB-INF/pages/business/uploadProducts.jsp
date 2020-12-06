@@ -30,7 +30,7 @@
 <div id="TopMainArea">
     <div class="row" id="mainArea">
         <form action="${ctp}/product/add" id="addForm" enctype="multipart/form-data" method="post"
-              target="fullFrame">
+              target="mainFrame">
             <input type="hidden" name="bid" value="${sessionScope.busLoginInfo.username} ">
             <div class="form-group">
                 <label for="proName" class="col-md-4 control-label">餐品名称:</label>

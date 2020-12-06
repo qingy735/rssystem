@@ -31,7 +31,7 @@ public class ProductController {
     public String add(Product product, @RequestParam("imgSrc") MultipartFile file, HttpSession session) {
         if (file.isEmpty()) {
             session.setAttribute("addPInfo", "插入失败");
-            return "redirect:/business/updateProducts";
+            return "redirect:/business/uploadProducts";
         }
         System.out.println(file.getOriginalFilename());
         String fileSuffix = file.getOriginalFilename().split("\\.")[1];
@@ -48,13 +48,13 @@ public class ProductController {
             int i = productSer.add(product);
             if (i <= 0) {
                 session.setAttribute("addPInfo", "插入失败");
-                return "redirect:/business/updateProducts";
+                return "redirect:/business/uploadProducts";
             }
             return "redirect:/business/home";
         } catch (IOException e) {
             e.printStackTrace();
             session.setAttribute("addPInfo", "插入失败");
-            return "redirect:/business/updateProducts";
+            return "redirect:/business/uploadProducts";
         }
     }
 }

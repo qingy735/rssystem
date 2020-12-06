@@ -42,11 +42,7 @@
             <div class="form-group">
                 <label for="proPhone" class="col-md-4 control-label">餐品图片:</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <img id="proImg" src="${ctp}/images/baizhuoxia.jpg">
-                    <br>
-                    <input type="hidden" name="image" value="baizhuoxia.jpg" id="proPhone">
-                    <input type="file" name="imageUrl" required />
-                    <br>
+                    <input type="file" id="proPhone" name="imageUrl" required />
                 </div>
                 <br>
             </div>

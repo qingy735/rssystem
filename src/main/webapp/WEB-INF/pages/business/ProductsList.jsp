@@ -16,7 +16,7 @@
 	<div id="TitleArea">菜品列表</div>
 	<!-- 过滤条件 -->
 	<div id="TopMainArea">
-		<form action="#" method="get">
+		<form action="${ctp}/business/" method="get">
 			<input type="hidden" name="method" value="search"> <input
 				type="text" name="keyword" title="请输入菜品名称"> <input
 				type="submit" value="搜索">

@@ -7,7 +7,6 @@ import cn.edu.henu.dao.ProductMapper;
 import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -124,6 +123,16 @@ public class ProductServiceImpl implements IProductService {
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    @Override
+    public Product selectSimpleById(Integer id) {
+        try {
+            return productMapper.selectSimpleById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

@@ -59,10 +59,20 @@ public class ProductController {
     }
 
     @RequestMapping("/delete")
-    public String delete(Integer id, HttpSession session) {
+    @Transactional(rollbackFor = Exception.class)
+    public String delete(Integer id, HttpSession session) throws Exception {
+        Product product = productSer.selectSimpleById(id);
         int i = productSer.deleteById(id);
         if (i < 1) {
             session.setAttribute("delInfo", "删除失败");
+        } else {
+            String photosrc = product.getPhotosrc();
+            String realPath = session.getServletContext().getRealPath(photosrc);
+            File file = new File(realPath);
+            boolean delete = file.delete();
+            if (!delete) {
+                throw new Exception();
+            }
         }
         return "redirect:/business/productList";
     }

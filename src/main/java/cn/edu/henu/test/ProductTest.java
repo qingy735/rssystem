@@ -77,7 +77,7 @@ public class ProductTest {
 
     @Test
     public void testSelectSimple() {
-        List<Product> products = productMapper.selectSimple();
+        List<Product> products = productMapper.selectAllSimple();
         for (Product product : products) {
             System.out.println(product);
         }

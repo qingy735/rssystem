@@ -67,4 +67,12 @@ public interface IProductService {
      */
     int deleteById(Integer id);
 
+    /**
+     * 根据商品id查询简单商品信息
+     *
+     * @param id
+     * @return
+     */
+    Product selectSimpleById(Integer id);
+
 }

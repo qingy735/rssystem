@@ -1,5 +1,6 @@
 package cn.edu.henu.controller;
 
+import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Consumer;
 import cn.edu.henu.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -169,6 +170,23 @@ public class ConsumerController {
             return "redirect:/PCenter";
 
         }
+        return "redirect:/login/consumer";
+    }
+
+
+    @RequestMapping("/home")
+    public String toConsumerHome(HttpSession session) {
+        Consumer conLoginInfo = (Consumer) session.getAttribute("conLoginInfo");
+        if (conLoginInfo == null) {
+            return "redirect:/login/consumer";
+        }
+        return "consumer/consumerhome";
+    }
+
+    @RequestMapping("/logout")
+    public String consumerLogout(HttpSession session) {
+        session.removeAttribute("conLoginInfo");
+        System.out.println("退出成功...");
         return "redirect:/login/consumer";
     }
 

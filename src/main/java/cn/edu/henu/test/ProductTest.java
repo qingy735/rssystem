@@ -96,6 +96,27 @@ public class ProductTest {
     }
 
     /**
+     * 更新商品
+     */
+    @Test
+    public void testUpdate() {
+        Product product = new Product();
+        product.setId(13);
+        product.setProductIntr("更新之后的详情介绍...");
+        int i = productMapper.updateByPrimaryKey(product);
+        System.out.println(i);
+    }
+
+    /**
+     * 删除商品
+     */
+    @Test
+    public void testDelete() {
+        int i = productMapper.deleteByPrimaryKey(19);
+        System.out.println(i);
+    }
+
+    /**
      * 查询条目
      */
     @Test

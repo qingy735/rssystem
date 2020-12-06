@@ -2,7 +2,6 @@ package cn.edu.henu.dao;
 
 import cn.edu.henu.bean.Condition;
 import cn.edu.henu.bean.Product;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

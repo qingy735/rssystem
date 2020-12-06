@@ -91,4 +91,38 @@
         values(#{bid},#{productName},#{productIntr},#{productPrice},#{photosrc},-1)
     </insert>
 
+    <!--
+        修改商品信息
+        updateByPrimaryKey
+    -->
+    <update id="updateByPrimaryKey">
+        update productinfo
+        <trim prefix="set" suffixOverrides=",">
+            <if test="productName != null">
+                name = #{productName},
+            </if>
+            <if test="productIntr != null">
+                introduce = #{productIntr},
+            </if>
+            <if test="productPrice != null">
+                price = #{productPrice},
+            </if>
+            <if test="photosrc != null">
+                src = #{photosrc},
+            </if>
+            <if test="productGrade != null">
+                grade = #{productGrade},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <!--
+        删除商品
+        deleteByPrimaryKey
+    -->
+    <delete id="deleteByPrimaryKey">
+        delete from productinfo where id = #{id}
+    </delete>
+
 </mapper>

@@ -6,7 +6,6 @@ import cn.edu.henu.bean.Product;
 import cn.edu.henu.dao.ProductMapper;
 import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -84,6 +83,44 @@ public class ProductServiceImpl implements IProductService {
     public int add(Product product) {
         try {
             return productMapper.insert(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    public int updateById(Product product) {
+        if (product.getId() == null) {
+            return -1;
+        }
+        if ("".equals(product.getProductName())) {
+            product.setProductName(null);
+        }
+        if ("".equals(product.getProductIntr())) {
+            product.setProductIntr(null);
+        }
+        if ("".equals(product.getPhotosrc())) {
+            product.setPhotosrc(null);
+        }
+        try {
+            return productMapper.updateByPrimaryKey(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    /**
+     * 删除商品
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public int deleteById(Integer id) {
+        try {
+            return productMapper.deleteByPrimaryKey(id);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

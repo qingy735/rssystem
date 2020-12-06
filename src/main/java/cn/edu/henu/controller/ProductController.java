@@ -57,4 +57,14 @@ public class ProductController {
             return "redirect:/business/uploadProducts";
         }
     }
+
+    @RequestMapping("/delete")
+    public String delete(Integer id, HttpSession session) {
+        int i = productSer.deleteById(id);
+        if (i < 1) {
+            session.setAttribute("delInfo", "删除失败");
+        }
+        return "redirect:/business/productList";
+    }
+
 }

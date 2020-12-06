@@ -51,4 +51,20 @@ public interface IProductService {
      */
     int add(Product product);
 
+    /**
+     * 根据商品id更新
+     *
+     * @param product
+     * @return
+     */
+    int updateById(Product product);
+
+    /**
+     * 根据商品id删除
+     *
+     * @param id
+     * @return
+     */
+    int deleteById(Integer id);
+
 }

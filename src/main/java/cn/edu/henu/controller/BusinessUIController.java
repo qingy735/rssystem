@@ -6,6 +6,7 @@ import cn.edu.henu.bean.Product;
 import cn.edu.henu.service.IBusinessService;
 import cn.edu.henu.service.IOrderService;
 import cn.edu.henu.service.IProductService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,11 +62,16 @@ public class BusinessUIController {
     }
 
     @RequestMapping("/productList")
-    public String toProductList(HttpSession session) {
+    public String toProductList(HttpSession session, Model model) {
         Business business = (Business) session.getAttribute("busLoginInfo");
         if (business != null) {
             List<Product> products = productSer.getAllByBid(business.getUsername());
             session.setAttribute("products", products);
+            String delInfo = (String) session.getAttribute("delInfo");
+            if (delInfo != null) {
+                session.removeAttribute("delInfo");
+                model.addAttribute("delInfo", delInfo);
+            }
         }
         return "/business/ProductsList";
     }

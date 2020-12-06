@@ -50,7 +50,7 @@ public class ProductController {
                 session.setAttribute("addPInfo", "插入失败");
                 return "redirect:/business/uploadProducts";
             }
-            return "redirect:/business/home";
+            return "redirect:/business/productList";
         } catch (IOException e) {
             e.printStackTrace();
             session.setAttribute("addPInfo", "插入失败");

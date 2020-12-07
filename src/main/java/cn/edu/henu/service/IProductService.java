@@ -13,19 +13,13 @@ import java.util.List;
 public interface IProductService {
 
     /**
-     * 获得包含所有商品信息的集合
+     * 查询所有商品 有条件就按照条件查
      *
+     * @param product
+     * @param row
      * @return
      */
-    PageBean<Product> getAllProduct();
-
-    /**
-     * 根据条件查询
-     *
-     * @param condition
-     * @return
-     */
-    PageBean<Product> getAllByCondition(Condition condition);
+    PageBean<Product> getAllProducts(Product product, Integer row);
 
     /**
      * 根据商家id查询商品
@@ -38,10 +32,10 @@ public interface IProductService {
     /**
      * 查询一共多少条数据
      *
-     * @param condition
+     * @param product
      * @return
      */
-    int getTotal(Condition condition);
+    int getTotal(Product product);
 
     /**
      * 给id为某值的商家添加商品

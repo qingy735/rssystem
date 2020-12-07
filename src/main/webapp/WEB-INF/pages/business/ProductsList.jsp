@@ -42,7 +42,8 @@
                 <td>${product.productPrice}</td>
                 <td>菜&nbsp;</td>
                 <td>
-                    <img border="0" width="20" height="20" src="${ctp}/${product.photosrc}" alt="暂无图片"/>&nbsp;
+                    <img border="0" width="20" height="20" src="${ctp}/${product.photosrc}?id=<%=Math.random()%>"
+                         alt="暂无图片"/>&nbsp;
                 </td>
                 <td>
                     <a href="${ctp}/business/updateProducts?id=${product.id}">更新</a>

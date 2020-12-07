@@ -33,11 +33,13 @@ public class ConsumerUIController {
     @Autowired
     private IOrderService orderSer;
 
+    final Integer ROW = 8;
+
     @RequestMapping("/home")
-    public String toConsumerHome(Condition condition, @RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
-        String name = condition.getName();
-        Float price = condition.getPrice();
-        Float grade = condition.getGrade();
+    public String toConsumerHome(Product product, @RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
+        String name = product.getProductName();
+        Float price = product.getProductPrice();
+        Float grade = product.getProductGrade();
         boolean flag = false;
 
         if (name != null && !"".equals(name)) {
@@ -50,14 +52,13 @@ public class ConsumerUIController {
             flag = true;
         }
 
-        // 分页,一页五个
-        PageHelper.startPage(p, 5);
+        // 分页,一页八个
+        PageHelper.startPage(p, ROW);
         // 创建PageBean对象
         PageBean<Product> pageBean;
-
         if (!flag) {
             session.removeAttribute("conds");
-            pageBean = productSer.getAllProduct();
+            pageBean = productSer.getAllProducts(null, ROW);
         } else {
             Map<String, Object> conds = new HashMap<>();
             conds.put("name", name);
@@ -65,9 +66,10 @@ public class ConsumerUIController {
             conds.put("grade", grade);
             session.setAttribute("conds", conds);
             if ("".equals(name)) {
-                condition.setName(null);
+                product.setProductName(null);
             }
-            pageBean = productSer.getAllByCondition(condition);
+            product.setProductName("%" + name + "%");
+            pageBean = productSer.getAllProducts(product, ROW);
         }
         pageBean.setCurrentPage(p);
         session.setAttribute("pb", pageBean);

@@ -20,9 +20,9 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    void initPageBean(PageBean<Product> pageBean, Condition condition) {
-        pageBean.setRows(5);
-        int total = getTotal(condition);
+    void initPageBean(PageBean<Product> pageBean, Product product, Integer row) {
+        pageBean.setRows(row);
+        int total = getTotal(product);
         pageBean.setTotalCount(total);
         int rows = pageBean.getRows();
         int a = total % rows;
@@ -31,25 +31,16 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public PageBean<Product> getAllProduct() {
+    public PageBean<Product> getAllProducts(Product product, Integer row) {
         try {
-            List<Product> products = productMapper.selectAll();
+            List<Product> products;
+            if (product != null) {
+                products = productMapper.selectByCondition(product);
+            } else {
+                products = productMapper.selectAll();
+            }
             PageBean<Product> pageBean = new PageBean<>();
-            initPageBean(pageBean, new Condition());
-            pageBean.setList(products);
-            return pageBean;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
-    public PageBean<Product> getAllByCondition(Condition condition) {
-        try {
-            List<Product> products = productMapper.selectByCondition(condition);
-            PageBean<Product> pageBean = new PageBean<>();
-            initPageBean(pageBean, condition);
+            initPageBean(pageBean, product, row);
             pageBean.setList(products);
             return pageBean;
         } catch (Exception e) {
@@ -69,9 +60,9 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public int getTotal(Condition condition) {
+    public int getTotal(Product product) {
         try {
-            return productMapper.selectTotal(condition);
+            return productMapper.selectTotal(product);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

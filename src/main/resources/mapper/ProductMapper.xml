@@ -49,14 +49,14 @@
     <select id="selectByCondition" resultMap="AssociationResultMap">
         select * from productinfo
         where 1 = 1
-        <if test="name != null">
-            and name = #{name}
+        <if test="productName != null">
+            and name like #{productName}
         </if>
-        <if test="price != null">
-            and price >= #{price}
+        <if test="productPrice != null">
+            and price >= #{productPrice}
         </if>
-        <if test="grade != null">
-            and grade >= #{grade}
+        <if test="productGrade != null">
+            and grade >= #{productGrade}
         </if>
     </select>
 
@@ -76,14 +76,14 @@
     -->
     <select id="selectTotal" resultType="Integer">
         select count(id) from productinfo p where 1 =1
-        <if test="name != null">
-            and p.name = #{name}
+        <if test="productName != null">
+            and p.name like #{productName}
         </if>
-        <if test="price != null">
-            and p.price >= #{price}
+        <if test="productPrice != null">
+            and p.price >= #{productPrice}
         </if>
-        <if test="grade != null">
-            and p.grade >= #{grade}
+        <if test="productGrade != null">
+            and p.grade >= #{productGrade}
         </if>
     </select>
 

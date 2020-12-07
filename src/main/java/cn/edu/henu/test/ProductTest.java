@@ -50,9 +50,9 @@ public class ProductTest {
      */
     @Test
     public void testFindSome() {
-        Condition condition = new Condition();
-        condition.setName("生菜");
-        List<Product> products = productMapper.selectByCondition(condition);
+        Product product = new Product();
+        product.setProductName("生菜");
+        List<Product> products = productMapper.selectByCondition(product);
         for (Product pro : products) {
             System.out.println(pro.getBusiness().getUsername());
         }
@@ -121,7 +121,7 @@ public class ProductTest {
      */
     @Test
     public void testFindTotal() {
-        int i = productMapper.selectTotal(new Condition());
+        int i = productMapper.selectTotal(new Product());
         System.out.println(i);
     }
 }

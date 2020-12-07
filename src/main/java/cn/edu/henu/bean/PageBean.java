@@ -4,15 +4,25 @@ import java.io.Serializable;
 import java.util.List;
 
 public class PageBean<T> implements Serializable {
-    // 总记录条数
+    /**
+     * 总记录条数
+     */
     private int totalCount;
-    //总页码
+    /**
+     * 总页码
+     */
     private int totalPage;
-    // 每页的数据
+    /**
+     * 每页的数据
+     */
     private List<T> list;
-    // 当前页码
+    /**
+     * 当前页码
+     */
     private int currentPage;
-    // 每页显示的记录数
+    /**
+     * 每页显示的记录数
+     */
     private int rows;
 
     public int getTotalCount() {

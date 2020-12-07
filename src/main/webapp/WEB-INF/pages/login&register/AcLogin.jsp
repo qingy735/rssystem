@@ -21,21 +21,21 @@
 </header>
 <div class="row">
     <div class="col-md-8 " style="margin-top: 60px">
-        <img border="0" width="100% height="100%"
-             src="${ctp}/images/henu.jpg"/>
+        <img border="0" width="100% height=" 100%"
+        src="${ctp}/images/henu.jpg"/>
     </div>
     <div class="col-md-4 " class="logindiv"
          style="margin-top: 60px">
         <h2 class="text-center">欢迎管理员登录</h2>
-        <form>
+        <form id="loginForm" action="${ctp}/admin/login" method="post">
             <div class="form-group">
                 <label for="InputAcNum">账号</label>
-                <input type="text" class="form-control" id="InputAcNum" placeholder="请输入管理员账号">
+                <input type="text" class="form-control" name="username" id="InputAcNum" placeholder="请输入管理员账号">
                 <span class="help-block"></span>
             </div>
             <div class="form-group">
                 <label for="InputAcPwd">密码</label>
-                <input type="password" class="form-control" id="InputAcPwd" placeholder="请输入密码">
+                <input type="password" class="form-control" name="password" id="InputAcPwd" placeholder="请输入密码">
                 <span class="help-block"></span>
             </div>
             <div class="checkbox">
@@ -43,8 +43,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <a class="btn btn-success col-md-10 col-md-offset-1" href="#"
-                   role="button">登录</a>
+                <input class="btn btn btn-primary" type="submit" value="登录">
             </div>
         </form>
     </div>

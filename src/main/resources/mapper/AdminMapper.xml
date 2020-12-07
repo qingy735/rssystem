@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.henu.dao.AdminMapper">
+
+    <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Admin">
+        <id property="username" column="username"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <!--根据用户名查询-->
+    <select id="selectByPrimarykey" resultMap="BaseResultMap">
+        select * from admininfo where username = #{username}
+    </select>
+
+</mapper>

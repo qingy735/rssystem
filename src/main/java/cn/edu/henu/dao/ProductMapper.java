@@ -1,6 +1,5 @@
 package cn.edu.henu.dao;
 
-import cn.edu.henu.bean.Condition;
 import cn.edu.henu.bean.Product;
 
 import java.util.List;

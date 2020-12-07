@@ -30,6 +30,7 @@
         <mapper resource="mapper/BusinessMapper.xml"/>
         <mapper resource="mapper/ProductMapper.xml"/>
         <mapper resource="mapper/ConsumerMapper.xml"/>
+        <mapper resource="mapper/AdminMapper.xml"/>
     </mappers>
 
 </configuration>

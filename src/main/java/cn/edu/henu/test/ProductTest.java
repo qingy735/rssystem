@@ -1,6 +1,5 @@
 package cn.edu.henu.test;
 
-import cn.edu.henu.bean.Condition;
 import cn.edu.henu.bean.Product;
 import cn.edu.henu.dao.ProductMapper;
 import org.apache.ibatis.io.Resources;

@@ -15,5 +15,6 @@
 </h1>
 ${sessionScope.busLoginInfo}
 ${sessionScope.conLoginInfo}
+${sessionScope.admLoginInfo}
 </body>
 </html>

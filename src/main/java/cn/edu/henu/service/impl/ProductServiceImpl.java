@@ -1,6 +1,5 @@
 package cn.edu.henu.service.impl;
 
-import cn.edu.henu.bean.Condition;
 import cn.edu.henu.bean.PageBean;
 import cn.edu.henu.bean.Product;
 import cn.edu.henu.dao.ProductMapper;

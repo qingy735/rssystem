@@ -11,6 +11,9 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>购物车</title>
 </head>
+<script type="text/javascript">
+
+</script>
 <body>
 <header class="container">
     <div class="row">
@@ -38,24 +41,61 @@
     </div>
 </nav>
 <!-- 加购的餐品列表 -->
-<!-- 通过数据库调用显示 -->
-<%
-    for (int i = 0; i < 5; i++) {
-%>
-<div class="container">
-    <div class="row">
-
+<div class="pro1">
+    <table width="80%" class="buyGoodsHead">
+        <thead>
+            <tr>
+                <td width="5%">&nbsp;</td>
+                <th width="10%">&nbsp;</th>
+                <th class="proname"> 商品</th>
+                <th class="proprice"> 价格 </th>
+                <th class="procounts"> 购买数量 </th>
+                <th class="subtotal"> 小计 </th>
+                <th class="deletepro" > 删除 </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="buyGoods">
+        <table width="80%" class="buyGoodsBody">
+            <tbody>
+            <tr>
+                <td width="5%"><input type="checkbox"></td>
+                <td class="cartProImg">
+                    <a><!--跳转商品详情-->
+                        <img alt="生菜" style="width: 50%" src="${ctp}/images/food3.jpg">
+                    </a>
+                </td>
+                <td class="proname2">
+                    <a><!--跳转商品详情-->
+                        生菜
+                    </a>
+                </td>
+                <td class="proprice">
+                    ¥5.0
+                </td>
+                <td class="procounts">
+                    <div class="altcounts">
+                        <a class="decrease" onclick="" href="">-</a>
+                        <input name="itemNumBox" value="2" type="text" class="changenum">
+                        <a class="increase track" onclick="" href="">+</a>
+                    </div>
+                </td>
+                <td class="subtotal" >￥5.00</td>
+                <td class="deletepro"><a href="" class="del">删除</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-<%
-    }
-%>
+<!-- 通过数据库调用显示 -->
+
 <div style="width: 100%;text-align: center;">
 <img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png" >
 <span>您还没有加购任何商品，快去选购吧~</span>
 </div>
 <br><br>
-<div class="row countPrice col-md-10 col-md-offset-1">
+<div class="row countPrice col-md-12 ">
+    <div class="inCountPrice">
     <div class="countPrice1 " style="float: left">
         <input type="checkbox">&nbsp;全选&nbsp;
     </div>
@@ -69,13 +109,13 @@
         <button type="button" class="btn btn-warning" >结&nbsp;算</button>
     </div>
     <div class="countPrice1" style="float: right">
-        <span style="color: red"> &nbsp;10.00&nbsp;&nbsp;</span>
+        <span style="color: red"> &nbsp;5.00&nbsp;&nbsp;</span>
     </div>
     <div class="countPrice1" style="float: right">
         <span>总金额：</span>
     </div>
 
-
+    </div>
 </div>
 </body>
 </html>

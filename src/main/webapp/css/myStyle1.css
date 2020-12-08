@@ -34,10 +34,18 @@ ul li{ list-style: none; cursor: pointer;}
 	text-align: center;
 }
 .countPrice{
+	width: 100%;
 	background: #edcf1c;
+	text-align: center;
 }
 .countPrice1{
 	float: left;
+}
+.inCountPrice{
+
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
 }
 .shopCartContainer{
 	width: 80%;
@@ -45,7 +53,7 @@ ul li{ list-style: none; cursor: pointer;}
 .notfound{
 	align-content: center;
 	text-align: center;
-	border: 1px solid;
+	#border: 1px solid;
 }
 .searchPdt{
 	text-align: center
@@ -116,5 +124,51 @@ ul li{ list-style: none; cursor: pointer;}
 .restaurantName a{
 	width: 100%;
 	display: inline-block;
+	text-align: center;
+}
+.proname{
+	width:40%;
+	#text-align: center;
+}
+.proname2{
+	width: 40%;
+	text-align: center;
+}
+.proprice{
+	width: 13%;
+	text-align: center;
+}
+.procounts{
+	width: 9%;
+	text-align: center;
+}
+.subtotal{
+	width: 17%;
+	text-align: center;
+}
+.deletepro{
+	text-align: center;
+}
+.altcounts{
+	display: inline-block;
+
+}
+.changenum{
+	width: 30%;
+	text-align: center;
+}
+.cartProImg{
+	width: 10%;
+	text-align: center;
+}
+.pro1{
+	text-align: center;
+}
+.buyGoodsHead{
+	margin: 0 auto;
+	text-align: center;
+}
+.buyGoodsBody{
+	margin: 0 auto;
 	text-align: center;
 }

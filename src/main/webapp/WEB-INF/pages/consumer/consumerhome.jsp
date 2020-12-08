@@ -93,7 +93,7 @@
 </div>
 <br>
 <!-- 搜索 -->
-<div class="container">
+<div class="container searchPdt">
     <form id="selectForm" class="form-inline" method="post" action="${ctp}/home">
         <div class="form-group">
             <label for="name">菜品名</label>
@@ -109,6 +109,65 @@
         </div>
         <input type="submit" class="btn btn-default" value="搜索"/>
     </form>
+</div>
+<!--搜索选项框-->
+<div class="chooseType">
+    <div class="restaurantName">
+        <span class="cT">餐厅名：</span>
+        <div >
+            <ul id="chooseRest">
+                <li class="active"><a>全部</a></li>
+                <li><a>东苑餐厅</a></li>
+                <li><a>南苑餐厅</a></li>
+                <li><a>北苑餐厅</a></li>
+                <li><a>教苑餐厅</a></li>
+                <li><a>华苑餐厅</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="bussName">
+        <span class="cT">种类名：</span>
+        <div>
+            <ul id="chooseProduct">
+                <li><a>全部</a></li>
+                <li><a>水饺</a></li>
+                <li><a>套餐</a></li>
+                <li><a>麻辣烫</a></li>
+                <li><a>炒饭</a></li>
+                <li><a>饼</a></li>
+                <li><a>粥</a></li>
+                <li><a>灌汤包</a></li>
+                <li><a>月亮馍</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="priceRange">
+        <span class="cT">价格：</span>
+        <div>
+            <ul id="choosePrice">
+                <li><a>全部</a></li>
+                <li><a>0-3</a></li>
+                <li><a>3-5</a></li>
+                <li><a>5-8</a></li>
+                <li><a>8-12</a></li>
+                <li><a>12+</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="scoreRange">
+        <span class="cT">评分：</span>
+        <div>
+            <ul id="chooseScore">
+                <li><a>全部</a></li>
+                <li><a>0-2</a></li>
+                <li><a>2-4</a></li>
+                <li><a>4-6</a></li>
+                <li><a>6-8</a></li>
+                <li><a>8-10</a></li>
+            </ul>
+        </div>
+    </div>
+
 </div>
 <!-- 中部的餐品显示 -->
 <div class="middle container">
@@ -132,7 +191,7 @@
     </ul>
 </div>
 <!-- 分页条 -->
-<div class="middle container">
+<div class="middle container divPage" >
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <c:choose>

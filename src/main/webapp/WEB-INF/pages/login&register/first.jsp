@@ -85,11 +85,11 @@
     </script>
 
 </head>
-<body>
+<body background="${ctp}/images/login8.jpg">
 <header class="container" id="firstTitleArea">
-    <div class="row">
-        <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
-        <div class="col-md-2"><a href=""><h4>退出登录</h4></a></div>
+    <div class="row col-md-12">
+        <div class="col-md-10 "><h2>河南大学餐厅服务系统</h2></div>
+        <div class="col-md-2 frexit"><a href=""><h3>退出登录</h3></a></div>
     </div>
 </header>
 <div class="container">
@@ -194,6 +194,7 @@
                 <br>
             </div>
         </div>
+        <br>
         <br>
         <!-- 出错显示的信息框 -->
         <div class="alert alert-warning alert-dismissible" role="alert">

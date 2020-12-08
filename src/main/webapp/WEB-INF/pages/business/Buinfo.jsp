@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div id="TitleArea">商家个人信息</div>
+<div id="TitleArea">个人中心</div>
 <div class="container" id="TopMainArea">
     <div class="row">
         <div class="col-md-2 onepage">

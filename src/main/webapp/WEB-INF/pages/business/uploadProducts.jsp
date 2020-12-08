@@ -25,7 +25,7 @@
 <body>
 <!-- 页面标题 -->
 <h3 id="add_msg" hidden>${add_msg}</h3>
-<div id="TitleArea">更新新餐品</div>
+<div id="TitleArea">上传餐品</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
     <div class="row" id="mainArea">

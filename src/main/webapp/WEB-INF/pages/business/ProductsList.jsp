@@ -13,7 +13,7 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="TitleArea">菜品列表</div>
+<div id="TitleArea">餐品列表</div>
 <!-- 过滤条件 -->
 <div id="TopMainArea">
     <form action="${ctp}/business/" method="get">
@@ -30,6 +30,7 @@
             <td>价格</td>
             <td>餐品类型</td>
             <td>图片</td>
+            <td>评分</td>
             <td>操作</td>
         </tr>
         </thead>
@@ -45,6 +46,7 @@
                     <img border="0" width="20" height="20" src="${ctp}/${product.photosrc}?id=<%=Math.random()%>"
                          alt="暂无图片"/>&nbsp;
                 </td>
+                <td></td>
                 <td>
                     <a href="${ctp}/business/updateProducts?id=${product.id}">更新</a>
                     <a href="${ctp}/product/delete?id=${product.id}" onclick="return confirm('确定要删除吗？')">删除</a>

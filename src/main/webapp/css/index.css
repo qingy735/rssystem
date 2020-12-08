@@ -30,6 +30,9 @@ iframe{
     height: 5%;
     width: 100%;
 }
+#Main{
+    background: snow;
+}
 #mainArea{
     background: snow;
     height: 85%;

@@ -64,10 +64,24 @@ public class OrderTest {
             System.out.println("数量：" + order.getNum());
             System.out.println("总价：" + order.getTotalPrice());
             System.out.println("状态：" + order.getStatus());
-            System.out.println("=========================");
-            orderMapper.updateStatus(Integer.parseInt(order.getOrderId()), 1);
-            System.out.println("状态：" + order.getStatus());
         }
+    }
+
+    /**
+     * 根据订单id修改订单状态
+     */
+    @Test
+    public void testUpdateStatusByOid() {
+        Order order = orderMapper.selectByPrimaryKey(1);
+        orderMapper.updateStatusByOid(Integer.parseInt(order.getOrderId()), 1);
+    }
+
+    /**
+     * 根据订单上的商品id批量更改订单状态
+     */
+    @Test
+    public void testUpdateAllStatusByPid() {
+        orderMapper.updateAllStatusByPid(1, -1);
     }
 
     /**

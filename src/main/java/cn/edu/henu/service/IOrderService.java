@@ -25,4 +25,13 @@ public interface IOrderService {
      * @return
      */
     List<Order> selectByBid(Integer bid);
+
+    /**
+     * 根据pid批量更新状态
+     *
+     * @param pid
+     * @param status
+     * @return
+     */
+    int updateAllStatusByPid(Integer pid, int status);
 }

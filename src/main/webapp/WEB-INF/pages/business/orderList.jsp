@@ -34,12 +34,26 @@
                 <td>${order.orderId}</td>
                 <td>${order.consumer.name}</td>
                 <td>${order.orderTime}</td>
-                <td>${order.totalPrice}</td>
-                <td>${order.status == 0 ? "未结账":"已结账"}</td>
-                <td>
-                    <a href="${ctp}/business/orderDetail?oid=${order.orderId}">详细</a>
-                    <a href="${ctp}/business">结账</a>
-                </td>
+                <c:if test="${order.status == -1}">
+                    <td>没有记录</td>
+                </c:if>
+                <c:if test="${order.status != -1}">
+                    <td>${order.totalPrice}</td>
+                </c:if>
+
+                <c:choose>
+                    <c:when test="${order.status == -1}">
+                        <td>商品已下架</td>
+                    </c:when>
+                    <c:when test="${order.status != -1}">
+                        <td>${order.status == 0 ? "未结账":"已结账"}</td>
+                        <td>
+                            <a href="${ctp}/business/orderDetail?oid=${order.orderId}">详细</a>
+                            <a href="${ctp}/business">结账</a>
+                        </td>
+                    </c:when>
+                </c:choose>
+
             </tr>
         </c:forEach>
         </tbody>

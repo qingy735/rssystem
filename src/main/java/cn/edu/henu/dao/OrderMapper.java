@@ -27,12 +27,21 @@ public interface OrderMapper extends CrudDao<Order> {
     List<Order> selectByBid(Integer bid);
 
     /**
-     * 更改订单状态
+     * 根据订单id更改订单状态
      *
      * @param orderId
      * @param state
      * @return
      */
-    int updateStatus(@Param("id") Integer orderId, @Param("status") Integer state);
+    int updateStatusByOid(@Param("id") Integer orderId, @Param("status") Integer state);
+
+    /**
+     * 根据订单上的商品id批量更改订单状态
+     *
+     * @param pid
+     * @param state
+     * @return
+     */
+    int updateAllStatusByPid(@Param("pid") Integer pid, @Param("status") Integer state);
 
 }

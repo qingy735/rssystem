@@ -37,4 +37,14 @@ public class OrderServiceImpl implements IOrderService {
             return null;
         }
     }
+
+    @Override
+    public int updateAllStatusByPid(Integer pid, int status) {
+        try {
+            return orderMapper.updateAllStatusByPid(pid, status);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

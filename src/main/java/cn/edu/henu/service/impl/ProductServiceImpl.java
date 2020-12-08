@@ -2,6 +2,7 @@ package cn.edu.henu.service.impl;
 
 import cn.edu.henu.bean.PageBean;
 import cn.edu.henu.bean.Product;
+import cn.edu.henu.dao.OrderMapper;
 import cn.edu.henu.dao.ProductMapper;
 import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private OrderMapper orderMapper;
 
     void initPageBean(PageBean<Product> pageBean, Product product, Integer row) {
         pageBean.setRows(row);
@@ -109,7 +112,12 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public int deleteById(Integer id) {
         try {
-            return productMapper.deleteByPrimaryKey(id);
+            int i = productMapper.deleteByPrimaryKey(id);
+            if (i >= 1) {
+                // 设置对应订单状态为已下架即 status：-1
+                return orderMapper.updateAllStatusByPid(id, -1);
+            }
+            return -1;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

@@ -201,7 +201,7 @@
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
                 <span>&times;</span></button>
-            <strong id="LoginInfo"></strong>
+            <strong id="LoginInfo">${login_info}</strong>
         </div>
     </div>
 </div>

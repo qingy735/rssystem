@@ -28,12 +28,19 @@ public class LoginController {
     @RequestMapping("/business")
     public String toBusinessLoginPage(Model model, HttpSession session) {
         Integer busId = (Integer) session.getAttribute("busId");
+        String login_info = (String) session.getAttribute("login_info");
         // 若不为空肯定是大于0的
         if (busId != null) {
             model.addAttribute("busId", busId);
             // session移除busId
             session.removeAttribute("busId");
         }
+
+        if (login_info != null) {
+            model.addAttribute("login_info", login_info);
+            session.removeAttribute("login_info");
+        }
+
         return "login&register/first";
     }
 

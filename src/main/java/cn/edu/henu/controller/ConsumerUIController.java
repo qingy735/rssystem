@@ -34,6 +34,7 @@ public class ConsumerUIController {
     private IOrderService orderSer;
 
     final Integer ROW = 8;
+    private String username;
 
     @RequestMapping("/home")
     public String toConsumerHome(Product product, @RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
@@ -112,17 +113,25 @@ public class ConsumerUIController {
     }
 
     @RequestMapping("/PCenter")
-    public String toPCenter(@RequestParam(value = "p", defaultValue = "1") Integer p, String username, Model model) {
-        // 展示订单
-        PageHelper.startPage(p, 5);
-        System.out.println(username);
-        List<Order> orders = orderSer.selectByCid(username);
-        model.addAttribute("orders", orders);
+    public String toPCenter(HttpSession session) {
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            session.setAttribute("login_info", "请先登录");
+            return "redirect:/login/consumer";
+        }
         return "consumer/PCenter";
     }
 
     @RequestMapping("/pastOrder")
-    public String toPastOrder() {
+    public String toPastOrder(HttpSession session) {
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            session.setAttribute("login_info", "请先登录");
+            return "redirect:/login/business";
+        }
+        String username = consumer.getUsername();
+        List<Order> orders = orderSer.selectByCid(username);
+        session.setAttribute("conOrders", orders);
         return "consumer/pastOrder";
     }
 

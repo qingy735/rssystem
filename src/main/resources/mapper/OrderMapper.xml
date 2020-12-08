@@ -3,6 +3,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.henu.dao.OrderMapper">
 
+    <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Order">
+        <id column="orderId" property="orderId"/>
+        <result column="note" property="note"/>
+        <result column="code" property="code"/>
+        <result column="orderTime" property="orderTime"/>
+        <result column="status" property="status"/>
+        <result column="pnum" property="num"/>
+        <result column="discountUse" property="discountUse"/>
+        <result column="bid" property="bid"/>
+        <result column="pid" property="pid"/>
+    </resultMap>
+
     <resultMap id="ConsumerOrderMap" type="cn.edu.henu.bean.Order">
         <id column="orderId" property="orderId"/>
         <result column="note" property="note"/>
@@ -61,14 +73,23 @@
     </select>
 
     <!--
-        updateStatus
-        修改订单状态
+        updateStatusByOid
+        根据订单id修改订单状态
     -->
-    <update id="updateStatus">
+    <update id="updateStatusByOid">
         update orderinfo set status = #{status} where orderid = #{id}
-        <selectKey order="AFTER" keyProperty="status" keyColumn="status" resultType="Integer">
-            select status from orderinfo where orderid = #{id}
-        </selectKey>
     </update>
+
+    <!--
+        updateAllStatusByPid
+        根据订单上的商品id批量更改订单状态
+    -->
+    <update id="updateAllStatusByPid">
+        update orderinfo set status = #{status} where pid = #{pid}
+    </update>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select * from orderinfo where orderId = #{oid}
+    </select>
 
 </mapper>

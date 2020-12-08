@@ -5,7 +5,6 @@ import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.UUID;
 
 /**
@@ -28,7 +26,6 @@ public class ProductController {
     private IProductService productSer;
 
     @RequestMapping("/add")
-    @Transactional(rollbackFor = Exception.class)
     public String add(Product product, @RequestParam("imgSrc") MultipartFile file, HttpSession session) {
         if (file.isEmpty()) {
             session.setAttribute("addPInfo", "插入失败");
@@ -60,27 +57,26 @@ public class ProductController {
     }
 
     @RequestMapping("/delete")
-    @Transactional(rollbackFor = Exception.class)
     public String delete(Integer id, HttpSession session) throws Exception {
         Product product = productSer.selectSimpleById(id);
         int i = productSer.deleteById(id);
         if (i < 1) {
             session.setAttribute("delInfo", "删除失败");
+            throw new Exception();
         } else {
+            // 删除图片
             String photosrc = product.getPhotosrc();
             String realPath = session.getServletContext().getRealPath(photosrc);
             File file = new File(realPath);
             boolean delete = file.delete();
             if (!delete) {
                 session.setAttribute("delInfo", "删除失败");
-                throw new Exception();
             }
         }
         return "redirect:/business/productList";
     }
 
     @RequestMapping("/update")
-    @Transactional(rollbackFor = Exception.class)
     public String update(Product product, @RequestParam("imgSrc") MultipartFile file, HttpSession session) {
         if (!file.isEmpty()) {
             // 获取当前图片地址

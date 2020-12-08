@@ -13,7 +13,7 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="TitleArea">店铺订单列表</div>
+<div id="TitleArea">订单列表</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
     <table class="table table-hover" align="center">

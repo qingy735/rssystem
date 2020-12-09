@@ -92,4 +92,9 @@
         select * from orderinfo where orderId = #{oid}
     </select>
 
+    <insert id="insert">
+        insert into orderinfo(code,cid,note,bid,pid,pnum,discountuse,status)
+        values (#{code},#{cid},#{note},#{bid},#{pid},#{num},#{discountUse},0)
+    </insert>
+
 </mapper>

@@ -1,6 +1,7 @@
 package cn.edu.henu.service;
 
 import cn.edu.henu.bean.Order;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -27,6 +28,15 @@ public interface IOrderService {
     List<Order> selectByBid(Integer bid);
 
     /**
+     * 根据订单id更改订单状态
+     *
+     * @param orderId
+     * @param state
+     * @return
+     */
+    int updateStatusByOid(Integer orderId, int state);
+
+    /**
      * 根据pid批量更新状态
      *
      * @param pid
@@ -34,4 +44,12 @@ public interface IOrderService {
      * @return
      */
     int updateAllStatusByPid(Integer pid, int status);
+
+    /**
+     * 添加订单
+     *
+     * @param order
+     * @return
+     */
+    int addOrder(Order order);
 }

@@ -34,7 +34,6 @@ public class ConsumerUIController {
     private IOrderService orderSer;
 
     final Integer ROW = 8;
-    private String username;
 
     @RequestMapping("/home")
     public String toConsumerHome(Product product, @RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session) {
@@ -78,32 +77,22 @@ public class ConsumerUIController {
     }
 
     @RequestMapping("/details")
-    public String toDetails(String id, String name, HttpSession session, Model model) {
-        Integer username;
-        try {
-            name = new String(name.getBytes("iso-8859-1"), "utf-8");
-            System.out.println(name);
-            username = Integer.parseInt(id);
-            Business business = businessSer.getOneByKey(username);
-            if (business == null) {
-                model.addAttribute("selectBusInfo", -1);
-                return "consumer/details";
-            }
-            model.addAttribute("selectBusInfo", 1);
-            model.addAttribute("business", business);
-        } catch (Exception e) {
-            e.printStackTrace();
-            model.addAttribute("selectBusInfo", -1);
-            return "consumer/details";
+    public String toDetails(Integer pid, HttpSession session, Model model) {
+        String add_info = (String) session.getAttribute("add_info");
+        if (add_info != null) {
+            session.removeAttribute("add_info");
+            model.addAttribute("add_info", add_info);
         }
         List<Product> products = ((PageBean<Product>) session.getAttribute("pb")).getList();
-        System.out.println(products);
+        boolean flag = false;
         for (Product product : products) {
-            if (product.getBusiness().getUsername().equals(username) && product.getProductName().equals(name)) {
+            if (product.getId().equals(pid)) {
                 model.addAttribute("product", product);
+                flag = true;
                 break;
             }
         }
+        model.addAttribute("error_info", flag);
         return "consumer/details";
     }
 
@@ -116,6 +105,7 @@ public class ConsumerUIController {
     public String toPCenter(HttpSession session) {
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
+            session.setAttribute("history", "/PCenter");
             session.setAttribute("login_info", "请先登录");
             return "redirect:/login/consumer";
         }
@@ -127,7 +117,7 @@ public class ConsumerUIController {
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
             session.setAttribute("login_info", "请先登录");
-            return "redirect:/login/business";
+            return "redirect:/login/consumer";
         }
         String username = consumer.getUsername();
         List<Order> orders = orderSer.selectByCid(username);

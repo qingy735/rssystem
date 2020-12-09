@@ -73,7 +73,7 @@ public class OrderTest {
     @Test
     public void testUpdateStatusByOid() {
         Order order = orderMapper.selectByPrimaryKey(1);
-        orderMapper.updateStatusByOid(Integer.parseInt(order.getOrderId()), 1);
+        orderMapper.updateStatusByOid(order.getOrderId(), 1);
     }
 
     /**
@@ -98,5 +98,19 @@ public class OrderTest {
             System.out.println("总价：" + order.getTotalPrice());
             System.out.println("状态：" + order.getStatus());
         }
+    }
+
+    @Test
+    public void testInsert() {
+        Order order = new Order();
+        order.setCode("测试");
+        order.setCid("1812030001");
+        order.setNote("测试");
+        order.setBid(100001);
+        order.setPid(5);
+        order.setNum(3);
+        order.setDiscountUse(0);
+        int insert = orderMapper.insert(order);
+        System.out.println(insert);
     }
 }

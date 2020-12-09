@@ -12,7 +12,7 @@ public class Order implements Serializable {
     /**
      * 订单id 主键
      */
-    private String orderId;
+    private Integer orderId;
     /**
      * 备注
      */
@@ -98,11 +98,11 @@ public class Order implements Serializable {
         this.num = num;
     }
 
-    public String getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -171,7 +171,8 @@ public class Order implements Serializable {
     }
 
     public Float getTotalPrice() {
-        return num * getProduct().getProductPrice();
+        // 数量 * 单价 - 折扣
+        return num * getProduct().getProductPrice() - discountUse;
     }
 
     public void setTotalPrice(Float totalPrice) {

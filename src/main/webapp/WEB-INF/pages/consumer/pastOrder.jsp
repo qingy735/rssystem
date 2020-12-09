@@ -14,7 +14,26 @@
         $(function () {
             $(".checkout").click(function () {
                 var oid = $(this).attr("oid")
-                alert(oid)
+                var data = '{"orderId":"' + oid + '","status":' + 1 + '}'
+                $.ajax({
+                    url: "order/checkout",
+                    contentType: "application/json;charset=utf-8",
+                    data: data,
+                    type: "post",
+                    dataType: "json",
+                    success:
+                        function (data) {
+                            if (data.flag == 1) {
+                                location.reload()
+                            } else {
+                                alert("结账失败")
+                            }
+                        },
+                    error:
+                        function () {
+                            alert("结账时发生错误")
+                        }
+                })
                 return false;
             })
         })
@@ -69,6 +88,7 @@
                 <td>商品名称</td>
                 <td>单价</td>
                 <td>份数</td>
+                <td>优惠</td>
                 <td>总金额</td>
                 <td>餐厅名称</td>
                 <td>窗口名称</td>
@@ -90,12 +110,14 @@
                             <td>无</td>
                             <td>无</td>
                             <td>无</td>
+                            <td>无</td>
                             <td>商品已下架</td>
                         </c:when>
                         <c:when test="${order.status != -1}">
                             <td>${order.product.productName}</td>
                             <td>${order.product.productPrice}</td>
                             <td>${order.num}</td>
+                            <td>-￥${order.discountUse}</td>
                             <td>${order.totalPrice}</td>
                             <td>${order.business.rname}</td>
                             <td>${order.business.wname}</td>

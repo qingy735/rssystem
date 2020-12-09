@@ -114,7 +114,7 @@
 <div class="chooseType">
     <div class="restaurantName">
         <span class="cT">餐厅名：</span>
-        <div >
+        <div>
             <ul id="chooseRest">
                 <li class="active"><a>全部</a></li>
                 <li><a>东苑餐厅</a></li>
@@ -174,7 +174,7 @@
     <ul>
         <c:forEach items="${pb.list}" var="product">
             <li id="proinfo" class="col-md-offset-1 col-md-10 product">
-                <a href="${ctp}/details?id=${product.business.username}&name=${product.productName}">
+                <a href="${ctp}/details?pid=${product.id}">
                     <div class="col-md-4">
                         <img alt="无法显示" src="${ctp}/${product.photosrc}"
                              class="col-md-3 img-rounded img-responsive">
@@ -191,7 +191,7 @@
     </ul>
 </div>
 <!-- 分页条 -->
-<div class="middle container divPage" >
+<div class="middle container divPage">
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <c:choose>

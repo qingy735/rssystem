@@ -75,6 +75,10 @@ public class LoginIntercept implements HandlerInterceptor {
             return true;
         }
 
+        if (uri.contains("/home")) {
+            return true;
+        }
+
         request.getRequestDispatcher("/index.jsp").forward(request, response);
         return false;
     }

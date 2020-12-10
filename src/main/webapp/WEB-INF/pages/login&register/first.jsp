@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,40 +104,45 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="StLogin">
                 <br>
+                <c:if test="${history == null}">
                 <form id="stLoginForm" action="${ctp}/home" method="post">
-                    <div class="form-group">
-                        <label for="InputStNum">账号</label>
-                        <input type="text" class="form-control" id="InputStNum" name="username"
-                               placeholder="请输入学号/教职工号">
-                        <span class="help-block"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="InputStPwd">密码</label>
-                        <input type="password" class="form-control" id="InputStPwd" name="password"
-                               placeholder="请输入密码">
-                        <span class="help-block"></span>
-                    </div>
-                    <div class="form-inline">
-                        <label for="verifyCode1">验证码：</label>
-                        <input type="text" name="verifyCode" class="form-control" id="verifyCode1"
-                               placeholder="请输入验证码"
-                               style="width: 120px;"/>
-                        <a href="javascript:refreshCode()">
-                            <img src="${ctp}/login/checkCode" class="verifyCodeImg" alt="点击刷新"/>
-                        </a>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> 记住密码
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/consumer"
-                           role="button">注册</a>
-                        <input class="btn btn-success col-md-4 pull-right" type="submit" value="登录">
-                    </div>
-                    <br>
-                </form>
+                    </c:if>
+                    <c:if test="${history != null}">
+                    <form id="stLoginForm" action="${history}" method="post">
+                        </c:if>
+                        <div class="form-group">
+                            <label for="InputStNum">账号</label>
+                            <input type="text" class="form-control" id="InputStNum" name="username"
+                                   placeholder="请输入学号/教职工号">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="InputStPwd">密码</label>
+                            <input type="password" class="form-control" id="InputStPwd" name="password"
+                                   placeholder="请输入密码">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-inline">
+                            <label for="verifyCode1">验证码：</label>
+                            <input type="text" name="verifyCode" class="form-control" id="verifyCode1"
+                                   placeholder="请输入验证码"
+                                   style="width: 120px;"/>
+                            <a href="javascript:refreshCode()">
+                                <img src="${ctp}/login/checkCode" class="verifyCodeImg" alt="点击刷新"/>
+                            </a>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> 记住密码
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/consumer"
+                               role="button">注册</a>
+                            <input class="btn btn-success col-md-4 pull-right" type="submit" value="登录">
+                        </div>
+                        <br>
+                    </form>
             </div>
             <div class="tab-pane fade" id="BuLogin">
                 <br>

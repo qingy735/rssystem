@@ -8,9 +8,13 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -28,8 +32,6 @@ public class ConsumerUIController {
 
     @Autowired
     private IProductService productSer;
-    @Autowired
-    private IBusinessService businessSer;
     @Autowired
     private IOrderService orderSer;
 
@@ -83,7 +85,11 @@ public class ConsumerUIController {
             session.removeAttribute("add_info");
             model.addAttribute("add_info", add_info);
         }
-        List<Product> products = ((PageBean<Product>) session.getAttribute("pb")).getList();
+        PageBean<Product> pageBean = ((PageBean<Product>) session.getAttribute("pb"));
+        if (pageBean == null) {
+            return "redirect:/home";
+        }
+        List<Product> products = pageBean.getList();
         boolean flag = false;
         for (Product product : products) {
             if (product.getId().equals(pid)) {
@@ -97,15 +103,23 @@ public class ConsumerUIController {
     }
 
     @RequestMapping("/shopCart")
-    public String toShopCart() {
+    public String toShopCart(HttpSession session, HttpServletRequest request) {
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            String url = request.getRequestURL().toString();
+            session.setAttribute("history", url);
+            session.setAttribute("login_info", "请先登录");
+            return "redirect:/login/consumer";
+        }
         return "consumer/shopCart";
     }
 
     @RequestMapping("/PCenter")
-    public String toPCenter(HttpSession session) {
+    public String toPCenter(HttpSession session, HttpServletRequest request) {
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
-            session.setAttribute("history", "/PCenter");
+            String url = request.getRequestURL().toString();
+            session.setAttribute("history", url);
             session.setAttribute("login_info", "请先登录");
             return "redirect:/login/consumer";
         }
@@ -113,9 +127,11 @@ public class ConsumerUIController {
     }
 
     @RequestMapping("/pastOrder")
-    public String toPastOrder(HttpSession session) {
+    public String toPastOrder(HttpSession session, HttpServletRequest request) {
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
+            String url = request.getRequestURL().toString();
+            session.setAttribute("history", url);
             session.setAttribute("login_info", "请先登录");
             return "redirect:/login/consumer";
         }
@@ -126,17 +142,38 @@ public class ConsumerUIController {
     }
 
     @RequestMapping("/assessment")
-    public String toAssessment() {
+    public String toAssessment(HttpSession session, HttpServletRequest request) {
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            String url = request.getRequestURL().toString();
+            session.setAttribute("history", url);
+            session.setAttribute("login_info", "请先登录");
+            return "redirect:/login/consumer";
+        }
         return "consumer/assessment";
     }
 
     @RequestMapping("/discount")
-    public String toDiscount() {
+    public String toDiscount(HttpSession session, HttpServletRequest request) {
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            String url = request.getRequestURL().toString();
+            session.setAttribute("history", url);
+            session.setAttribute("login_info", "请先登录");
+            return "redirect:/login/consumer";
+        }
         return "consumer/discount";
     }
 
     @RequestMapping("/PInfo")
-    public String toPInfo() {
+    public String toPInfo(HttpSession session, HttpServletRequest request) {
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            String url = request.getRequestURL().toString();
+            session.setAttribute("history", url);
+            session.setAttribute("login_info", "请先登录");
+            return "redirect:/login/consumer";
+        }
         return "consumer/PInfo";
     }
 

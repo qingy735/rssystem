@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +30,7 @@ public class OrderController {
     private IOrderService orderSer;
 
     @RequestMapping("/add")
-    public String add(Order order, HttpSession session) {
+    public String add(Order order, HttpSession session, HttpServletRequest request) {
         Integer pid = order.getPid();
         // 获取店铺id
         List<Product> products = ((PageBean<Product>) session.getAttribute("pb")).getList();
@@ -41,6 +42,13 @@ public class OrderController {
         }
         // 获取消费者id
         Consumer conLoginInfo = (Consumer) session.getAttribute("conLoginInfo");
+        if (conLoginInfo == null) {
+            String url = request.getHeader("referer");
+            System.out.println(url);
+            session.setAttribute("history", url);
+            session.setAttribute("login_info", "请先登录");
+            return "redirect:/login/consumer";
+        }
         order.setCid(conLoginInfo.getUsername());
         // 获取取餐码
         String code = UUID.randomUUID().toString().replaceAll("-", "").substring(4, 8);

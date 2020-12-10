@@ -2,9 +2,12 @@ package cn.edu.henu.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,7 +53,13 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/consumer")
-    public String toConsumerLoginPage() {
+    public String toConsumerLoginPage(Model model, HttpSession session) {
+        String url = (String) session.getAttribute("history");
+        if (url != null) {
+            model.addAttribute("history", url);
+            // 删除history属性
+            session.removeAttribute("history");
+        }
         return "login&register/first";
     }
 

@@ -39,48 +39,29 @@ public class LoginIntercept implements HandlerInterceptor {
         Business business = (Business) request.getSession().getAttribute("busLoginInfo");
         Consumer consumer = (Consumer) request.getSession().getAttribute("conLoginInfo");
 
-        // 过滤登录和注册相关请求
         if (uri.contains(LOGIN_MSG) || uri.contains(REGISTER_MSG)) {
             return true;
         }
 
-        // 访问首页就放行
-        if (uri.contains("/first")) {
-            return true;
-        }
-
+        // 访问商家后台
         if (uri.contains("/business")) {
-            // 存在登录信息就放行
-            if (business != null) {
-                return true;
+            if (business == null) {
+                // 没有登陆信息
+                request.setAttribute("bus_login_msg", "请先登录");
+                request.getRequestDispatcher("/WEB-INF/pages/login&register/first.jsp").forward(request, response);
+                return false;
             }
-            // 没有登陆信息
-            request.setAttribute("bus_login_msg", "请先登录");
-            request.getRequestDispatcher("/WEB-INF/pages/login&register/first.jsp").forward(request, response);
-            return false;
         }
 
         if (uri.contains("/consumer")) {
-            // 存在登录信息就放行
-            if (consumer != null) {
-                return true;
+            if (consumer == null) {
+                // 没有登陆信息
+                request.setAttribute("con_login_msg", "请先登录");
+                request.getRequestDispatcher("/WEB-INF/pages/login&register/first.jsp").forward(request, response);
+                return false;
             }
-            // 没有登陆信息
-            request.setAttribute("con_login_msg", "请先登录");
-            request.getRequestDispatcher("/WEB-INF/pages/login&register/first.jsp").forward(request, response);
-            return false;
         }
-
-        if (consumer != null || business != null) {
-            return true;
-        }
-
-        if (uri.contains("/home")) {
-            return true;
-        }
-
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
-        return false;
+        return true;
     }
 
     /**

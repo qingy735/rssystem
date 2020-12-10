@@ -77,7 +77,7 @@ public class BusinessUIController {
     }
 
     @RequestMapping("/orderDetail")
-    public String toOrderDetail(String oid, @RequestHeader("Referer") String referer, Model model, HttpSession session) {
+    public String toOrderDetail(Integer oid, @RequestHeader("Referer") String referer, Model model, HttpSession session) {
         if (referer.contains("/orderList")) {
             List<Order> orders = (List<Order>) session.getAttribute("orders");
             if (orders != null) {

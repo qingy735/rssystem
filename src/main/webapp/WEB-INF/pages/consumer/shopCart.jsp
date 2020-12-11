@@ -15,44 +15,21 @@
 
 </script>
 <body>
-<header class="container">
-    <div class="row">
-        <div class="col-md-10"><h1>河南大学餐厅服务系统</h1></div>
-        <div class="col-md-2"><a href="${ctp}/consumer/logout"><h1>退出登录</h1></a></div>
-    </div>
-</header>
 <!-- 导航栏 -->
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${ctp}/shopCart">购物车</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li><a href="${ctp}/home">选择餐品</a></li>
-                <li><a href="${ctp}/PCenter">个人中心</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="head.jsp"/>
 <!-- 加购的餐品列表 -->
 <div class="pro1">
     <table width="80%" class="buyGoodsHead">
         <thead>
-            <tr>
-                <td width="5%">&nbsp;</td>
-                <th width="10%">&nbsp;</th>
-                <th class="proname"> 商品</th>
-                <th class="proprice"> 价格 </th>
-                <th class="procounts"> 购买数量 </th>
-                <th class="subtotal"> 小计 </th>
-                <th class="deletepro" > 删除 </th>
-            </tr>
+        <tr>
+            <td width="5%">&nbsp;</td>
+            <th width="10%">&nbsp;</th>
+            <th class="proname"> 商品</th>
+            <th class="proprice"> 价格</th>
+            <th class="procounts"> 购买数量</th>
+            <th class="subtotal"> 小计</th>
+            <th class="deletepro"> 删除</th>
+        </tr>
         </thead>
     </table>
     <div class="buyGoods">
@@ -80,7 +57,7 @@
                         <a class="increase track" onclick="" href="">+</a>
                     </div>
                 </td>
-                <td class="subtotal" >￥5.00</td>
+                <td class="subtotal">￥5.00</td>
                 <td class="deletepro"><a href="" class="del">删除</a></td>
             </tr>
             </tbody>
@@ -90,30 +67,30 @@
 <!-- 通过数据库调用显示 -->
 
 <div style="width: 100%;text-align: center;">
-<img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png" >
-<span>您还没有加购任何商品，快去选购吧~</span>
+    <img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png">
+    <span>您还没有加购任何商品，快去选购吧~</span>
 </div>
 <br><br>
 <div class="row countPrice col-md-12 ">
     <div class="inCountPrice">
-    <div class="countPrice1 " style="float: left">
-        <input type="checkbox">&nbsp;全选&nbsp;
-    </div>
-    <div class="countPrice1" style="float: left">
-        <a >删除&nbsp;</a>
-    </div>
-    <div class="countPrice1 form-inline" style="float: left">
-                <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
-    </div>
-    <div style="float: right">
-        <button type="button" class="btn btn-warning" >结&nbsp;算</button>
-    </div>
-    <div class="countPrice1" style="float: right">
-        <span style="color: red"> &nbsp;5.00&nbsp;&nbsp;</span>
-    </div>
-    <div class="countPrice1" style="float: right">
-        <span>总金额：</span>
-    </div>
+        <div class="countPrice1 " style="float: left">
+            <input type="checkbox">&nbsp;全选&nbsp;
+        </div>
+        <div class="countPrice1" style="float: left">
+            <a>删除&nbsp;</a>
+        </div>
+        <div class="countPrice1 form-inline" style="float: left">
+            <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
+        </div>
+        <div style="float: right">
+            <button type="button" class="btn btn-warning">结&nbsp;算</button>
+        </div>
+        <div class="countPrice1" style="float: right">
+            <span style="color: red"> &nbsp;5.00&nbsp;&nbsp;</span>
+        </div>
+        <div class="countPrice1" style="float: right">
+            <span>总金额：</span>
+        </div>
 
     </div>
 </div>

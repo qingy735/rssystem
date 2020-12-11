@@ -1,6 +1,5 @@
 package cn.edu.henu.controller;
 
-import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Consumer;
 import cn.edu.henu.service.IConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;

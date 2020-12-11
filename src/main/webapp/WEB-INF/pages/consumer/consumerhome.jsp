@@ -26,32 +26,7 @@
 
 </head>
 <body>
-<header class="container">
-    <div class="row">
-        <div class="col-md-10"><h1>河南大学餐厅服务系统</h1></div>
-        <div class="col-md-2"><a href="${ctp}/consumer/logout"><h1>退出登录</h1></a></div>
-    </div>
-</header>
-<!-- 导航栏 -->
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="${ctp}/home">首页</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="${ctp}/home">选择餐品</a></li>
-                <li><a href="${ctp}/shopCart">购物车</a></li>
-                <li><a href="${ctp}/PCenter">个人中心</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="head.jsp"/>
 <!-- 轮播图 -->
 <div id="myCarousel" class="carousel slide">
     <!-- 轮播（Carousel）指标 -->
@@ -167,7 +142,6 @@
             </ul>
         </div>
     </div>
-
 </div>
 <!-- 中部的餐品显示 -->
 <div class="middle container">

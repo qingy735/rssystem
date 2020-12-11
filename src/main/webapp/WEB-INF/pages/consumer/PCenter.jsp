@@ -12,21 +12,10 @@
     <title>个人中心</title>
 </head>
 <body>
-<header class="container">
-    <div class="row">
-        <div class="col-md-10"><h1>河南大学餐厅服务系统</h1></div>
-        <div class="col-md-2"><a href="${ctp}/consumer/logout"><h1>退出登录</h1></a></div>
-    </div>
-</header>
 <!-- 导航栏 -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand active" href="${ctp}/PCenter">个人中心</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -47,6 +36,9 @@
                         <li><a href="${ctp}/PInfo">个人信息</a></li>
                     </ul>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="${ctp}/consumer/logout">退出登录</a></li>
             </ul>
         </div>
     </div>

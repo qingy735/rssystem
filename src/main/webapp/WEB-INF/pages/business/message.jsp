@@ -18,8 +18,8 @@
 <div id="TopMainArea">
 <div>
     <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#CommentMe" class="changeTab" data-toggle="tab">评论通知</a></li>
-        <li><a href="#OrderMe" class="changeTab" data-toggle="tab">订单通知</a></li>
+        <li class="active"><a href="#CommentMe" class="changeTab" data-toggle="tab">评论通知<span class="badge">2</span></a></li>
+        <li><a href="#OrderMe" class="changeTab" data-toggle="tab">订单通知<span class="badge">1</span></a></li>
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="CommentMe">

@@ -13,11 +13,10 @@
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
-<body>
-<header class="container" id="firstTitleArea" >
+<body background="${ctp}/images/login8.jpg">
+<header class="container" id="firstTitleArea">
     <div class="row">
-        <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
-        <div class="col-md-2"><a href=""><h4>退出登录</h4></a></div>
+        <div><h2>河南大学餐厅服务系统</h2></div>
     </div>
 </header>
 <div>
@@ -81,7 +80,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <input type="submit" value="注册">
                 </div>
             </div>

@@ -62,6 +62,16 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public List<Product> getAllByBidAndName(Integer bid, String name) {
+        try {
+            return productMapper.getAllByBidAndName(bid, name);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public int getTotal(Product product) {
         try {
             return productMapper.selectTotal(product);

@@ -4,6 +4,7 @@ import cn.edu.henu.bean.*;
 import cn.edu.henu.service.IBusinessService;
 import cn.edu.henu.service.IOrderService;
 import cn.edu.henu.service.IProductService;
+import cn.edu.henu.service.IShopService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,8 @@ public class ConsumerUIController {
     private IProductService productSer;
     @Autowired
     private IOrderService orderSer;
+    @Autowired
+    private IShopService shopSer;
 
     final Integer ROW = 8;
 
@@ -104,6 +107,7 @@ public class ConsumerUIController {
 
     @RequestMapping("/shopCart")
     public String toShopCart(HttpSession session, HttpServletRequest request) {
+
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
             String url = request.getRequestURL().toString();
@@ -111,6 +115,15 @@ public class ConsumerUIController {
             session.setAttribute("login_info", "请先登录");
             return "redirect:/login/consumer";
         }
+
+        String errorInfo = (String) session.getAttribute("errorInfo");
+        if (errorInfo != null) {
+            request.setAttribute("errorInfo", errorInfo);
+        }
+
+        String username = consumer.getUsername();
+        List<Shop> shops = shopSer.selectByCid(username);
+        session.setAttribute("shops", shops);
         return "consumer/shopCart";
     }
 

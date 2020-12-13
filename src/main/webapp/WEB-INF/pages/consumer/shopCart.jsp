@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,62 +16,69 @@
 
 </script>
 <body>
+
+<c:if test="${requestScope.errorInfo != null}">
+    <script>
+        alert(<%=request.getAttribute("errorInfo")%>)
+    </script>
+</c:if>
+
 <!-- 导航栏 -->
 <jsp:include page="head.jsp"/>
 <!-- 加购的餐品列表 -->
-<div class="pro1">
-    <table width="80%" class="buyGoodsHead">
-        <thead>
-        <tr>
-            <td width="5%">&nbsp;</td>
-            <th width="10%">&nbsp;</th>
-            <th class="proname"> 商品</th>
-            <th class="proprice"> 价格</th>
-            <th class="procounts"> 购买数量</th>
-            <th class="subtotal"> 小计</th>
-            <th class="deletepro"> 删除</th>
-        </tr>
-        </thead>
-    </table>
-    <div class="buyGoods">
-        <table width="80%" class="buyGoodsBody">
-            <tbody>
+<c:if test="${sessionScope.shops == null}">
+    <div style="width: 100%;text-align: center;">
+        <img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png">
+        <span>您还没有加购任何商品，快去选购吧~</span>
+    </div>
+</c:if>
+<c:if test="${sessionScope.shops != null}">
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
             <tr>
-                <td width="5%"><input type="checkbox"></td>
-                <td class="cartProImg">
-                    <a><!--跳转商品详情-->
-                        <img alt="生菜" style="width: 50%" src="${ctp}/images/food3.jpg">
-                    </a>
-                </td>
-                <td class="proname2">
-                    <a><!--跳转商品详情-->
-                        生菜
-                    </a>
-                </td>
-                <td class="proprice">
-                    ¥5.0
-                </td>
-                <td class="procounts">
-                    <div class="altcounts">
-                        <a class="decrease" onclick="" href="">-</a>
-                        <input name="itemNumBox" value="2" type="text" class="changenum">
-                        <a class="increase track" onclick="" href="">+</a>
-                    </div>
-                </td>
-                <td class="subtotal">￥5.00</td>
-                <td class="deletepro"><a href="" class="del">删除</a></td>
+                <td>&nbsp;</td>
+                <th>商品</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>优惠券</th>
+                <th>小计</th>
+                <th>操作</th>
             </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${sessionScope.shops}" var="shop">
+                <tr style="text-align:center">
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td style="width: 20%;height: 20%">
+                        <a><!--跳转商品详情-->
+                            <img alt="生菜" style="width: 50%" src="${ctp}/${shop.product.photosrc}">
+                        </a>
+                    </td>
+                    <td>${shop.product.productPrice}</td>
+                    <td>
+                        <form action="${ctp}/shop/update?id=${shop.id}" method="post">
+                            <a class="decrease" onclick="" href="">-</a>
+                            <input name="pnum" value="${shop.pnum}" type="text" class="changenum">
+                            <a onclick="" href="">+</a><br>
+                            <input type="submit" value="修改">
+                        </form>
+                    </td>
+                    <td>-${shop.discountuse}</td>
+                    <td>${shop.totalPrice}</td>
+                    <td>
+                        <a href="${ctp}/shop/checkout?id=${shop.id}" class="del">结账</a>
+                        <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
-</div>
-<!-- 通过数据库调用显示 -->
+</c:if>
 
-<div style="width: 100%;text-align: center;">
-    <img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png">
-    <span>您还没有加购任何商品，快去选购吧~</span>
-</div>
-<br><br>
 <div class="row countPrice col-md-12 ">
     <div class="inCountPrice">
         <div class="countPrice1 " style="float: left">

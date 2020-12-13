@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -62,16 +64,25 @@ public class BusinessUIController {
     }
 
     @RequestMapping("/productList")
-    public String toProductList(HttpSession session, Model model) {
+    public String toProductList(String name, HttpSession session, Model model) throws UnsupportedEncodingException {
         Business business = (Business) session.getAttribute("busLoginInfo");
-        if (business != null) {
-            List<Product> products = productSer.getAllByBid(business.getUsername());
-            session.setAttribute("products", products);
-            String delInfo = (String) session.getAttribute("delInfo");
-            if (delInfo != null) {
-                session.removeAttribute("delInfo");
-                model.addAttribute("delInfo", delInfo);
-            }
+        if (business == null) {
+            return "redirect:/login/business";
+        }
+        if ("".equals(name)) {
+            name = null;
+        }
+        if (name != null) {
+            name = new String(name.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
+            model.addAttribute("name", name);
+            name = "%" + name + "%";
+        }
+        List<Product> products = productSer.getAllByBidAndName(business.getUsername(), name);
+        session.setAttribute("products", products);
+        String delInfo = (String) session.getAttribute("delInfo");
+        if (delInfo != null) {
+            session.removeAttribute("delInfo");
+            model.addAttribute("delInfo", delInfo);
         }
         return "/business/ProductsList";
     }

@@ -29,6 +29,15 @@ public interface IProductService {
     List<Product> getAllByBid(Integer bid);
 
     /**
+     * 根据商家id和商品名称查询商品
+     *
+     * @param bid
+     * @param name
+     * @return
+     */
+    List<Product> getAllByBidAndName(Integer bid, String name);
+
+    /**
      * 查询一共多少条数据
      *
      * @param product

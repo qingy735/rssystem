@@ -10,6 +10,7 @@
         <result property="productPrice" column="price"/>
         <result property="photosrc" column="src"/>
         <result property="productGrade" column="grade"/>
+        <result property="bid" column="bid"/>
     </resultMap>
 
     <resultMap id="AssociationResultMap" type="cn.edu.henu.bean.Product">
@@ -68,6 +69,19 @@
         select p.*
         from productinfo p,businessinfo b
         where b.username=#{bid} and b.username= p.bid
+    </select>
+
+    <!--
+        根据商家id和条件获取商品信息
+        getAllByBidAndPName
+    -->
+    <select id="getAllByBidAndName" resultMap="BaseResultMap">
+        select p.*
+        from productinfo p,businessinfo b
+        where b.username = #{bid}
+        <if test="pname != null">
+            and p.name like #{pname}
+        </if>
     </select>
 
     <!--

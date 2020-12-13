@@ -1,7 +1,6 @@
 package cn.edu.henu.test;
 
 import cn.edu.henu.bean.Order;
-import cn.edu.henu.bean.Product;
 import cn.edu.henu.dao.OrderMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

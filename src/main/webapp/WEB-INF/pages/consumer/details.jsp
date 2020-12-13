@@ -29,11 +29,10 @@
 <c:if test="${error_info == false}">
     <h3>商品信息获取失败</h3>
 </c:if>
-<form action="${ctp}/order/add?pid=${product.id}" method="post">
-    份数：<input type="number" name="num"><br>
-    备注：<input type="text" name="note"><br>
-    折扣：<input type="number" name="discountUse"><br>
-    <input type="submit" value="提交订单">
+<form action="${ctp}/shop/add?pid=${product.id}&bid=${product.business.username}" method="post">
+    份数：<input type="number" name="pnum"><br>
+    折扣：<input type="number" name="discountuse"><br>
+    <input type="submit" value="加入购物车">
 </form>
 </body>
 </html>

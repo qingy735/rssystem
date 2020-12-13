@@ -76,15 +76,12 @@
                 return false;
             })
         }
-
         $(function () {
             stLoginAjax()
             buLoginAjax()
             admLoginAjax()
         })
-
     </script>
-
 </head>
 <body background="${ctp}/images/login8.jpg">
 <header class="container" id="firstTitleArea">

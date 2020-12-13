@@ -56,7 +56,7 @@ public class AdminController {
         if (admLoginInfo == null) {
             return "redirect:/login/admin";
         }
-        return "success";
+        return "admin/adminhome";
     }
 
 }

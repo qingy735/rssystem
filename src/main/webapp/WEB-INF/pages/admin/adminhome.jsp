@@ -42,7 +42,7 @@
             </header>
         </div>
         <div style="height: 85%;width: 100% ;border: solid">
-            <iframe name="mainFrame" src="${ctp}/admin/commentAd" frameborder="no"></iframe>
+            <iframe name="mainFrame" src="${ctp}/admin/conAdmin" frameborder="no"></iframe>
         </div>
     </div>
 </div>

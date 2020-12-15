@@ -19,24 +19,35 @@
     <table class="table table-hover" align="center">
         <thead>
         <tr align="center" valign="middle" id="TableTitle">
-            <td>订单编号</td>
-            <td>消费者</td>
-            <td>下单日期</td>
-            <td>总金额</td>
-            <td>状态</td>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>姓名</td>
+            <td>餐厅名</td>
+            <td>窗口号</td>
+            <td>窗口名</td>
+            <td>电话号码</td>
+            <td>评分</td>
             <td>操作</td>
         </tr>
         </thead>
         <!--显示数据列表 -->
         <tbody id="orderListData">
+        <% for(int i=0; i<=5;i++){
+        %>
         <tr height="60" align="center">
+            <td>100001</td>
+            <td>12345</td>
+            <td>王大福</td>
+            <td>东苑餐厅</td>
             <td>1</td>
-            <td>xxx</td>
-            <td>xxxxxxxxxxxx</td>
-            <td>xxx</td>
-            <td>xx</td>
-            <td>xx</td>
+            <td>肯德基</td>
+            <td>12345678900</td>
+            <td>-1</td>
+            <td>
+                <a onclick="return confirm('确定要删除吗？')" class="btn">删除</a>
+            </td>
         </tr>
+        <%}%>
         </tbody>
     </table>
 </div>

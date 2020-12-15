@@ -53,56 +53,33 @@
                 <td>订单编号</td>
                 <td>取餐码</td>
                 <td>下单日期</td>
-                <td>商品名称</td>
-                <td>单价</td>
-                <td>份数</td>
-                <td>优惠</td>
-                <td>总金额</td>
-                <td>餐厅名称</td>
-                <td>窗口名称</td>
+                <td>商家id</td>
+                <td>备注</td>
+                <td>总额</td>
                 <td>状态</td>
+                <td>&nbsp;&nbsp;</td>
             </tr>
             </thead>
-            <!--显示数据列表 -->
-            <tbody id="orderListData">
             <c:forEach items="${sessionScope.conOrders}" var="order">
+                <!--显示数据列表 -->
+                <tbody id="orderListData">
                 <tr height="60" align="center">
-                    <td>${order.orderId}</td>
+                    <td>${order.id}</td>
                     <td>${order.code}</td>
                     <td>${order.orderTime}</td>
-                    <c:choose>
-                        <c:when test="${order.status == -1}">
-                            <td>无</td>
-                            <td>无</td>
-                            <td>无</td>
-                            <td>无</td>
-                            <td>无</td>
-                            <td>无</td>
-                            <td>无</td>
-                            <td>商品已下架</td>
-                        </c:when>
-                        <c:when test="${order.status != -1}">
-                            <td>${order.product.productName}</td>
-                            <td>${order.product.productPrice}</td>
-                            <td>${order.num}</td>
-                            <td>-￥${order.discountUse}</td>
-                            <td>${order.totalPrice}</td>
-                            <td>${order.business.rname}</td>
-                            <td>${order.business.wname}</td>
-                            <td>
-                                <c:if test="${order.status == 0}">
-                                    未结账<br>
-                                    <a oid="${order.orderId}" class='checkout'>去结账</a>
-                                </c:if>
-                                <c:if test="${order.status == 1}">
-                                    已结账
-                                </c:if>
-                            </td>
-                        </c:when>
-                    </c:choose>
+                    <td>${order.bid}</td>
+                    <td>${order.note}</td>
+                    <td>${order.total}</td>
+                    <c:if test="${order.status == 0}">
+                        <td>未结账</td>
+                    </c:if>
+                    <c:if test="${order.status == 1}">
+                        <td>已结账</td>
+                    </c:if>
+                    <td><a href="${ctp}/pastOrder/detail?oid=${order.id}">查看详情</a></td>
                 </tr>
+                </tbody>
             </c:forEach>
-            </tbody>
         </table>
     </c:if>
     <c:if test="${sessionScope.conOrders == null}">

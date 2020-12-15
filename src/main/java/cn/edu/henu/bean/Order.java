@@ -6,13 +6,21 @@ import java.util.List;
 
 /**
  * @author Qing_Y
- * @date 2020-11-27 16:14
+ * @date 2020-12-13 19:57
  */
 public class Order implements Serializable {
     /**
-     * 订单id 主键
+     * 订单id
      */
-    private Integer orderId;
+    private Integer id;
+    /**
+     * 消费者id
+     */
+    private String cid;
+    /**
+     * 商家id
+     */
+    private Integer bid;
     /**
      * 备注
      */
@@ -22,7 +30,7 @@ public class Order implements Serializable {
      */
     private String code;
     /**
-     * 下单时间
+     * 订餐日期
      */
     private Date orderTime;
     /**
@@ -30,41 +38,29 @@ public class Order implements Serializable {
      */
     private Integer status;
     /**
-     * 优惠券使用
+     * 总价
      */
-    private Integer discountUse;
-    /**
-     * 消费者id
-     */
-    private String cid;
-    /**
-     * 消费者信息
-     */
-    private Consumer consumer;
-    /**
-     * 商品id
-     */
-    private Integer pid;
+    private Float total;
     /**
      * 商品信息
      */
-    private Product product;
-    /**
-     * 商家id
-     */
-    private Integer bid;
-    /**
-     * 商家信息
-     */
-    private Business business;
-    /**
-     * 数量
-     */
-    private Integer num;
-    /**
-     * 总价
-     */
-    private Float totalPrice;
+    private List<OrderDetail> details;
+
+    public List<OrderDetail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<OrderDetail> details) {
+        this.details = details;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getCid() {
         return cid;
@@ -74,36 +70,12 @@ public class Order implements Serializable {
         this.cid = cid;
     }
 
-    public Integer getPid() {
-        return pid;
-    }
-
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
-
     public Integer getBid() {
         return bid;
     }
 
     public void setBid(Integer bid) {
         this.bid = bid;
-    }
-
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
     }
 
     public String getNote() {
@@ -138,64 +110,33 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public Integer getDiscountUse() {
-        return discountUse;
+    public Float getTotal() {
+        total = 0f;
+        if (getDetails() != null) {
+            for (OrderDetail detail : getDetails()) {
+                System.out.println(detail);
+                total += detail.getProduct().getProductPrice() * detail.getNum() - detail.getDiscount();
+            }
+        }
+        return total;
     }
 
-    public void setDiscountUse(Integer discountUse) {
-        this.discountUse = discountUse;
-    }
-
-    public Consumer getConsumer() {
-        return consumer;
-    }
-
-    public void setConsumer(Consumer consumer) {
-        this.consumer = consumer;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Business getBusiness() {
-        return business;
-    }
-
-    public void setBusiness(Business business) {
-        this.business = business;
-    }
-
-    public Float getTotalPrice() {
-        // 数量 * 单价 - 折扣
-        return num * getProduct().getProductPrice() - discountUse;
-    }
-
-    public void setTotalPrice(Float totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotal(Float total) {
+        this.total = total;
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "orderId='" + orderId + '\'' +
+                "id=" + id +
+                ", cid='" + cid + '\'' +
+                ", bid=" + bid +
                 ", note='" + note + '\'' +
                 ", code='" + code + '\'' +
                 ", orderTime=" + orderTime +
                 ", status=" + status +
-                ", discountUse=" + discountUse +
-                ", cid='" + cid + '\'' +
-                ", consumer=" + consumer +
-                ", pid=" + pid +
-                ", product=" + product +
-                ", bid=" + bid +
-                ", business=" + business +
-                ", num=" + num +
-                ", totalPrice=" + totalPrice +
+                ", total=" + getTotal() +
+                ", details=" + details +
                 '}';
     }
 }

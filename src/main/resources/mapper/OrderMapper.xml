@@ -4,72 +4,54 @@
 <mapper namespace="cn.edu.henu.dao.OrderMapper">
 
     <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Order">
-        <id column="orderId" property="orderId"/>
-        <result column="note" property="note"/>
-        <result column="code" property="code"/>
-        <result column="orderTime" property="orderTime"/>
-        <result column="status" property="status"/>
-        <result column="pnum" property="num"/>
-        <result column="discountUse" property="discountUse"/>
-        <result column="bid" property="bid"/>
-        <result column="pid" property="pid"/>
-    </resultMap>
-
-    <resultMap id="ConsumerOrderMap" type="cn.edu.henu.bean.Order">
-        <id column="orderId" property="orderId"/>
-        <result column="note" property="note"/>
-        <result column="code" property="code"/>
-        <result column="orderTime" property="orderTime"/>
-        <result column="status" property="status"/>
-        <result column="pnum" property="num"/>
-        <result column="discountUse" property="discountUse"/>
-        <result column="bid" property="bid"/>
-        <result column="pid" property="pid"/>
-        <association property="product" column="pid"
-                     javaType="cn.edu.henu.bean.Product"
-                     select="cn.edu.henu.dao.ProductMapper.selectSimpleById">
-        </association>
-        <association property="business" column="bid"
-                     javaType="cn.edu.henu.bean.Business"
-                     select="cn.edu.henu.dao.BusinessMapper.selectByPrimaryKey">
-        </association>
-    </resultMap>
-
-    <resultMap id="BusinessOrderMap" type="cn.edu.henu.bean.Order">
-        <id column="orderId" property="orderId"/>
-        <result column="note" property="note"/>
-        <result column="code" property="code"/>
-        <result column="orderTime" property="orderTime"/>
-        <result column="status" property="status"/>
-        <result column="pnum" property="num"/>
-        <result column="discountUse" property="discountUse"/>
+        <id column="orderid" property="id"/>
         <result column="cid" property="cid"/>
+        <result column="bid" property="bid"/>
+        <result column="note" property="note"/>
+        <result column="code" property="code"/>
+        <result column="status" property="status"/>
+        <result column="ordertime" property="orderTime"/>
+    </resultMap>
+
+    <resultMap id="OrderDetailMap" type="cn.edu.henu.bean.OrderDetail">
+        <id column="id" property="id"/>
+        <result column="orderid" property="oid"/>
         <result column="pid" property="pid"/>
-        <association property="consumer" column="cid"
-                     javaType="cn.edu.henu.bean.Consumer"
-                     select="cn.edu.henu.dao.ConsumerMapper.selectByPrimaryKey">
-        </association>
-        <association property="product" column="pid"
-                     javaType="cn.edu.henu.bean.Product"
-                     select="cn.edu.henu.dao.ProductMapper.selectSimpleById">
+        <result column="num" property="num"/>
+        <result column="discount" property="discount"/>
+        <association property="product" javaType="cn.edu.henu.bean.Product">
+            <id column="pid" property="id"/>
+            <result column="name" property="productName"/>
+            <result column="introduce" property="productIntr"/>
+            <result column="price" property="productPrice"/>
+            <result column="src" property="photosrc"/>
+            <result column="grade" property="productGrade"/>
         </association>
     </resultMap>
 
-    <!--查询指定cid的用户的所有订单
-        传递的id等于order表中的cid
-        order表的cid等于consumer表的username
-        查询到的商家id和产品名称联合查询product表
-    -->
-    <select id="selectByCid" resultMap="ConsumerOrderMap">
-        select * from orderinfo where cid= #{cid}
+    <!--查询指定cid的用户的所有订单-->
+    <select id="selectByCid" resultMap="BaseResultMap">
+        select * from orderinfo2 where cid= #{cid}
+    </select>
+
+    <!--查询指定oid的用户的总订单-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select * from orderinfo2 where orderId = #{oid}
+    </select>
+
+    <!--查询指定oid的用户的所有订单-->
+    <select id="selectByOid" resultMap="OrderDetailMap">
+        select od.*,p.*
+        from order_detail od,productinfo p
+        where orderid=#{oid} and p.id = od.pid
     </select>
 
     <!--
         根据商家id查询所有订单
         selectByBid
     -->
-    <select id="selectByBid" resultMap="BusinessOrderMap">
-        select * from orderinfo where bid = #{bid}
+    <select id="selectByBid" resultMap="BaseResultMap">
+        select * from orderinfo2 where bid = #{bid}
     </select>
 
     <!--
@@ -77,24 +59,17 @@
         根据订单id修改订单状态
     -->
     <update id="updateStatusByOid">
-        update orderinfo set status = #{status} where orderid = #{id}
+        update orderinfo2 set status = #{status} where orderid = #{id}
     </update>
 
-    <!--
-        updateAllStatusByPid
-        根据订单上的商品id批量更改订单状态
-    -->
-    <update id="updateAllStatusByPid">
-        update orderinfo set status = #{status} where pid = #{pid}
-    </update>
+    <insert id="insert" useGeneratedKeys="true" keyColumn="orderid" keyProperty="id">
+        insert into orderinfo2(code,cid,note,bid,status)
+        values (#{code},#{cid},#{note},#{bid},0)
+    </insert>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
-        select * from orderinfo where orderId = #{oid}
-    </select>
-
-    <insert id="insert">
-        insert into orderinfo(code,cid,note,bid,pid,pnum,discountuse,status)
-        values (#{code},#{cid},#{note},#{bid},#{pid},#{num},#{discountUse},0)
+    <insert id="insertToDetail">
+        insert into order_detail(orderid,pid,num,discount)
+        values (#{oid},#{pid},#{num},#{discount})
     </insert>
 
 </mapper>

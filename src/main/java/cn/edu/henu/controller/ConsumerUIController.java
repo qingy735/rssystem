@@ -1,22 +1,17 @@
 package cn.edu.henu.controller;
 
 import cn.edu.henu.bean.*;
-import cn.edu.henu.service.IBusinessService;
-import cn.edu.henu.service.IOrderService;
-import cn.edu.henu.service.IProductService;
-import cn.edu.henu.service.IShopService;
+import cn.edu.henu.service.*;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +102,6 @@ public class ConsumerUIController {
 
     @RequestMapping("/shopCart")
     public String toShopCart(HttpSession session, HttpServletRequest request) {
-
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
             String url = request.getRequestURL().toString();
@@ -152,6 +146,30 @@ public class ConsumerUIController {
         List<Order> orders = orderSer.selectByCid(username);
         session.setAttribute("conOrders", orders);
         return "consumer/pastOrder";
+    }
+
+    @RequestMapping("/pastOrder/detail")
+    public String toOrderDetail(Integer oid, Model model, HttpServletRequest request) {
+        String referer = request.getHeader("REFERER");
+        System.out.println(referer);
+        if (referer == null || !referer.contains("pastOrder")) {
+            return "redirect:/pastOrder";
+        }
+        Order order = orderSer.selectByPrimaryKey(oid);
+        List<OrderDetail> details = orderSer.selectByOid(oid);
+        if (details != null) {
+            for (OrderDetail detail : details) {
+                Product product = productSer.selectById(detail.getPid());
+                detail.getProduct().setPhotosrc(product.getPhotosrc());
+                detail.getProduct().setProductName(product.getProductName());
+                detail.getProduct().setBusiness(product.getBusiness());
+                detail.getProduct().setProductPrice(product.getProductPrice());
+
+            }
+        }
+        model.addAttribute("details", details);
+        model.addAttribute("order", order);
+        return "consumer/orderDetail";
     }
 
     @RequestMapping("/assessment")

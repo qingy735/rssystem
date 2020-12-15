@@ -1,7 +1,9 @@
 package cn.edu.henu.test;
 
 import cn.edu.henu.bean.Order;
+import cn.edu.henu.bean.OrderDetail;
 import cn.edu.henu.dao.OrderMapper;
+import cn.edu.henu.service.IOrderService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -9,6 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,7 +25,7 @@ import java.util.List;
 public class OrderTest {
     private InputStream inputStream;
     private SqlSession sqlSession;
-    private OrderMapper orderMapper;
+    private OrderMapper orderMapper2;
 
     @Before
     public void init() throws IOException {
@@ -32,7 +36,7 @@ public class OrderTest {
         // 获取SqlSession对象
         sqlSession = factory.openSession();
         // 获取dao的代理对象
-        orderMapper = sqlSession.getMapper(OrderMapper.class);
+        orderMapper2 = sqlSession.getMapper(OrderMapper.class);
     }
 
     @After
@@ -50,19 +54,46 @@ public class OrderTest {
     @Test
     public void testFindAllByCid() {
         // 执行查询所有方法
-        List<Order> orders = orderMapper.selectByCid("1812030002");
+        List<Order> orders = orderMapper2.selectByCid("1812030002");
         for (Order order : orders) {
-            /*System.out.println(order.getCid());
-            System.out.println(order.getPid());
-            System.out.println(order.getBid());*/
-            System.out.println("订单号：" + order.getOrderId());
-            System.out.println("取餐码：" + order.getCode());
-            System.out.println("商家名：" + order.getBusiness().getWname());
-            System.out.println("商品名：" + order.getProduct().getProductName());
-            System.out.println("单价：" + order.getProduct().getProductPrice());
-            System.out.println("数量：" + order.getNum());
-            System.out.println("总价：" + order.getTotalPrice());
-            System.out.println("状态：" + order.getStatus());
+            System.out.println(order);
+        }
+    }
+
+    /**
+     * 测试查询用户所有订单及详情
+     */
+    @Test
+    public void testFindAllByCid2() {
+        ApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-mybatis.xml");
+        IOrderService orderSer = ac.getBean("orderSer", IOrderService.class);
+        List<Order> orders = orderSer.selectByCid("1812030001");
+        for (Order order : orders) {
+            System.out.println(order);
+        }
+    }
+
+    /**
+     * 测试查询用户所有订单及详情
+     */
+    @Test
+    public void testFindAllByBid2() {
+        ApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-mybatis.xml");
+        IOrderService orderSer = ac.getBean("orderSer", IOrderService.class);
+        List<Order> orders = orderSer.selectByBid(100001);
+        for (Order order : orders) {
+            System.out.println(order);
+        }
+    }
+
+    /**
+     * 测试查询指定订单所有详情
+     */
+    @Test
+    public void testFindAllByOid() {
+        List<OrderDetail> orderDetails = orderMapper2.selectByOid(1);
+        for (OrderDetail orderDetail : orderDetails) {
+            System.out.println(orderDetail);
         }
     }
 
@@ -71,16 +102,8 @@ public class OrderTest {
      */
     @Test
     public void testUpdateStatusByOid() {
-        Order order = orderMapper.selectByPrimaryKey(1);
-        orderMapper.updateStatusByOid(order.getOrderId(), 1);
-    }
-
-    /**
-     * 根据订单上的商品id批量更改订单状态
-     */
-    @Test
-    public void testUpdateAllStatusByPid() {
-        orderMapper.updateAllStatusByPid(1, -1);
+        Order order = orderMapper2.selectByPrimaryKey(1);
+        orderMapper2.updateStatusByOid(order.getId(), 0);
     }
 
     /**
@@ -89,27 +112,29 @@ public class OrderTest {
     @Test
     public void testFindAllByBid() {
         // 执行查询所有方法
-        List<Order> orders = orderMapper.selectByBid(100001);
+        List<Order> orders = orderMapper2.selectByBid(100001);
         for (Order order : orders) {
-            System.out.println("订单号：" + order.getOrderId());
-            System.out.println("消费者：" + order.getConsumer().getName());
-            System.out.println("下单时间：" + order.getOrderTime());
-            System.out.println("总价：" + order.getTotalPrice());
-            System.out.println("状态：" + order.getStatus());
+            System.out.println(order);
         }
     }
 
     @Test
     public void testInsert() {
         Order order = new Order();
-        order.setCode("测试");
         order.setCid("1812030001");
-        order.setNote("测试");
         order.setBid(100001);
-        order.setPid(5);
-        order.setNum(3);
-        order.setDiscountUse(0);
-        int insert = orderMapper.insert(order);
-        System.out.println(insert);
+        order.setCode("guj4");
+        order.setNote("测试插入2");
+        order.setStatus(0);
+        orderMapper2.insert(order);
+        int id = order.getId();
+        for (int i = 0; i < 3; i++) {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setOid(id);
+            orderDetail.setNum(i + 1);
+            orderDetail.setDiscount((i + 1) * 5f);
+            orderDetail.setPid(i + 1);
+            orderMapper2.insertToDetail(orderDetail);
+        }
     }
 }

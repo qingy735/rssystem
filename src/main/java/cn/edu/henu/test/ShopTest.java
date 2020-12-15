@@ -60,14 +60,14 @@ public class ShopTest {
         shop.setBid(100001);
         shop.setPid(4);
         shop.setPnum(2);
-        shop.setDiscountuse(5);
+        shop.setDiscountuse(5f);
         int insert = shopMapper.insert(shop);
         System.out.println(insert);
     }
 
     @Test
     public void testDelete() {
-        int delete = shopMapper.delete(3);
+        int delete = shopMapper.deleteByPrimaryKey(3);
         System.out.println(delete);
     }
 
@@ -76,8 +76,8 @@ public class ShopTest {
         Shop shop = new Shop();
         shop.setId(4);
         shop.setPnum(5);
-        shop.setDiscountuse(40);
-        int update = shopMapper.update(shop);
+        shop.setDiscountuse(40f);
+        int update = shopMapper.updateByPrimaryKey(shop);
         System.out.println(update);
     }
 

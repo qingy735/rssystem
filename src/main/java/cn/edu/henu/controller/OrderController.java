@@ -29,7 +29,7 @@ public class OrderController {
     @Autowired
     private IOrderService orderSer;
 
-    @RequestMapping("/add")
+    /*@RequestMapping("/add")
     public String add(Order order, HttpSession session, HttpServletRequest request) {
         Integer pid = order.getPid();
         // 获取店铺id
@@ -61,7 +61,7 @@ public class OrderController {
         }
 
         return "redirect:/pastOrder";
-    }
+    }*/
 
     /**
      * 结账
@@ -70,7 +70,7 @@ public class OrderController {
      * @param session
      * @return
      */
-    @ResponseBody
+    /*@ResponseBody
     @RequestMapping("/checkout")
     public Map<String, Object> checkout(@RequestBody Order body, HttpSession session) {
         int oid = body.getOrderId();
@@ -90,6 +90,6 @@ public class OrderController {
         }
         info.put("flag", i);
         return info;
-    }
+    }*/
 
 }

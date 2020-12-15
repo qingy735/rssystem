@@ -53,16 +53,6 @@ public class BusinessUIController {
         return "/business/updateProducts";
     }
 
-    @RequestMapping("/orderList")
-    public String toOrderList(HttpSession session) {
-        Business business = (Business) session.getAttribute("busLoginInfo");
-        if (business != null) {
-            List<Order> orders = orderSer.selectByBid(business.getUsername());
-            session.setAttribute("orders", orders);
-        }
-        return "/business/orderList";
-    }
-
     @RequestMapping("/productList")
     public String toProductList(String name, HttpSession session, Model model) throws UnsupportedEncodingException {
         Business business = (Business) session.getAttribute("busLoginInfo");
@@ -87,13 +77,23 @@ public class BusinessUIController {
         return "/business/ProductsList";
     }
 
+    @RequestMapping("/orderList")
+    public String toOrderList(HttpSession session) {
+        Business business = (Business) session.getAttribute("busLoginInfo");
+        if (business != null) {
+            List<Order> orders = orderSer.selectByBid(business.getUsername());
+            session.setAttribute("busOrders", orders);
+        }
+        return "/business/orderList";
+    }
+
     @RequestMapping("/orderDetail")
     public String toOrderDetail(Integer oid, @RequestHeader("Referer") String referer, Model model, HttpSession session) {
         if (referer.contains("/orderList")) {
             List<Order> orders = (List<Order>) session.getAttribute("orders");
             if (orders != null) {
                 for (Order order : orders) {
-                    if (order.getOrderId().equals(oid)) {
+                    if (order.getId().equals(oid)) {
                         model.addAttribute("order", order);
                         return "/business/orderDetail";
                     }

@@ -19,13 +19,20 @@ public interface IShopService {
 
     /**
      * 根据id删除购物车里的商品
-     * or
-     * 结账后消失
      *
      * @param id
      * @return
      */
     int delete(Integer id);
+
+    /**
+     * 批量删除
+     * 用于结账
+     *
+     * @param ids
+     * @return
+     */
+    int batchDelete(List<Integer> ids);
 
     /**
      * 更改购物车里商品内容
@@ -49,4 +56,20 @@ public interface IShopService {
      * @return
      */
     List<Shop> selectByCid(String cid);
+
+    /**
+     * 根据id查询
+     *
+     * @param id
+     * @return
+     */
+    Shop selectByPrimaryKey(Integer id);
+
+    /**
+     * 批量查询
+     *
+     * @param ids
+     * @return
+     */
+    List<Shop> batchSelect(List<Integer> ids);
 }

@@ -25,6 +25,18 @@ public class OrderDetail {
      * 折扣
      */
     private Float discount;
+    /**
+     * 商品信息
+     */
+    private Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public Integer getId() {
         return id;
@@ -74,6 +86,7 @@ public class OrderDetail {
                 ", pid=" + pid +
                 ", num=" + num +
                 ", discount=" + discount +
+                ", price=" + product.getProductPrice() +
                 '}';
     }
 }

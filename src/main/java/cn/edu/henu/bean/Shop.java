@@ -32,7 +32,7 @@ public class Shop implements Serializable {
     /**
      * 折扣
      */
-    private Integer discountuse;
+    private Float discountuse;
 
     private Float totalPrice;
 
@@ -95,11 +95,11 @@ public class Shop implements Serializable {
         this.pnum = pnum;
     }
 
-    public Integer getDiscountuse() {
+    public Float getDiscountuse() {
         return discountuse;
     }
 
-    public void setDiscountuse(Integer discountuse) {
+    public void setDiscountuse(Float discountuse) {
         this.discountuse = discountuse;
     }
 

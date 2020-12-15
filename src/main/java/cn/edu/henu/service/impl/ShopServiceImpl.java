@@ -5,6 +5,7 @@ import cn.edu.henu.dao.ShopMapper;
 import cn.edu.henu.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,7 +32,18 @@ public class ShopServiceImpl implements IShopService {
     @Override
     public int delete(Integer id) {
         try {
-            return shopMapper.delete(id);
+            return shopMapper.deleteByPrimaryKey(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int batchDelete(List<Integer> ids) {
+        try {
+            return shopMapper.batchDelete(ids);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -41,7 +53,7 @@ public class ShopServiceImpl implements IShopService {
     @Override
     public int update(Shop shop) {
         try {
-            return shopMapper.update(shop);
+            return shopMapper.updateByPrimaryKey(shop);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -62,6 +74,26 @@ public class ShopServiceImpl implements IShopService {
     public List<Shop> selectByCid(String cid) {
         try {
             return shopMapper.selectByCid(cid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Shop selectByPrimaryKey(Integer id) {
+        try {
+            return shopMapper.selectByPrimaryKey(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Shop> batchSelect(List<Integer> ids) {
+        try {
+            return shopMapper.batchSelect(ids);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

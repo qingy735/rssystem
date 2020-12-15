@@ -77,4 +77,12 @@ public interface IProductService {
      */
     Product selectSimpleById(Integer id);
 
+    /**
+     * 根据商品id查询商品信息
+     *
+     * @param id
+     * @return
+     */
+    Product selectById(Integer id);
+
 }

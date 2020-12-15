@@ -18,6 +18,14 @@ public interface ProductMapper extends CrudDao<Product> {
     List<Product> selectAll();
 
     /**
+     * 获取商品信息
+     *
+     * @param id
+     * @return
+     */
+    Product selectById(Integer id);
+
+    /**
      * 仅仅获取商品信息
      *
      * @param id

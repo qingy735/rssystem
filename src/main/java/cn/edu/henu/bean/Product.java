@@ -24,6 +24,10 @@ public class Product implements Serializable {
      */
     private Float productPrice;
     /**
+     * 数量
+     */
+    private Integer num;
+    /**
      * 图片路径
      */
     private String photosrc;
@@ -39,6 +43,14 @@ public class Product implements Serializable {
      * 店铺信息
      */
     private Business business;
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
 
     public Integer getBid() {
         return bid;
@@ -111,6 +123,7 @@ public class Product implements Serializable {
                 ", productName='" + productName + '\'' +
                 ", productIntr='" + productIntr + '\'' +
                 ", productPrice=" + productPrice +
+                ", num=" + num +
                 ", photosrc='" + photosrc + '\'' +
                 ", productGrade=" + productGrade +
                 ", bid=" + bid +

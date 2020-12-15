@@ -8,32 +8,7 @@ import java.util.List;
  * @author Qing_Y
  * @date 2020-12-13 17:31
  */
-public interface ShopMapper {
-    /**
-     * 添加商品进入购物车
-     *
-     * @param shop
-     * @return
-     */
-    int insert(Shop shop);
-
-    /**
-     * 根据id删除购物车里的商品
-     * or
-     * 结账后消失
-     *
-     * @param id
-     * @return
-     */
-    int delete(Integer id);
-
-    /**
-     * 更改购物车里商品内容
-     *
-     * @param shop
-     * @return
-     */
-    int update(Shop shop);
+public interface ShopMapper extends CrudDao<Shop> {
 
     /**
      * 查询所有购物车内容
@@ -45,8 +20,25 @@ public interface ShopMapper {
     /**
      * 根据消费者id查询所有购物车内容
      *
+     * @param cid
      * @return
      */
     List<Shop> selectByCid(String cid);
+
+    /**
+     * 批量删除购物车数据
+     *
+     * @param ids
+     * @return
+     */
+    int batchDelete(List<Integer> ids);
+
+    /**
+     * 批量查询
+     *
+     * @param ids
+     * @return
+     */
+    List<Shop> batchSelect(List<Integer> ids);
 
 }

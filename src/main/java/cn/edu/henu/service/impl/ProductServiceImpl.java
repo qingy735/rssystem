@@ -123,11 +123,11 @@ public class ProductServiceImpl implements IProductService {
     public int deleteById(Integer id) {
         try {
             int i = productMapper.deleteByPrimaryKey(id);
-            if (i >= 1) {
+            /*if (i >= 1) {
                 // 设置对应订单状态为已下架即 status：-1
                 return orderMapper.updateAllStatusByPid(id, -1);
-            }
-            return -1;
+            }*/
+            return i;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -138,6 +138,16 @@ public class ProductServiceImpl implements IProductService {
     public Product selectSimpleById(Integer id) {
         try {
             return productMapper.selectSimpleById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Product selectById(Integer id) {
+        try {
+            return productMapper.selectById(id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

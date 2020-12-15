@@ -6,10 +6,12 @@ import cn.edu.henu.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author Qing_Y
@@ -65,11 +67,21 @@ public class ShopController {
     }
 
     @RequestMapping("/checkout")
-    @Transactional(rollbackFor = Exception.class)
-    public String checkout(Integer id, HttpSession session) {
-
-
-        return "redirect:/shopCart";
+    public String checkout(Integer id, Model model, HttpSession session) {
+        List<Shop> shops = (List<Shop>) session.getAttribute("shops");
+        Shop s = null;
+        if (shops != null) {
+            for (Shop shop : shops) {
+                if (shop.getId().equals(id)) {
+                    s = shop;
+                    break;
+                }
+            }
+        } else {
+            s = shopSer.selectByPrimaryKey(id);
+        }
+        model.addAttribute("shop", s);
+        return "consumer/checkoutPage";
     }
 
 }

@@ -32,6 +32,10 @@
         select * from productinfo where id = #{id}
     </select>
 
+    <select id="selectById" resultMap="AssociationResultMap">
+        select * from productinfo where id=#{id}
+    </select>
+
     <!--仅获取商品信息-->
     <select id="selectAllSimple" resultMap="BaseResultMap">
         select * from productinfo

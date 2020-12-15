@@ -69,7 +69,7 @@
                     <td>-${shop.discountuse}</td>
                     <td>${shop.totalPrice}</td>
                     <td>
-                        <a href="${ctp}/shop/checkout?id=${shop.id}" class="del">结账</a>
+                        <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
                         <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
                     </td>
                 </tr>

@@ -11,22 +11,22 @@
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
+</head>
 <body>
 <div class="page">
     <div style="height: 100%;width: 15%;" class="pull-left">
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="${ctp}/business/home">商家后台</a>
+                    <a class="navbar-brand" href="${ctp}/admin/home">管理员后台</a>
                 </div>
                 <br><br>
                 <div>
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="${ctp}/admin" target="mainFrame">个人中心</a></li>
-                        <li><a href="${ctp}/admin" target="mainFrame">消费者</a></li>
-                        <li><a href="${ctp}/admin" target="mainFrame">商家</a></li>
-                        <li><a href="${ctp}/admin" target="mainFrame">订单</a></li>
-                        <li><a href="${ctp}/admin" target="mainFrame">评价</a></li>
+                        <li><a href="${ctp}/admin/conAdmin" target="mainFrame">消费者管理</a></li>
+                        <li><a href="${ctp}/admin/buAdmin" target="mainFrame">商家管理</a></li>
+                        <li><a href="${ctp}/admin/orderAd" target="mainFrame">订单管理</a></li>
+                        <li><a href="${ctp}/admin/commentAd" target="mainFrame">评价管理</a></li>
                     </ul>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             </header>
         </div>
         <div style="height: 85%;width: 100% ;border: solid">
-            <iframe name="mainFrame" src="${ctp}/admin" frameborder="no"></iframe>
+            <iframe name="mainFrame" src="${ctp}/admin/commentAd" frameborder="no"></iframe>
         </div>
     </div>
 </div>

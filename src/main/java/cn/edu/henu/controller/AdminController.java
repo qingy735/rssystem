@@ -1,7 +1,6 @@
 package cn.edu.henu.controller;
 
 import cn.edu.henu.bean.Admin;
-import cn.edu.henu.bean.Business;
 import cn.edu.henu.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,26 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    @RequestMapping("/buAdmin")
+    public String toBuAdmin() {
+        return "/admin/buAdmin";
+    }
+
+    @RequestMapping("/conAdmin")
+    public String toConAdmin() {
+        return "/admin/conAdmin";
+    }
+
+    @RequestMapping("/commentAd")
+    public String toCommentAd() {
+        return "/admin/commentAd";
+    }
+
+    @RequestMapping("/orderAd")
+    public String toOrderAd() {
+        return "/admin/orderAd";
+    }
 
     @Autowired
     private IAdminService adminSer;
@@ -56,7 +75,9 @@ public class AdminController {
         if (admLoginInfo == null) {
             return "redirect:/login/admin";
         }
-        return "admin/adminhome";
+        return "/admin/adminhome";
     }
+
+
 
 }

@@ -20,26 +20,6 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @RequestMapping("/buAdmin")
-    public String toBuAdmin() {
-        return "/admin/buAdmin";
-    }
-
-    @RequestMapping("/conAdmin")
-    public String toConAdmin() {
-        return "/admin/conAdmin";
-    }
-
-    @RequestMapping("/commentAd")
-    public String toCommentAd() {
-        return "/admin/commentAd";
-    }
-
-    @RequestMapping("/orderAd")
-    public String toOrderAd() {
-        return "/admin/orderAd";
-    }
-
     @Autowired
     private IAdminService adminSer;
 
@@ -69,15 +49,28 @@ public class AdminController {
         return info;
     }
 
-    @RequestMapping("/home")
-    public String toHome(HttpSession session) {
-        Admin admLoginInfo = (Admin) session.getAttribute("admLoginInfo");
-        if (admLoginInfo == null) {
-            return "redirect:/login/admin";
-        }
-        return "/admin/adminhome";
+    @RequestMapping("/orders")
+    public String findAllOrder() {
+        adminSer.findAllOrder();
+        return "success";
     }
 
+    @RequestMapping("/comments")
+    public String findAllComment() {
+        adminSer.findAllComment();
+        return "success";
+    }
 
+    @RequestMapping("/businesses")
+    public String findAllBusiness() {
+        adminSer.findAllBusiness();
+        return "success";
+    }
+
+    @RequestMapping("/consumers")
+    public String findAllConsumer() {
+        adminSer.findAllConsumer();
+        return "success";
+    }
 
 }

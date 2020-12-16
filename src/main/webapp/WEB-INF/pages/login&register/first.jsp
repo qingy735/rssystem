@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${ctp}/js/jquery.cookie.js"></script>
     <script type="text/javascript">
         function refreshCode() {
             var verifyCodeImg = document.getElementsByClassName("verifyCodeImg");
@@ -19,8 +20,44 @@
             })
         }
 
+        //设置Cookie
+        function setCookie(){
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var ischecked = $("input[type='checkbox']").is(":checked");//获取是否选中
+            if(ischecked==true){//如果选中-->记住密码登录
+                $.cookie("username",username.trim(),7);//有效时间7天，
+                $.cookie("password",password.trim(),7);
+                alert("记住了密码")
+            }else{//如果没选中-->不记住密码登录
+                $.cookie("password", "");
+                $.cookie("username", "");
+                alert("没有记住密码")
+            }
+        }
+
+        //获取cookie
+        function getCookie(){ //获取cookie
+            var username = $.cookie("username"); //获取cookie中的用户名
+            var pwd =  $.cookie("password"); //获取cookie中的登陆密码
+            if(pwd){//密码存在的话把“记住用户名和密码”复选框勾选住
+                $("[name='rememenber']").attr("checked","true");
+            }
+            if(username!=""){//用户名存在的话把用户名填充到用户名文本框
+                $("#username").val(username);
+            }else{
+                $("#username").val("");
+            }
+            if(pwd!=""){//密码存在的话把密码填充到密码文本框
+                $("#password").val(pwd);
+            }else{
+                $("#password").val("");
+            }
+        }
         // 异步登录方法
         function loginAjax(url, data, nextUrl) {
+            var ischecked = $("input[type='checkbox']").is(":checked");//获取选中状态
+
             $.ajax({
                 url: url,
                 contentType: "application/json;charset=utf-8",
@@ -29,6 +66,14 @@
                 dataType: "json",
                 success:
                     function (data) {
+                        /*if(ischecked==true){
+                            setCookie();   //调用设置Cookie的方法
+                            location.href = nextUrl
+                        }else if(ischecked==false){
+                            setCookie();  //调用设置Cookie的方法
+                            location.href = url
+                        }*/
+
                         if (data.flag == 1) {
                             location.href = nextUrl
                         } else if (data.flag == -1) {

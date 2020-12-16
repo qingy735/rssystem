@@ -1,10 +1,12 @@
 package cn.edu.henu.service.impl;
 
 import cn.edu.henu.bean.Order;
+import cn.edu.henu.bean.OrderDetail;
 import cn.edu.henu.dao.OrderMapper;
 import cn.edu.henu.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,9 +21,15 @@ public class OrderServiceImpl implements IOrderService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<Order> selectByCid(String id) {
+    public List<Order> selectByCid(String cid) {
         try {
-            return orderMapper.selectByCid(id);
+            List<Order> orders = orderMapper.selectByCid(cid);
+            for (Order order : orders) {
+                Integer oid = order.getId();
+                List<OrderDetail> details = orderMapper.selectByOid(oid);
+                order.setDetails(details);
+            }
+            return orders;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -31,7 +39,36 @@ public class OrderServiceImpl implements IOrderService {
     @Override
     public List<Order> selectByBid(Integer bid) {
         try {
-            return orderMapper.selectByBid(bid);
+            List<Order> orders = orderMapper.selectByBid(bid);
+            for (Order order : orders) {
+                Integer oid = order.getId();
+                List<OrderDetail> details = orderMapper.selectByOid(oid);
+                order.setDetails(details);
+            }
+            return orders;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Order selectByPrimaryKey(Integer oid) {
+        try {
+            Order order = orderMapper.selectByPrimaryKey(oid);
+            List<OrderDetail> details = orderMapper.selectByOid(oid);
+            order.setDetails(details);
+            return order;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public List<OrderDetail> selectByOid(Integer oid) {
+        try {
+            return orderMapper.selectByOid(oid);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -48,20 +85,20 @@ public class OrderServiceImpl implements IOrderService {
         }
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public int updateAllStatusByPid(Integer pid, int status) {
+    public int addOrder(Order order, List<OrderDetail> details) {
         try {
-            return orderMapper.updateAllStatusByPid(pid, status);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    @Override
-    public int addOrder(Order order) {
-        try {
-            return orderMapper.insert(order);
+            int insert = orderMapper.insert(order);
+            if (insert < 1) {
+                throw new Exception();
+            }
+            int oid = order.getId();
+            for (OrderDetail detail : details) {
+                detail.setOid(oid);
+                orderMapper.insertToDetail(detail);
+            }
+            return insert;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

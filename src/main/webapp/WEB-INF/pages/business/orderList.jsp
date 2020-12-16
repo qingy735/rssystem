@@ -20,40 +20,25 @@
         <thead>
         <tr align="center" valign="middle" id="TableTitle">
             <td>订单编号</td>
-            <td>消费者</td>
+            <td>消费者id</td>
+            <td>取餐码</td>
             <td>下单日期</td>
+            <td>备注</td>
             <td>总金额</td>
             <td>状态</td>
-            <td>操作</td>
         </tr>
         </thead>
         <!--显示数据列表 -->
         <tbody id="orderListData">
-        <c:forEach items="${sessionScope.orders}" var="order">
+        <c:forEach items="${sessionScope.busOrders}" var="order">
             <tr height="60" align="center">
-                <td>${order.orderId}</td>
-                <td>${order.consumer.name}</td>
+                <td>${order.id}</td>
+                <td>${order.cid}</td>
+                <td>${order.code}</td>
                 <td>${order.orderTime}</td>
-                <c:if test="${order.status == -1}">
-                    <td>没有记录</td>
-                </c:if>
-                <c:if test="${order.status != -1}">
-                    <td>${order.totalPrice}</td>
-                </c:if>
-
-                <c:choose>
-                    <c:when test="${order.status == -1}">
-                        <td>商品已下架</td>
-                    </c:when>
-                    <c:when test="${order.status != -1}">
-                        <td>${order.status == 0 ? "未结账":"已结账"}</td>
-                        <td>
-                            <a href="${ctp}/business/orderDetail?oid=${order.orderId}">详细</a>
-                            <a href="${ctp}/business">结账</a>
-                        </td>
-                    </c:when>
-                </c:choose>
-
+                <td>${order.note}</td>
+                <td>${order.total}</td>
+                <td>${order.status}</td>
             </tr>
         </c:forEach>
         </tbody>

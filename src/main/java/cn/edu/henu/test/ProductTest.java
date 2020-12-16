@@ -75,6 +75,14 @@ public class ProductTest {
     }
 
     @Test
+    public void testGetAllByBidAndName() {
+        List<Product> products = productMapper.getAllByBidAndName(100001, "%双人%");
+        for (Product product : products) {
+            System.out.println(product.getProductName());
+        }
+    }
+
+    @Test
     public void testSelectSimple() {
         List<Product> products = productMapper.selectAllSimple();
         for (Product product : products) {

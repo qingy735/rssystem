@@ -1,7 +1,6 @@
 package cn.edu.henu.controller;
 
 import cn.edu.henu.bean.Admin;
-import cn.edu.henu.bean.Business;
 import cn.edu.henu.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,12 +49,27 @@ public class AdminController {
         return info;
     }
 
-    @RequestMapping("/home")
-    public String toHome(HttpSession session) {
-        Admin admLoginInfo = (Admin) session.getAttribute("admLoginInfo");
-        if (admLoginInfo == null) {
-            return "redirect:/login/admin";
-        }
+    @RequestMapping("/orders")
+    public String findAllOrder() {
+        adminSer.findAllOrder();
+        return "success";
+    }
+
+    @RequestMapping("/comments")
+    public String findAllComment() {
+        adminSer.findAllComment();
+        return "success";
+    }
+
+    @RequestMapping("/businesses")
+    public String findAllBusiness() {
+        adminSer.findAllBusiness();
+        return "success";
+    }
+
+    @RequestMapping("/consumers")
+    public String findAllConsumer() {
+        adminSer.findAllConsumer();
         return "success";
     }
 

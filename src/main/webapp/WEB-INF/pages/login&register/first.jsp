@@ -121,21 +121,17 @@
                 return false;
             })
         }
-
         $(function () {
             stLoginAjax()
             buLoginAjax()
             admLoginAjax()
         })
-
     </script>
-
 </head>
 <body background="${ctp}/images/login8.jpg">
 <header class="container" id="firstTitleArea">
     <div class="row col-md-12">
         <div class="col-md-10 "><h2>河南大学餐厅服务系统</h2></div>
-        <div class="col-md-2 frexit"><a href=""><h3>退出登录</h3></a></div>
     </div>
 </header>
 <div class="container">
@@ -215,8 +211,8 @@
                         </label>
                     </div>
                     <div class="form-group" style="text-align: center;">
-                        <input class="btn btn btn-success col-md-4 pull-left" type="button" id="registerBtn"
-                               value="注册">
+                        <a class="btn btn-success col-md-4 pull-left" href="${ctp}/register/business"
+                           role="button">注册</a>
                         <input class="btn btn btn-success col-md-4 pull-right" type="submit" value="登录">
                     </div>
                 </form>

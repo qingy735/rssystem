@@ -1,6 +1,7 @@
 package cn.edu.henu.dao;
 
 import cn.edu.henu.bean.Product;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -15,6 +16,14 @@ public interface ProductMapper extends CrudDao<Product> {
      * @return
      */
     List<Product> selectAll();
+
+    /**
+     * 获取商品信息
+     *
+     * @param id
+     * @return
+     */
+    Product selectById(Integer id);
 
     /**
      * 仅仅获取商品信息
@@ -46,4 +55,13 @@ public interface ProductMapper extends CrudDao<Product> {
      * @return
      */
     List<Product> getAllByBid(Integer bid);
+
+    /**
+     * 根据商家id和条件获取商品信息
+     *
+     * @param bid
+     * @param pname
+     * @return
+     */
+    List<Product> getAllByBidAndName(@Param("bid") Integer bid, @Param("pname") String pname);
 }

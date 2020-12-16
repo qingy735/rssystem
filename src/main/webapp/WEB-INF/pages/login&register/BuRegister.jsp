@@ -13,11 +13,10 @@
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
-<body>
-<header class="container" id="firstTitleArea" >
+<body background="${ctp}/images/login8.jpg">
+<header class="container" id="firstTitleArea">
     <div class="row">
-        <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
-        <div class="col-md-2"><a href=""><h4>退出登录</h4></a></div>
+        <div><h2>河南大学餐厅服务系统</h2></div>
     </div>
 </header>
 <div>
@@ -51,7 +50,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="BuName" class="col-sm-2 control-label">负责人姓名</label>
+                <label for="BuName" class="col-sm-2 control-label"><h6><b>负责人姓名</b></h6></label>
                 <div class="col-sm-10">
                     <form:input type="text" class="form-control" id="BuName" path="name"
                                 placeholder="请输入你的真实姓名"/>
@@ -59,7 +58,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="BuTel" class="col-sm-2 control-label">负责人电话号码</label>
+                <label for="BuTel" class="col-sm-2 control-label"><h6><b>负责人电话</b></h6></label>
                 <div class="col-sm-10">
                     <form:input type="tel" class="form-control" id="BuTel" path="tel"
                                 placeholder="电话号码"/>
@@ -81,15 +80,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
-                    <input type="submit" value="注册">
+                <div class="col-md-10 col-md-offset-1">
+                    <input type="submit" class="btn btn-primary" role="button" style="width:90%" value="注册"/>
                 </div>
             </div>
         </form:form>
-
         <!-- 出错显示的信息框 -->
         <div class="alert alert-warning alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span>&times;</span></button>
             <strong>${bus_register_msg}</strong>
         </div>

@@ -13,36 +13,42 @@
 </head>
 <body>
 <!-- 页面标题 -->
-<div id="TitleArea">更新餐品</div>
+<h3>${sessionScope.updateInfo}</h3>
+<div id="TitleArea">更新新餐品</div>
 <!-- 主内容区域（数据列表或表单显示） -->
-<!--这个页面的表单要获取前面一个页面的内容-->
 <div id="TopMainArea">
     <div class="row" id="mainArea">
-        <form action="#{ctp}/business" class="proForm">
+        <form action="${ctp}/product/update?id=${updateProduct.id}" class="proForm" enctype="multipart/form-data"
+              method="post">
             <div class="form-group">
                 <label for="proName" class="col-md-4 control-label">餐品名称:</label>
                 <div class="col-md-8 col-md-pull-2">
-                    <input type="text" class="form-control" id="proName" required><br>
+                    <input type="text" class="form-control" id="proName" name="productName"
+                           value="${updateProduct.productName}"><br>
                 </div>
             </div>
             <div class="form-group">
                 <label for="proInfo" class="col-md-4 control-label">餐品简介：</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <textarea cols="20" rows="5" class="form-control" id="proInfo" required></textarea>
+                    <textarea cols="20" rows="5" class="form-control" id="proInfo" name="productIntr">
+                        ${updateProduct.productIntr}
+                    </textarea>
                     <br>
                 </div>
             </div>
             <div class="form-group">
                 <label for="proPrice" class="col-md-4 control-label">餐品价格:</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <input type="text" class="form-control" id="proPrice" required><br>
+                    <input type="text" class="form-control" id="proPrice" name="productPrice"
+                           value="${updateProduct.productPrice}"><br>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="image" class="col-md-4 control-label">餐品图片:</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <input type="file" id="proPhone" name="imageUrl" required />
+                    <img src="${ctp}/${updateProduct.photosrc}?id=<%=Math.random()%>" alt="无法显示">
+                    <input type="file" id="image" name="imgSrc"/>
                 </div>
                 <br>
             </div>

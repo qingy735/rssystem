@@ -1,5 +1,6 @@
 package cn.edu.henu.controller;
 
+import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Product;
 import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -112,4 +114,5 @@ public class ProductController {
             return "redirect:/business/productList";
         }
     }
+
 }

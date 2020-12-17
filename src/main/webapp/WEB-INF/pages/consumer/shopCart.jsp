@@ -13,7 +13,24 @@
     <title>购物车</title>
 </head>
 <script type="text/javascript">
+    $(function () {
+        $(".changeNum").change(function () {
+            let val = $(this).val()
+            let id = $(this).attr("id")
+            $.ajax({
+                url: "${ctp}/shop/update?id=" + id + "&pnum=" + val,
+                type: "post",
+                success:
+                    function () {
 
+                    },
+                error:
+                    function () {
+
+                    }
+            })
+        })
+    })
 </script>
 <body>
 
@@ -37,7 +54,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <td>&nbsp;</td>
+                <td></td>
                 <th>商品</th>
                 <th>价格</th>
                 <th>购买数量</th>
@@ -47,10 +64,11 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${sessionScope.shops}" var="shop">
+            <form action="${ctp}/checkout/shops" method="post">
+                <c:forEach items="${sessionScope.shops}" var="shop">
                 <tr style="text-align:center">
                     <td>
-                        <input type="checkbox">
+                        <input type="checkbox" name="checkout" value="${shop.id}">
                     </td>
                     <td style="width: 20%;height: 20%">
                         <a><!--跳转商品详情-->
@@ -59,21 +77,18 @@
                     </td>
                     <td>${shop.product.productPrice}</td>
                     <td>
-                        <form action="${ctp}/shop/update?id=${shop.id}" method="post">
-                            <a class="decrease" onclick="" href="">-</a>
-                            <input name="pnum" value="${shop.pnum}" type="text" class="changenum">
-                            <a onclick="" href="">+</a><br>
-                            <input type="submit" value="修改">
-                        </form>
-                    </td>
-                    <td>-${shop.discountuse}</td>
-                    <td>${shop.totalPrice}</td>
-                    <td>
-                        <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
-                        <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
-                    </td>
-                </tr>
+                        <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum">
+            </form>
+            </td>
+            <td>-${shop.discountuse}</td>
+            <td>${shop.totalPrice}</td>
+            <td>
+                <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
+                <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+            </td>
+            </tr>
             </c:forEach>
+            </form>
             </tbody>
         </table>
     </div>

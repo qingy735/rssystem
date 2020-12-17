@@ -1,7 +1,8 @@
 package cn.edu.henu.test;
 
-import cn.edu.henu.bean.Admin;
+import cn.edu.henu.bean.*;
 import cn.edu.henu.dao.AdminMapper;
+import cn.edu.henu.dao.OrderMapper;
 import cn.edu.henu.dao.ProductMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author Qing_Y
@@ -23,6 +25,7 @@ public class AdminTest {
     private InputStream inputStream;
     private SqlSession sqlSession;
     private AdminMapper adminMapper;
+    private OrderMapper orderMapper;
 
     @Before
     public void init() throws IOException {
@@ -34,6 +37,7 @@ public class AdminTest {
         sqlSession = factory.openSession();
         // 获取dao的代理对象
         adminMapper = sqlSession.getMapper(AdminMapper.class);
+        orderMapper = sqlSession.getMapper(OrderMapper.class);
     }
 
     @After
@@ -49,6 +53,33 @@ public class AdminTest {
     public void testSelectOne() {
         Admin admin = adminMapper.selectByPrimarykey("admin");
         System.out.println(admin);
+    }
+
+    @Test
+    public void testFindConsumer() {
+        List<Consumer> consumers = adminMapper.selectAllConsumer();
+        for (Consumer consumer : consumers) {
+            System.out.println(consumer);
+        }
+    }
+
+    @Test
+    public void testFindBusiness() {
+        List<Business> businesses = adminMapper.selectAllBusiness();
+        for (Business business : businesses) {
+            System.out.println(business);
+        }
+    }
+
+    @Test
+    public void testFindOrder() {
+        List<Order> orders = adminMapper.selectAllOrder();
+        for (Order order : orders) {
+            Integer id = order.getId();
+            List<OrderDetail> details = orderMapper.selectByOid(id);
+            order.setDetails(details);
+            System.out.println(order);
+        }
     }
 
 }

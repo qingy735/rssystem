@@ -80,6 +80,10 @@ public class ProductController {
 
     @RequestMapping("/update")
     public String update(Product product, @RequestParam("imgSrc") MultipartFile file, HttpSession session) {
+        Object updateInfo = session.getAttribute("updateInfo");
+        if (updateInfo != null) {
+            session.removeAttribute("updateInfo");
+        }
         if (!file.isEmpty()) {
             // 获取当前图片地址
             Integer id = product.getId();

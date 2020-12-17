@@ -67,4 +67,10 @@ public class CheckoutController {
         return "redirect:/pastOrder";
     }
 
+    @RequestMapping("/shops")
+    public String checkFromShop(Integer[] ids, HttpSession session, HttpServletRequest request) {
+
+        return "redirect:/pastOrder";
+    }
+
 }

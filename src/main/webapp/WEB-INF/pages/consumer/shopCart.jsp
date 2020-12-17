@@ -64,7 +64,7 @@
                 Shops.push(checkOnes[i].value);
             }
         }
-        return Shops.length;
+        return "已选择的商品数量为"+Shops.length;
     }
 </script>
 <body>
@@ -140,7 +140,7 @@
             <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
         </div>
         <div class="col-md-1 pull-right">
-            <button type="button" class="btn btn-warning">结&nbsp;算</button>
+            <button type="button" class="btn btn-warning" onclick="alert(GetShopNum())">结&nbsp;算</button>
         </div>
         <div class="col-md-2 pull-right">
             <span>总金额：</span>

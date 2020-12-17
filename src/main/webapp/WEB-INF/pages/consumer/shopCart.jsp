@@ -14,6 +14,7 @@
 </head>
 <script type="text/javascript">
     $(function () {
+        // 修改购物车中商品数量
         $(".changeNum").change(function () {
             let val = $(this).val()
             let id = $(this).attr("id")
@@ -30,41 +31,66 @@
                     }
             })
         })
+        // 结算购物车选中商品
+        $("#checkoutBtu").click(function () {
+            var ids = GetShopNum()
+            $.ajax({
+                url: "${ctp}/checkout/shops",
+                type: "post",
+                data: {'ids': ids},
+                traditional: true,
+                dataType: "json",
+                success:
+                    function (data) {
+                        if (data.flag == false) {
+                            alert("结账失败")
+                        }
+                        location.href = "${ctp}" + data.href
+                    },
+                error:
+                    function () {
+                        alert("错误")
+                    }
+            })
+            return false;
+        })
+
     })
+
     //全选操作
-    function checkShopAll(){
+    function checkShopAll() {
         //1.获取编号前面的复选框
         var checkAllEle = document.getElementById("checkShopAll");
         //2.对编号前面复选框的状态进行判断
-        if(checkAllEle.checked==true){
+        if (checkAllEle.checked == true) {
             //3.获取下面所有的复选框
             var checkOnes = document.getElementsByName("checkout");
             //4.对获取的所有复选框进行遍历
-            for(var i=0;i<checkOnes.length;i++){
+            for (var i = 0; i < checkOnes.length; i++) {
                 //5.拿到每一个复选框，并将其状态置为选中
-                checkOnes[i].checked=true;
+                checkOnes[i].checked = true;
             }
-        }else{
+        } else {
             //6.获取下面所有的复选框
             var checkOnes = document.getElementsByName("checkout");
             //7.对获取的所有复选框进行遍历
-            for(var i=0;i<checkOnes.length;i++){
+            for (var i = 0; i < checkOnes.length; i++) {
                 //8.拿到每一个复选框，并将其状态置为未选中
-                checkOnes[i].checked=false;
+                checkOnes[i].checked = false;
             }
         }
     }
+
     //获取选择的商品数量--Id
-    function GetShopNum(){
+    function GetShopNum() {
         var checkOnes = document.getElementsByName("checkout");
-        var Shops = new Array();
-        for(var i=0;i<checkOnes.length;i++){
-            if(checkOnes[i].checked==true)
-            {
+        var Shops = [];
+        for (var i = 0; i < checkOnes.length; i++) {
+            if (checkOnes[i].checked == true) {
                 Shops.push(checkOnes[i].value);
             }
         }
-        return "已选择的商品数量为"+Shops.length;
+        return Shops;
     }
 </script>
 <body>
@@ -84,49 +110,50 @@
     </div>
 </c:if>
 <c:if test="${sessionScope.shops != null}">
-<div id="TableMain">
-    <table class="table table-hover tableMain" align="center">
-        <!-- 表头-->
-        <thead>
-        <tr align="center" valign="middle">
-            <td>&nbsp</td>
-            <td>商品</td>
-            <td>价格</td>
-            <td>购买数量</td>
-            <td>优惠券</td>
-            <td>小计</td>
-            <td>操作</td>
-        </tr>
-        </thead>
-        <!--显示数据列表 -->
-        <tbody>
-        <form action="${ctp}/checkout/shops" method="post">
-            <c:forEach items="${sessionScope.shops}" var="shop">
-                <tr height="60" align="center">
-                    <td>
-                        <input type="checkbox" name="checkout" value="${shop.id}">
-                    </td>
-                    <td>
-                        <a><!--跳转商品详情-->
-                            <img alt="生菜" style="height:60px" src="${ctp}/${shop.product.photosrc}">
-                        </a>
-                    </td>
-                    <td>${shop.product.productPrice}</td>
-                    <td>
-                        <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum" style="width: 120px">
-                    </td>
-                    <td>-${shop.discountuse}</td>
-                    <td>${shop.totalPrice}</td>
-                    <td>
-                        <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
-                        <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </form>
-        </tbody>
-    </table>
-</div>
+    <div id="TableMain">
+        <table class="table table-hover tableMain" align="center">
+            <!-- 表头-->
+            <thead>
+            <tr align="center" valign="middle">
+                <td>&nbsp</td>
+                <td>商品</td>
+                <td>价格</td>
+                <td>购买数量</td>
+                <td>优惠券</td>
+                <td>小计</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <!--显示数据列表 -->
+            <tbody>
+            <form action="${ctp}/checkout/shops" method="post">
+                <c:forEach items="${sessionScope.shops}" var="shop">
+                    <tr height="60" align="center">
+                        <td>
+                            <input type="checkbox" name="checkout" value="${shop.id}">
+                        </td>
+                        <td>
+                            <a><!--跳转商品详情-->
+                                <img alt="生菜" style="height:60px" src="${ctp}/${shop.product.photosrc}">
+                            </a>
+                        </td>
+                        <td>${shop.product.productPrice}</td>
+                        <td>
+                            <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum"
+                                   style="width: 120px">
+                        </td>
+                        <td>-${shop.discountuse}</td>
+                        <td>${shop.totalPrice}</td>
+                        <td>
+                            <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
+                            <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </form>
+            </tbody>
+        </table>
+    </div>
 </c:if>
 <div class="row countPrice col-md-12 navbar-fixed-bottom">
     <div class="inCountPrice">
@@ -140,7 +167,7 @@
             <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
         </div>
         <div class="col-md-1 pull-right">
-            <button type="button" class="btn btn-warning" onclick="alert(GetShopNum())">结&nbsp;算</button>
+            <button type="button" class="btn btn-warning" id="checkoutBtu">结&nbsp;算</button>
         </div>
         <div class="col-md-2 pull-right">
             <span>总金额：</span>

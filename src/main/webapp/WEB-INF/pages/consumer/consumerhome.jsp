@@ -146,7 +146,7 @@
 <!-- 中部的餐品显示 -->
 <div class="middle container">
     <ul>
-        <c:forEach items="${pb.list}" var="product">
+        <c:forEach items="${sessionScope.pb.list}" var="product">
             <li id="proinfo" class="col-md-offset-1 col-md-10 product">
                 <a href="${ctp}/details?pid=${product.id}">
                     <div class="col-md-4">

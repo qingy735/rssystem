@@ -1,11 +1,9 @@
 package cn.edu.henu.controller;
 
 import cn.edu.henu.bean.*;
-import cn.edu.henu.service.IOrderService;
 import cn.edu.henu.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,8 +21,6 @@ public class ShopController {
 
     @Autowired
     private IShopService shopSer;
-    @Autowired
-    private IOrderService orderSer;
 
     @RequestMapping("/add")
     public String add(Shop shop, HttpSession session, HttpServletRequest request) {
@@ -41,9 +37,10 @@ public class ShopController {
 
         int i = shopSer.insert(shop);
         if (i < 1) {
-            session.setAttribute("add_info", "添加订单失败");
+            session.setAttribute("add_info", "添加购物车失败");
             Integer pid = shop.getPid();
-            return "redirect:/details?pid=" + pid;
+            String uri = request.getContextPath() + "/details?pid=" + pid;
+            return "redirect:" + uri;
         }
         return "redirect:/shopCart";
     }
@@ -64,24 +61,6 @@ public class ShopController {
             session.setAttribute("errorInfo", "更新购物车失败");
         }
         return "redirect:/shopCart";
-    }
-
-    @RequestMapping("/checkout")
-    public String checkout(Integer id, Model model, HttpSession session) {
-        List<Shop> shops = (List<Shop>) session.getAttribute("shops");
-        Shop s = null;
-        if (shops != null) {
-            for (Shop shop : shops) {
-                if (shop.getId().equals(id)) {
-                    s = shop;
-                    break;
-                }
-            }
-        } else {
-            s = shopSer.selectByPrimaryKey(id);
-        }
-        model.addAttribute("shop", s);
-        return "consumer/checkoutPage";
     }
 
 }

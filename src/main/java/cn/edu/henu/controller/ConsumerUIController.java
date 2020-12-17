@@ -32,6 +32,8 @@ public class ConsumerUIController {
     private IOrderService orderSer;
     @Autowired
     private IShopService shopSer;
+    @Autowired
+    private IAdminService adminSer;
 
     final Integer ROW = 8;
 
@@ -84,19 +86,23 @@ public class ConsumerUIController {
             model.addAttribute("add_info", add_info);
         }
         PageBean<Product> pageBean = ((PageBean<Product>) session.getAttribute("pb"));
-        if (pageBean == null) {
-            return "redirect:/home";
-        }
-        List<Product> products = pageBean.getList();
         boolean flag = false;
-        for (Product product : products) {
-            if (product.getId().equals(pid)) {
-                model.addAttribute("product", product);
-                flag = true;
-                break;
+        if (pageBean != null) {
+            List<Product> products = pageBean.getList();
+            for (Product product : products) {
+                if (product.getId().equals(pid)) {
+                    model.addAttribute("product", product);
+                    flag = true;
+                    break;
+                }
             }
         }
-        model.addAttribute("error_info", flag);
+
+        if (!flag) {
+            Product product = productSer.selectSimpleById(pid);
+            model.addAttribute("product", product);
+        }
+
         return "consumer/details";
     }
 
@@ -134,7 +140,7 @@ public class ConsumerUIController {
     }
 
     @RequestMapping("/pastOrder")
-    public String toPastOrder(HttpSession session, HttpServletRequest request) {
+    public String toPastOrder(@RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session, HttpServletRequest request) {
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
             String url = request.getRequestURL().toString();
@@ -143,8 +149,13 @@ public class ConsumerUIController {
             return "redirect:/login/consumer";
         }
         String username = consumer.getUsername();
-        List<Order> orders = orderSer.selectByCid(username);
-        session.setAttribute("conOrders", orders);
+        // 分页
+        PageHelper.startPage(p, ROW);
+        // 创建PageBean对象
+        PageBean<Order> pageBean;
+        pageBean = adminSer.findAllOrderByPage(null, ROW);
+        pageBean.setCurrentPage(p);
+        session.setAttribute("conOrders", pageBean);
         return "consumer/pastOrder";
     }
 

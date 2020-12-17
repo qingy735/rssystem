@@ -136,7 +136,7 @@ public class BusinessController {
     @RequestMapping("/logout")
     public String businessLogout(HttpSession session) {
         session.removeAttribute("busLoginInfo");
-        System.out.println("退出成功...");
+        session.invalidate();
         return "redirect:/login/business";
     }
 

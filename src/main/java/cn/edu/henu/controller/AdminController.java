@@ -28,8 +28,6 @@ public class AdminController {
     public Map<String, Object> login(@RequestBody String body, HttpSession session) {
         Map<String, Object> info = new HashMap<>();
         body = body.replace("\"", "");
-        System.out.println(body);
-        System.out.println(body);
         String[] params = body.split("&");
         String username = params[0].split("=")[1];
         String password = params[1].split("=")[1];
@@ -40,7 +38,6 @@ public class AdminController {
         if (login) {
             info.put("login_msg", "成功");
             info.put("flag", 1);
-            System.out.println(admin);
             session.setAttribute("admLoginInfo", admin);
         } else {
             info.put("login_msg", "账号或密码错误");
@@ -49,28 +46,15 @@ public class AdminController {
         return info;
     }
 
-    @RequestMapping("/orders")
-    public String findAllOrder() {
-        adminSer.findAllOrder();
-        return "success";
-    }
-
-    @RequestMapping("/comments")
-    public String findAllComment() {
-        adminSer.findAllComment();
-        return "success";
-    }
-
-    @RequestMapping("/businesses")
-    public String findAllBusiness() {
-        adminSer.findAllBusiness();
-        return "success";
-    }
-
-    @RequestMapping("/consumers")
-    public String findAllConsumer() {
-        adminSer.findAllConsumer();
-        return "success";
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        Admin loginInfo = (Admin) session.getAttribute("admLoginInfo");
+        if (loginInfo == null) {
+            return "redirect:/login/admin";
+        }
+        session.removeAttribute("admLoginInfo");
+        session.invalidate();
+        return "redirect:/login/admin";
     }
 
 }

@@ -185,7 +185,7 @@ public class ConsumerController {
     @RequestMapping("/logout")
     public String consumerLogout(HttpSession session) {
         session.removeAttribute("conLoginInfo");
-        System.out.println("退出成功...");
+        session.invalidate();
         return "redirect:/login/consumer";
     }
 

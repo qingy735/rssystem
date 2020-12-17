@@ -2,7 +2,6 @@ package cn.edu.henu.service.impl;
 
 import cn.edu.henu.bean.PageBean;
 import cn.edu.henu.bean.Product;
-import cn.edu.henu.dao.OrderMapper;
 import cn.edu.henu.dao.ProductMapper;
 import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,6 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ProductMapper productMapper;
-    @Autowired
-    private OrderMapper orderMapper;
 
     void initPageBean(PageBean<Product> pageBean, Product product, Integer row) {
         pageBean.setRows(row);

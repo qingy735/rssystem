@@ -8,13 +8,13 @@ import cn.edu.henu.service.ICheckoutService;
 import cn.edu.henu.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author Qing_Y
@@ -67,10 +67,54 @@ public class CheckoutController {
         return "redirect:/pastOrder";
     }
 
+    @ResponseBody
     @RequestMapping("/shops")
-    public String checkFromShop(Integer[] ids, HttpSession session, HttpServletRequest request) {
+    public Map<String, Object> checkFromShop(Integer[] ids, HttpSession session, HttpServletRequest request) {
+        Map<String, Object> info = new HashMap<>();
+        String referer = request.getHeader("REFERER");
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            info.put("flag", false);
+            info.put("href", "/login/consumer");
+            return info;
+        }
+        if (referer == null || !referer.contains("shopCart")) {
+            info.put("flag", false);
+            info.put("href", "/shopCart");
+            return info;
+        }
 
-        return "redirect:/pastOrder";
+        Order order = new Order();
+        order.setCid(consumer.getUsername());
+        List<OrderDetail> details = new ArrayList<>();
+        List<Integer> idss = new ArrayList<>(Arrays.asList(ids));
+        for (int i : ids) {
+            Shop shop = shopSer.selectByPrimaryKey(i);
+            order.setBid(shop.getBid());
+            OrderDetail detail = new OrderDetail();
+            detail.setPid(shop.getPid());
+            detail.setNum(shop.getPnum());
+            detail.setDiscount(shop.getDiscountuse());
+            details.add(detail);
+            String code = UUID.randomUUID().toString().replace("-", "").substring(5, 9);
+            order.setCode(code);
+        }
+
+        try {
+            int checkout = checkoutSer.checkout(order, details, idss);
+            if (checkout < 1) {
+                info.put("flag", false);
+                info.put("href", "/shopCart");
+            } else {
+                info.put("flag", true);
+                info.put("href", "/pastOrder");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            info.put("flag", false);
+            info.put("href", "/shopCart");
+        }
+        return info;
     }
 
 }

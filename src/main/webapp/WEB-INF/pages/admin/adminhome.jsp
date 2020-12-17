@@ -23,10 +23,10 @@
                 <br><br>
                 <div>
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a href="${ctp}/admin/conAdmin" target="mainFrame">消费者管理</a></li>
-                        <li><a href="${ctp}/admin/buAdmin" target="mainFrame">商家管理</a></li>
-                        <li><a href="${ctp}/admin/orderAd" target="mainFrame">订单管理</a></li>
-                        <li><a href="${ctp}/admin/commentAd" target="mainFrame">评价管理</a></li>
+                        <li><a href="${ctp}/admin/consumers" target="mainFrame">消费者管理</a></li>
+                        <li><a href="${ctp}/admin/businesses" target="mainFrame">商家管理</a></li>
+                        <li><a href="${ctp}/admin/orders" target="mainFrame">订单管理</a></li>
+                        <li><a href="${ctp}/admin/comments" target="mainFrame">评价管理</a></li>
                     </ul>
                 </div>
             </div>
@@ -37,12 +37,12 @@
             <header class="container" id="TopArea">
                 <div class="row">
                     <div class="col-md-10"><h2>河南大学餐厅服务系统</h2></div>
-                    <div class="col-md-2"><a href="${ctp}/business/logout"><h4>退出登录</h4></a></div>
+                    <div class="col-md-2"><a href="${ctp}/admin/logout"><h4>退出登录</h4></a></div>
                 </div>
             </header>
         </div>
         <div style="height: 85%;width: 100% ;border: solid">
-            <iframe name="mainFrame" src="${ctp}/admin/conAdmin" frameborder="no"></iframe>
+            <iframe name="mainFrame" src="${ctp}/admin/consumers" frameborder="no"></iframe>
         </div>
     </div>
 </div>

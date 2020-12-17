@@ -65,14 +65,11 @@ public class Consumer {
     }
 
     /**
-     * 默认为username
+     * 默认为default
      *
      * @return
      */
     public String getNickname() {
-        if (this.nickname == null || this.nickname.length() <= 0) {
-            return username;
-        }
         return nickname;
     }
 

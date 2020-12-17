@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -54,7 +52,7 @@ public class BusinessUIController {
     }
 
     @RequestMapping("/productList")
-    public String toProductList(String name, HttpSession session, Model model) throws UnsupportedEncodingException {
+    public String toProductList(String name, HttpSession session, Model model) {
         Business business = (Business) session.getAttribute("busLoginInfo");
         if (business == null) {
             return "redirect:/login/business";
@@ -63,7 +61,6 @@ public class BusinessUIController {
             name = null;
         }
         if (name != null) {
-            name = new String(name.getBytes("ISO8859-1"), StandardCharsets.UTF_8);
             model.addAttribute("name", name);
             name = "%" + name + "%";
         }

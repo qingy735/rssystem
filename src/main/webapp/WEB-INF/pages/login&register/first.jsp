@@ -154,19 +154,19 @@
                         <div class="form-group">
                             <label for="InputStNum">账号</label>
                             <input type="text" class="form-control" id="InputStNum" name="username"
-                                   placeholder="请输入学号/教职工号">
+                                   value="1812030001" placeholder="请输入学号/教职工号">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label for="InputStPwd">密码</label>
                             <input type="password" class="form-control" id="InputStPwd" name="password"
-                                   placeholder="请输入密码">
+                                   value="12345" placeholder="请输入密码">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-inline">
                             <label for="verifyCode1">验证码：</label>
                             <input type="text" name="verifyCode" class="form-control" id="verifyCode1"
-                                   placeholder="请输入验证码"
+                                   value="1111" placeholder="请输入验证码"
                                    style="width: 120px;"/>
                             <a href="javascript:refreshCode()">
                                 <img src="${ctp}/login/checkCode" class="verifyCodeImg" alt="点击刷新"/>
@@ -223,12 +223,14 @@
                 <form id="admLoginForm" action="${ctp}/admin/home" method="post">
                     <div class="form-group">
                         <label for="InputAcNum">账号</label>
-                        <input type="text" class="form-control" name="username" id="InputAcNum" placeholder="请输入管理员账号">
+                        <input type="text" class="form-control" name="username" value="admin" id="InputAcNum"
+                               placeholder="请输入管理员账号">
                         <span class="help-block"></span>
                     </div>
                     <div class="form-group">
                         <label for="InputAcPwd">密码</label>
-                        <input type="password" class="form-control" name="password" id="InputAcPwd" placeholder="请输入密码">
+                        <input type="password" class="form-control" name="password" value="admin" id="InputAcPwd"
+                               placeholder="请输入密码">
                         <span class="help-block"></span>
                     </div>
                     <div class="checkbox">

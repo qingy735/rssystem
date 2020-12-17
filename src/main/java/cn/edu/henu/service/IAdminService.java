@@ -18,11 +18,13 @@ public interface IAdminService {
     Boolean login(Admin admin);
 
     /**
-     * 查询所有订单
+     * 分页查询所有订单
      *
+     * @param order
+     * @param row
      * @return
      */
-    List<Order> findAllOrder();
+    PageBean<Order> findAllOrderByPage(Order order, Integer row);
 
     /**
      * 查询所有评论
@@ -32,16 +34,44 @@ public interface IAdminService {
     List<Comment> findAllComment();
 
     /**
-     * 查询所有店铺信息
+     * 根据条件查询所有店铺信息
      *
+     * @param business
+     * @param row
      * @return
      */
-    List<Business> findAllBusiness();
+    PageBean<Business> findAllBusinessByPage(Business business, Integer row);
 
     /**
      * 查询所有消费者信息
      *
+     * @param consumer
+     * @param row
      * @return
      */
-    List<Consumer> findAllConsumer();
+    PageBean<Consumer> findAllConsumerByPage(Consumer consumer, Integer row);
+
+    /**
+     * 查询有多少
+     *
+     * @param order
+     * @return
+     */
+    int getOrderTotal(Order order);
+
+    /**
+     * 查询有多少
+     *
+     * @param business
+     * @return
+     */
+    int getBusTotal(Business business);
+
+    /**
+     * 查询有多少
+     *
+     * @param consumer
+     * @return
+     */
+    int getConTotal(Consumer consumer);
 }

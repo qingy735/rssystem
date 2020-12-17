@@ -14,21 +14,16 @@
 </head>
 <body>
 <h3>${add_info}</h3>
-<c:if test="${error_info == true}">
-    <h3>${product.productName}</h3>
-    <p>店铺ID:${product.business.username}</p>
-    <p>店铺负责人:${product.business.name}</p>
-    <p>店铺所在餐厅:${product.business.rname}</p>
-    <p>店铺名字:${product.business.wname}</p>
-    <hr>
-    <p>商品简介:${product.productIntr}</p>
-    <img src="${ctp}/${product.photosrc}" alt="无法显示">
-    <p>商品评分:${product.productGrade}</p>
-    <p>商品价钱:${product.productPrice}</p>
-</c:if>
-<c:if test="${error_info == false}">
-    <h3>商品信息获取失败</h3>
-</c:if>
+<h3>${product.productName}</h3>
+<p>店铺ID:${product.business.username}</p>
+<p>店铺负责人:${product.business.name}</p>
+<p>店铺所在餐厅:${product.business.rname}</p>
+<p>店铺名字:${product.business.wname}</p>
+<hr>
+<p>商品简介:${product.productIntr}</p>
+<img src="${ctp}/${product.photosrc}" alt="无法显示">
+<p>商品评分:${product.productGrade}</p>
+<p>商品价钱:${product.productPrice}</p>
 <form action="${ctp}/shop/add?pid=${product.id}&bid=${product.business.username}" method="post">
     份数：<input type="number" name="pnum"><br>
     折扣：<input type="number" name="discountuse"><br>

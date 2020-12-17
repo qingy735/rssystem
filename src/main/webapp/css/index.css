@@ -29,10 +29,6 @@ iframe{
     display: flex;
     align-items: center;
 }
-.frexit{
-    margin: 0 auto;
-    text-align: center;
-}
 #TopArea {
     background: #FFFFFF;
     #opacity: 0.3;

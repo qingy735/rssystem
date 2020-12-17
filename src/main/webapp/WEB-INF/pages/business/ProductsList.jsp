@@ -16,7 +16,7 @@
 <div id="TitleArea">餐品列表</div>
 <!-- 过滤条件 -->
 <div id="TopMainArea">
-    <form action="${ctp}/business/productList" method="get">
+    <form action="${ctp}/business/productList" method="post">
         <input type="search" name="name" value="${name}" placeholder="请输入菜品名称">
         <input type="submit" value="搜索">
     </form>

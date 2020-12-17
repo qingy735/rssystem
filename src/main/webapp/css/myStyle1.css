@@ -36,15 +36,14 @@ ul li{ list-style: none; cursor: pointer;}
 }
 .countPrice{
 	width: 100%;
+	height: 5%;
 	background: #edcf1c;
-	text-align: center;
 }
 .countPrice1{
 	float: left;
 }
 .inCountPrice{
-
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 	text-align: center;
 }

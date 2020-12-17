@@ -31,9 +31,43 @@
             })
         })
     })
+    //全选操作
+    function checkShopAll(){
+        //1.获取编号前面的复选框
+        var checkAllEle = document.getElementById("checkShopAll");
+        //2.对编号前面复选框的状态进行判断
+        if(checkAllEle.checked==true){
+            //3.获取下面所有的复选框
+            var checkOnes = document.getElementsByName("checkout");
+            //4.对获取的所有复选框进行遍历
+            for(var i=0;i<checkOnes.length;i++){
+                //5.拿到每一个复选框，并将其状态置为选中
+                checkOnes[i].checked=true;
+            }
+        }else{
+            //6.获取下面所有的复选框
+            var checkOnes = document.getElementsByName("checkout");
+            //7.对获取的所有复选框进行遍历
+            for(var i=0;i<checkOnes.length;i++){
+                //8.拿到每一个复选框，并将其状态置为未选中
+                checkOnes[i].checked=false;
+            }
+        }
+    }
+    //获取选择的商品数量--Id
+    function GetShopNum(){
+        var checkOnes = document.getElementsByName("checkout");
+        var Shops = new Array();
+        for(var i=0;i<checkOnes.length;i++){
+            if(checkOnes[i].checked==true)
+            {
+                Shops.push(checkOnes[i].value);
+            }
+        }
+        return Shops.length;
+    }
 </script>
 <body>
-
 <c:if test="${requestScope.errorInfo != null}">
     <script>
         alert(<%=request.getAttribute("errorInfo")%>)
@@ -55,7 +89,7 @@
         <!-- 表头-->
         <thead>
         <tr align="center" valign="middle">
-            <td><input type="checkbox"/></td>
+            <td>&nbsp</td>
             <td>商品</td>
             <td>价格</td>
             <td>购买数量</td>
@@ -66,7 +100,6 @@
         </thead>
         <!--显示数据列表 -->
         <tbody>
-
         <form action="${ctp}/checkout/shops" method="post">
             <c:forEach items="${sessionScope.shops}" var="shop">
                 <tr height="60" align="center">
@@ -95,27 +128,24 @@
     </table>
 </div>
 </c:if>
-<div class="row countPrice col-md-12 ">
+<div class="row countPrice col-md-12 navbar-fixed-bottom">
     <div class="inCountPrice">
-        <div class="countPrice1 " style="float: left">
-            <input type="checkbox">&nbsp;全选&nbsp;
+        <div class="col-md-1 pull-left">
+            <input type="checkbox" id="checkShopAll" onclick="checkShopAll()">&nbsp;全选&nbsp;
         </div>
-        <div class="countPrice1" style="float: left">
-            <a>删除&nbsp;</a>
+        <div class="col-md-1 pull-left">
+            <a>删除</a>
         </div>
-        <div class="countPrice1 form-inline" style="float: left">
+        <div class="col-md-2 pull-left">
             <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
         </div>
-        <div style="float: right">
+        <div class="col-md-1 pull-right">
             <button type="button" class="btn btn-warning">结&nbsp;算</button>
         </div>
-        <div class="countPrice1" style="float: right">
+        <div class="col-md-2 pull-right">
+            <span>总金额：</span>
             <span style="color: red"> &nbsp;5.00&nbsp;&nbsp;</span>
         </div>
-        <div class="countPrice1" style="float: right">
-            <span>总金额：</span>
-        </div>
-
     </div>
 </div>
 

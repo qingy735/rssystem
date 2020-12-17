@@ -3,8 +3,9 @@
 	margin: 0;
 	padding: 0;
 }
-body{
-	width: 100%;height: 100%;
+html,body{
+	width: 100%;
+	height: 100%;
 }
 ul li{ list-style: none; cursor: pointer;}
 .middle{
@@ -171,4 +172,13 @@ ul li{ list-style: none; cursor: pointer;}
 .buyGoodsBody{
 	margin: 0 auto;
 	text-align: center;
+}
+#TableMain{
+	width: 100%;
+	height: auto;
+}
+.tableMain{
+	width: 90%;
+	position: relative;
+	margin-left: 5%;
 }

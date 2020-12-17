@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- 页面标题 -->
-<h3>${sessionScope.updateInfo}</h3>
+<h3 hidden>${sessionScope.updateInfo}</h3>
 <div id="TitleArea">更新新餐品</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
@@ -47,7 +47,7 @@
             <div class="form-group">
                 <label for="image" class="col-md-4 control-label">餐品图片:</label>
                 <div class="col-md-8  col-md-pull-2">
-                    <img src="${ctp}/${updateProduct.photosrc}?id=<%=Math.random()%>" alt="无法显示">
+                    <img src="${ctp}/${updateProduct.photosrc}?id=<%=Math.random()%>" alt="无法显示" style="height:100px">
                     <input type="file" id="image" name="imgSrc"/>
                 </div>
                 <br>

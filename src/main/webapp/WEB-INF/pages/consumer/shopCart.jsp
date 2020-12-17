@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${ctp}/css/myStyle1.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>购物车</title>
+    <link rel="stylesheet" type="text/css" href="${ctp}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctp}/css/myStyle1.css"/>
+    <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <script type="text/javascript">
     $(function () {
@@ -50,50 +50,51 @@
     </div>
 </c:if>
 <c:if test="${sessionScope.shops != null}">
-    <div class="container">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <td></td>
-                <th>商品</th>
-                <th>价格</th>
-                <th>购买数量</th>
-                <th>优惠券</th>
-                <th>小计</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <form action="${ctp}/checkout/shops" method="post">
-                <c:forEach items="${sessionScope.shops}" var="shop">
-                <tr style="text-align:center">
+<div id="TableMain">
+    <table class="table table-hover tableMain" align="center">
+        <!-- 表头-->
+        <thead>
+        <tr align="center" valign="middle">
+            <td><input type="checkbox"/></td>
+            <td>商品</td>
+            <td>价格</td>
+            <td>购买数量</td>
+            <td>优惠券</td>
+            <td>小计</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <!--显示数据列表 -->
+        <tbody>
+
+        <form action="${ctp}/checkout/shops" method="post">
+            <c:forEach items="${sessionScope.shops}" var="shop">
+                <tr height="60" align="center">
                     <td>
                         <input type="checkbox" name="checkout" value="${shop.id}">
                     </td>
-                    <td style="width: 20%;height: 20%">
+                    <td>
                         <a><!--跳转商品详情-->
-                            <img alt="生菜" style="width: 50%" src="${ctp}/${shop.product.photosrc}">
+                            <img alt="生菜" style="height:60px" src="${ctp}/${shop.product.photosrc}">
                         </a>
                     </td>
                     <td>${shop.product.productPrice}</td>
                     <td>
-                        <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum">
-            </form>
-            </td>
-            <td>-${shop.discountuse}</td>
-            <td>${shop.totalPrice}</td>
-            <td>
-                <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
-                <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
-            </td>
-            </tr>
+                        <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum" style="width: 120px">
+                    </td>
+                    <td>-${shop.discountuse}</td>
+                    <td>${shop.totalPrice}</td>
+                    <td>
+                        <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
+                        <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+                    </td>
+                </tr>
             </c:forEach>
-            </form>
-            </tbody>
-        </table>
-    </div>
+        </form>
+        </tbody>
+    </table>
+</div>
 </c:if>
-
 <div class="row countPrice col-md-12 ">
     <div class="inCountPrice">
         <div class="countPrice1 " style="float: left">
@@ -117,5 +118,6 @@
 
     </div>
 </div>
+
 </body>
 </html>

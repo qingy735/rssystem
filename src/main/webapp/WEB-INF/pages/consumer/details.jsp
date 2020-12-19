@@ -4,30 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>餐品详情</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${ctp}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${ctp}/css/myStyle1.css"/>
+    <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-<h3>${add_info}</h3>
-<h3>${product.productName}</h3>
-<p>店铺ID:${product.business.username}</p>
-<p>店铺负责人:${product.business.name}</p>
-<p>店铺所在餐厅:${product.business.rname}</p>
-<p>店铺名字:${product.business.wname}</p>
-<hr>
-<p>商品简介:${product.productIntr}</p>
-<img src="${ctp}/${product.photosrc}" alt="无法显示">
-<p>商品评分:${product.productGrade}</p>
-<p>商品价钱:${product.productPrice}</p>
-<form action="${ctp}/shop/add?pid=${product.id}&bid=${product.business.username}" method="post">
-    份数：<input type="number" name="pnum"><br>
-    折扣：<input type="number" name="discountuse"><br>
-    <input type="submit" value="加入购物车">
-</form>
+<div id="TitleArea" class="navbar-fixed-top">餐品详情</div><br><br>
+<div id="mainArea">
+    <h3 hidden>${add_info}</h3>
+    <h3>${product.productName}</h3>
+    <p>店铺ID:${product.business.username}</p>
+    <p>店铺负责人:${product.business.name}</p>
+    <p>店铺所在餐厅:${product.business.rname}</p>
+    <p>店铺名字:${product.business.wname}</p>
+    <hr>
+    <p>商品简介:${product.productIntr}</p>
+    <img src="${ctp}/${product.photosrc}" alt="无法显示" style="height:100px">
+    <p>商品评分:${product.productGrade}</p>
+    <p>商品价钱:${product.productPrice}</p>
+    <form action="${ctp}/shop/add?pid=${product.id}&bid=${product.business.username}" method="post">
+        份数：<input type="number" name="pnum"><br>
+        折扣：<input type="number" name="discountuse"><br>
+        <input type="submit" value="加入购物车">
+    </form>
+
+</div>
+
 </body>
 </html>

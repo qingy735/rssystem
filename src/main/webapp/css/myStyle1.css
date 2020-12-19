@@ -181,3 +181,16 @@ ul li{ list-style: none; cursor: pointer;}
 	position: relative;
 	margin-left: 5%;
 }
+#TitleArea{
+	background: snow;
+	height: 5%;
+	width: 100%;
+	text-align: center;
+}
+#mainArea{
+	background-color: seashell;
+	height: auto;
+	width: 50%;
+	margin-left: 24%;
+	border: 0;
+}

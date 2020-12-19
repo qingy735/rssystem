@@ -6,20 +6,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>河南大学餐厅服务系统</title>
+    <title>餐品列表</title>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="TitleArea">餐品列表</div>
+<div  class="navbar-fixed-top" id="TitleArea">餐品列表</div>
 <!-- 过滤条件 -->
 <div id="TopMainArea">
-    <form action="${ctp}/business/productList" method="post">
-        <input type="search" name="name" value="${name}" placeholder="请输入菜品名称">
-        <input type="submit" value="搜索">
-    </form>
+    <br><br>
+        <form action="${ctp}/business/productList" method="post">
+            &nbsp;
+            <input type="search" name="name" value="${name}" placeholder="请输入菜品名称">
+            <input type="submit" value="搜索">
+            <br>
+        </form>
     <table class="table table-hover" align="center">
         <!-- 表头-->
         <thead>

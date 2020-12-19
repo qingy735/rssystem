@@ -25,9 +25,10 @@
 <body>
 <!-- 页面标题 -->
 <h3 id="add_msg" hidden>${add_msg}</h3>
-<div id="TitleArea">上传餐品</div>
+<div id="TitleArea" class="navbar-fixed-top">上传餐品</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
+    <br><br>
     <div class="row" id="mainArea">
         <form action="${ctp}/product/add" id="addForm" enctype="multipart/form-data" method="post"
               target="mainFrame">

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>河南大学餐厅服务系统</title>
+    <title>订单详细说明</title>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
@@ -13,9 +13,10 @@
 </head>
 <body>
 <!-- 页面标题 -->
-<div id="TitleArea">订单详细说明</div>
+<div id="TitleArea" class="navbar-fixed-top">订单详细说明</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
+    <br><br>
     <table class="table table-bordered Dtabel" align="center">
         <thead>
         <tr id="TableTitle">

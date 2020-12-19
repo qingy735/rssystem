@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>河南大学餐厅服务系统</title>
+    <title>更新新餐品</title>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="${ctp}/css/index.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
@@ -14,9 +14,10 @@
 <body>
 <!-- 页面标题 -->
 <h3 hidden>${sessionScope.updateInfo}</h3>
-<div id="TitleArea">更新新餐品</div>
+<div id="TitleArea" class="navbar-fixed-top">更新新餐品</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
+    <br><br>
     <div class="row" id="mainArea">
         <form action="${ctp}/product/update?id=${updateProduct.id}" class="proForm" enctype="multipart/form-data"
               method="post">

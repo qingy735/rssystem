@@ -13,9 +13,10 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="TitleArea">评价管理</div>
+<div id="TitleArea" class="navbar-fixed-top">评价管理</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
+    <br><br>
     <table class="table table-hover" align="center">
         <thead>
         <tr align="center" valign="middle" id="TableTitle">

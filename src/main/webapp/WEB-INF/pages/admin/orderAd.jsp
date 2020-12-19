@@ -26,30 +26,34 @@
 
 </head>
 <body>
-<div id="TitleArea">订单管理</div>
+<div id="TitleArea" class="navbar-fixed-top">订单管理</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
     <div class="container searchPdt">
         <form id="selectForm" class="form-inline" method="post" action="${ctp}/admin/orders">
+            <br><br>
             <div class="form-group">
                 <label for="id">订单号</label>
-                <input type="text" class="form-control" id="id" name="id" value="${sessionScope.ordConds.id}">
+                <input type="text" id="id" name="id" value="${sessionScope.ordConds.id}">
             </div>
             <div class="form-group">
                 <label for="cid">用户id</label>
-                <input type="text" class="form-control" id="cid" name="cid" value="${sessionScope.ordConds.cid}">
+                <input type="text" id="cid" name="cid" value="${sessionScope.ordConds.cid}">
             </div>
             <div class="form-group">
                 <label for="bid">商家id</label>
-                <input type="text" class="form-control" id="bid" name="bid"
+                <input type="text" id="bid" name="bid"
                        value="${sessionScope.ordConds.bid}">
             </div>
             <div class="form-group">
                 <label for="status">订单状态(0/1)</label>
-                <input type="text" class="form-control" id="status" name="status"
+                <input type="text" id="status" name="status"
                        value="${sessionScope.ordConds.status}">
             </div>
-            <input type="submit" class="btn btn-default" value="搜索"/>
+            <div class="form-group col-md-1 pull-right">
+            <input type="submit" value="搜索"/>
+            </div>
+            <br><br>
         </form>
     </div>
     <table class="table table-hover" align="center">
@@ -86,7 +90,7 @@
         </tbody>
     </table>
     <!-- 分页条 -->
-    <div class="middle container divPage">
+    <div class="middle container divPage navbar-fixed-bottom">
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <c:choose>

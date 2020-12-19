@@ -26,31 +26,36 @@
 
 </head>
 <body>
-<div id="TitleArea">商家信息管理</div>
+<div id="TitleArea" class="navbar-fixed-top">商家信息管理</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
     <div class="container searchPdt">
         <form id="selectForm" class="form-inline" method="post" action="${ctp}/admin/businesses">
+            <br><br>
             <div class="form-group">
                 <label for="username">商家id</label>
-                <input type="text" class="form-control" id="username" name="username"
+                <input type="text" id="username" name="username"
                        value="${sessionScope.busConds.username}">
             </div>
             <div class="form-group">
                 <label for="wname">窗口名</label>
-                <input type="text" class="form-control" id="wname" name="wname" value="${sessionScope.busConds.wname}">
+                <input type="text" id="wname" name="wname"
+                       value="${sessionScope.busConds.wname}">
             </div>
             <div class="form-group">
                 <label for="rname">餐厅名</label>
-                <input type="text" class="form-control" id="rname" name="rname"
+                <input type="text" id="rname" name="rname"
                        value="${sessionScope.busConds.rname}">
             </div>
             <div class="form-group">
                 <label for="grade">评分不低于</label>
-                <input type="text" class="form-control" id="grade" name="grade"
+                <input type="text" id="grade" name="grade"
                        value="${sessionScope.busConds.grade}">
             </div>
-            <input type="submit" class="btn btn-default" value="搜索"/>
+            <div class="form-group col-md-1 pull-right">
+                <input type="submit" value="搜索"/>
+            </div>
+            <br><br>
         </form>
     </div>
     <table class="table table-hover" align="center">
@@ -88,7 +93,7 @@
     </table>
 
     <!-- 分页条 -->
-    <div class="middle container divPage">
+    <div class="middle container divPage navbar-fixed-bottom">
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <c:choose>

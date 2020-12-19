@@ -26,32 +26,36 @@
 
 </head>
 <body>
-<div id="TitleArea">消费者信息管理</div>
+<div id="TitleArea" class="navbar-fixed-top">消费者信息管理</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
     <div class="container searchPdt">
         <form id="selectForm" class="form-inline" method="post" action="${ctp}/admin/consumers">
+            <br><br>
             <div class="form-group">
                 <label for="username">用户id</label>
-                <input type="text" class="form-control" id="username" name="username"
+                <input type="text" id="username" name="username"
                        value="${sessionScope.conConds.username}">
             </div>
             <div class="form-group">
                 <label for="nickname">昵称</label>
-                <input type="text" class="form-control" id="nickname" name="nickname"
+                <input type="text" id="nickname" name="nickname"
                        value="${sessionScope.conConds.nickname}">
             </div>
             <div class="form-group">
                 <label for="name">姓名</label>
-                <input type="text" class="form-control" id="name" name="name"
+                <input type="text" id="name" name="name"
                        value="${sessionScope.conConds.name}">
             </div>
             <div class="form-group">
                 <label for="sex">性别</label>
-                <input type="text" class="form-control" id="sex" name="sex"
+                <input type="text" id="sex" name="sex"
                        value="${sessionScope.conConds.sex}">
             </div>
-            <input type="submit" class="btn btn-default" value="搜索"/>
+            <div class="form-group col-md-1 pull-right">
+                <input type="submit" value="搜索"/>
+            </div>
+            <br><br>
         </form>
     </div>
     <table class="table table-hover" align="center">
@@ -85,7 +89,7 @@
     </table>
 
     <!-- 分页条 -->
-    <div class="middle container divPage">
+    <div class="middle container divPage navbar-fixed-bottom">
         <nav aria-label="Page navigation">
             <ul class="pagination">
                 <c:choose>

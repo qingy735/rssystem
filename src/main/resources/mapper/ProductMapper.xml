@@ -82,7 +82,7 @@
     <select id="getAllByBidAndName" resultMap="BaseResultMap">
         select p.*
         from productinfo p,businessinfo b
-        where b.username = #{bid}
+        where b.username = #{bid} and p.bid = #{bid}
         <if test="pname != null">
             and p.name like #{pname}
         </if>

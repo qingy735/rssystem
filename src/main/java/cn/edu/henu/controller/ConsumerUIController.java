@@ -123,7 +123,20 @@ public class ConsumerUIController {
 
         String username = consumer.getUsername();
         List<Shop> shops = shopSer.selectByCid(username);
+        Map<Integer, List<Shop>> map = new HashMap<>();
+        for (Shop shop : shops) {
+            Integer bid = shop.getBid();
+            List<Shop> list;
+            if (map.containsKey(bid)) {
+                list = map.get(bid);
+            } else {
+                list = new ArrayList<>();
+            }
+            list.add(shop);
+            map.put(bid, list);
+        }
         session.setAttribute("shops", shops);
+        session.setAttribute("mapShop", map);
         return "consumer/shopCart";
     }
 

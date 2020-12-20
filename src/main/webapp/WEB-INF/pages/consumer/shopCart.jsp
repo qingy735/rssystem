@@ -103,19 +103,19 @@
 <!-- 导航栏 -->
 <jsp:include page="head.jsp"/>
 <!-- 加购的餐品列表 -->
-<c:if test="${sessionScope.shops == null}">
+<c:if test="${sessionScope.mapShop == null}">
     <div style="width: 100%;text-align: center;">
         <img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png">
         <span>您还没有加购任何商品，快去选购吧~</span>
     </div>
 </c:if>
-<c:if test="${sessionScope.shops != null}">
-    <div id="TableMain">
+<c:if test="${sessionScope.mapShop != null}">
+    <%--<div id="TableMain">
         <table class="table table-hover tableMain" align="center">
             <!-- 表头-->
             <thead>
             <tr align="center" valign="middle">
-                <td>&nbsp</td>
+                <td>&nbsp;</td>
                 <td>商品</td>
                 <td>价格</td>
                 <td>购买数量</td>
@@ -153,28 +153,75 @@
             </form>
             </tbody>
         </table>
+    </div>--%>
+    <div id="TableMain">
+        <c:forEach items="${sessionScope.mapShop}" var="shops">
+            <h4>商家id：${shops.key}</h4>
+            <table class="table table-hover tableMain" align="center">
+                <!-- 表头-->
+                <thead>
+                <tr align="center" valign="middle">
+                    <td>&nbsp;</td>
+                    <td>商品</td>
+                    <td>价格</td>
+                    <td>购买数量</td>
+                    <td>优惠券</td>
+                    <td>小计</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <!--显示数据列表 -->
+                <tbody>
+                <form action="${ctp}/checkout/shops" method="post">
+                    <c:forEach items="${shops.value}" var="shop">
+                        <tr height="60" align="center">
+                            <td>
+                                <input type="checkbox" name="checkout" value="${shop.id}">
+                            </td>
+                            <td>
+                                <a><!--跳转商品详情-->
+                                    <img alt="生菜" style="height:60px" src="${ctp}/${shop.product.photosrc}">
+                                </a>
+                            </td>
+                            <td>${shop.product.productPrice}</td>
+                            <td>
+                                <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum"
+                                       style="width: 120px">
+                            </td>
+                            <td>-${shop.discountuse}</td>
+                            <td>${shop.totalPrice}</td>
+                            <td>
+                                <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
+                                <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </form>
+                </tbody>
+            </table>
+        </c:forEach>
+    </div>
+    <div class="row countPrice col-md-12 navbar-fixed-bottom">
+        <div class="inCountPrice">
+            <div class="col-md-1 pull-left">
+                <input type="checkbox" id="checkShopAll" onclick="checkShopAll()">&nbsp;全选&nbsp;
+            </div>
+            <div class="col-md-1 pull-left">
+                <a>删除</a>
+            </div>
+            <div class="col-md-2 pull-left">
+                <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
+            </div>
+            <div class="col-md-1 pull-right">
+                <button type="button" class="btn btn-warning" id="checkoutBtu">结&nbsp;算</button>
+            </div>
+            <div class="col-md-2 pull-right">
+                <span>总金额：</span>
+                <span style="color: red"> &nbsp;5.00&nbsp;&nbsp;</span>
+            </div>
+        </div>
     </div>
 </c:if>
-<div class="row countPrice col-md-12 navbar-fixed-bottom">
-    <div class="inCountPrice">
-        <div class="col-md-1 pull-left">
-            <input type="checkbox" id="checkShopAll" onclick="checkShopAll()">&nbsp;全选&nbsp;
-        </div>
-        <div class="col-md-1 pull-left">
-            <a>删除</a>
-        </div>
-        <div class="col-md-2 pull-left">
-            <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
-        </div>
-        <div class="col-md-1 pull-right">
-            <button type="button" class="btn btn-warning" id="checkoutBtu">结&nbsp;算</button>
-        </div>
-        <div class="col-md-2 pull-right">
-            <span>总金额：</span>
-            <span style="color: red"> &nbsp;5.00&nbsp;&nbsp;</span>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.henu.dao.ShopMapper">
+
+    <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Shop">
+        <id column="id" property="id"/>
+        <result column="cid" property="cid"/>
+        <result column="bid" property="bid"/>
+        <result column="pid" property="pid"/>
+        <result column="pnum" property="pnum"/>
+        <result column="discountuse" property="discountuse"/>
+    </resultMap>
+
+    <resultMap id="ShopProductMap" type="cn.edu.henu.bean.Shop">
+        <id column="id" property="id"/>
+        <result column="cid" property="cid"/>
+        <result column="bid" property="bid"/>
+        <result column="pid" property="pid"/>
+        <result column="pnum" property="pnum"/>
+        <result column="discountuse" property="discountuse"/>
+        <association property="product" column="pid"
+                     javaType="cn.edu.henu.bean.Product"
+                     select="cn.edu.henu.dao.ProductMapper.selectSimpleById"/>
+    </resultMap>
+
+    <select id="selectByPrimaryKey" resultMap="ShopProductMap">
+        select * from shopinfo where id = #{id}
+    </select>
+
+    <select id="batchSelect" resultMap="ShopProductMap">
+        select * from shopinfo where id in
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectAll" resultMap="ShopProductMap">
+        select * from shopinfo
+    </select>
+
+    <select id="selectByCid" resultMap="ShopProductMap">
+        select * from shopinfo where cid=#{cid}
+    </select>
+
+    <insert id="insert">
+        insert into shopinfo(cid,bid,pid,pnum,discountuse)
+        values(#{cid},#{bid},#{pid},#{pnum},#{discountuse})
+    </insert>
+
+    <delete id="deleteByPrimaryKey">
+        delete from shopinfo where id=#{id}
+    </delete>
+
+    <delete id="batchDelete" parameterType="java.util.List">
+        delete from shopinfo where id IN
+        <foreach collection="list" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateByPrimaryKey">
+        update shopinfo
+        <trim prefix="set" suffixOverrides=",">
+            <if test="pnum != null">
+                pnum = #{pnum},
+            </if>
+            <if test="discountuse != null">
+                discountuse = #{discountuse},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+</mapper>

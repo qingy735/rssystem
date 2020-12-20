@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.henu.dao.AdminMapper">
+
+    <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Admin">
+        <id property="username" column="username"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <resultMap id="OrderMap" type="cn.edu.henu.bean.Order">
+        <id column="orderid" property="id"/>
+        <result column="cid" property="cid"/>
+        <result column="bid" property="bid"/>
+        <result column="note" property="note"/>
+        <result column="code" property="code"/>
+        <result column="status" property="status"/>
+        <result column="ordertime" property="orderTime"/>
+    </resultMap>
+
+    <resultMap id="BusinessMap" type="cn.edu.henu.bean.Business">
+        <id column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="rid" property="rid"/>
+        <result column="rname" property="rname"/>
+        <result column="wid" property="wid"/>
+        <result column="wname" property="wname"/>
+        <result column="tel" property="tel"/>
+        <result column="grade" property="grade"/>
+    </resultMap>
+
+    <resultMap id="ConsumerMap" type="cn.edu.henu.bean.Consumer">
+        <id property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="nickname" column="nickname"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="tel" column="tel"/>
+    </resultMap>
+
+    <!--根据用户名查询-->
+    <select id="selectByPrimarykey" resultMap="BaseResultMap">
+        select * from admininfo where username = #{username}
+    </select>
+
+    <!--查询订单-->
+    <select id="selectAllOrder" resultMap="OrderMap">
+        select * from orderinfo2
+    </select>
+    <select id="selectOrderByCon" resultMap="OrderMap">
+        select * from orderinfo2 where 1 = 1
+        <if test="cid != null">
+            and cid = #{cid}
+        </if>
+        <if test="bid != null">
+            and bid = #{bid}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="id != null">
+            and orderid = #{id}
+        </if>
+    </select>
+    <select id="selectOrderTotal" resultType="int">
+        select count(orderid) from orderinfo2 where 1 = 1
+        <if test="cid != null">
+            and cid = #{cid}
+        </if>
+        <if test="bid != null">
+            and bid = #{bid}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="id != null">
+            and orderid = #{id}
+        </if>
+    </select>
+
+    <!--查询商家-->
+    <select id="selectAllBusiness" resultMap="BusinessMap">
+        select b.*,r.name rname from businessinfo b
+        left join restaurantinfo r on b.rid = r.id
+    </select>
+    <select id="selectBusinessByCon" resultMap="BusinessMap">
+        select b.*,r.name rname from businessinfo b,restaurantinfo r
+        where b.rid = r.id
+        <if test="wname != null">
+            and b.wname like #{wname}
+        </if>
+        <if test="rname != null">
+            and r.name like #{rname}
+        </if>
+        <if test="grade != null">
+            and b.grade >= #{grade}
+        </if>
+        <if test="username != null">
+            and b.username = #{username}
+        </if>
+    </select>
+    <select id="selectBusinessTotal" resultType="int">
+        select count(id) from businessinfo b,restaurantinfo r where b.rid = r.id
+        <if test="username != null">
+            and b.username = #{username}
+        </if>
+        <if test="wname != null">
+            and b.wname like #{wname}
+        </if>
+        <if test="rname != null">
+            and r.name like #{rname}
+        </if>
+        <if test="grade != null">
+            and b.grade >= #{grade}
+        </if>
+        <if test="username != null">
+            and b.username = #{username}
+        </if>
+    </select>
+
+    <!--查询消费者-->
+    <select id="selectAllConsumer" resultMap="ConsumerMap">
+        select * from consumerinfo
+    </select>
+    <select id="selectConsumerByCon" resultMap="ConsumerMap">
+        select * from consumerinfo where 1 = 1
+        <if test="username != null">
+            and username = #{username}
+        </if>
+        <if test="nickname != null">
+            and nickname like #{nickname}
+        </if>
+        <if test="name != null">
+            and name like #{name}
+        </if>
+        <if test="sex != null">
+            and sex = #{sex}
+        </if>
+    </select>
+    <select id="selectConsumerTotal" resultType="int">
+        select count(username) from consumerinfo where 1 = 1
+        <if test="username != null">
+            and username = #{username}
+        </if>
+        <if test="nickname != null">
+            and nickname like #{nickname}
+        </if>
+        <if test="name != null">
+            and name like #{name}
+        </if>
+        <if test="sex != null">
+            and sex = #{sex}
+        </if>
+    </select>
+
+</mapper>

@@ -29,7 +29,7 @@
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
     <br><br>
-    <div class="row" id="mainArea">
+    <div class="row" id="ProForm">
         <form action="${ctp}/product/add" id="addForm" enctype="multipart/form-data" method="post"
               target="mainFrame">
             <input type="hidden" name="bid" value="${sessionScope.busLoginInfo.username} ">

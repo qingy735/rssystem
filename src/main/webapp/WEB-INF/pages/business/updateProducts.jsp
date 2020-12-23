@@ -17,8 +17,8 @@
 <div id="TitleArea" class="navbar-fixed-top">更新新餐品</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
-    <br><br>
-    <div class="row" id="mainArea">
+    <br>
+    <div class="row" id="ProForm">
         <form action="${ctp}/product/update?id=${updateProduct.id}" class="proForm" enctype="multipart/form-data"
               method="post">
             <div class="form-group">

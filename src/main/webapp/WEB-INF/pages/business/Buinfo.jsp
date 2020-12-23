@@ -59,10 +59,73 @@
                 </table>
             </div>
             <div class="container">
-                <button type="button" value="修改信息" class="btn-primary col-md-8" style="height: 30px">修改信息</button>
+                <button type="button" class="btn btn-primary col-md-8" data-toggle="modal" data-target="#myModal" style="height: 30px">修改信息</button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="background-color: seashell;">
+                            <form class="form-horizontal" action="" method="post">
+                                <div class="modal-header" style="height: 30px;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h5 class="modal-title" id="myModalLabel" style="color: #2e6da4;text-align: center"><b>修改个人信息</b></h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="reName" class="col-sm-2 control-label">餐厅名</label>
+                                        <div class="col-sm-10">
+                                            <input class="form-control" type="text" id="reName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wdName" class="col-sm-2 control-label">窗口名</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="wdName" path="wname"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="WdNum" class="col-sm-2 control-label">窗口号</label>
+                                        <div class="col-sm-10">
+                                            <input type="number" class="form-control" id="WdNum" name="wid">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="BuName" class="col-sm-2 control-label"><h6><b>负责人姓名</b></h6></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="BuName" path="name"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="BuTel" class="col-sm-2 control-label"><h6><b>负责人电话</b></h6></label>
+                                        <div class="col-sm-10">
+                                            <input type="tel" class="form-control" id="BuTel" path="tel"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="BuPwd1" class="col-sm-2 control-label">密码</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="BuPwd1" name="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="BuPwd2" class="col-sm-2 control-label">确认密码</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="BuPwd2" name="password2">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="form-group row">
+                                            <input type="submit" class="btn btn-primary col-md-2 col-md-offset-8" role="button" value="提交"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
+   </div>
 </div>
 </body>
 </html>

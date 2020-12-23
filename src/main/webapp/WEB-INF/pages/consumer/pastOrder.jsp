@@ -45,7 +45,30 @@
                         <td>
                             未结账
                             <br>
-                            <a href="${ctp}/order/update?oid=${order.id}&status=1">去结账</a>
+                            <a href="#ofModal" data-toggle="modal">去结账</a>
+                            <!-- 弹出框 -->
+                            <div class="modal fade" id="ofModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content" style="margin-top: 30%;background-color: snow;">
+                                        <form>
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel" style="color: #2e6da4;text-align: center">支付页面</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <label class="col-md-6 pull-left">支付宝支付&nbsp;<input type="radio" name="zf"></label>
+                                                    <label class="col-md-6 pull-left">微信支付&nbsp;<input type="radio" name="zf"></label>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a href="${ctp}/order/update?oid=${order.id}&status=1" class="del btn">支付</a>
+                                                <a href="" class="del btn">取消支付</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </c:if>
                     <c:if test="${order.status == 1}">

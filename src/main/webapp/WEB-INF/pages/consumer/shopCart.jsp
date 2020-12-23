@@ -118,12 +118,12 @@
                 <thead>
                 <tr align="center" valign="middle">
                     <td>&nbsp;</td>
-                    <td>商品</td>
-                    <td>价格</td>
-                    <td>购买数量</td>
-                    <td>优惠券</td>
-                    <td>小计</td>
-                    <td>操作</td>
+                    <td><b>商品</b></td>
+                    <td><b>价格</b></td>
+                    <td><b>购买数量</b></td>
+                    <td><b>优惠券</b></td>
+                    <td><b>小计</b></td>
+                    <td><b>操作</b></td>
                 </tr>
                 </thead>
                 <!--显示数据列表 -->
@@ -166,8 +166,7 @@
                                 <td>-${shop.discountuse}</td>
                                 <td>${shop.totalPrice}</td>
                                 <td>
-                                    <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
-                                    <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+                                    <a href="${ctp}/shop/delete?id=${shop.id}" class="del btn" onclick="return confirm('确定要删除吗？')">删除</a>
                                 </td>
                             </tr>
                         </c:if>
@@ -189,7 +188,7 @@
                 <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
             </div>
             <div class="col-md-1 pull-right">
-                <button type="button" class="btn btn-warning" id="checkoutBtu">结&nbsp;算</button>
+              <button type="button" class="btn btn-warning" id="checkoutBtu"  data-toggle="modal" data-target="#myModal"  >结&nbsp;算</button>
             </div>
             <div class="col-md-2 pull-right">
                 <span>总金额：</span>

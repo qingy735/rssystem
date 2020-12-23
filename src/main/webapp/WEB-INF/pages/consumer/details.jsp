@@ -28,8 +28,8 @@
     <p>商品评分:${product.productGrade}</p>
     <p>商品价钱:${product.productPrice}</p>
     <form action="${ctp}/shop/add?pid=${product.id}&bid=${product.business.username}" method="post">
-        份数：<input type="number" name="pnum"><br>
-        折扣：<input type="number" name="discountuse"><br>
+        份数：<input type="number" name="pnum" required><br>
+        折扣：<input type="number" name="discountuse" required><br>
         <input type="submit" value="加入购物车">
     </form>
 

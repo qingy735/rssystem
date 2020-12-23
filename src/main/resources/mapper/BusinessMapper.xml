@@ -73,21 +73,24 @@
             <if test="password != null">
                 password = #{password},
             </if>
-            <if test="rid != null">
+            <!--<if test="rid != null">
                 rid = #{rid},
             </if>
             <if test="wid != null">
                 wid = #{wid},
-            </if>
+            </if>-->
             <if test="wname != null">
                 wname = #{wname},
             </if>
             <if test="tel != null">
                 tel = #{tel},
             </if>
-            <if test="grade != null">
-                grade = #{grade},
+            <if test="name != null">
+                name = #{name},
             </if>
+            <!--<if test="grade != null">
+                grade = #{grade},
+            </if>-->
         </trim>
         where username = #{username}
     </update>

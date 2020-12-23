@@ -180,7 +180,7 @@ public class ConsumerUIController {
     public String toOrderDetail(Integer oid, Model model, HttpServletRequest request) {
         String referer = request.getHeader("REFERER");
         System.out.println(referer);
-        if (referer == null || !referer.contains("pastOrder")) {
+        if (referer == null || !referer.contains("/pastOrder")) {
             return "redirect:/pastOrder";
         }
         Order order = orderSer.selectByPrimaryKey(oid);

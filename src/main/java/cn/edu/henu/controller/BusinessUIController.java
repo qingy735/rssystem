@@ -2,6 +2,7 @@ package cn.edu.henu.controller;
 
 import cn.edu.henu.bean.Business;
 import cn.edu.henu.bean.Order;
+import cn.edu.henu.bean.OrderDetail;
 import cn.edu.henu.bean.Product;
 import cn.edu.henu.service.IOrderService;
 import cn.edu.henu.service.IProductService;
@@ -86,17 +87,22 @@ public class BusinessUIController {
 
     @RequestMapping("/orderDetail")
     public String toOrderDetail(Integer oid, @RequestHeader("Referer") String referer, Model model, HttpSession session) {
-        if (referer.contains("/orderList")) {
-            List<Order> orders = (List<Order>) session.getAttribute("orders");
-            if (orders != null) {
-                for (Order order : orders) {
-                    if (order.getId().equals(oid)) {
-                        model.addAttribute("order", order);
-                        return "/business/orderDetail";
-                    }
+        if (referer != null || !referer.contains("/orderList")) {
+            Order order = orderSer.selectByPrimaryKey(oid);
+            List<OrderDetail> details = orderSer.selectByOid(oid);
+            if (details != null) {
+                for (OrderDetail detail : details) {
+                    Product product = productSer.selectById(detail.getPid());
+                    detail.getProduct().setPhotosrc(product.getPhotosrc());
+                    detail.getProduct().setProductName(product.getProductName());
+                    detail.getProduct().setBusiness(product.getBusiness());
+                    detail.getProduct().setProductPrice(product.getProductPrice());
+
                 }
             }
-            return "redirect:business/home";
+            model.addAttribute("buDetails", details);
+            model.addAttribute("buOrder", order);
+            return "business/orderDetail";
         } else {
             return "redirect:/login/business";
         }

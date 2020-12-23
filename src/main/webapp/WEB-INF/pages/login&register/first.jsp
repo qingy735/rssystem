@@ -190,16 +190,17 @@
                 <form id="bsLoginForm" action="${ctp}/business/home" method="post">
                     <div class="form-group">
                         <label for="username">用户名：</label>
-                        <input type="text" name="username" class="form-control" id="username" placeholder="请输入用户名"/>
+                        <input type="text" value="100001" name="username" class="form-control" id="username"
+                               placeholder="请输入用户名"/>
                     </div>
                     <div class="form-group">
                         <label for="password">密码：</label>
-                        <input type="password" name="password" class="form-control" id="password"
+                        <input type="password" value="12345" name="password" class="form-control" id="password"
                                placeholder="请输入密码"/>
                     </div>
                     <div class="form-inline">
                         <label for="verifyCode2">验证码：</label>
-                        <input type="text" name="verifyCode" class="form-control" id="verifyCode2"
+                        <input type="text" value="1111" name="verifyCode" class="form-control" id="verifyCode2"
                                placeholder="请输入验证码"
                                style="width: 120px;"/>
                         <a href="javascript:refreshCode()">

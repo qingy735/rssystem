@@ -13,7 +13,7 @@
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="TitleArea"  class="navbar-fixed-top">订单列表</div>
+<div id="TitleArea" class="navbar-fixed-top">订单列表</div>
 <!-- 主内容区域（数据列表或表单显示） -->
 <div id="TopMainArea">
     <br><br>
@@ -27,6 +27,7 @@
             <td>备注</td>
             <td>总金额</td>
             <td>状态</td>
+            <td>详情</td>
         </tr>
         </thead>
         <!--显示数据列表 -->
@@ -39,7 +40,8 @@
                 <td>${order.orderTime}</td>
                 <td>${order.note}</td>
                 <td>${order.total}</td>
-                <td>${order.status}</td>
+                <td>${order.status == 1 ? "已结账" : "未结账"}</td>
+                <td><a href="${ctp}/business/orderDetail?oid=${order.id}">查看详情</a></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -14,15 +14,23 @@ public class Comment implements Serializable {
     /**
      * 评论用户id
      */
-    private String cid;
+    private Integer cid;
     /**
-     * 评论商品id
+     * 商家id
+     */
+    private Integer bid;
+    /**
+     * 评论餐品id
      */
     private Integer pid;
     /**
-     * 父评论id
+     * 评分
      */
-    private Integer preCid;
+    private Integer grade;
+    /**
+     * 评论内容
+     */
+    private String comment;
 
     public Integer getId() {
         return id;
@@ -32,12 +40,20 @@ public class Comment implements Serializable {
         this.id = id;
     }
 
-    public String getCid() {
+    public Integer getCid() {
         return cid;
     }
 
-    public void setCid(String cid) {
+    public void setCid(Integer cid) {
         this.cid = cid;
+    }
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
     }
 
     public Integer getPid() {
@@ -48,21 +64,31 @@ public class Comment implements Serializable {
         this.pid = pid;
     }
 
-    public Integer getPreCid() {
-        return preCid;
+    public Integer getGrade() {
+        return grade;
     }
 
-    public void setPreCid(Integer preCid) {
-        this.preCid = preCid;
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", cid='" + cid + '\'' +
+                ", cid=" + cid +
+                ", bid=" + bid +
                 ", pid=" + pid +
-                ", preCid=" + preCid +
+                ", grade=" + grade +
+                ", comment='" + comment + '\'' +
                 '}';
     }
 }

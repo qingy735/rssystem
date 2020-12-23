@@ -1,6 +1,8 @@
 package cn.edu.henu.service;
 
 import cn.edu.henu.bean.Comment;
+import cn.edu.henu.bean.PageBean;
+import cn.edu.henu.bean.Comment;
 
 import java.util.List;
 
@@ -11,28 +13,29 @@ import java.util.List;
 public interface ICommentService {
 
     /**
-     * 添加评论
+     * 查询所有评价 有条件就按照条件查
      *
      * @param comment
+     * @param row
      * @return
      */
-    int add(Comment comment);
+    PageBean<Comment> getAllComments(Comment comment, Integer row);
 
     /**
-     * 删除评论
+     * 根据商家id查询评价
      *
-     * @param id
+     * @param bid
      * @return
      */
-    int delete(Integer id);
+    List<Comment> getAllByBid(Integer bid);
 
     /**
-     * 根据商品id查询所有评论
+     * 根据餐品id查询所有评论
      *
      * @param pid
      * @return
      */
-    List<Comment> selectByPid(Integer pid);
+    List<Comment> getAllByPid(Integer pid);
 
     /**
      * 根据用户id查询所有评论
@@ -40,6 +43,66 @@ public interface ICommentService {
      * @param cid
      * @return
      */
-    List<Comment> selectByCid(String cid);
+    List<Comment> getAllByCid(Integer cid);
+
+  /*  *//**
+     * 根据商家id和评价名称查询评价
+     *
+     * @param bid
+     * @param name
+     * @return
+     *//*
+    List<Comment> getAllByBidAndName(Integer bid, String name);*/
+
+
+    /**
+     * 查询一共多少条数据
+     *
+     * @param comment
+     * @return
+     */
+    int getTotal(Comment comment);
+
+    /**
+     * 给id为某值的商家添加评价？ 改为消费者？
+     *
+     * @param comment
+     * @return
+     */
+    int add(Comment comment);
+
+    /**
+     * 根据评价id更新
+     *
+     * @param comment
+     * @return
+     */
+    int updateById(Comment comment);
+
+    /**
+     * 根据评价id删除
+     *
+     * @param id
+     * @param path
+     * @return
+     */
+    int deleteById(Integer id, String path) throws Exception;
+
+    /**
+     * 根据评价id查询简单评价信息
+     *
+     * @param id
+     * @return
+     */
+    Comment selectSimpleById(Integer id);
+
+    /**
+     * 根据评价id查询评价信息
+     *
+     * @param id
+     * @return
+     */
+    Comment selectById(Integer id);
+
 
 }

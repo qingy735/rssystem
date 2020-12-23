@@ -15,25 +15,24 @@
 <body>
 <!-- 页面标题 -->
 <div id="TitleArea" class="navbar-fixed-top">订单详细说明</div>
-<br><br>
-<div class="container">
+<div class="container" id="TopMainArea">
+    <br><br>
     <c:if test="${buDetails != null}">
+        <label class="col-md-12" style="text-align: center">店铺：${buDetails[0].product.business.wname}</label>
         <table class="table table-hover">
             <thead>
-            <tr>
-                <td>${buDetails[0].product.business.wname}</td>
-                <th>商品</th>
-                <th>名称</th>
-                <th>价格</th>
-                <th>购买数量</th>
-                <th>优惠券</th>
-                <th>小计</th>
+            <tr style="text-align:center">
+                <td><b>商品</b></td>
+                <td><b>名称</b></td>
+                <td><b>价格</b></td>
+                <td><b>购买数量</b></td>
+                <td><b>优惠券</b></td>
+                <td><b>小计</b></td>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${buDetails}" var="detail">
                 <tr style="text-align:center">
-                    <td></td>
                     <td style="width: 20%;height: 20%">
                         <img alt="暂无法显示" style="width: 50%" src="${ctp}/${detail.product.photosrc}">
                     </td>
@@ -46,7 +45,7 @@
             </c:forEach>
             </tbody>
         </table>
-        <p>合计：${buOrder.total}</p>
+        <p class="col-md-12" style="text-align: center">合计：${buOrder.total}</p>
     </c:if>
     <c:if test="${buDetails == null}">
         <p>订单查询出现错误</p>

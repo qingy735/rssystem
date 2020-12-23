@@ -135,3 +135,11 @@ iframe{
 .searchPdt{
   width: 100%;
 }
+#ProForm{
+    background-color: seashell;
+    height: 85%;
+    width: 50%;
+    margin-top: 2%;
+    margin-left: 24%;
+    border: solid;
+}

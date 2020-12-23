@@ -6,7 +6,9 @@ import cn.edu.henu.dao.ProductMapper;
 import cn.edu.henu.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -116,19 +118,21 @@ public class ProductServiceImpl implements IProductService {
      * @param id
      * @return
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public int deleteById(Integer id) {
-        try {
-            int i = productMapper.deleteByPrimaryKey(id);
-            /*if (i >= 1) {
-                // 设置对应订单状态为已下架即 status：-1
-                return orderMapper.updateAllStatusByPid(id, -1);
-            }*/
-            return i;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
+    public int deleteById(Integer id, String path) throws Exception {
+        // 先删除数据库中的对应商品
+        int i = productMapper.deleteByPrimaryKey(id);
+        if (i < 1) {
+            throw new Exception();
         }
+        // 删除服务器上的对应图片
+        File file = new File(path);
+        boolean delete = file.delete();
+        if (!delete) {
+            throw new Exception();
+        }
+        return 1;
     }
 
     @Override

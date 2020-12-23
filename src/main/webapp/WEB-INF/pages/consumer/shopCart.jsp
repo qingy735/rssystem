@@ -110,50 +110,6 @@
     </div>
 </c:if>
 <c:if test="${sessionScope.mapShop != null}">
-    <%--<div id="TableMain">
-        <table class="table table-hover tableMain" align="center">
-            <!-- 表头-->
-            <thead>
-            <tr align="center" valign="middle">
-                <td>&nbsp;</td>
-                <td>商品</td>
-                <td>价格</td>
-                <td>购买数量</td>
-                <td>优惠券</td>
-                <td>小计</td>
-                <td>操作</td>
-            </tr>
-            </thead>
-            <!--显示数据列表 -->
-            <tbody>
-            <form action="${ctp}/checkout/shops" method="post">
-                <c:forEach items="${sessionScope.shops}" var="shop">
-                    <tr height="60" align="center">
-                        <td>
-                            <input type="checkbox" name="checkout" value="${shop.id}">
-                        </td>
-                        <td>
-                            <a><!--跳转商品详情-->
-                                <img alt="生菜" style="height:60px" src="${ctp}/${shop.product.photosrc}">
-                            </a>
-                        </td>
-                        <td>${shop.product.productPrice}</td>
-                        <td>
-                            <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum"
-                                   style="width: 120px">
-                        </td>
-                        <td>-${shop.discountuse}</td>
-                        <td>${shop.totalPrice}</td>
-                        <td>
-                            <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
-                            <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </form>
-            </tbody>
-        </table>
-    </div>--%>
     <div id="TableMain">
         <c:forEach items="${sessionScope.mapShop}" var="shops">
             <h4>商家id：${shops.key}</h4>
@@ -174,27 +130,47 @@
                 <tbody>
                 <form action="${ctp}/checkout/shops" method="post">
                     <c:forEach items="${shops.value}" var="shop">
-                        <tr height="60" align="center">
-                            <td>
-                                <input type="checkbox" name="checkout" value="${shop.id}">
-                            </td>
-                            <td>
-                                <a><!--跳转商品详情-->
-                                    <img alt="生菜" style="height:60px" src="${ctp}/${shop.product.photosrc}">
-                                </a>
-                            </td>
-                            <td>${shop.product.productPrice}</td>
-                            <td>
-                                <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number" class="changeNum"
-                                       style="width: 120px">
-                            </td>
-                            <td>-${shop.discountuse}</td>
-                            <td>${shop.totalPrice}</td>
-                            <td>
-                                <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
-                                <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
-                            </td>
-                        </tr>
+                        <c:if test="${shop.product.status == 0}">
+                            <tr height="60" align="center">
+                                <td>&nbsp;</td>
+                                <td>
+                                    <a><!--跳转商品详情-->
+                                        <img alt="暂无法显示" style="height:60px" src="${ctp}/${shop.product.photosrc}">
+                                    </a>
+                                </td>
+                                <td>${shop.product.productPrice}</td>
+                                <td>已下架</td>
+                                <td>已下架</td>
+                                <td>已下架</td>
+                                <td>
+                                    <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+                                </td>
+                            </tr>
+                        </c:if>
+                        <c:if test="${shop.product.status == 1}">
+                            <tr height="60" align="center">
+                                <td>
+                                    <input type="checkbox" name="checkout" value="${shop.id}">
+                                </td>
+                                <td>
+                                    <a><!--跳转商品详情-->
+                                        <img alt="暂无法显示" style="height:60px" src="${ctp}/${shop.product.photosrc}">
+                                    </a>
+                                </td>
+                                <td>${shop.product.productPrice}</td>
+                                <td>
+                                    <input name="pnum" id="${shop.id}" value="${shop.pnum}" type="number"
+                                           class="changeNum"
+                                           style="width: 120px">
+                                </td>
+                                <td>-${shop.discountuse}</td>
+                                <td>${shop.totalPrice}</td>
+                                <td>
+                                    <a href="${ctp}/checkout/shop?id=${shop.id}" class="del">结账</a>
+                                    <a href="${ctp}/shop/delete?id=${shop.id}" class="del">删除</a>
+                                </td>
+                            </tr>
+                        </c:if>
                     </c:forEach>
                 </form>
                 </tbody>

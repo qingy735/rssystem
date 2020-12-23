@@ -19,33 +19,46 @@
         <result column="pid" property="pid"/>
         <result column="pnum" property="pnum"/>
         <result column="discountuse" property="discountuse"/>
-        <association property="product" column="pid"
-                     javaType="cn.edu.henu.bean.Product"
-                     select="cn.edu.henu.dao.ProductMapper.selectSimpleById"/>
+        <association property="product" javaType="cn.edu.henu.bean.Product">
+            <id column="ppid" property="id"/>
+            <result column="name" property="productName"/>
+            <result column="price" property="productPrice"/>
+            <result column="src" property="photosrc"/>
+            <result column="status" property="status"/>
+        </association>
     </resultMap>
 
     <select id="selectByPrimaryKey" resultMap="ShopProductMap">
-        select * from shopinfo where id = #{id}
+        select s.id,s.cid,s.bid,s.pid,s.pnum,s.discountuse,p.id ppid,p.name,p.price,p.src,p.status
+        from shopinfo s,productinfo p
+        where s.id = #{id} and s.pid = p.id
     </select>
 
     <select id="batchSelect" resultMap="ShopProductMap">
-        select * from shopinfo where id in
+        select s.id,s.cid,s.bid,s.pid,s.pnum,s.discountuse,p.id ppid,p.name,p.price,p.src,p.status
+        from shopinfo s,productinfo p
+        where s.id in
         <foreach collection="list" item="id" open="(" close=")" separator=",">
             #{id}
         </foreach>
+        and s.pid = p.id
     </select>
 
     <select id="selectAll" resultMap="ShopProductMap">
-        select * from shopinfo
+       select s.id,s.cid,s.bid,s.pid,s.pnum,s.discountuse,p.id ppid,p.name,p.price,p.src,p.status
+        from shopinfo s,productinfo p
+        where s.pid = p.id
     </select>
 
     <select id="selectByCid" resultMap="ShopProductMap">
-        select * from shopinfo where cid=#{cid}
+        select s.id,s.cid,s.bid,s.pid,s.pnum,s.discountuse,p.id ppid,p.name,p.price,p.src,p.status
+        from shopinfo s,productinfo p
+        where s.cid=#{cid} and s.pid = p.id
     </select>
 
     <insert id="insert">
         insert into shopinfo(cid,bid,pid,pnum,discountuse)
-        values(#{cid},#{bid},#{pid},#{pnum},#{discountuse})
+        values(#{cid},#{bid},#{pid},#{pnum},0)
     </insert>
 
     <delete id="deleteByPrimaryKey">

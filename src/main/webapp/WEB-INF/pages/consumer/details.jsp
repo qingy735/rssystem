@@ -14,9 +14,10 @@
 
 </head>
 <body>
-<div id="TitleArea" class="navbar-fixed-top">餐品详情</div><br><br>
+<div id="TitleArea" class="navbar-fixed-top">餐品详情</div>
+<br><br>
 <div id="mainArea">
-    <h3 hidden>${add_info}</h3>
+    <h3>${add_info}</h3>
     <h3>${product.productName}</h3>
     <p>店铺ID:${product.business.username}</p>
     <p>店铺负责人:${product.business.name}</p>
@@ -27,9 +28,8 @@
     <img src="${ctp}/${product.photosrc}" alt="无法显示" style="height:100px">
     <p>商品评分:${product.productGrade}</p>
     <p>商品价钱:${product.productPrice}</p>
-    <form action="${ctp}/shop/add?pid=${product.id}&bid=${product.business.username}" method="post">
-        份数：<input type="number" name="pnum" required><br>
-        折扣：<input type="number" name="discountuse" required><br>
+    <form action="${ctp}/shop/add?pid=${product.id}&bid=${product.bid}" method="post">
+        份数：<input type="number" name="pnum"><br>
         <input type="submit" value="加入购物车">
     </form>
 

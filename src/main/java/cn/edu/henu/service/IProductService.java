@@ -65,9 +65,10 @@ public interface IProductService {
      * 根据商品id删除
      *
      * @param id
+     * @param path
      * @return
      */
-    int deleteById(Integer id);
+    int deleteById(Integer id, String path) throws Exception;
 
     /**
      * 根据商品id查询简单商品信息

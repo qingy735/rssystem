@@ -46,7 +46,6 @@ public class Shop implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-
     public Product getProduct() {
         return product;
     }

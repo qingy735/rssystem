@@ -28,7 +28,7 @@
                 <label for="reName" class="col-sm-2 control-label">餐厅名</label>
                 <div class="col-sm-10">
                     <form:select path="rid" cssClass="form-control" id="reName"
-                                 items="${requestScope.restaurants}"
+                                 items="${sessionScope.restaurants}"
                                  itemLabel="name"
                                  itemValue="id"/>
                         ${errorInfo.rid}

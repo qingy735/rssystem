@@ -49,8 +49,25 @@
             </div>
             <div class="form-group">
                 <label for="sex">性别</label>
-                <input type="text" id="sex" name="sex"
-                       value="${sessionScope.conConds.sex}">
+                <select name="sex" id="sex">
+                    <c:if test="${sessionScope.conConds.sex != null}">
+                        <c:if test="${sessionScope.conConds.sex == 1}">
+                            <option value="-1">全部</option>
+                            <option value="0">女</option>
+                            <option value="1" selected>男</option>
+                        </c:if>
+                        <c:if test="${sessionScope.conConds.sex == 0}">
+                            <option value="-1">全部</option>
+                            <option value="0" selected>女</option>
+                            <option value="1">男</option>
+                        </c:if>
+                    </c:if>
+                    <c:if test="${sessionScope.conConds.sex == null}">
+                        <option value="-1" selected>全部</option>
+                        <option value="0">女</option>
+                        <option value="1">男</option>
+                    </c:if>
+                </select>
             </div>
             <div class="form-group col-md-1 pull-right">
                 <input type="submit" value="搜索"/>
@@ -78,7 +95,7 @@
                 <td>${consumer.password}</td>
                 <td>${consumer.name}</td>
                 <td>${consumer.nickname}</td>
-                <td>${consumer.sex}</td>
+                <td>${consumer.sex == 0 ? "女" : "男"}</td>
                 <td>${consumer.tel}</td>
                 <td>
                     <a onclick="return confirm('确定要删除吗？')" class="btn">删除</a>

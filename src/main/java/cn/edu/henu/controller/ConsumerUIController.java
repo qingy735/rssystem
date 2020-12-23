@@ -102,7 +102,6 @@ public class ConsumerUIController {
             Product product = productSer.selectSimpleById(pid);
             model.addAttribute("product", product);
         }
-
         return "consumer/details";
     }
 
@@ -125,6 +124,7 @@ public class ConsumerUIController {
         List<Shop> shops = shopSer.selectByCid(username);
         Map<Integer, List<Shop>> map = new HashMap<>();
         for (Shop shop : shops) {
+            System.out.println(shop);
             Integer bid = shop.getBid();
             List<Shop> list;
             if (map.containsKey(bid)) {

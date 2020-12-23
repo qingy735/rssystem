@@ -40,7 +40,7 @@ public class AdminUIController {
         if (bid != null && bid != 0) {
             flag = true;
         }
-        if (status != null && status != 0) {
+        if (status != null && status != -1) {
             flag = true;
         }
         if (id != null && id != 0) {
@@ -80,18 +80,17 @@ public class AdminUIController {
     public String findAllBusiness(@RequestParam(value = "p", defaultValue = "1") Integer p, Business business, HttpSession session) {
         Integer username = business.getUsername();
         String wname = business.getWname();
-        String rname = business.getRname();
+        String rid = business.getRid();
         Float grade = business.getGrade();
         boolean flag = false;
         if (wname != null && !"".equals(wname)) {
             business.setWname("%" + wname + "%");
             flag = true;
         }
-        if (rname != null && !"".equals(rname)) {
-            business.setRname("%" + rname + "%");
+        if (rid != null && !"-_all".equals(rid)) {
             flag = true;
         }
-        if (grade != null && grade != 0f) {
+        if (grade != null) {
             flag = true;
         }
         if (username != null && username != 0) {
@@ -107,15 +106,12 @@ public class AdminUIController {
         } else {
             Map<String, Object> busConds = new HashMap<>();
             busConds.put("wname", wname);
-            busConds.put("rname", rname);
+            busConds.put("rid", rid);
             busConds.put("grade", grade);
             busConds.put("username", username);
             session.setAttribute("busConds", busConds);
             if ("".equals(wname)) {
                 business.setWname(null);
-            }
-            if ("".equals(rname)) {
-                business.setRname(null);
             }
             pageBean = adminSer.findAllBusinessByPage(business, ROW);
         }
@@ -143,7 +139,7 @@ public class AdminUIController {
             consumer.setName("%" + name + "%");
             flag = true;
         }
-        if (sex != null && sex != 0) {
+        if (sex != null && sex != -1) {
             flag = true;
         }
         // 分页

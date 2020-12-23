@@ -47,11 +47,27 @@
             </div>
             <div class="form-group">
                 <label for="status">订单状态(0/1)</label>
-                <input type="text" id="status" name="status"
-                       value="${sessionScope.ordConds.status}">
+                <select name="status" id="status">
+                    <c:if test="${sessionScope.ordConds.status == null}">
+                        <option value="-1" selected>全部</option>
+                        <option value="0">未结账</option>
+                        <option value="1">已结账</option>
+                    </c:if>
+                    <c:if test="${sessionScope.ordConds.status != null}">
+                        <option value="-1">全部</option>
+                        <c:if test="${sessionScope.ordConds.status == 1}">
+                            <option value="0">未结账</option>
+                            <option value="1" selected>已结账</option>
+                        </c:if>
+                        <c:if test="${sessionScope.ordConds.status == 0}">
+                            <option value="0" selected>未结账</option>
+                            <option value="1">已结账</option>
+                        </c:if>
+                    </c:if>
+                </select>
             </div>
             <div class="form-group col-md-1 pull-right">
-            <input type="submit" value="搜索"/>
+                <input type="submit" value="搜索"/>
             </div>
             <br><br>
         </form>
@@ -79,7 +95,7 @@
                 <td>${order.bid}</td>
                 <td>${order.note}</td>
                 <td>${order.code}</td>
-                <td>已结账</td>
+                <td>${order.status == 0 ? "未结账" : "已结账"}</td>
                 <td>${order.orderTime}</td>
                 <td>${order.total}</td>
                 <td>

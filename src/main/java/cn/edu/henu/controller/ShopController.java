@@ -4,12 +4,10 @@ import cn.edu.henu.bean.*;
 import cn.edu.henu.service.IShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * @author Qing_Y
@@ -34,12 +32,11 @@ public class ShopController {
             return "redirect:/login/consumer";
         }
         shop.setCid(conLoginInfo.getUsername());
-
         int i = shopSer.insert(shop);
         if (i < 1) {
             session.setAttribute("add_info", "添加购物车失败");
             Integer pid = shop.getPid();
-            String uri = request.getContextPath() + "/details?pid=" + pid;
+            String uri = "/details?pid=" + pid;
             return "redirect:" + uri;
         }
         return "redirect:/shopCart";

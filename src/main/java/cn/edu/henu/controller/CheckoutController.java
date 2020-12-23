@@ -32,7 +32,6 @@ public class CheckoutController {
     @RequestMapping("/shop")
     public String checkFromShop(Integer id, HttpSession session, HttpServletRequest request) {
         String referer = request.getHeader("REFERER");
-        System.out.println(referer);
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
         if (consumer == null) {
             return "redirect:/login/consumer";
@@ -41,6 +40,7 @@ public class CheckoutController {
             return "redirect:/shopCart";
         }
         Shop shop = shopSer.selectByPrimaryKey(id);
+        System.out.println("结账：" + shop);
         OrderDetail detail = new OrderDetail();
         detail.setPid(shop.getPid());
         detail.setNum(shop.getPnum());

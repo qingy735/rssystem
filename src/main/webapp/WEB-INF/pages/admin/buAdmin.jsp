@@ -43,9 +43,26 @@
                        value="${sessionScope.busConds.wname}">
             </div>
             <div class="form-group">
-                <label for="rname">餐厅名</label>
-                <input type="text" id="rname" name="rname"
-                       value="${sessionScope.busConds.rname}">
+                <label for="rid">餐厅名</label>
+                <select name="rid" id="rid">
+                    <c:if test="${sessionScope.busConds != null}">
+                        <option value="_all">全部</option>
+                        <c:forEach items="${sessionScope.restaurants}" var="restaurant">
+                            <c:if test="${sessionScope.busConds.rid.equals(restaurant.id)}">
+                                <option value="${restaurant.id}" selected>${restaurant.name}</option>
+                            </c:if>
+                            <c:if test="${!sessionScope.busConds.rid.equals(restaurant.id)}">
+                                <option value="${restaurant.id}">${restaurant.name}</option>
+                            </c:if>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${sessionScope.busConds == null}">
+                        <option value="_all" selected>全部</option>
+                        <c:forEach items="${sessionScope.restaurants}" var="restaurant">
+                            <option value="${restaurant.id}">${restaurant.name}</option>
+                        </c:forEach>
+                    </c:if>
+                </select>
             </div>
             <div class="form-group">
                 <label for="grade">评分不低于</label>

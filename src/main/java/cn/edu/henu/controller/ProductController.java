@@ -59,21 +59,16 @@ public class ProductController {
     }
 
     @RequestMapping("/delete")
-    public String delete(Integer id, HttpSession session) throws Exception {
+    public String delete(Integer id, HttpSession session) {
         Product product = productSer.selectSimpleById(id);
-        int i = productSer.deleteById(id);
-        if (i < 1) {
+        String photosrc = product.getPhotosrc();
+        String realPath = session.getServletContext().getRealPath(photosrc);
+        int i = 0;
+        try {
+            i = productSer.deleteById(id, realPath);
+        } catch (Exception e) {
+            e.printStackTrace();
             session.setAttribute("delInfo", "删除失败");
-            throw new Exception();
-        } else {
-            // 删除图片
-            String photosrc = product.getPhotosrc();
-            String realPath = session.getServletContext().getRealPath(photosrc);
-            File file = new File(realPath);
-            boolean delete = file.delete();
-            if (!delete) {
-                session.setAttribute("delInfo", "删除失败");
-            }
         }
         return "redirect:/business/productList";
     }

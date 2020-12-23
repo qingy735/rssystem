@@ -36,6 +36,12 @@ public class Product implements Serializable {
      */
     private Float productGrade;
     /**
+     * 商品标志位
+     * 1：存在
+     * 0：下架
+     */
+    private Integer status;
+    /**
      * 商家id
      */
     private Integer bid;
@@ -43,6 +49,14 @@ public class Product implements Serializable {
      * 店铺信息
      */
     private Business business;
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
     public Integer getNum() {
         return num;
@@ -126,6 +140,7 @@ public class Product implements Serializable {
                 ", num=" + num +
                 ", photosrc='" + photosrc + '\'' +
                 ", productGrade=" + productGrade +
+                ", status=" + status +
                 ", bid=" + bid +
                 ", business=" + business +
                 '}';

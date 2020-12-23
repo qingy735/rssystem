@@ -29,21 +29,21 @@
 
     <!--仅获取商品信息-->
     <select id="selectSimpleById" resultMap="BaseResultMap">
-        select * from productinfo where id = #{id}
+        select * from productinfo where id = #{id} and status = 1
     </select>
 
     <select id="selectById" resultMap="AssociationResultMap">
-        select * from productinfo where id=#{id}
+        select * from productinfo where id=#{id}  and status = 1
     </select>
 
-    <!--仅获取商品信息-->
+    <!--仅获取未下架商品信息-->
     <select id="selectAllSimple" resultMap="BaseResultMap">
-        select * from productinfo
+        select * from productinfo where status = 1
     </select>
 
     <!--查询所有商品信息 包含商家信息(懒加载)-->
     <select id="selectAll" resultMap="AssociationResultMap">
-        select * from productinfo
+        select * from productinfo where status = 1
     </select>
 
     <!--
@@ -53,7 +53,7 @@
     -->
     <select id="selectByCondition" resultMap="AssociationResultMap">
         select * from productinfo
-        where 1 = 1
+        where status = 1
         <if test="productName != null">
             and name like #{productName}
         </if>
@@ -72,7 +72,7 @@
     <select id="getAllByBid" resultMap="BaseResultMap">
         select p.*
         from productinfo p,businessinfo b
-        where b.username=#{bid} and b.username= p.bid
+        where b.username=#{bid} and b.username= p.bid and status = 1
     </select>
 
     <!--
@@ -82,7 +82,7 @@
     <select id="getAllByBidAndName" resultMap="BaseResultMap">
         select p.*
         from productinfo p,businessinfo b
-        where b.username = #{bid} and p.bid = #{bid}
+        where b.username = #{bid} and p.bid = #{bid} and status = 1
         <if test="pname != null">
             and p.name like #{pname}
         </if>
@@ -93,7 +93,7 @@
         selectTotal
     -->
     <select id="selectTotal" resultType="Integer">
-        select count(id) from productinfo p where 1 =1
+        select count(id) from productinfo p where status = 1
         <if test="productName != null">
             and p.name like #{productName}
         </if>
@@ -110,8 +110,8 @@
         insert
     -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.edu.henu.bean.Product">
-        insert into productinfo(bid,name,introduce,price,src,grade)
-        values(#{bid},#{productName},#{productIntr},#{productPrice},#{photosrc},-1)
+        insert into productinfo(bid,name,introduce,price,src,grade,status)
+        values(#{bid},#{productName},#{productIntr},#{productPrice},#{photosrc},-1,1)
     </insert>
 
     <!--
@@ -140,9 +140,10 @@
     <!--
         删除商品
         deleteByPrimaryKey
+        修改标志位为0
     -->
-    <delete id="deleteByPrimaryKey">
-        delete from productinfo where id = #{id}
-    </delete>
+    <update id="deleteByPrimaryKey">
+        update productinfo set status = 0 where id = #{pid}
+    </update>
 
 </mapper>

@@ -90,8 +90,8 @@
         <if test="wname != null">
             and b.wname like #{wname}
         </if>
-        <if test="rname != null">
-            and r.name like #{rname}
+        <if test="rid != null">
+            and r.id = #{rid}
         </if>
         <if test="grade != null">
             and b.grade >= #{grade}
@@ -108,8 +108,8 @@
         <if test="wname != null">
             and b.wname like #{wname}
         </if>
-        <if test="rname != null">
-            and r.name like #{rname}
+        <if test="rid != null">
+            and r.id = #{rid}
         </if>
         <if test="grade != null">
             and b.grade >= #{grade}

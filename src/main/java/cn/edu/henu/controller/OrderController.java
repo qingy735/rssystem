@@ -29,6 +29,15 @@ public class OrderController {
     @Autowired
     private IOrderService orderSer;
 
+    @RequestMapping("/update")
+    public String updateStatus(Integer oid, Integer status, HttpSession session) {
+        int i = orderSer.updateStatusByOid(oid, status);
+        if (i < 1) {
+            session.setAttribute("updateInfo", "订单结账失败");
+        }
+        return "redirect:/pastOrder";
+    }
+
     /*@RequestMapping("/add")
     public String add(Order order, HttpSession session, HttpServletRequest request) {
         Integer pid = order.getPid();

@@ -42,7 +42,11 @@
                     <td>${order.note}</td>
                     <td>${order.total}</td>
                     <c:if test="${order.status == 0}">
-                        <td>未结账</td>
+                        <td>
+                            未结账
+                            <br>
+                            <a href="${ctp}/order/update?oid=${order.id}&status=1">去结账</a>
+                        </td>
                     </c:if>
                     <c:if test="${order.status == 1}">
                         <td>已结账</td>

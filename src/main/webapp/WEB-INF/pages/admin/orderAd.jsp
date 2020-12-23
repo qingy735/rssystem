@@ -46,7 +46,7 @@
                        value="${sessionScope.ordConds.bid}">
             </div>
             <div class="form-group">
-                <label for="status">订单状态(0/1)</label>
+                <label for="status">订单状态</label>
                 <select name="status" id="status">
                     <c:if test="${sessionScope.ordConds.status == null}">
                         <option value="-1" selected>全部</option>

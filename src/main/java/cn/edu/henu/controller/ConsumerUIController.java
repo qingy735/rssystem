@@ -161,7 +161,11 @@ public class ConsumerUIController {
             session.setAttribute("login_info", "请先登录");
             return "redirect:/login/consumer";
         }
-        String username = consumer.getUsername();
+        String updateInfo = (String) session.getAttribute("updateInfo");
+        if (updateInfo != null) {
+            request.setAttribute("updateInfo", updateInfo);
+            session.removeAttribute("updateInfo");
+        }
         // 分页
         PageHelper.startPage(p, ROW);
         // 创建PageBean对象

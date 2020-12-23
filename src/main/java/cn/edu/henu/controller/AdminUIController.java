@@ -63,6 +63,10 @@ public class AdminUIController {
             if ("".equals(cid)) {
                 order.setCid(null);
             }
+            if (status == -1) {
+                order.setStatus(null);
+                ordConds.put("status", null);
+            }
             pageBean = adminSer.findAllOrderByPage(order, ROW);
         }
         pageBean.setCurrentPage(p);
@@ -87,7 +91,7 @@ public class AdminUIController {
             business.setWname("%" + wname + "%");
             flag = true;
         }
-        if (rid != null && !"-_all".equals(rid)) {
+        if (rid != null && !"_all".equals(rid)) {
             flag = true;
         }
         if (grade != null) {
@@ -112,6 +116,9 @@ public class AdminUIController {
             session.setAttribute("busConds", busConds);
             if ("".equals(wname)) {
                 business.setWname(null);
+            }
+            if ("_all".equals(rid)) {
+                business.setRid(null);
             }
             pageBean = adminSer.findAllBusinessByPage(business, ROW);
         }
@@ -164,6 +171,10 @@ public class AdminUIController {
             }
             if ("".equals(name)) {
                 consumer.setName(null);
+            }
+            if (sex == -1) {
+                consumer.setSex(null);
+                conConds.put("sex", null);
             }
             pageBean = adminSer.findAllConsumerByPage(consumer, ROW);
         }

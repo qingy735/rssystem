@@ -41,7 +41,7 @@
                 <td>${order.note}</td>
                 <td>${order.total}</td>
                 <td>${order.status == 1 ? "已结账" : "未结账"}</td>
-                <td><a href="${ctp}/business/orderDetail?oid=${order.id}">查看详情</a></td>
+                <td><a href="${ctp}/business/orderDetail?oid=${order.id}" target="mainFrame">查看详情</a></td>
             </tr>
         </c:forEach>
         </tbody>

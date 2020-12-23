@@ -15,6 +15,7 @@
 <body>
 <!-- 页面标题 -->
 <div id="TitleArea" class="navbar-fixed-top">订单详细说明</div>
+<br><br>
 <div class="container">
     <c:if test="${buDetails != null}">
         <table class="table table-hover">

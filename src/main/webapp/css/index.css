@@ -103,13 +103,12 @@ iframe{
     background-color: #009688;
 }
 
-.onepage{
-    #opacity: 0.3;
+.onePage{
     background-color: seashell;
     border: solid;
     margin-left: 4%;
     height: auto;
-    min-height: 100%;
+    min-height: 400px;
     word-wrap: break-word;
     word-break: break-all;
 }

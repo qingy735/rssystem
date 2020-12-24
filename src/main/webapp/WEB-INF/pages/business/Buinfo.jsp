@@ -75,20 +75,14 @@
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content" style="background-color: seashell;">
-                            <form class="form-horizontal" action="${ctp}/business/update" method="post">
-                                <div class="modal-header" style="height: 30px;">
+                            <form class="form-horizontal" action="${ctp}/business/update" method="post" target="_parent">
+                                <div class="modal-header" style="height: 35px;">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                             aria-hidden="true">&times;</span></button>
                                     <h5 class="modal-title" id="myModalLabel" style="color: #2e6da4;text-align: center">
                                         <b>修改个人信息</b></h5>
                                 </div>
                                 <div class="modal-body">
-                                    <%--<div class="form-group">
-                                        <label for="rname" class="col-sm-2 control-label">餐厅名</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" name="rname" value="${sessionScope.busLoginInfo.rname}" type="text" id="rname">
-                                        </div>
-                                    </div>--%>
                                     <div class="form-group">
                                         <label for="wname" class="col-sm-2 control-label">窗口名</label>
                                         <div class="col-sm-10">
@@ -96,12 +90,6 @@
                                                    value="${sessionScope.busLoginInfo.wname}" id="wname"/>
                                         </div>
                                     </div>
-                                    <%--<div class="form-group">
-                                        <label for="wid" class="col-sm-2 control-label">窗口号</label>
-                                        <div class="col-sm-10">
-                                            <input type="number" class="form-control" id="wid" name="wid">
-                                        </div>
-                                    </div>--%>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label"><h6><b>负责人姓名</b></h6></label>
                                         <div class="col-sm-10">

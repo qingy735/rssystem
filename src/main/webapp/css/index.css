@@ -30,7 +30,7 @@ iframe{
     align-items: center;
 }
 #TopArea {
-    background: #FFFFFF;
+    background: snow;
     #opacity: 0.3;
     height: 100%;
     width: 100%;
@@ -61,7 +61,7 @@ iframe{
 }
 
 #TopMainArea{
-    background-color: #F2F2F2;
+    background-color: #DDEDF8;
     width: 100%;
     height: auto;
     min-height: 100%;

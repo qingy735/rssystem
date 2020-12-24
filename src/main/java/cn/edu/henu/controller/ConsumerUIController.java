@@ -34,6 +34,8 @@ public class ConsumerUIController {
     private IShopService shopSer;
     @Autowired
     private IAdminService adminSer;
+    @Autowired
+    private ICommentService commentSer;
 
     final Integer ROW = 8;
 
@@ -228,6 +230,39 @@ public class ConsumerUIController {
             session.removeAttribute("updateInfo");
         }
         return "consumer/PInfo";
+    }
+
+    @RequestMapping("/commentList")
+    public String toCommentList(String name, HttpSession session, Model model) {
+        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
+        if (consumer == null) {
+            return "redirect:/login/consumer";
+        }
+        if ("".equals(name)) {
+            name = null;
+        }
+        if (name != null) {
+            model.addAttribute("name", name);
+            name = "%" + name + "%";
+        }
+        List<Comment> comments = commentSer.getAllByCidAndName(Integer.parseInt(consumer.getUsername()), name);
+        session.setAttribute("comments", comments);
+        String delInfo = (String) session.getAttribute("delInfo");
+        if (delInfo != null) {
+            session.removeAttribute("delInfo");
+            model.addAttribute("delInfo", delInfo);
+        }
+        return "/consumer/CommentsList";
+    }
+
+    @RequestMapping("/uploadComments")
+    public String toUpdateComments(HttpSession session, Model model) {
+        String pInfo = (String) session.getAttribute("addCoInfo");
+        if (pInfo != null) {
+            session.removeAttribute("addCoInfo");
+            model.addAttribute("add_msg", pInfo);
+        }
+        return "consumer/uploadComments";
     }
 
 }

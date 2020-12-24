@@ -80,15 +80,15 @@ public class CommentServiceImpl implements ICommentService {
             return null;
         }
     }
-/* @Override
-    public List<Comment> getAllByBidAndName(Integer bid, String name) {
+ @Override
+    public List<Comment> getAllByCidAndName(Integer cid, String name) {
         try {
-            return commentMapper.getAllByBidAndName(bid, name);
+            return commentMapper.getAllByCidAndName(cid, name);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-    }*/
+    }
 
     @Override
     public int getTotal(Comment comment) {
@@ -137,16 +137,10 @@ public class CommentServiceImpl implements ICommentService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int deleteById(Integer id, String path) throws Exception {
+    public int deleteById(Integer id) throws Exception {
         // 先删除数据库中的对应商品
         int i = commentMapper.deleteByPrimaryKey(id);
         if (i < 1) {
-            throw new Exception();
-        }
-        // 删除服务器上的对应图片
-        File file = new File(path);
-        boolean delete = file.delete();
-        if (!delete) {
             throw new Exception();
         }
         return 1;

@@ -75,10 +75,9 @@ public interface CommentMapper extends CrudDao<Comment> {
     /**
      * 根据商家id和条件获取商品信息
      *
-     * @param bid
+     * @param cid
      * @param pid
      * @return
-     *//*
-    List<Comment> getAllByBidAndName(@Param("bid") Integer bid, @Param("pid") String pid);
-*/
+     */
+    List<Comment> getAllByCidAndName(@Param("cid") Integer cid, @Param("pid") String pid);
 }

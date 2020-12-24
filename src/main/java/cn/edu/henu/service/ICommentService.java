@@ -45,14 +45,14 @@ public interface ICommentService {
      */
     List<Comment> getAllByCid(Integer cid);
 
-  /*  *//**
+    /**
      * 根据商家id和评价名称查询评价
      *
-     * @param bid
+     * @param cid
      * @param name
      * @return
-     *//*
-    List<Comment> getAllByBidAndName(Integer bid, String name);*/
+     */
+    List<Comment> getAllByCidAndName(Integer cid, String name);
 
 
     /**
@@ -64,7 +64,7 @@ public interface ICommentService {
     int getTotal(Comment comment);
 
     /**
-     * 给id为某值的商家添加评价？ 改为消费者？
+     * 给id为某值的商家添加评价？
      *
      * @param comment
      * @return
@@ -83,10 +83,9 @@ public interface ICommentService {
      * 根据评价id删除
      *
      * @param id
-     * @param path
      * @return
      */
-    int deleteById(Integer id, String path) throws Exception;
+    int deleteById(Integer id) throws Exception;
 
     /**
      * 根据评价id查询简单评价信息

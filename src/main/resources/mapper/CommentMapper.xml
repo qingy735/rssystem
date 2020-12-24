@@ -9,7 +9,7 @@
         <result property="bid" column="bid"/>
         <result property="pid" column="pid"/>
         <result property="commentGrade" column="grade"/>
-        <result property="commentContext" column="comment"/>
+        <result property="commentInfo" column="comment"/>
     </resultMap>
 
     <resultMap id="AssociationResultMap" type="cn.edu.henu.bean.Comment">
@@ -98,18 +98,18 @@
         where p.id=#{pid} and p.id= co.pid and status = 1
     </select>
 
-    <!--&lt;!&ndash;
-        根据商家id和条件获取评论信息?
+    <!--
+        根据消费者id和条件获取评论信息
         getAllByBidAndPName
-    &ndash;&gt;
-    <select id="getAllByBidAndName" resultMap="BaseResultMap">
+    -->
+    <select id="getAllByCidAndName" resultMap="BaseResultMap">
         select co.*
-        from commentinfo co,businessinfo b
-        where b.username = #{bid} and co.bid = #{bid} and status = 1
-        <if test="pid != null">
-            and co.pid like #{pid}
+        from commentinfo co,consumerinfo c
+        where c.username = #{bid} and co.bid = #{bid} and status = 1
+        <if test="comment != null">
+            and co.comment like #{comment}
         </if>
-    </select>-->
+    </select>
 
     <!--
         查询数据总量

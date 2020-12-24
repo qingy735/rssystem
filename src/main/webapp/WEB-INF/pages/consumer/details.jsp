@@ -12,7 +12,18 @@
     <link rel="stylesheet" type="text/css" href="${ctp}/css/detailStyle.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript">
+        function addit() {
+            var num = document.getElementById("proNum");
+            //alert(parseInt(num.innerText));
+            reg = /^\+?[1-9][0-9]*$/;
+            if(!reg.test(num.innerText)){
+                alert("您买的太少了~");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
 <div id="TitleArea" class="navbar-fixed-top">
@@ -48,8 +59,8 @@
                   <p>商品评分:${product.productGrade}</p>
                   <p>商品价钱:${product.productPrice}</p>
                   <form action="${ctp}/shop/add?pid=${product.id}&bid=${product.bid}" method="post">
-              份数：<input type="number" class="pronum" name="pnum">
-              <input type="submit" class="putintocart" value="加入购物车">
+              份数：<input id="proNum" type="number" class="pronum" name="pnum">
+              <input type="submit" class="putintocart" value="加入购物车" onclick="return addit()">
           </form>
                   <br>
                   <br>

@@ -15,7 +15,9 @@
 
 </head>
 <body>
-<div id="TitleArea" class="navbar-fixed-top">餐品详情</div>
+<div id="TitleArea" class="navbar-fixed-top">
+    <img src="${ctp}/images/header01.png" class="prodetHeader">
+</div>
 <div id="mainArea">
     <br><br>
   <div class="row">
@@ -55,7 +57,10 @@
           </div>
       </div>
       <div class="col-md-2 onePage">
-          <label class="col-md-12" style="text-align: center;">评价</label>
+          <label class="col-md-12 assessLabel" style="text-align: center;" >
+
+              <img src="${ctp}/images/assess.png" class="assessImg">
+          </label>
       </div>
 
   </div>

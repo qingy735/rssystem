@@ -146,4 +146,10 @@
         update productinfo set status = 0 where id = #{pid}
     </update>
 
+    <select id="getAvg" resultType="Float">
+        select avg(grade)
+        from productinfo
+        where bid = #{bid}
+    </select>
+
 </mapper>

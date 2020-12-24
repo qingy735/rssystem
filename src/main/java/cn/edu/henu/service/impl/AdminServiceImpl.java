@@ -3,6 +3,7 @@ package cn.edu.henu.service.impl;
 import cn.edu.henu.bean.*;
 import cn.edu.henu.dao.AdminMapper;
 import cn.edu.henu.dao.OrderMapper;
+import cn.edu.henu.dao.ProductMapper;
 import cn.edu.henu.service.IAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class AdminServiceImpl implements IAdminService {
     private AdminMapper adminMapper;
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private ProductMapper productMapper;
 
     @Override
     public Boolean login(Admin admin) {
@@ -74,6 +77,17 @@ public class AdminServiceImpl implements IAdminService {
                 businesses = adminMapper.selectBusinessByCon(business);
             } else {
                 businesses = adminMapper.selectAllBusiness();
+            }
+            for (Business b : businesses) {
+                Integer username = b.getUsername();
+                Float avg = productMapper.getAvg(username);
+                if (avg == null) {
+                    avg = 0f;
+                } else {
+                    int v = (int) (avg * 10);
+                    avg = v / 10.0f;
+                }
+                b.setGrade(avg);
             }
             PageBean<Business> pageBean = new PageBean<>();
             initPageBean(pageBean, getBusTotal(business), row);

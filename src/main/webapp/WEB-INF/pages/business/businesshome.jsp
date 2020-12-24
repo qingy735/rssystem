@@ -25,14 +25,14 @@
 <body>
 <div class="page">
     <div style="height: 100%;width: 15%;" class="pull-left">
-        <nav class="navbar navbar-default" role="navigation" >
-            <div class="container-fluid">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid" >
                 <div class="navbar-header">
                     <a class="navbar-brand" href="${ctp}/business/home">商家后台</a>
                 </div>
                 <br><br>
                 <div>
-                    <ul class="nav nav-pills nav-stacked" id="nav_home">
+                    <ul class="nav nav-pills nav-stacked" id="nav_home" >
                         <li class="active" id="li1" onclick="c(1,this)"><a href="${ctp}/business/Buinfo" target="mainFrame">个人中心</a></li>
                         <li class="" id="li2" onclick="c(2,this)"><a href="${ctp}/business/orderList" target="mainFrame">订单列表</a></li>
                         <li class="" id="li3" onclick="c(3,this)"><a href="${ctp}/business/productList" target="mainFrame">餐品列表</a></li>

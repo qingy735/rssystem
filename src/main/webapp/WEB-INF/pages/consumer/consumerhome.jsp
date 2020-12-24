@@ -141,6 +141,20 @@
                 <li><a>8-10</a></li>
             </ul>
         </div>
+        <script type="text/javascript">
+        var urlstr = location.href;
+        //alert(urlstr);
+        var urlstatus=false;
+        $("#chooseScore a").each(function () {
+            if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') {
+                $(this).addClass('cur'); urlstatus = true;
+            } else {
+                $(this).removeClass('cur');
+            }
+        });
+        if (!urlstatus) {$("#chooseScore a").eq(0).addClass('cur');
+        }
+    </script>
     </div>
 </div>--%>
 <!-- 中部的餐品显示 -->
@@ -226,16 +240,16 @@
     </nav>
 </div>
 <!-- 友情链接 -->
+<div class="tip_quick container">
+    <img src="${ctp}/images/tip01.png" width="40%"/>
+</div>
 <div class="container quick_link">
     <div class="row col-md-offset-1 col-md-10">
-        <div class="col-md-4">
-            <p>快速链接</p>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-6 linkContainer">
             <ul>
-                <li><a href="">河南大学官网</a></li>
-                <li><a href="">教务系统</a></li>
-                <li><a href="">英语学习</a></li>
+                <li><img src="${ctp}/images/link01.png" width="10%"><a href="http://www.henu.edu.cn/">河南大学官网</a></li>
+                <li><img src="${ctp}/images/link01.png" width="10%"><a href="">教务系统</a></li>
+                <li><img src="${ctp}/images/link01.png" width="10%"><a href="http://wyb.henu.edu.cn/">英语学习</a></li>
             </ul>
         </div>
     </div>

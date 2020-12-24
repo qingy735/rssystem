@@ -20,9 +20,10 @@ ul li{ list-style: none; cursor: pointer;}
 	background-color:#FFFFF0 ;
 }
 .quick_link{
-	background-color:#F9F5F6;
+	#background-image: url("../images/login5.jpg");
 	margin-top: 10px;
 	margin-bottom: 10px;
+	background-size: cover;
 }
 
 .bottomdiv{
@@ -83,8 +84,21 @@ ul li{ list-style: none; cursor: pointer;}
 	display: inline-block;
 	text-align: center;
 }
+.chooBack{
+	width: 100%;
+	#background-image: url("../images/login4.jpg");
+	background-size: contain;
+
+}
 .chooseType li{
 	display: inline-block;
+}
+.chooseType a{
+	color: #4cae4c;
+
+}
+.chooseType span{
+	color: #edcf1c;
 }
 .priceRange li {
 	width: 5%
@@ -172,6 +186,10 @@ ul li{ list-style: none; cursor: pointer;}
 .buyGoodsBody{
 	margin: 0 auto;
 	text-align: center;
+}
+.middle{
+	#background-image: url("../images/back03.jpg");
+	#background-size: cover;
 }
 #TableMain{
 	width: 100%;

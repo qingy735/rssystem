@@ -6,7 +6,46 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<script type="text/javascript">
+    window.onload=function(){
+        var myURL = document.location.href;
+        //if (s.contains("home")){}
+        //alert("你好"+myURL);
+        if(myURL.indexOf("home") !== -1){
+            //alert("home");
+            $("#l_home").addClass('active');
+            $("#l_pastOrder").removeClass('active');
+            $("#l_shopCart").removeClass('active');
+            $("#l_assessment").removeClass('active');
+            $("#l_discount").removeClass('active');
+        }else if(myURL.indexOf("shopCart")!== -1){
+            //alert("Cart");
+            $("#l_home").removeClass('active');
+            $("#l_pastOrder").removeClass('active');
+            $("#l_assessment").removeClass('active');
+            $("#l_discount").removeClass('active');
+            $("#l_shopCart").addClass('active');
+        }else if (myURL.indexOf("pastOrder")!== -1){
+            $("#l_home").removeClass('active');
+            $("#l_shopCart").removeClass('active');
+            $("#l_assessment").removeClass('active');
+            $("#l_discount").removeClass('active');
+            $("#l_pastOrder").addClass('active');
+        }else if(myURL.indexOf("assessment")!== -1){
+            $("#l_pastOrder").removeClass('active');
+            $("#l_shopCart").removeClass('active');
+            $("#l_home").removeClass('active');
+            $("#l_discount").removeClass('active');
+            $("#l_assessment").addClass('active');
+        }else{
+            $("#l_pastOrder").removeClass('active');
+            $("#l_shopCart").removeClass('active');
+            $("#l_assessment").removeClass('active');
+            $("#l_home").removeClass('active');
+            $("#l_discount").addClass('active');
+        }
+    }
+</script>
 <!-- 导航栏 -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">

@@ -165,7 +165,7 @@
                 <a href="${ctp}/details?pid=${product.id}">
                     <div class="col-md-4">
                         <img alt="无法显示" src="${ctp}/${product.photosrc}"
-                             class="col-md-3 img-rounded img-responsive">
+                             class="col-md-3 img-rounded img-responsive proimg">
                     </div>
                     <div class="col-md-6">
                         <h5>店铺名：${product.business.wname}</h5>

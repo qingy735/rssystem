@@ -49,24 +49,29 @@
                     <td>${detail.num}</td>
                     <td>-${detail.discount}</td>
                     <td>${detail.product.productPrice * detail.num - detail.discount}</td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-                            style="height: 30px">添加评论
-                </button></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
+                                style="height: 30px">添加评论
+                        </button>
+                    </td>
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content" style="background-color: seashell;margin-top: 15%">
                                 <form class="form-horizontal" action="" method="post">
                                     <div class="modal-header" style="height: 40px;">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span
                                                 aria-hidden="true">&times;</span></button>
-                                        <h5 class="modal-title" id="myModalLabel" style="color: #2e6da4;text-align: center">
+                                        <h5 class="modal-title" id="myModalLabel"
+                                            style="color: #2e6da4;text-align: center">
                                             <b>添加评论</b></h5>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <div class="col-md-8 col-md-offset-2">
-                                        <textarea cols="20" rows="8" class="form-control" id="proInfo" name="productIntr">
+                                        <textarea cols="20" rows="8" class="form-control" id="proInfo"
+                                                  name="productIntr">
                                         </textarea>
                                             </div>
                                         </div>

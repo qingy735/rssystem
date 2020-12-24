@@ -56,10 +56,12 @@
 
     <!--
         updateStatusByOid
-        根据订单id修改订单状态
+        根据订单id修改订单
     -->
-    <update id="updateStatusByOid">
-        update orderinfo2 set status = #{status} where orderid = #{id}
+    <update id="updateByPrimaryKey">
+        update orderinfo2
+        set status = #{status}, note = #{note}
+        where orderid = #{id}
     </update>
 
     <insert id="insert" useGeneratedKeys="true" keyColumn="orderid" keyProperty="id">

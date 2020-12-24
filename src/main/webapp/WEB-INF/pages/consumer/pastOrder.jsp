@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="${ctp}/css/myStyle1.css"/>
     <script type="text/javascript" src="${ctp}/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="${ctp}/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <!-- 导航栏 -->
@@ -47,30 +48,36 @@
                             <br>
                             <a href="#ofModal" data-toggle="modal">去结账</a>
                             <!-- 弹出框 -->
-                            <div class="modal fade" id="ofModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal fade" id="ofModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content" style="margin-top: 30%;background-color: snow;">
-                                        <form>
+                                        <form action="${ctp}/order/update?id=${order.id}&status=1" method="post">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel" style="color: #2e6da4;text-align: center">支付页面</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel"
+                                                    style="color: #2e6da4;text-align: center">支付页面</h4>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <label>备注：</label>
-                                                   <textarea cols="20" rows="4" class="form-control" id="proInfo" name="productIntr">
-                                                   </textarea>
+                                                        <textarea cols="20" rows="4" class="form-control" id="note"
+                                                                  name="note"></textarea>
                                                     </div>
                                                 </div>
                                                 <br>
-                                                    <div class="row">
-                                                    <label class="col-md-6 pull-left">支付宝支付&nbsp;<input type="radio" name="zf"></label>
-                                                    <label class="col-md-6 pull-left">微信支付&nbsp;<input type="radio" name="zf"></label>
+                                                <div class="row">
+                                                    <label class="col-md-6 pull-left">支付宝支付&nbsp;<input type="radio"
+                                                                                                        name="zf"></label>
+                                                    <label class="col-md-6 pull-left">微信支付&nbsp;<input type="radio"
+                                                                                                       name="zf"></label>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <a href="${ctp}/order/update?oid=${order.id}&status=1" class="del btn">支付</a>
+                                                <input type="submit" class="del btn" value="支付"/>
                                                 <a href="" class="del btn">取消支付</a>
                                             </div>
                                         </form>

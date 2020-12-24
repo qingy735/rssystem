@@ -76,9 +76,16 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public int updateStatusByOid(Integer oid, int status) {
+    public int updateByPrimaryKey(Order order) {
         try {
-            return orderMapper.updateStatusByOid(oid, status);
+            String note = order.getNote();
+            if (note == null) {
+                order.setNote("无");
+            } else {
+                note = note.replaceAll(" ", "");
+                order.setNote(note);
+            }
+            return orderMapper.updateByPrimaryKey(order);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;

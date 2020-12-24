@@ -196,6 +196,11 @@ ul li{ list-style: none; cursor: pointer;}
 	#background-image: url("../images/back03.jpg");
 	#background-size: cover;
 }
+.proimg{
+    width: 60%;
+    text-align: center;
+    margin: auto auto;
+}
 #TableMain{
 	width: 100%;
 	height: auto;

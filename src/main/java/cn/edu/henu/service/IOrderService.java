@@ -45,13 +45,12 @@ public interface IOrderService {
     List<OrderDetail> selectByOid(Integer oid);
 
     /**
-     * 根据订单id更改订单状态
+     * 根据订单id更改订单xinxi
      *
-     * @param orderId
-     * @param state
+     * @param order
      * @return
      */
-    int updateStatusByOid(Integer orderId, int state);
+    int updateByPrimaryKey(Order order);
 
     /**
      * 添加订单

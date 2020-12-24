@@ -9,14 +9,24 @@
     <link rel="stylesheet" href="${ctp}/css/pInfoStyle.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            setTimeout(function () {
+                var info = "<%=request.getAttribute("updateInfo")%>"
+                if (info != "null") {
+                    alert(info)
+                }
+            },400)
+        })
+    </script>
+
     <title>个人信息</title>
 </head>
 <body>
+
 <header class="container">
-    <div class="row">
-        <div class="col-md-10"><h1>河南大学餐厅服务系统</h1></div>
-        <div class="col-md-2"><a href="${ctp}/consumer/logout"><h1>退出登录</h1></a></div>
-    </div>
+    <jsp:include page="head.jsp"/>
 </header>
 <div class="allInfo">
     <img src="${ctp}/images/person01.png" width="10%">
@@ -40,8 +50,8 @@
             <td>昵称：</td>
             <td>${sessionScope.conLoginInfo.nickname}</td>
             <td>
-                <form>
-                    <input class="newNickName" type="text" placeholder="输入新昵称..">
+                <form method="post" action="${ctp}/consumer/updatenick">
+                    <input class="newNickName" name="nickname" type="text" placeholder="输入新昵称..">
                     <input class="changeNickName" type="submit" value="修改昵称">
                 </form>
             </td>
@@ -54,13 +64,12 @@
         <tr>
             <td>修改密码：</td>
             <td colspan="2">
-                <form>
-                    <input class="oldPassword" type="text" placeholder="输入当前密码..">
-                    <input class="newPassword" type="text" placeholder="输入新密码..">
+                <form method="post" action="${ctp}/consumer/updatepass">
+                    <input class="oldPassword" name="password" type="text" placeholder="输入当前密码..">
+                    <input class="newPassword" name="newPassword" type="text" placeholder="输入新密码..">
                     <input class="changePassword" type="submit" value="修改密码">
                 </form>
             </td>
-
         </tr>
     </table>
     <%--    <label>姓名：${sessionScope.conLoginInfo.name}</label><br>--%>

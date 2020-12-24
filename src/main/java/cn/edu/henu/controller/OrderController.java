@@ -30,8 +30,9 @@ public class OrderController {
     private IOrderService orderSer;
 
     @RequestMapping("/update")
-    public String updateStatus(Integer oid, Integer status, HttpSession session) {
-        int i = orderSer.updateStatusByOid(oid, status);
+    public String updateStatus(Order order, HttpSession session) {
+        System.out.println(order);
+        int i = orderSer.updateByPrimaryKey(order);
         if (i < 1) {
             session.setAttribute("updateInfo", "订单结账失败");
         }

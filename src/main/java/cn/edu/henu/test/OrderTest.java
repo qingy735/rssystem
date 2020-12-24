@@ -98,12 +98,11 @@ public class OrderTest {
     }
 
     /**
-     * 根据订单id修改订单状态
+     * 根据订单id修改订单
      */
     @Test
     public void testUpdateStatusByOid() {
-        Order order = orderMapper2.selectByPrimaryKey(1);
-        orderMapper2.updateStatusByOid(order.getId(), 0);
+        // orderMapper2.updateByPrimaryKey()
     }
 
     /**

@@ -140,18 +140,6 @@ public class ConsumerUIController {
         return "consumer/shopCart";
     }
 
-    @RequestMapping("/PCenter")
-    public String toPCenter(HttpSession session, HttpServletRequest request) {
-        Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
-        if (consumer == null) {
-            String url = request.getRequestURL().toString();
-            session.setAttribute("history", url);
-            session.setAttribute("login_info", "请先登录");
-            return "redirect:/login/consumer";
-        }
-        return "consumer/PCenter";
-    }
-
     @RequestMapping("/pastOrder")
     public String toPastOrder(@RequestParam(value = "p", defaultValue = "1") Integer p, HttpSession session, HttpServletRequest request) {
         Consumer consumer = (Consumer) session.getAttribute("conLoginInfo");
@@ -232,6 +220,12 @@ public class ConsumerUIController {
             session.setAttribute("history", url);
             session.setAttribute("login_info", "请先登录");
             return "redirect:/login/consumer";
+        }
+
+        String updateInfo = (String) session.getAttribute("updateInfo");
+        if (updateInfo != null) {
+            request.setAttribute("updateInfo", updateInfo);
+            session.removeAttribute("updateInfo");
         }
         return "consumer/PInfo";
     }

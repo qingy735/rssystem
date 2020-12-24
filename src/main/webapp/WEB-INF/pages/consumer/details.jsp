@@ -60,7 +60,7 @@
                     <p>商品价钱:${product.productPrice}</p>
                     <form action="${ctp}/shop/add?pid=${product.id}&bid=${product.bid}" method="post">
                         份数：<input id="proNum" type="number" class="pronum" name="pnum">
-                        <input type="submit" class="putintocart" value="加入购物车" onclick="return addit()">
+                        <input type="submit" class="putintocart" value="加入购物车"<%-- onclick="return addit()"--%>>
                     </form>
                     <br>
                     <br>

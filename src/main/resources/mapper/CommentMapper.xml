@@ -26,13 +26,28 @@
                      javaType="cn.edu.henu.bean.Business"/>
     </resultMap>
 
+    <resultMap id="CommentsMap2" type="cn.edu.henu.bean.Comment">
+        <id property="id" column="id"/>
+        <result property="cid" column="cid"/>
+        <result property="bid" column="bid"/>
+        <result property="pid" column="pid"/>
+        <result property="grade" column="grade"/>
+        <result property="comment" column="comment"/>
+        <association property="consumer" column="cid"
+                     select="cn.edu.henu.dao.ConsumerMapper.selectByPrimaryKey"
+                     javaType="cn.edu.henu.bean.Consumer"/>
+        <association property="business" column="bid"
+                     select="cn.edu.henu.dao.BusinessMapper.selectByPrimaryKey"
+                     javaType="cn.edu.henu.bean.Business"/>
+    </resultMap>
+
     <!--获取全部评论-->
     <select id="selectAll" resultMap="CommentsMap">
         select * from commentinfo
     </select>
 
     <!--根据商品id获取-->
-    <select id="selectByPId" resultMap="BaseResultMap">
+    <select id="getAllByPid" resultMap="CommentsMap2">
         select * from commentinfo where pid=#{pid}
     </select>
 

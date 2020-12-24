@@ -104,6 +104,9 @@ public class ConsumerUIController {
             Product product = productSer.selectSimpleById(pid);
             model.addAttribute("product", product);
         }
+
+        List<Comment> comments = commentSer.getAllByPid(pid);
+        model.addAttribute("comments", comments);
         return "consumer/details";
     }
 

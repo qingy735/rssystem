@@ -58,7 +58,10 @@
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content" style="background-color: seashell;margin-top: 15%">
-                                <form class="form-horizontal" action="" method="post">
+                                <form class="form-horizontal" action="${ctp}/commit/add" id="addForm" enctype="multipart/form-data"  method="post">
+                                    <input type="hidden" name="cid" value="${sessionScope.conLoginInfo.username} ">
+                                    <input type="hidden" name="bid" value="${sessionScope.busLoginInfo.username} ">
+                                    <input type="hidden" name="pid" value="${sessionScope.productInfo.id} ">
                                     <div class="modal-header" style="height: 40px;">
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close"><span

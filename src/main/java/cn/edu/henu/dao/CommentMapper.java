@@ -1,6 +1,8 @@
 package cn.edu.henu.dao;
 
 import cn.edu.henu.bean.Comment;
+import cn.edu.henu.bean.Comment;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -11,46 +13,71 @@ import java.util.List;
 public interface CommentMapper extends CrudDao<Comment> {
 
     /**
-     * 根据id删除评论
+     * 查询所有商品
+     *
+     * @return
+     */
+    List<Comment> selectAll();
+
+    /**
+     * 获取商品信息
      *
      * @param id
      * @return
      */
-    @Override
-    int deleteByPrimaryKey(Integer id);
+    Comment selectById(Integer id);
 
     /**
-     * 添加评论
-     *
-     * @param entity
-     * @return
-     */
-    @Override
-    int insert(Comment entity);
-
-    /**
-     * 根据id查询
+     * 仅仅获取商品信息
      *
      * @param id
      * @return
      */
-    @Override
-    Comment selectByPrimaryKey(Integer id);
+    Comment selectSimpleById(Integer id);
 
     /**
-     * 根据商品id查询评论
+     * 仅仅获取商品信息
+     *
+     * @return
+     */
+    List<Comment> selectAllSimple();
+
+    /**
+     * 根据条件(如果有)查询条目
+     *
+     * @param product
+     * @return
+     */
+    int selectTotal(Comment product);
+
+    /**
+     * 根据商家id获取商品信息
+     *
+     * @param bid
+     * @return
+     */
+    List<Comment> getAllByBid(Integer bid);
+    /**
+     * 根据餐品id获取商品信息
      *
      * @param pid
      * @return
      */
-    List<Comment> selectByPid(Integer pid);
-
+    List<Comment> getAllByPid(Integer pid);
     /**
-     * 根据用户id查询评论
+     * 根据消费者id获取商品信息
      *
      * @param cid
      * @return
      */
-    List<Comment> selectByCid(String cid);
+    List<Comment> getAllByCid(Integer cid);
 
+    /**
+     * 根据商家id和条件获取商品信息
+     *
+     * @param cid
+     * @param pid
+     * @return
+     */
+    List<Comment> getAllByCidAndName(@Param("cid") Integer cid, @Param("pid") String pid);
 }

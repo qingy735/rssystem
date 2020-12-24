@@ -50,6 +50,14 @@ public interface IShopService {
     List<Shop> selectAll();
 
     /**
+     * 根据商品id查询
+     *
+     * @param pid
+     * @return
+     */
+    Shop selectByPid(Integer pid);
+
+    /**
      * 根据消费者id查询所有购物车内容
      *
      * @param cid

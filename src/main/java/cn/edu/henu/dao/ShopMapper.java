@@ -26,6 +26,14 @@ public interface ShopMapper extends CrudDao<Shop> {
     List<Shop> selectByCid(String cid);
 
     /**
+     * 根据商品id查找
+     *
+     * @param pid
+     * @return
+     */
+    Shop selectByPid(Integer pid);
+
+    /**
      * 批量删除购物车数据
      *
      * @param ids

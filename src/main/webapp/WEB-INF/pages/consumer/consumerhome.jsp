@@ -86,7 +86,7 @@
     </form>
 </div>
 <!--搜索选项框-->
-<div class="chooseType">
+<%--<div class="chooseType">
     <div class="restaurantName">
         <span class="cT">餐厅名：</span>
         <div>
@@ -142,7 +142,7 @@
             </ul>
         </div>
     </div>
-</div>
+</div>--%>
 <!-- 中部的餐品显示 -->
 <div class="middle container">
     <ul>
@@ -154,7 +154,7 @@
                              class="col-md-3 img-rounded img-responsive">
                     </div>
                     <div class="col-md-6">
-                        <h5>店铺号：${product.business.username}</h5>
+                        <h5>店铺名：${product.business.wname}</h5>
                         <p style="color: red">评分：${product.productGrade}</p>
                         <p>商品名字:${product.productName}</p>
                         <p style="color: red">¥：${product.productPrice}</p>

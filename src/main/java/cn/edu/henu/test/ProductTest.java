@@ -58,6 +58,12 @@ public class ProductTest {
     }
 
     @Test
+    public void testGetAvg() {
+        Float avg = productMapper.getAvg(100001);
+        System.out.println(avg);
+    }
+
+    @Test
     public void testGetAll() {
         List<Product> products = productMapper.selectAll();
         for (Product product : products) {

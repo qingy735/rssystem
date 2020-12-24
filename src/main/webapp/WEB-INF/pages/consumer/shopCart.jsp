@@ -103,13 +103,13 @@
 <!-- 导航栏 -->
 <jsp:include page="head.jsp"/>
 <!-- 加购的餐品列表 -->
-<c:if test="${sessionScope.mapShop == null}">
+<c:if test="${sessionScope.mapShop.size() == 0}">
     <div style="width: 100%;text-align: center;">
         <img style="align-content: center;width: 20%;" class="notfound" src="${ctp}/images/nofound.png">
         <span>您还没有加购任何商品，快去选购吧~</span>
     </div>
 </c:if>
-<c:if test="${sessionScope.mapShop != null}">
+<c:if test="${sessionScope.mapShop.size() > 0}">
     <div id="TableMain">
         <c:forEach items="${sessionScope.mapShop}" var="shops">
             <h4>商家id：${shops.key}</h4>
@@ -166,7 +166,8 @@
                                 <td>-${shop.discountuse}</td>
                                 <td>${shop.totalPrice}</td>
                                 <td>
-                                    <a href="${ctp}/shop/delete?id=${shop.id}" class="del btn" onclick="return confirm('确定要删除吗？')">删除</a>
+                                    <a href="${ctp}/shop/delete?id=${shop.id}" class="del btn"
+                                       onclick="return confirm('确定要删除吗？')">删除</a>
                                 </td>
                             </tr>
                         </c:if>
@@ -188,7 +189,9 @@
                 <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
             </div>
             <div class="col-md-1 pull-right">
-              <button type="button" class="btn btn-warning" id="checkoutBtu"  data-toggle="modal" data-target="#myModal"  >结&nbsp;算</button>
+                <button type="button" class="btn btn-warning" id="checkoutBtu" data-toggle="modal"
+                        data-target="#myModal">结&nbsp;算
+                </button>
             </div>
             <div class="col-md-2 pull-right">
                 <span>总金额：</span>

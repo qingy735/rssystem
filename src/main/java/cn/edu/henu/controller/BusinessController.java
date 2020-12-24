@@ -2,6 +2,7 @@ package cn.edu.henu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -124,11 +125,32 @@ public class BusinessController {
         }
     }
 
+    @RequestMapping("/update")
+    public String updateBusiness(Business business, HttpSession session) {
+        Business loginInfo = (Business) session.getAttribute("busLoginInfo");
+        Integer username = loginInfo.getUsername();
+        business.setUsername(username);
+        boolean update = businessSer.update(business);
+        if (!update) {
+            session.setAttribute("updateInfo", "更新失败");
+        } else {
+            Business one = businessSer.getOneByKey(username);
+            session.setAttribute("busLoginInfo", one);
+        }
+
+        return "redirect:/business/home";
+    }
+
     @RequestMapping("/home")
-    public String toBusinessHome(HttpSession session) {
+    public String toBusinessHome(HttpSession session, Model model) {
         Business busLoginInfo = (Business) session.getAttribute("busLoginInfo");
         if (busLoginInfo == null) {
             return "redirect:/login/business";
+        }
+        String updateInfo = (String) session.getAttribute("updateInfo");
+        if (updateInfo != null) {
+            session.removeAttribute("updateInfo");
+            model.addAttribute("updateInfo", updateInfo);
         }
         return "business/businesshome";
     }

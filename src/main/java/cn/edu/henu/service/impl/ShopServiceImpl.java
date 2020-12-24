@@ -22,6 +22,7 @@ public class ShopServiceImpl implements IShopService {
     @Override
     public int insert(Shop shop) {
         try {
+
             return shopMapper.insert(shop);
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,6 +69,11 @@ public class ShopServiceImpl implements IShopService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Shop selectByPid(Integer pid) {
+        return shopMapper.selectByPid(pid);
     }
 
     @Override

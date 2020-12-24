@@ -64,4 +64,12 @@ public interface ProductMapper extends CrudDao<Product> {
      * @return
      */
     List<Product> getAllByBidAndName(@Param("bid") Integer bid, @Param("pname") String pname);
+
+    /**
+     * 求对应店铺的平均评分
+     *
+     * @param bid
+     * @return
+     */
+    Float getAvg(Integer bid);
 }

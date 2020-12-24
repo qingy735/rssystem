@@ -2,6 +2,7 @@ package cn.edu.henu.service.impl;
 
 import cn.edu.henu.bean.*;
 import cn.edu.henu.dao.AdminMapper;
+import cn.edu.henu.dao.CommentMapper;
 import cn.edu.henu.dao.OrderMapper;
 import cn.edu.henu.dao.ProductMapper;
 import cn.edu.henu.service.IAdminService;
@@ -23,6 +24,8 @@ public class AdminServiceImpl implements IAdminService {
     private OrderMapper orderMapper;
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private CommentMapper commentMapper;
 
     @Override
     public Boolean login(Admin admin) {
@@ -102,7 +105,7 @@ public class AdminServiceImpl implements IAdminService {
     @Override
     public List<Comment> findAllComment() {
         try {
-            return adminMapper.selectAllComment();
+            return commentMapper.selectAll();
         } catch (Exception e) {
             e.printStackTrace();
             return null;

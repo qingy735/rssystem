@@ -2,177 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.henu.dao.CommentMapper">
-
     <resultMap id="BaseResultMap" type="cn.edu.henu.bean.Comment">
         <id property="id" column="id"/>
         <result property="cid" column="cid"/>
         <result property="bid" column="bid"/>
         <result property="pid" column="pid"/>
-        <result property="commentGrade" column="grade"/>
-        <result property="commentInfo" column="comment"/>
+        <result property="grade" column="grade"/>
+        <result property="comment" column="comment"/>
     </resultMap>
 
-    <resultMap id="AssociationResultMap" type="cn.edu.henu.bean.Comment">
+    <resultMap id="CommentsMap" type="cn.edu.henu.bean.Comment">
         <id property="id" column="id"/>
         <result property="cid" column="cid"/>
         <result property="bid" column="bid"/>
         <result property="pid" column="pid"/>
-        <result property="commentGrade" column="grade"/>
-        <result property="commentInfo" column="comment"/>
-        <association property="business" column="bid"
-                     javaType="cn.edu.henu.bean.Business"
-                     select="cn.edu.henu.dao.BusinessMapper.selectByPrimaryKey">
-        </association>
-        <association property="consumer" column="cid"
-                     javaType="cn.edu.henu.bean.Consumer"
-                     select="cn.edu.henu.dao.ConsumerMapper.selectByPrimaryKey">
-        </association>
+        <result property="grade" column="grade"/>
+        <result property="comment" column="comment"/>
         <association property="product" column="pid"
-                     javaType="cn.edu.henu.bean.Product"
-                     select="cn.edu.henu.dao.ProductMapper.selectByPrimaryKey">
-        </association>
+                     select="cn.edu.henu.dao.ProductMapper.selectSimpleById"
+                     javaType="cn.edu.henu.bean.Product"/>
+        <association property="business" column="bid"
+                     select="cn.edu.henu.dao.BusinessMapper.selectByPrimaryKey"
+                     javaType="cn.edu.henu.bean.Business"/>
     </resultMap>
 
-    <!--仅获取评论信息-->
-    <select id="selectSimpleById" resultMap="BaseResultMap">
-        select * from commentinfo where id = #{id} and status = 1
-    </select>
-
-    <select id="selectById" resultMap="AssociationResultMap">
-        select * from commentinfo where id=#{id}  and status = 1
-    </select>
-
-    <!--查询所有评论信息 包含商家信息(懒加载)商品信息？ 用户信息？-->
-    <select id="selectAll" resultMap="AssociationResultMap">
-        select * from commentinfo where status = 1
-    </select>
-
-    <!--
-        条件查询(懒加载)
-            用户名或者店铺名
-        selectByCondition
-    -->
-    <select id="selectByCondition" resultMap="AssociationResultMap">
+    <!--获取全部评论-->
+    <select id="selectAll" resultMap="CommentsMap">
         select * from commentinfo
-        where status = 1
-        <if test="pid != null">
-            and name like #{pid}
-        </if>
-        <if test="bid != null">
-            and name like #{bid}
-        </if>
-        <if test="cid != null">
-            and name like #{cid}
-        </if>
-        <if test="grade != null">
-            and grade >= #{grade}
-        </if>
     </select>
 
-    <!--
-        根据商家id获取评论信息
-        getAllByBid
-    -->
-    <select id="getAllByBid" resultMap="BaseResultMap">
-        select co.*
-        from commentinfo co,businessinfo b
-        where b.username=#{bid} and b.username= co.bid and status = 1
+    <!--根据商品id获取-->
+    <select id="selectByPId" resultMap="BaseResultMap">
+        select * from commentinfo where pid=#{pid}
     </select>
 
-    <!--
-       根据消费者id获取评论信息
-       getAllByBid
-   -->
-    <select id="getAllByCid" resultMap="BaseResultMap">
-        select co.*
-        from commentinfo co,consumerinfo c
-        where c.username=#{cid} and c.username= co.cid and status = 1
-    </select>
-    <!--
-      根据餐品id获取评论信息
-      getAllByBid
-  -->
-    <select id="getAllByPid" resultMap="BaseResultMap">
-        select co.*
-        from commentinfo co,productinfo p
-        where p.id=#{pid} and p.id= co.pid and status = 1
+    <!--根据用户id获取-->
+    <select id="getAllByCid" resultMap="CommentsMap">
+        select * from commentinfo where cid=#{cid}
     </select>
 
-    <!--
-        根据消费者id和条件获取评论信息
-        getAllByBidAndPName
-    -->
-    <select id="getAllByCidAndName" resultMap="BaseResultMap">
-        select co.*
-        from commentinfo co,consumerinfo c
-        where c.username = #{bid} and co.bid = #{bid} and status = 1
-        <if test="comment != null">
-            and co.comment like #{comment}
-        </if>
-    </select>
-
-    <!--
-        查询数据总量
-        selectTotal
-    -->
-    <select id="selectTotal" resultType="Integer">
-        select count(id) from commentinfo co where status = 1
-        <if test="commentName != null">
-            and co.pid like #{pid}
-        </if>
-        <if test="bid != null">
-            and co.bid like #{bid}
-        </if>
-        <if test="cid != null">
-            and co.cid like #{cid}
-        </if>
-        <if test="commentPrice != null">
-            and co.grade >= #{commentGrade}
-        </if>
+    <select id="getOneByCidAndPid" resultMap="BaseResultMap">
+        select * from commentinfo where cid=#{cid} and pid=#{pid}
     </select>
 
     <!--
         添加评论
-        insert
     -->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.edu.henu.bean.Comment">
+    <insert id="insert">
         insert into commentinfo(cid,bid,pid,grade,comment)
-        values(#{cid},#{bid},#{pid},#{grade},#{comment})
+        values(#{cid},#{bid},#{pid},1,#{comment})
     </insert>
 
     <!--
-        修改评论信息
-        updateByPrimaryKey
-    -->
-    <update id="updateByPrimaryKey">
-        update commentinfo
-        <trim prefix="set" suffixOverrides=",">
-            <if test="cid != null">
-                cid = #{cid},
-            </if>
-            <if test="bid != null">
-                bid = #{bid},
-            </if>
-            <if test="commentProductName != null">
-                pid = #{pid},
-            </if>
-            <if test="commentInfo != null">
-                comment = #{commentInfo},
-            </if>
-            <if test="CommentGrade != null">
-                grade = #{CommentGrade},
-            </if>
-        </trim>
-        where id = #{id}
-    </update>
-
-    <!--
         删除评论
-        deleteByPrimaryKey
-        修改标志位为0
     -->
-    <update id="deleteByPrimaryKey">
-        update commentinfo set status = 0 where id = #{id}
+    <delete id="deleteByPrimaryKey">
+        delete from commentinfo where id = #{id}
+    </delete>
+
+    <update id="updateByPrimaryKey">
+        update commentinfo set comment=#{comment} where id=#{id}
     </update>
 
 </mapper>

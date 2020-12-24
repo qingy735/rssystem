@@ -21,8 +21,8 @@
         <thead>
         <tr align="center" valign="middle" id="TableTitle">
             <td>编号</td>
-            <td>商家用户名</td>
-            <td>餐品名</td>
+            <td>商家id</td>
+            <td>餐品id</td>
             <td>评分</td>
             <td>评论</td>
             <td>消费者用户名</td>
@@ -31,20 +31,20 @@
         </thead>
         <!--显示数据列表 -->
         <tbody id="orderListData">
-        <% for(int i=0; i<=5;i++){
-        %>
-        <tr height="60" align="center">
-            <td>1</td>
-            <td>100001</td>
-            <td>糖醋里脊</td>
-            <td>5.6</td>
-            <td>好吃好吃好吃</td>
-            <td>1812030001</td>
-            <td>
-                <a onclick="return confirm('确定要删除吗？')" class="btn">删除</a>
-            </td>
-        </tr>
-        <%}%>
+        <c:forEach items="${sessionScope.AdComments}" var="comment" varStatus="u">
+            <tr height="60" align="center">
+                <td>${u.count}</td>
+                <td>${comment.bid}</td>
+                <td>${comment.pid}</td>
+                <td>${comment.grade}</td>
+                <td>${comment.comment}</td>
+                <td>${comment.cid}</td>
+                <td>
+                    <a href="${ctp}/comment/delete?id=${comment.id}" onclick="return confirm('确定要删除吗？')"
+                       class="btn">删除</a>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>

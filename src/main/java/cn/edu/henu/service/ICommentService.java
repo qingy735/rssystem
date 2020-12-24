@@ -13,21 +13,11 @@ import java.util.List;
 public interface ICommentService {
 
     /**
-     * 查询所有评价 有条件就按照条件查
+     * 查询全部
      *
-     * @param comment
-     * @param row
      * @return
      */
-    PageBean<Comment> getAllComments(Comment comment, Integer row);
-
-    /**
-     * 根据商家id查询评价
-     *
-     * @param bid
-     * @return
-     */
-    List<Comment> getAllByBid(Integer bid);
+    List<Comment> getAll();
 
     /**
      * 根据餐品id查询所有评论
@@ -43,28 +33,19 @@ public interface ICommentService {
      * @param cid
      * @return
      */
-    List<Comment> getAllByCid(Integer cid);
+    List<Comment> getAllByCid(String cid);
 
     /**
-     * 根据商家id和评价名称查询评价
+     * 根据消费者和商品id查询
      *
      * @param cid
-     * @param name
+     * @param pid
      * @return
      */
-    List<Comment> getAllByCidAndName(Integer cid, String name);
-
-
-    /**
-     * 查询一共多少条数据
-     *
-     * @param comment
-     * @return
-     */
-    int getTotal(Comment comment);
+    Comment getOne(String cid, Integer pid);
 
     /**
-     * 给id为某值的商家添加评价？
+     * 给id为某值的商家添加评价
      *
      * @param comment
      * @return
@@ -72,36 +53,18 @@ public interface ICommentService {
     int add(Comment comment);
 
     /**
-     * 根据评价id更新
-     *
-     * @param comment
-     * @return
-     */
-    int updateById(Comment comment);
-
-    /**
      * 根据评价id删除
      *
      * @param id
      * @return
      */
-    int deleteById(Integer id) throws Exception;
+    int deleteById(Integer id);
 
     /**
-     * 根据评价id查询简单评价信息
+     * 更新
      *
-     * @param id
+     * @param comment
      * @return
      */
-    Comment selectSimpleById(Integer id);
-
-    /**
-     * 根据评价id查询评价信息
-     *
-     * @param id
-     * @return
-     */
-    Comment selectById(Integer id);
-
-
+    int update(Comment comment);
 }

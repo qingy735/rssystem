@@ -31,6 +31,30 @@ public class Comment implements Serializable {
      * 评论内容
      */
     private String comment;
+    /**
+     * 商品
+     */
+    private Product product;
+    /**
+     * 商家
+     */
+    private Business business;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
 
     public Integer getId() {
         return id;
@@ -89,6 +113,8 @@ public class Comment implements Serializable {
                 ", pid=" + pid +
                 ", grade=" + grade +
                 ", comment='" + comment + '\'' +
+                ", product=" + product +
+                ", business=" + business +
                 '}';
     }
 }

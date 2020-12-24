@@ -75,8 +75,9 @@ public class AdminUIController {
     }
 
     @RequestMapping("/comments")
-    public String findAllComment() {
-        adminSer.findAllComment();
+    public String findAllComment(HttpSession session) {
+        List<Comment> comments = adminSer.findAllComment();
+        session.setAttribute("AdComments", comments);
         return "admin/commentAd";
     }
 

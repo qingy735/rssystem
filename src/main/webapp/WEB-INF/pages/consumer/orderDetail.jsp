@@ -58,23 +58,24 @@
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content" style="background-color: seashell;margin-top: 15%">
-                                <form class="form-horizontal" action="${ctp}/commit/add" id="addForm" enctype="multipart/form-data"  method="post">
-                                    <input type="hidden" name="cid" value="${sessionScope.conLoginInfo.username} ">
-                                    <input type="hidden" name="bid" value="${sessionScope.busLoginInfo.username} ">
-                                    <input type="hidden" name="pid" value="${sessionScope.productInfo.id} ">
+                                <form class="form-horizontal" action="${ctp}/comment/add" id="addForm" method="post">
+                                    <input type="hidden" name="cid" value="${sessionScope.conLoginInfo.username}">
+                                    <input type="hidden" name="bid" value="${details[0].product.bid}">
+                                    <input type="hidden" name="pid" value="${detail.pid}">
                                     <div class="modal-header" style="height: 40px;">
                                         <button type="button" class="close" data-dismiss="modal"
                                                 aria-label="Close"><span
                                                 aria-hidden="true">&times;</span></button>
                                         <h5 class="modal-title" id="myModalLabel"
                                             style="color: #2e6da4;text-align: center">
-                                            <b>添加评论</b></h5>
+                                            <b>添加评论</b>
+                                        </h5>
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <div class="col-md-8 col-md-offset-2">
-                                        <textarea cols="20" rows="8" class="form-control" id="proInfo"
-                                                  name="productIntr">
+                                        <textarea cols="20" rows="8" class="form-control" id="comment"
+                                                  name="comment">
                                         </textarea>
                                             </div>
                                         </div>

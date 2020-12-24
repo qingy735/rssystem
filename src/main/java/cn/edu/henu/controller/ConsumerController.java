@@ -134,13 +134,14 @@ public class ConsumerController {
 
             if (i < 1) {
                 session.setAttribute("updateInfo", "修改失败");
-                return "redirect:/alterInfo/alterNickname";
+                return "redirect:/PInfo";
+            }else {
+                session.setAttribute("updateInfo", "修改成功");
             }
-
             // 每次更新完后更新session中的consumer对象
             session.setAttribute("conLoginInfo", loginInfo);
             // 返回用户中心
-            return "redirect:/PCenter";
+            return "redirect:/PInfo";
         }
         return "redirect:/login/consumer";
     }
@@ -155,18 +156,20 @@ public class ConsumerController {
                 loginInfo.setPassword(newPass);
             } else {
                 session.setAttribute("updateInfo", "初始密码错误");
-                return "redirect:/alterInfo/alterPassword";
+                return "redirect:/PInfo";
             }
             // 更新
             int i = consumerSer.update(loginInfo);
             if (i < 1) {
                 session.setAttribute("updateInfo", "修改失败");
-                return "redirect:/alterInfo/alterPassword";
+                return "redirect:/PInfo";
+            } else {
+                session.setAttribute("updateInfo", "修改成功");
             }
             // 每次更新完后更新session中的consumer对象
             session.setAttribute("conLoginInfo", loginInfo);
             // 返回用户中心
-            return "redirect:/PCenter";
+            return "redirect:/PInfo";
 
         }
         return "redirect:/login/consumer";

@@ -7,42 +7,54 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript">
-    window.onload=function(){
+    window.onload = function () {
         var myURL = document.location.href;
         //if (s.contains("home")){}
         //alert("你好"+myURL);
-        if(myURL.indexOf("home") !== -1){
+        if (myURL.indexOf("home") !== -1) {
             //alert("home");
             $("#l_home").addClass('active');
             $("#l_pastOrder").removeClass('active');
             $("#l_shopCart").removeClass('active');
             $("#l_assessment").removeClass('active');
             $("#l_discount").removeClass('active');
-        }else if(myURL.indexOf("shopCart")!== -1){
+            $("#l_PInfo").removeClass('active');
+        } else if (myURL.indexOf("shopCart") !== -1) {
             //alert("Cart");
             $("#l_home").removeClass('active');
             $("#l_pastOrder").removeClass('active');
             $("#l_assessment").removeClass('active');
             $("#l_discount").removeClass('active');
             $("#l_shopCart").addClass('active');
-        }else if (myURL.indexOf("pastOrder")!== -1){
+            $("#l_PInfo").removeClass('active');
+        } else if (myURL.indexOf("pastOrder") !== -1) {
             $("#l_home").removeClass('active');
             $("#l_shopCart").removeClass('active');
             $("#l_assessment").removeClass('active');
             $("#l_discount").removeClass('active');
             $("#l_pastOrder").addClass('active');
-        }else if(myURL.indexOf("assessment")!== -1){
+            $("#l_PInfo").removeClass('active');
+        } else if (myURL.indexOf("assessment") !== -1) {
             $("#l_pastOrder").removeClass('active');
             $("#l_shopCart").removeClass('active');
             $("#l_home").removeClass('active');
             $("#l_discount").removeClass('active');
             $("#l_assessment").addClass('active');
-        }else{
+            $("#l_PInfo").removeClass('active');
+        } else if (myURL.indexOf("PInfo") !== -1) {
+            $("#l_pastOrder").removeClass('active');
+            $("#l_shopCart").removeClass('active');
+            $("#l_home").removeClass('active');
+            $("#l_discount").removeClass('active');
+            $("#l_assessment").removeClass('active');
+            $("#l_PInfo").addClass('active');
+        } else {
             $("#l_pastOrder").removeClass('active');
             $("#l_shopCart").removeClass('active');
             $("#l_assessment").removeClass('active');
             $("#l_home").removeClass('active');
             $("#l_discount").addClass('active');
+            $("#l_PInfo").removeClass('active');
         }
     }
 </script>
@@ -59,7 +71,8 @@
                 <li id="l_pastOrder"><a href="${ctp}/pastOrder">历史订单</a></li>
                 <li id="l_assessment"><a href="${ctp}/assessment">我的评价</a></li>
                 <li id="l_discount"><a href="${ctp}/discount">优惠券</a></li>
-                <li class="dropdown">
+                <li id="l_PInfo"><a href="${ctp}/PInfo">个人信息</a></li>
+                <%--<li id="l_PInfo" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         个人资料 <b class="caret"></b>
                     </a>
@@ -68,7 +81,7 @@
                         <li><a href="${ctp}/alterInfo/alterPassword">修改密码</a></li>
                         <li><a href="${ctp}/PInfo">个人信息</a></li>
                     </ul>
-                </li>
+                </li>--%>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${sessionScope.conLoginInfo != null}">

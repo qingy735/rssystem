@@ -56,6 +56,11 @@
         where s.cid=#{cid} and s.pid = p.id
     </select>
 
+    <select id="selectByPid" resultMap="BaseResultMap">
+        select * from shopinfo
+        where pid = #{pid}
+    </select>
+
     <insert id="insert">
         insert into shopinfo(cid,bid,pid,pnum,discountuse)
         values(#{cid},#{bid},#{pid},#{pnum},0)

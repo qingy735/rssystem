@@ -54,6 +54,12 @@ public class ShopTest {
     }
 
     @Test
+    public void testSelectByPid() {
+        Shop shop = shopMapper.selectByPid(1);
+        System.out.println(shop);
+    }
+
+    @Test
     public void testInsert() {
         Shop shop = new Shop();
         shop.setCid("1812030001");

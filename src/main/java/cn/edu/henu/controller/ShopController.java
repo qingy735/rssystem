@@ -32,7 +32,15 @@ public class ShopController {
             return "redirect:/login/consumer";
         }
         shop.setCid(conLoginInfo.getUsername());
-        int i = shopSer.insert(shop);
+        Shop s = shopSer.selectByPid(shop.getPid());
+        // 原本购物车就有该商品
+        int i;
+        if (s != null) {
+            shop.setId(s.getId());
+            i = shopSer.update(shop);
+        } else {
+            i = shopSer.insert(shop);
+        }
         if (i < 1) {
             session.setAttribute("add_info", "添加购物车失败");
             Integer pid = shop.getPid();

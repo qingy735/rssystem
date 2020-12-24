@@ -19,6 +19,11 @@ ul li{ list-style: none; cursor: pointer;}
 .product:hover{
 	background-color:#FFFFF0 ;
 }
+.tip_quick{
+	width: 30%;
+	height: 15%;
+	text-align: center;
+}
 .quick_link{
 	#background-image: url("../images/login5.jpg");
 	margin-top: 10px;

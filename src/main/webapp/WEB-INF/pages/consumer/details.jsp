@@ -17,7 +17,7 @@
             var num = document.getElementById("proNum");
             //alert(parseInt(num.innerText));
             reg = /^\+?[1-9][0-9]*$/;
-            if (!reg.test(num.innerText)) {
+            if (!reg.test(num.value)) {
                 alert("您买的太少了~");
                 return false;
             }

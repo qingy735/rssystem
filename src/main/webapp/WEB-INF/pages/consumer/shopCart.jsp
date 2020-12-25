@@ -182,12 +182,14 @@
             <div class="col-md-1 pull-left">
                 <input type="checkbox" id="checkShopAll" onclick="checkShopAll()">&nbsp;全选&nbsp;
             </div>
+            <!--
             <div class="col-md-1 pull-left">
                 <a>删除</a>
             </div>
             <div class="col-md-2 pull-left">
                 <label class="form-inline">已选择商品&nbsp;0&nbsp;件</label>
             </div>
+            -->
             <div class="col-md-1 pull-right">
                 <button type="button" class="btn btn-warning" id="checkoutBtu" data-toggle="modal"
                         data-target="#myModal">结&nbsp;算

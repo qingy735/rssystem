@@ -71,9 +71,9 @@
                                                 <br>
                                                 <div class="row">
                                                     <label class="col-md-6 pull-left">支付宝支付&nbsp;<input type="radio"
-                                                                                                        name="zf"></label>
+                                                                                                        name="zf" required></label>
                                                     <label class="col-md-6 pull-left">微信支付&nbsp;<input type="radio"
-                                                                                                       name="zf"></label>
+                                                                                                       name="zf" required></label>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

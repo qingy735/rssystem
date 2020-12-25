@@ -95,8 +95,8 @@ public class LoginController {
         // 产生四个随机字符
         String checkCode = getCheckCode();
         // 将验证码存放在request中
-        // request.getSession().setAttribute("checkCode", checkCode);
-        request.getSession().setAttribute("checkCode", "1111");
+         request.getSession().setAttribute("checkCode", checkCode);
+        //request.getSession().setAttribute("checkCode", "1111");
 
         // 画笔颜色为黄色
         graphics.setColor(Color.yellow);

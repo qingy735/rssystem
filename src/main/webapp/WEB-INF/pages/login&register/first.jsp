@@ -154,19 +154,19 @@
                         <div class="form-group">
                             <label for="InputStNum">账号</label>
                             <input type="text" class="form-control" id="InputStNum" name="username"
-                                   value="1812030001" placeholder="请输入学号/教职工号">
+                                    placeholder="请输入学号/教职工号">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label for="InputStPwd">密码</label>
                             <input type="password" class="form-control" id="InputStPwd" name="password"
-                                   value="12345" placeholder="请输入密码">
+                                    placeholder="请输入密码">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-inline">
                             <label for="verifyCode1">验证码：</label>
                             <input type="text" name="verifyCode" class="form-control" id="verifyCode1"
-                                   value="1111" placeholder="请输入验证码"
+                                    placeholder="请输入验证码"
                                    style="width: 120px;"/>
                             <a href="javascript:refreshCode()">
                                 <img src="${ctp}/login/checkCode" class="verifyCodeImg" alt="点击刷新"/>
@@ -190,17 +190,17 @@
                 <form id="bsLoginForm" action="${ctp}/business/home" method="post">
                     <div class="form-group">
                         <label for="username">用户名：</label>
-                        <input type="text" value="100001" name="username" class="form-control" id="username"
+                        <input type="text"  name="username" class="form-control" id="username"
                                placeholder="请输入用户名"/>
                     </div>
                     <div class="form-group">
                         <label for="password">密码：</label>
-                        <input type="password" value="12345" name="password" class="form-control" id="password"
+                        <input type="password" name="password" class="form-control" id="password"
                                placeholder="请输入密码"/>
                     </div>
                     <div class="form-inline">
                         <label for="verifyCode2">验证码：</label>
-                        <input type="text" value="1111" name="verifyCode" class="form-control" id="verifyCode2"
+                        <input type="text" name="verifyCode" class="form-control" id="verifyCode2"
                                placeholder="请输入验证码"
                                style="width: 120px;"/>
                         <a href="javascript:refreshCode()">
@@ -224,13 +224,13 @@
                 <form id="admLoginForm" action="${ctp}/admin/home" method="post">
                     <div class="form-group">
                         <label for="InputAcNum">账号</label>
-                        <input type="text" class="form-control" name="username" value="admin" id="InputAcNum"
+                        <input type="text" class="form-control" name="username"  id="InputAcNum"
                                placeholder="请输入管理员账号">
                         <span class="help-block"></span>
                     </div>
                     <div class="form-group">
                         <label for="InputAcPwd">密码</label>
-                        <input type="password" class="form-control" name="password" value="admin" id="InputAcPwd"
+                        <input type="password" class="form-control" name="password" id="InputAcPwd"
                                placeholder="请输入密码">
                         <span class="help-block"></span>
                     </div>

@@ -107,13 +107,13 @@
                                     <div class="form-group">
                                         <label for="BuPwd1" class="col-sm-2 control-label">密码</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="BuPwd1" name="password0">
+                                            <input type="password" class="form-control" id="BuPwd1" name="password0" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="BuPwd2" class="col-sm-2 control-label">确认密码</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="BuPwd2" name="password">
+                                            <input type="password" class="form-control" id="BuPwd2" name="password" required>
                                         </div>
                                     </div>
                                 </div>
